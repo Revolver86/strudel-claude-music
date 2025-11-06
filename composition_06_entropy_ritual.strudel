@@ -2,20 +2,20 @@
 // Avant-garde outsider chaos - maximum experimentalism
 // Complete structural breakdown
 
-setcps(choose([140, 160, 180, 200])/60/4) // Unstable tempo
+setcps(170/60/4) // Mid-fast chaotic tempo
 
 stack(
   // Chaotic polyrhythmic kicks
   sound("bd(<5 7 9>,<8 13 16>,<0 2 5 7>)")
-    .n(choose([0,1,2,3]))
-    .speed(choose([-1.5, -1, -0.5, 0.5, 1, 1.5, 2]))
-    .crush(choose([2,3,4,5,6]))
-    .coarse(choose([8, 16, 24, 32, 48]))
-    .shape(choose([8, 12, 16, 20]))
+    .n("<0 1 2 3>")
+    .speed("<-1.5 -1 -0.5 0.5 1 1.5 2>")
+    .crush("<2 3 4 5 6>")
+    .coarse("<8 16 24 32 48>")
+    .shape("<8 12 16 20>")
     .gain(rand.range(0.7, 1.3))
     .pan(rand)
-    .every(choose([2,3,5,7]), x => x.fast(choose([2,3,4])))
-    .degradeBy(rand.range(0.1, 0.4)),
+    .every(3, x => x.fast(2))
+    .degradeBy(0.3),
 
   // Polymeter snares
   sound("sd(<3 5 7>,<8 11 13>,<1 3 5>)")
@@ -25,73 +25,73 @@ stack(
     .shape(irand(15))
     .gain(rand.range(0.5, 0.9))
     .pan(rand)
-    .delay(rand).delayfeedback(rand.range(0.5, 0.9))
-    .sometimes(x => x.stut(irand(6), rand, choose([1/32, 1/64, 1/128]))),
+    .delay(rand).delayfeedback(0.7)
+    .sometimes(x => x.stut(4, 0.6, 1/64)),
 
   // Atonal 8-bit madness
-  note(irand(60).fast(choose([6, 9, 12, 18, 24, 36])))
+  note(irand(60).fast("<6 9 12 18 24 36>"))
     .sub(24)
-    .sound(choose(["square", "triangle", "sawtooth"]))
+    .sound("<square triangle sawtooth>")
     .crush(irand(7))
-    .coarse(choose([4, 6, 8, 12, 16, 24]))
-    .lpf(perlin.range(200, 6000).fast(choose([4, 8, 16])))
-    .lpq(choose([5, 10, 15, 20]))
+    .coarse("<4 6 8 12 16 24>")
+    .lpf(perlin.range(200, 6000).fast(8))
+    .lpq("<5 10 15 20>")
     .shape(rand.range(5, 20))
     .gain(rand.range(0.3, 0.6))
     .pan(rand)
     .speed(rand.range(0.5, 2))
-    .degradeBy(rand.range(0.3, 0.6))
-    .every(choose([2,3,4]), x => x.rev()),
+    .degradeBy(0.5)
+    .every(3, x => x.rev()),
 
   // Multiple tremolo layers fighting each other
   note("[-24 -23 -25 -22]*<12 16 20 24 32>")
-    .add(choose([0, 1, 2, 6, 7, 11]))
-    .sound(choose(["sawtooth", "square"]))
-    .crush(choose([4,5,6,7]))
-    .lpf(choose([600, 800, 1000, 1200]))
-    .lpq(choose([8, 12, 16]))
+    .add("<0 1 2 6 7 11>")
+    .sound("<sawtooth square>")
+    .crush("<4 5 6 7>")
+    .lpf("<600 800 1000 1200>")
+    .lpq("<8 12 16>")
     .gain(rand.range(0.4, 0.7))
-    .pan(perlin.fast(choose([5, 7, 11])))
-    .degradeBy(rand.range(0.2, 0.5))
-    .sometimes(x => x.fast(choose([2, 3, 4]))),
+    .pan(perlin.fast(7))
+    .degradeBy(0.35)
+    .sometimes(x => x.fast(3)),
 
   // Competing bass frequencies
-  note(choose([-48, -36, -35, -34, -37, -38, -33]))
-    .fast(choose([1, 2, 3, 4]))
+  note("<-48 -36 -35 -34 -37 -38 -33>")
+    .fast("<1 2 3 4>")
     .sound("sawtooth")
-    .crush(choose([2, 3, 4]))
-    .coarse(choose([16, 24, 32, 48, 64]))
-    .lpf(choose([80, 100, 120, 150]))
-    .shape(choose([15, 18, 20, 22])).distort(rand.range(1, 2))
+    .crush("<2 3 4>")
+    .coarse("<16 24 32 48 64>")
+    .lpf("<80 100 120 150>")
+    .shape("<15 18 20 22>").distort(1.5)
     .gain(rand.range(0.7, 1))
-    .every(choose([2,3,5]), x => x.add(choose([7, 12, -12]))),
+    .every(5, x => x.add("<7 12 -12>")),
 
   // Multi-layer noise chaos
-  sound(choose(["white", "pink", "brown"])).fast(choose([2, 4, 8, 16, 32]))
+  sound("<white pink brown>").fast("<2 4 8 16 32>")
     .hpf(rand.range(2000, 14000))
     .bpf(rand.range(1000, 8000))
     .crush(irand(5))
     .gain(rand.range(0.15, 0.45))
     .pan(rand)
     .shape(rand.range(8, 20))
-    .degradeBy(rand.range(0.5, 0.8))
-    .rarely(x => x.stut(irand(8), rand, choose([1/64, 1/128]))),
+    .degradeBy(0.65)
+    .rarely(x => x.stut(6, 0.5, 1/64)),
 
   // Random industrial hits
-  sound(choose(["bd", "sd", "hh", "cp", "rim", "mt", "lt"])).n(irand(4))
-    .fast(choose([4, 6, 8, 12, 16]))
+  sound("<bd sd hh cp rim mt lt>").n(irand(4))
+    .fast("<4 6 8 12 16>")
     .speed(rand.range(-3, 3))
     .crush(irand(6))
-    .coarse(choose([4, 8, 16, 32]))
+    .coarse("<4 8 16 32>")
     .shape(rand.range(10, 25))
     .gain(rand.range(0.2, 0.6))
     .pan(rand)
-    .delay(rand).delayfeedback(rand)
-    .degradeBy(rand.range(0.6, 0.9)),
+    .delay(rand).delayfeedback(0.7)
+    .degradeBy(0.75),
 
   // Glitched high frequency piercing
   note(irand(36).add(48))
-    .fast(choose([16, 32, 64, 96]))
+    .fast("<16 32 64 96>")
     .sound("triangle")
     .crush(irand(4))
     .speed(rand.range(0.5, 3))
@@ -99,5 +99,5 @@ stack(
     .pan(rand)
     .hpf(rand.range(4000, 12000))
     .shape(rand.range(10, 30))
-    .degradeBy(rand.range(0.7, 0.9))
+    .degradeBy(0.8)
 )
