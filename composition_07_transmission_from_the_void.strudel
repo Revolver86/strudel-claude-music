@@ -76,7 +76,7 @@ const breakdown1 = stack(
     .delay(0.6).delaytime(1/8),
 
   // Schizophrenic voices (8-bit formants)
-  note(irand(24).fast("<4 8 12 16>"))
+  note(irand(24)).fast("<4 8 12 16>")
     .sound("triangle")
     .crush(irand(6))
     .bpf(perlin.range(800, 3500).fast(11))
@@ -193,7 +193,7 @@ const climax = stack(
     .coarse("<8 16 24 32>"),
 
   // Screaming digital entities
-  note(irand(48).fast("<16 24 32 48>"))
+  note(irand(48)).fast("<16 24 32 48>")
     .sound("<square triangle sawtooth>")
     .crush(irand(5))
     .lpf(rand.range(400, 6000))
