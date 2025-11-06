@@ -67,6 +67,18 @@ Complete avant-garde outsider chaos with unstable tempo:
 - Random industrial glitch hits
 - Maximum structural breakdown
 
+### 07 - Transmission From The Void ⭐ **FULL 2-MINUTE SONG**
+A complete occult ritual with full song structure at 160 BPM (32 cycles):
+- **Intro** (0:00-0:15): Ritual beginning with ceremonial drums and possessed static
+- **Verse 1** (0:15-0:37): The summoning - blast beats, 8-bit possession leads, tremolo invocation
+- **Breakdown 1** (0:37-0:52): Possessed whispers - scattered percussion, schizophrenic voices
+- **Verse 2** (0:52-1:15): Full possession - intensified chaos, dual fighting leads
+- **Breakdown 2** (1:15-1:30): The void speaks - slow doom, alien drones, glitched apparitions
+- **Climax** (1:30-1:45): Complete possession - maximum chaos, screaming entities, subsonic destruction
+- **Outro** (1:45-2:00): Banishment/decay - fading ritual, retreating frequencies
+
+Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
+
 ## How to Use
 
 1. Go to https://strudel.cc
