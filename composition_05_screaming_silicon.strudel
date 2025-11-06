@@ -1,0 +1,90 @@
+// SCREAMING SILICON
+// Distorted "vocal" textures meets harsh electronics
+// Black metal scream simulation through synthesis
+
+setcps(165/60/4) // Mid-tempo brutality
+
+stack(
+  // Heavy kick foundation
+  sound("bd*4").n("<0 1>")
+    .crush(3).shape(10)
+    .speed("<1 0.8>")
+    .gain(1.1)
+    .coarse(24)
+    .every(8, x => x.fast(2)),
+
+  // Blast sections
+  sound("sd(<7 11>,16,<0 3 5>)")
+    .crush(4).shape(7)
+    .speed(choose([0.9, 1, 1.1]))
+    .gain(0.8)
+    .pan(perlin)
+    .sometimes(x => x.ply(2)),
+
+  // "Screaming" synth - harsh formants
+  note("<[-12 -10 -8]*16 [-14 -11 -7]*32 [-15 -12 -9]*16 [-16 -13 -10]*8>")
+    .add(choose([0, 1, 2, 6]))
+    .sound("sawtooth")
+    .crush(5).coarse(12)
+    .lpf(sine.range(600, 2400).fast(8))
+    .lpq(15)
+    .bpf(saw.range(1200, 3200).fast(12))
+    .bpq(20)
+    .shape(12)
+    .gain(0.6)
+    .pan(rand)
+    .distort(0.8)
+    .degradeBy(0.2)
+    .every(3, x => x.fast(2)),
+
+  // Harsh "vocal" formant layer
+  note("[-24 -23 -24 -21]*8")
+    .sound("square")
+    .add(choose([0, 1, 2, 7]))
+    .crush(4)
+    .bpf(perlin.range(800, 3000))
+    .bpq(30)
+    .shape(15)
+    .gain(0.5)
+    .pan(sine.fast(11))
+    .sometimes(x => x.add(12)),
+
+  // 8-bit harmony/dissonance
+  note("<[0 1 6] [2 5 9] [-2 3 8] [1 4 10]>*12")
+    .scale("c:phrygian")
+    .sound("square")
+    .crush(6)
+    .lpf(1500)
+    .shape(6)
+    .gain(0.4)
+    .pan(rand)
+    .degradeBy(0.3),
+
+  // Industrial rhythm layer
+  sound("hh*16, ~ cp ~ cp")
+    .n(irand(3))
+    .crush(choose([3,4,5]))
+    .speed(perlin.range(0.8, 1.3))
+    .gain(0.5)
+    .pan(rand)
+    .shape(5),
+
+  // Crushing sub-bass
+  note("[-36 -37 -36 -34]")
+    .sound("sawtooth")
+    .crush(2).coarse(48)
+    .lpf(100)
+    .shape(22).distort(1.8)
+    .gain(0.9)
+    .every(4, x => x.fast(4)),
+
+  // Harsh noise texture
+  sound("brown*8")
+    .hpf(perlin.range(3000, 8000))
+    .bpf(sine.range(2000, 5000).fast(16))
+    .crush(3)
+    .gain(rand.range(0.2, 0.5))
+    .pan(rand)
+    .shape(10)
+    .degradeBy(0.4)
+)

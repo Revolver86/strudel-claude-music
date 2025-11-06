@@ -1,0 +1,71 @@
+// CORRUPTED TERMINAL
+// Glitched 8-bit meets industrial void
+// Outsider chaos architecture
+
+setcps(200/60/4) // Relentless speed
+
+stack(
+  // Aggressive kick pattern - broken and harsh
+  sound("bd*8").n("<0 1 2 3>")
+    .speed("<1 1.5 0.5 -1>")
+    .crush(3).shape(10)
+    .gain("1 0.7!2 1.2 0.6 1 0.8 1.3")
+    .distort(0.8)
+    .every(7, x => x.fast(3))
+    .sometimes(x => x.scramble()),
+
+  // Industrial metal percussion
+  sound("[~ sd]*2, hh*16")
+    .n(irand(4))
+    .crush(choose([2,3,4,5]))
+    .speed(perlin.range(0.7, 1.5))
+    .shape(7)
+    .gain(0.6)
+    .pan(rand)
+    .degradeBy(0.25)
+    .often(x => x.ply(3)),
+
+  // 8-bit chaos lead - demoscene vibes
+  note("0 7 12 15 19 22 27 31".fast("<4 6 8 12>"))
+    .add(choose([-12, 0, 12, 24]))
+    .sound(choose(["square", "triangle"]))
+    .crush(irand(7))
+    .lpf(saw.range(300, 4000).fast(16))
+    .lpq(12)
+    .gain(0.5)
+    .pan(sine.fast(23))
+    .coarse(choose([4, 8, 16, 32]))
+    .sometimes(x => x.rev())
+    .rarely(x => x.fast(8)),
+
+  // Harsh digital artifacts
+  note(irand(48).fast(32))
+    .sound("square")
+    .crush(2)
+    .lpf(perlin.range(100, 8000))
+    .gain(rand.range(0.1, 0.4))
+    .speed(choose([0.5, 1, 2, 4]))
+    .pan(rand)
+    .shape(20)
+    .degradeBy(0.6),
+
+  // Sub-bass distortion
+  note("[-36 -35]*8")
+    .sound("sawtooth")
+    .add(choose([0, 1, 2, -1, -2]))
+    .lpf(150)
+    .shape(18).distort(1.2)
+    .crush(4)
+    .gain(0.9)
+    .every(4, x => x.add(7)),
+
+  // Glitch stutter layer
+  sound(choose(["bd:0", "bd:1", "sd:0", "sd:1"])).fast(choose([4, 8, 16, 32]))
+    .speed(rand.range(-3, 3))
+    .crush(irand(4))
+    .gain(rand.range(0.2, 0.6))
+    .pan(rand)
+    .delay(rand).delaytime(1/64).delayfeedback(0.9)
+    .degradeBy(0.7)
+    .often(x => x.rev())
+)

@@ -1,0 +1,74 @@
+// DATA ROT
+// Maximum glitch chaos - corrupted memory dump
+// Digital decomposition
+
+setcps(220/60/4) // Manic speed
+
+stack(
+  // Glitched blast beats - completely unstable
+  sound("bd*<7 11 13 16>").n(irand(4))
+    .speed(choose([-2, -1, 0.5, 1, 1.5, 2, 3]))
+    .crush(irand(3))
+    .coarse(choose([4, 8, 16, 32, 64]))
+    .shape(choose([5, 10, 15, 20]))
+    .gain(rand.range(0.5, 1.5))
+    .pan(rand)
+    .degradeBy(rand.range(0.1, 0.5))
+    .often(x => x.scramble())
+    .sometimes(x => x.stut(irand(8), rand, 1/64)),
+
+  // Chaotic snare pattern
+  sound("sd*<5 7 9 13>").n(choose([0,1,2,3]))
+    .speed(rand.range(-2, 2))
+    .crush(irand(4))
+    .shape(irand(20))
+    .gain(rand.range(0.3, 1))
+    .pan(rand)
+    .delay(rand).delayfeedback(rand)
+    .degradeBy(0.4)
+    .rarely(x => x.fast(irand(8))),
+
+  // Completely broken 8-bit lead
+  note(irand(48).fast(choose([8, 16, 24, 32, 48, 64])))
+    .sound(choose(["square", "triangle", "sawtooth"]))
+    .crush(irand(6))
+    .coarse(choose([2, 4, 8, 16, 32]))
+    .speed(rand.range(-3, 3))
+    .lpf(rand.range(100, 8000))
+    .shape(rand.range(5, 25))
+    .gain(rand.range(0.2, 0.6))
+    .pan(rand)
+    .degradeBy(rand.range(0.3, 0.7))
+    .often(x => x.rev()),
+
+  // Random digital artifacts
+  sound(choose(["bd", "sd", "hh", "cp", "rim"])).n(irand(8))
+    .fast(choose([4, 8, 16, 32, 64]))
+    .speed(rand.range(-4, 4))
+    .crush(irand(5))
+    .gain(rand.range(0.1, 0.5))
+    .pan(rand)
+    .shape(rand.range(10, 30))
+    .degradeBy(rand.range(0.5, 0.9)),
+
+  // Distorted sub frequencies
+  note(choose([-48, -36, -35, -34, -33]))
+    .fast(choose([1, 2, 4, 8]))
+    .sound("sawtooth")
+    .crush(choose([2, 3, 4]))
+    .coarse(choose([16, 32, 64]))
+    .shape(18).distort(rand.range(0.8, 2))
+    .lpf(rand.range(80, 200))
+    .gain(rand.range(0.6, 1))
+    .sometimes(x => x.speed(choose([0.5, 2]))),
+
+  // Pure noise chaos
+  sound(choose(["white", "pink", "brown"])).fast(choose([4, 8, 16, 32]))
+    .hpf(rand.range(1000, 12000))
+    .crush(irand(4))
+    .gain(rand.range(0.1, 0.4))
+    .pan(rand)
+    .shape(rand.range(5, 20))
+    .degradeBy(rand.range(0.6, 0.9))
+    .often(x => x.stut(irand(6), rand, 1/128))
+)

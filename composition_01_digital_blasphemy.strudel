@@ -1,0 +1,72 @@
+// DIGITAL BLASPHEMY
+// Harsh black metal meets 8-bit industrial chaos
+// By Claude, created for the void
+
+setcps(180/60/4) // Fast, aggressive tempo
+
+stack(
+  // Blast beat foundation - chaotic and glitched
+  sound("bd(7,8)").speed("<1 0.8 1.2 -1>")
+    .crush(4).shape(8).gain(1.2)
+    .sometimes(x => x.speed(rand.range(0.5, 2)))
+    .degradeBy(0.2),
+
+  sound("sd(<5 7 3 11>,16,<0 2 5>)")
+    .shape(9).crush(3)
+    .speed(choose([1, 1.2, 0.8, -1]))
+    .gain(0.9)
+    .rarely(x => x.fast(4)),
+
+  // 8-bit demoscene lead - dissonant and harsh
+  note("<[0 1 6 11] [2 5 9 14] [-2 3 8 13] [1 4 10 15]>*16")
+    .scale("c:locrian")
+    .sound("square")
+    .crush(choose([3,4,5,6]))
+    .lpf(sine.range(400, 3000).fast(8))
+    .shape(6)
+    .gain(0.5)
+    .pan(rand)
+    .often(x => x.ply(2))
+    .sometimes(x => x.rev())
+    .degradeBy(0.3),
+
+  // Black metal tremolo picking - glitched
+  note("[-12 -10 -8]*32".add(choose([0, 1, 2, 6])))
+    .sound(choose(["square", "sawtooth"]))
+    .speed(perlin.range(0.8, 1.3))
+    .lpf(1200).lpq(8)
+    .crush(5).coarse(16)
+    .gain(0.6)
+    .pan(perlin)
+    .every(3, x => x.fast(2))
+    .degradeBy(0.4),
+
+  // Industrial noise percussion
+  sound("<white pink brown white>*8")
+    .hpf(4000)
+    .crush(2)
+    .gain(rand.range(0.2, 0.7))
+    .pan(rand)
+    .shape(12)
+    .degradeBy(0.5),
+
+  // Lo-fi bass drone - distorted chaos
+  note("[-24 -23 -24 -26]*4".add(choose([0, 1, -1])))
+    .sound("sawtooth")
+    .lpf(200).lpq(0.5)
+    .shape(15).distort(1)
+    .crush(3).coarse(32)
+    .gain(0.8)
+    .rarely(x => x.fast(choose([2, 3, 4])))
+    .sometimes(x => x.add(choose([-12, 12]))),
+
+  // Chaotic glitch layer
+  sound(choose(["bd", "sd", "hh"])).n(irand(8))
+    .speed(rand.range(-2, 2))
+    .crush(irand(6))
+    .coarse(choose([8, 16, 32, 64]))
+    .delay(rand).delayfeedback(rand)
+    .gain(rand.range(0.1, 0.5))
+    .pan(rand)
+    .often(x => x.stut(4, 0.3, 1/32))
+)
