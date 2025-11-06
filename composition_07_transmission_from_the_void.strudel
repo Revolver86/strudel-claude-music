@@ -1,0 +1,276 @@
+// TRANSMISSION FROM THE VOID
+// A 2-minute occult ritual in digital form
+// Full song structure - intro, verses, breakdowns, climax, outro
+// By Claude, channeled from beyond
+
+// ~120 seconds total at 160 BPM = 32 cycles
+
+setcps(160/60/4) // 160 BPM - ritualistic tempo
+
+// === INTRO - Ritual Beginning (0:00-0:15, 4 cycles) ===
+const intro = stack(
+  // Distant ceremonial drums
+  sound("bd ~ ~ ~, ~ ~ sd ~").slow(2)
+    .crush(5).shape(8)
+    .gain(0.6).room(0.9),
+
+  // Whispered frequencies
+  note("[-36 -37 -35]*4").slow(2)
+    .sound("sine")
+    .lpf(100).gain(0.3)
+    .pan(sine.slow(8)),
+
+  // Possessed static
+  sound("white*4").slow(2)
+    .hpf(6000).crush(4)
+    .gain(rand.range(0.1, 0.3))
+    .degradeBy(0.7)
+)
+
+// === VERSE 1 - The Summoning (0:15-0:37, 6 cycles) ===
+const verse1 = stack(
+  // Blast beat ritual
+  sound("bd*4, [~ sd]*2, hh*8")
+    .n("<0 1 2 1>")
+    .crush(4).shape(9)
+    .speed("<1 0.9 1.1 1>")
+    .gain("1 0.8 0.9 1")
+    .degradeBy(0.15),
+
+  // 8-bit possession lead
+  note("<[0 1 6 11] [2 7 9 14] [-2 3 8 13] [1 6 10 15]>*8")
+    .scale("c:phrygian")
+    .sound("square")
+    .crush("<4 5 6 5>")
+    .lpf(sine.range(600, 2400).fast(4))
+    .lpq(10)
+    .shape(7)
+    .gain(0.55)
+    .pan(perlin),
+
+  // Tremolo invocation
+  note("[-12 -11 -12 -10]*16")
+    .add("<0 1 6 7>")
+    .sound("sawtooth")
+    .crush(6).coarse(16)
+    .lpf(900).lpq(8)
+    .gain(0.6)
+    .pan(rand)
+    .degradeBy(0.25),
+
+  // Cursed sub-bass
+  note("[-24 -23 -24 -26]")
+    .sound("sawtooth")
+    .lpf(180).shape(16)
+    .distort(1.2).crush(3)
+    .gain(0.8)
+)
+
+// === BREAKDOWN 1 - Possessed Whispers (0:37-0:52, 4 cycles) ===
+const breakdown1 = stack(
+  // Scattered haunted percussion
+  sound("bd(<3 5>,8), ~ sd ~ sd")
+    .crush(3).shape(12)
+    .speed("<1 -1 0.5 2>")
+    .gain(0.7)
+    .delay(0.6).delaytime(1/8),
+
+  // Schizophrenic voices (8-bit formants)
+  note(irand(24).fast("<4 8 12 16>"))
+    .sound("triangle")
+    .crush(irand(6))
+    .bpf(perlin.range(800, 3500).fast(11))
+    .bpq(25)
+    .shape(10)
+    .gain(rand.range(0.2, 0.5))
+    .pan(rand)
+    .degradeBy(0.5),
+
+  // Paranoid whispers
+  note("[-48 -47 -45 -44]*8")
+    .sound("sine")
+    .crush(4)
+    .gain(0.35)
+    .pan(sine.fast(13))
+    .degradeBy(0.3),
+
+  // Industrial noise ritual
+  sound("<white pink brown>*8")
+    .hpf(4000)
+    .crush(3)
+    .gain(rand.range(0.15, 0.4))
+    .pan(rand)
+    .degradeBy(0.6)
+)
+
+// === VERSE 2 - Full Possession (0:52-1:15, 6 cycles) ===
+const verse2 = stack(
+  // Intensified blast beats
+  sound("bd*<4 8>, [~ sd]*2, hh*<8 16>")
+    .n("<0 1 2 3>")
+    .crush("<3 4 5 4>")
+    .shape(10)
+    .speed("<1 1.2 0.8 1.5>")
+    .gain("1 0.9 1.1 0.85")
+    .coarse("<16 24 32 24>"),
+
+  // Dual possessed leads fighting
+  note("<[0 1 6] [2 5 9] [-2 3 8] [1 4 10]>*12")
+    .scale("c:locrian")
+    .sound("square")
+    .crush("<3 4 5 6>")
+    .lpf(sine.range(400, 3000).fast(8))
+    .shape(8)
+    .gain(0.6)
+    .pan(sine.fast(7))
+    .off(1/16, x => x.add(7).gain(0.4)),
+
+  // Chaotic tremolo madness
+  note("[-12 -10 -8 -6]*24")
+    .add("<0 1 2 6 7 11>")
+    .sound("<sawtooth square>")
+    .crush(5).coarse(12)
+    .lpf(1200).lpq(12)
+    .gain(0.65)
+    .pan(perlin.fast(3))
+    .degradeBy(0.3)
+    .sometimes(x => x.fast(2)),
+
+  // Crushing distorted bass
+  note("[-24 -23 -24 -21]")
+    .sound("sawtooth")
+    .lpf(200).shape(18)
+    .distort(1.5).crush(2)
+    .coarse(32)
+    .gain(0.85)
+    .every(4, x => x.add("<7 12>"))
+)
+
+// === BREAKDOWN 2 - The Void Speaks (1:15-1:30, 4 cycles) ===
+const breakdown2 = stack(
+  // Slow crushing doom
+  sound("bd ~ ~ bd").slow(2)
+    .crush(2).shape(15)
+    .distort(1.8)
+    .gain(1.2),
+
+  // Void transmission static
+  sound("brown*16")
+    .hpf(perlin.range(2000, 8000).fast(5))
+    .crush(3)
+    .gain(rand.range(0.25, 0.6))
+    .pan(rand)
+    .degradeBy(0.5),
+
+  // Alien 8-bit drones
+  note("<[-12 -11] [-14 -9] [-15 -7] [-16 -8]>*8")
+    .sound("triangle")
+    .crush(4).coarse(24)
+    .lpf(perlin.range(300, 1200).slow(3))
+    .gain(0.45)
+    .shape(6)
+    .pan(sine.slow(5)),
+
+  // Glitched apparitions
+  sound("<bd sd hh cp>*<2 4 8 16>")
+    .n(irand(4))
+    .speed(rand.range(-2, 2))
+    .crush(irand(5))
+    .gain(rand.range(0.2, 0.5))
+    .pan(rand)
+    .degradeBy(0.7)
+)
+
+// === CLIMAX - Complete Possession (1:30-1:45, 4 cycles) ===
+const climax = stack(
+  // Maximum chaos blast
+  sound("bd*<7 11>, sd(<5 7 9>,16), hh*<16 24 32>")
+    .n(irand(4))
+    .crush(irand(4))
+    .speed("<1 1.5 0.5 2>")
+    .shape("<12 15 18 20>")
+    .gain(rand.range(0.7, 1.2))
+    .coarse("<8 16 24 32>"),
+
+  // Screaming digital entities
+  note(irand(48).fast("<16 24 32 48>"))
+    .sound("<square triangle sawtooth>")
+    .crush(irand(5))
+    .lpf(rand.range(400, 6000))
+    .shape(rand.range(10, 20))
+    .gain(rand.range(0.3, 0.6))
+    .pan(rand)
+    .degradeBy(0.4),
+
+  // Multiple tremolo layers colliding
+  note("[-12 -10 -8]*32")
+    .add(irand(12))
+    .sound("sawtooth")
+    .crush("<4 5 6>")
+    .lpf("<800 1000 1200>")
+    .lpq(15)
+    .gain(0.7)
+    .pan(rand)
+    .degradeBy(0.3)
+    .off(1/32, x => x.add(7).gain(0.5)),
+
+  // Subsonic destruction
+  note("[-36 -35 -36 -33]*8")
+    .sound("sawtooth")
+    .lpf(150).shape(20)
+    .distort(2).crush(2)
+    .gain(0.9),
+
+  // Complete noise takeover
+  sound("<white pink brown>*<8 16 32>")
+    .hpf(rand.range(3000, 12000))
+    .crush(irand(4))
+    .gain(rand.range(0.2, 0.6))
+    .pan(rand)
+    .shape(rand.range(10, 25))
+    .degradeBy(0.5)
+)
+
+// === OUTRO - Banishment/Decay (1:45-2:00, 4 cycles) ===
+const outro = stack(
+  // Fading ritual drums
+  sound("bd ~ ~ ~, ~ ~ ~ sd").slow(2)
+    .crush(6).shape(5)
+    .gain("<0.6 0.5 0.4 0.2>")
+    .room(0.95)
+    .degradeBy("<0.3 0.5 0.7 0.9>"),
+
+  // Retreating frequencies
+  note("[-36 -37 -35 -38]*4").slow(2)
+    .sound("sine")
+    .lpf("<100 80 60 40>")
+    .gain("<0.3 0.2 0.15 0.05>")
+    .pan(sine.slow(11)),
+
+  // Last whispers of static
+  sound("brown*8").slow(2)
+    .hpf(5000)
+    .crush(5)
+    .gain(rand.range(0, 0.2))
+    .degradeBy("<0.5 0.7 0.85 0.95>")
+    .pan(rand),
+
+  // Final glitched echo
+  sound("<bd sd hh>")
+    .speed(rand.range(-1, 1))
+    .crush(irand(7))
+    .gain(rand.range(0, 0.3))
+    .delay(0.8).delayfeedback(0.9)
+    .degradeBy(0.9)
+)
+
+// === FULL SONG ARRANGEMENT ===
+arrange([
+  [4, intro],           // 0:00-0:15
+  [6, verse1],          // 0:15-0:37
+  [4, breakdown1],      // 0:37-0:52
+  [6, verse2],          // 0:52-1:15
+  [4, breakdown2],      // 1:15-1:30
+  [4, climax],          // 1:30-1:45
+  [4, outro]            // 1:45-2:00
+])
