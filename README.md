@@ -79,16 +79,22 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
-### 08 - Layered Foundation 🎚️ **3-MINUTE STEM-READY BASE**
-Structured foundation track designed for multi-layer stem building at 140 BPM (~64 cycles):
-- **Modular design**: Clear sections for layering additional instrumental stems
-- **Progressive structure**: Intro → Verse 1 → Pre-Chorus → Chorus → Verse 2 → Pre-Chorus 2 → Chorus 2 → Bridge → Final Chorus → Outro
+### 08 - Layered Foundation 🎚️ **STEM-READY BASE (Part 1: Verse)**
+Foundation verse track designed for multi-layer stem building at 140 BPM (~1 minute of content):
+- **Modular design**: Clear foundation for layering additional instrumental stems
+- **Verse character**: Mid-intensity, establishes main riff and progression
 - **Intentionally simple core**: Foundation riffs and progressions designed to support additional layers
-- **Section markers**: Sparse elements define structure for stem synchronization
-- **Climax elements**: Reserved destruction layers for final sections
 - **Production workflow**: Record base, layer instrumental stems, export to Suno for vocal integration
 
-Purpose-built as a framework for building complex multi-stem productions with minimal technical knowledge.
+### 08b - Layered Chorus 🎚️ **STEM-READY BASE (Part 2: Chorus)**
+Intensified chorus counterpart at 140 BPM (~1 minute of content):
+- **Chorus hook**: Higher energy, denser arrangements, octave-higher melodies
+- **Perfect sync**: Same tempo as foundation for seamless alternation
+- **Doubled layers**: Thicker guitar walls, harmony vocals, pad washes
+- **Climax building**: Progressive intensity through four 15-second sections
+- **Usage**: Alternate with Part 1 (verse), or layer both for maximum intensity
+
+**Combined workflow**: Record verse section → Record chorus section → Alternate/layer as needed → Create additional instrumental stems → Mix and export to Suno.
 
 ## How to Use
 
