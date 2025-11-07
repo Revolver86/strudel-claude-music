@@ -104,7 +104,16 @@ Sparse atmospheric section creating tension and contrast at 140 BPM (~30 seconds
 - **Half-time feel**: Sparse, degraded rhythm creating tension
 - **Building intensity**: Gradual noise sweep and pulsing tension preparing return to main sections
 
-**Combined workflow**: Record verse → Record chorus → Record breakdown → Arrange sections (V-V-C-V-B-C-C) → Create instrumental stems → Layer and mix → Export to Suno.
+### 08d - Layered Finale/Outro 🎚️ **STEM-READY BASE (Part 4: Finale)**
+Climactic peak decaying into void at 140 BPM (~30 seconds of content):
+- **Maximum climax start**: Everything firing at once - blast beats, all bass layers, all leads, total chaos
+- **Progressive stripping**: Layers systematically removed - drums fade, leads dissolve
+- **Dissolving phase**: Only drones, whispers, and noise remain - space appears
+- **Void ending**: Subsonic rumble and silence - fading into nothingness
+- **Dual purpose**: Serves as both the song's peak intensity AND final resolution
+- **Dramatic arc**: Most intense moment → quietest moment (inverse of all other sections)
+
+**Complete workflow**: Record all 4 sections → Arrange (e.g., V-V-C-V-B-C-C-F) → Create instrumental stems → Layer and mix → Export to Suno for vocals → Final mastering.
 
 ## How to Use
 
