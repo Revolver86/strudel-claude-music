@@ -1,202 +1,211 @@
-// LAYERED CHORUS - Part 2: The Hook Section
-// 1-minute chorus counterpart to Layered Foundation
-// Higher intensity, different melodic content, built for stem layering
-// Pairs with composition_08_layered_foundation.strudel
+// LAYERED CHORUS - Part 2: DISTINCT Hook Section
+// Contrasting chorus with different harmonic/melodic content from verse
+// New bass movement, wide interval melodies, contrasting character
+// Still harsh industrial aesthetic but MUSICALLY DIFFERENT
 // By Claude, designed for modular expansion
 
-setcps(140/60/4) // 140 BPM - matches foundation tempo for perfect sync
+setcps(140/60/4) // 140 BPM - matches foundation tempo
 
 stack(
-  // ===== INTENSIFIED DRUMS - Chorus power =====
-  // Kick - more aggressive, denser pattern
-  sound("bd*<4 4 8 8>")
-    .n("<0 1 2 1>")
-    .crush("<4 3 3 2>")
-    .shape("<12 15 18 20>")
-    .speed("<1 1.1 1 1.2>")
-    .gain("<1 1.05 1.1 1.15>"),
+  // ===== CHORUS DRUMS - Different feel from verse =====
+  // Kick - driving on-beat emphasis (vs verse's building pattern)
+  sound("bd*<4 4 4 8>")
+    .n("<0 1 0 2>")
+    .crush("<4 4 3 2>")
+    .shape("<14 16 18 22>")
+    .speed("<1 1 1 1.2>")
+    .gain("<1 1.05 1.1 1.2>"),
 
-  // Snare - driving rhythm with fills
-  sound("[~ sd, sd*4]*<1 1 1 2>")
-    .n("<1 2 1 0>")
-    .crush("<3 3 2 2>")
-    .shape("<14 16 18 20>")
+  // Snare - syncopated, not just backbeat
+  sound("[~ sd ~ sd, ~ ~ sd ~]*<1 1 1 2>")
+    .n("<1 0 2 1>")
+    .crush("<4 3 3 2>")
+    .shape("<12 14 16 20>")
+    .gain("<0.8 0.85 0.9 1>"),
+
+  // Ride/crash - anthem feel
+  sound("hh:2*<8 8 16 16>")
+    .crush("<5 4 4 3>")
+    .gain("<0.6 0.65 0.7 0.75>")
+    .pan(0.5)
+    .room(0.3),
+
+  // Floor tom accents - punctuation
+  sound("<~ ~ bd:2*4 bd:2*8>")
+    .crush("<6 6 4 3>")
+    .shape("<8 8 14 18>")
+    .lpf(400)
+    .gain("<0 0 0.7 0.8>"),
+
+  // ===== DIFFERENT BASS MOVEMENT - Not just root =====
+  // Verse: -24/-26 (I-bII)
+  // Chorus: -24/-22/-27/-24 (I-bVII-bII-I) - more movement!
+  note("[-24 -22 -27 -24]*<2 2 4 4>")
+    .sound("sawtooth")
+    .lpf("<180 200 220 200>")
+    .shape("<16 18 20 24>")
+    .distort("<1.4 1.6 1.8 2>")
+    .crush("<3 3 3 2>")
     .gain("<0.85 0.9 0.95 1>"),
 
-  // Hi-hats - constant energy
-  sound("hh*<16 16 24 32>")
-    .n("<0 1 0 2>")
-    .crush("<4 3 3 2>")
-    .gain("<0.5 0.55 0.6 0.65>")
-    .pan(perlin.fast(2)),
-
-  // Additional percussion - chorus marker
-  sound("cp*<4 4 8 8>")
-    .n("<1 2 1 3>")
-    .crush("<4 3 3 2>")
-    .shape("<10 12 15 18>")
-    .gain("<0.5 0.55 0.6 0.65>")
-    .pan(rand),
-
-  // ===== BASS - Driving root movement =====
-  // More active bass line for chorus
-  note("[-24 -26 -27 -24]*<2 2 4 4>")
+  // Sub-bass following different progression
+  note("[-36 -34 -39 -36]*<1 1 2 2>")
     .sound("sawtooth")
-    .lpf("<200 220 240 200>")
-    .shape("<16 18 20 22>")
-    .distort("<1.5 1.8 2 2.2>")
-    .crush("<3 3 2 2>")
-    .gain("<0.8 0.85 0.9 0.95>"),
-
-  // Sub-bass reinforcement
-  note("[-36 -38 -39 -36]*<1 1 2 2>")
-    .sound("sawtooth")
-    .lpf("<120 130 140 120>")
-    .shape("<18 20 22 24>")
-    .distort("<1.8 2 2.2 2.5>")
+    .lpf("<130 140 150 140>")
+    .shape("<20 22 24 26>")
+    .distort("<2 2.2 2.4 2.6>")
     .crush("<3 2 2 2>")
-    .gain("<0.7 0.75 0.8 0.85>"),
+    .gain("<0.75 0.8 0.85 0.9>"),
 
-  // ===== MELODIC HOOK - Chorus lead =====
-  // Main chorus riff - octave higher, more notes
-  note("[0 3 7 10, 12 15 19 22]*<4 4 8 8>")
-    .scale("c:phrygian")
+  // ===== CONTRASTING MELODIC HOOK - Wide intervals! =====
+  // Verse: [0 1 3 6] - stepwise clustering
+  // Chorus: [0 7 12 17] - fourths and fifths, OPEN and powerful
+  note("[0 7 12 17]*<4 4 8 8>")
+    .scale("c:locrian") // More dissonant than verse's phrygian
     .sound("square")
     .crush("<4 3 3 2>")
-    .lpf(sine.range(1200, 3200).slow(4))
-    .lpq("<12 15 18 20>")
-    .shape("<10 12 15 18>")
-    .gain("<0.65 0.7 0.75 0.8>")
+    .lpf(sine.range(1400, 3500).slow(4))
+    .lpq("<14 16 18 22>")
+    .shape("<12 14 16 20>")
+    .gain("<0.7 0.75 0.8 0.85>")
     .pan(perlin.slow(2)),
 
-  // Harmony layer - thickens the hook
-  note("[0 3 7 10]*<8 8 12 16>")
-    .add("<0 5 7 12>")
-    .scale("c:phrygian")
+  // Secondary hook - descending power intervals
+  note("[12 10 7 5]*<4 4 8 8>")
+    .scale("c:locrian")
+    .sound("square")
+    .crush("<4 3 3 2>")
+    .lpf(sine.range(1200, 3000).slow(4))
+    .lpq("<12 14 16 18>")
+    .shape("<10 12 14 16>")
+    .gain("<0.55 0.6 0.65 0.7>")
+    .pan(perlin.slow(2).add(0.5)),
+
+  // ===== DIFFERENT TREMOLO APPROACH - Single note power =====
+  // Verse: changing notes [-12 -11 -12 -10]
+  // Chorus: PEDAL TONE power on root, then movement
+  note("<[-12]*32 [-10]*32 [-15]*32 [-12]*32>")
+    .sound("sawtooth")
+    .crush("<4 4 4 3>")
+    .coarse("<10 10 8 8>")
+    .lpf("<1100 1200 1000 1100>")
+    .lpq("<14 16 18 20>")
+    .gain("<0.65 0.7 0.75 0.8>")
+    .pan(0.3)
+    .degradeBy("<0.2 0.2 0.15 0.1>"),
+
+  // Tremolo right channel - harmonic fifth
+  note("<[-5]*32 [-3]*32 [-8]*32 [-5]*32>")
+    .sound("sawtooth")
+    .crush("<4 4 4 3>")
+    .coarse("<10 10 8 8>")
+    .lpf("<1100 1200 1000 1100>")
+    .lpq("<14 16 18 20>")
+    .gain("<0.65 0.7 0.75 0.8>")
+    .pan(0.7)
+    .degradeBy("<0.2 0.2 0.15 0.1>"),
+
+  // ===== ANTHEM PAD - Huge open chords =====
+  // Verse: simple [0 3 7] triads
+  // Chorus: POWER CHORDS [0 7 12 19] - root/fifth/octave/fifth
+  note("[0 7 12 19]*<2 2 4 4>")
+    .scale("c:locrian")
     .sound("triangle")
-    .crush("<4 4 3 3>")
-    .lpf(sine.range(800, 2000).slow(4))
-    .shape("<8 10 12 15>")
+    .crush("<5 4 4 3>")
+    .lpf(sine.range(800, 1800).slow(8))
+    .shape("<10 12 14 16>")
     .gain("<0.5 0.55 0.6 0.65>")
-    .pan(perlin.slow(2).add(0.3)),
-
-  // ===== TREMOLO WALL - Dense black metal texture =====
-  // Double-tracked tremolo (left)
-  note("[-12 -10 -8 -10]*<24 24 32 32>")
-    .add("<0 3 6 0>")
-    .sound("sawtooth")
-    .crush("<5 4 4 3>")
-    .coarse("<12 10 8 8>")
-    .lpf("<1000 1100 1200 1000>")
-    .lpq("<12 15 18 12>")
-    .gain("<0.6 0.65 0.7 0.75>")
-    .pan(0.2)
-    .degradeBy("<0.25 0.2 0.2 0.15>"),
-
-  // Double-tracked tremolo (right)
-  note("[-12 -10 -8 -10]*<24 24 32 32>")
-    .add("<0 3 6 0>")
-    .sound("sawtooth")
-    .crush("<5 4 4 3>")
-    .coarse("<12 10 8 8>")
-    .lpf("<1000 1100 1200 1000>")
-    .lpq("<12 15 18 12>")
-    .gain("<0.6 0.65 0.7 0.75>")
-    .pan(0.8)
-    .degradeBy("<0.25 0.2 0.2 0.15>"),
-
-  // ===== ATMOSPHERIC CHORUS LAYERS =====
-  // Pad wash - full harmonic support
-  note("[0 3 7 10 12]*<2 2 4 4>")
-    .scale("c:phrygian")
-    .sound("triangle")
-    .crush("<5 4 4 3>")
-    .lpf(sine.range(600, 1600).slow(8))
-    .shape("<8 10 12 15>")
-    .gain("<0.4 0.45 0.5 0.55>")
     .room(0.9)
     .size(5),
 
-  // High octave shimmer
-  note("[12 15 19 22]*<8 8 12 16>")
-    .scale("c:phrygian")
-    .sound("sine")
-    .crush("<4 4 3 3>")
-    .gain("<0.35 0.4 0.45 0.5>")
-    .pan(sine.slow(4))
-    .room(0.7)
-    .size(3),
-
-  // ===== NOISE LAYERS - Chorus intensity =====
-  // Pink noise wash
-  sound("pink*<8 8 12 16>")
-    .hpf("<3500 3000 2500 3000>")
-    .crush("<3 3 2 2>")
-    .gain("<0.35 0.4 0.45 0.5>")
-    .pan(rand)
-    .shape("<10 12 15 18>")
-    .degradeBy("<0.4 0.3 0.3 0.2>"),
-
-  // Brown noise low end
-  sound("brown*<4 4 8 8>")
-    .lpf("<400 400 500 400>")
-    .crush("<3 2 2 2>")
-    .gain("<0.3 0.35 0.4 0.45>")
-    .shape("<12 15 18 20>"),
-
-  // ===== CLIMAX ELEMENTS - Build through chorus =====
-  // Rising tension lead
-  note("<[0 3 7]*8 [0 3 7 10]*8 [0 3 7 10 12]*12 [0 3 7 10 12 15]*16>")
-    .scale("c:phrygian")
+  // ===== OCTAVE DOUBLING - Massive lead =====
+  // Double the hook melody an octave up
+  note("[12 19 24 29]*<4 4 8 8>")
+    .scale("c:locrian")
     .sound("square")
-    .crush("<4 3 3 2>")
-    .coarse("<16 12 8 6>")
-    .lpf(perlin.range(1500, 4000).slow(2))
-    .lpq("<15 18 22 25>")
-    .shape("<12 15 18 22>")
-    .gain("<0.55 0.6 0.65 0.7>")
+    .crush("<5 4 3 3>")
+    .coarse("<12 10 8 8>")
+    .lpf(perlin.range(2000, 4500).slow(2))
+    .lpq("<18 20 24 28>")
+    .shape("<14 16 18 22>")
+    .gain("<0.6 0.65 0.7 0.75>")
     .pan(sine.fast(2)),
 
-  // Industrial stabs
-  sound("<bd*8 sd*8 cp*16 [bd sd cp]*24>")
-    .n("<1 2 3 0>")
-    .speed("<2 1.5 1 [1 2 -1]>")
-    .crush("<4 3 2 2>")
-    .shape("<12 15 18 22>")
-    .gain("<0.4 0.45 0.5 0.55>")
-    .pan(rand)
-    .degradeBy("<0.5 0.4 0.3 0.2>"),
-
-  // Chaos percussion - final section
-  sound("<~ ~ hh*32 <bd sd hh cp>*32>")
-    .n("<0 0 1 2>")
-    .speed("<1 1 [1 -1 2] [1 2 -1 0.5]>")
-    .crush("<4 4 3 2>")
-    .gain("<0 0 0.5 0.6>")
-    .pan(rand)
-    .degradeBy("<0.7 0.7 0.6 0.5>"),
-
-  // Subsonic punch - climax only
-  note("[-36 -38 -39 -36]*<0 0 0 8>")
+  // ===== RHYTHMIC STABS - Different pattern =====
+  // Verse: mostly sustained
+  // Chorus: STACCATO power
+  note("<[0 7]*8 [0 7]*8 [0 7]*16 [0 7]*16>")
+    .scale("c:locrian")
     .sound("sawtooth")
-    .lpf("<100 110 120 100>")
-    .shape("<20 22 24 26>")
-    .distort("<2 2.2 2.5 2.8>")
-    .crush("<2 2 2 1>")
-    .gain("<0 0 0 0.9>")
+    .crush("<4 3 3 2>")
+    .shape("<16 18 20 24>")
+    .gain("<0.5 0.55 0.6 0.7>")
+    .lpf(800)
+    .lpq(15)
+    .decay(0.05), // Short, punchy
+
+  // ===== NOISE - Different texture =====
+  // White noise bursts (vs verse's sustained noise)
+  sound("white*<16 16 24 32>")
+    .hpf("<4000 3500 3000 2500>")
+    .crush("<3 3 2 2>")
+    .gain("<0.3 0.35 0.4 0.45>")
+    .pan(rand)
+    .shape("<12 14 16 20>")
+    .degradeBy("<0.5 0.4 0.3 0.25>")
+    .decay(0.03), // Short bursts
+
+  // ===== HIGH SHIMMER - Soaring over chorus =====
+  note("[24 26 28 29]*<8 8 16 16>")
+    .scale("c:locrian")
+    .sound("sine")
+    .crush("<5 4 4 3>")
+    .gain("<0.4 0.45 0.5 0.55>")
+    .pan(sine.slow(3))
+    .room(0.8)
+    .size(4),
+
+  // ===== INDUSTRIAL HITS - Punctuation =====
+  sound("<cp*4 cp*4 [cp bd:2]*8 [cp bd:2 sd]*16>")
+    .n("<1 2 1 3>")
+    .speed("<1 1.2 [1 2] [1 2 -1]>")
+    .crush("<4 3 3 2>")
+    .shape("<14 16 18 22>")
+    .gain("<0.5 0.55 0.6 0.7>")
+    .pan(rand)
+    .degradeBy("<0.3 0.25 0.2 0.15>"),
+
+  // ===== CLIMAX CHAOS - Final section only =====
+  sound("<~ ~ ~ [bd sd hh cp]*32>")
+    .n("<0 0 0 2>")
+    .speed("<1 1 1 [1 2 -1 0.5]>")
+    .crush("<6 6 6 2>")
+    .gain("<0 0 0 0.65>")
+    .pan(rand)
+    .degradeBy("<0.8 0.8 0.8 0.4>"),
+
+  // ===== SUBSONIC DESTRUCTION - Climax =====
+  note("<~ ~ ~ [-36 -34 -39 -36]*8>")
+    .sound("sawtooth")
+    .lpf("<100 100 100 110>")
+    .shape("<20 20 20 28>")
+    .distort("<2 2 2 3>")
+    .crush("<3 3 3 2>")
+    .gain("<0 0 0 0.95>")
 )
 
-// CHORUS STRUCTURE (~1 minute = ~28 cycles at 140 BPM):
-// Each angle bracket position = ~7 cycles = ~15 seconds
+// CHORUS STRUCTURE (~1 minute = ~28 cycles):
+// Position 1 (cycles 1-7):   Establish DIFFERENT hook - open intervals, pedal tone tremolo
+// Position 2 (cycles 8-14):  Develop hook - maintain intensity, add harmonic movement
+// Position 3 (cycles 15-21): Build toward climax - doubled melodies, more layers
+// Position 4 (cycles 22-28): Peak chaos - all elements, subsonic destruction
 //
-// Position 1 (cycles 1-7):   Chorus entry - full energy, established hook
-// Position 2 (cycles 8-14):  Sustained intensity - maintained drive
-// Position 3 (cycles 15-21): Building climax - added layers, more notes
-// Position 4 (cycles 22-28): Peak intensity - maximum chaos, all elements
+// KEY DIFFERENCES FROM VERSE:
+// - BASS: I-bVII-bII-I movement (vs verse's static I-bII)
+// - MELODY: Wide intervals [0 7 12 17] fourths/fifths (vs verse's stepwise [0 1 3 6])
+// - MODE: Locrian (more dissonant) vs verse's Phrygian
+// - TREMOLO: Pedal tone power (vs verse's changing notes)
+// - RHYTHM: Syncopated, staccato stabs (vs verse's building sustain)
+// - TEXTURE: Short bursts and octave doublings (vs verse's gradual layers)
 //
-// USE WITH FOUNDATION:
-// - Play foundation for verses/intro
-// - Switch to chorus for hooks/climax
-// - Both at 140 BPM for perfect sync
-// - Layer both together for maximum intensity sections
-// - Record separately as stems for mixing flexibility
+// USAGE: Alternate verse/chorus or layer for maximum intensity

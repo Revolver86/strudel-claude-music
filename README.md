@@ -87,12 +87,13 @@ Foundation verse track designed for multi-layer stem building at 140 BPM (~1 min
 - **Production workflow**: Record base, layer instrumental stems, export to Suno for vocal integration
 
 ### 08b - Layered Chorus 🎚️ **STEM-READY BASE (Part 2: Chorus)**
-Intensified chorus counterpart at 140 BPM (~1 minute of content):
-- **Chorus hook**: Higher energy, denser arrangements, octave-higher melodies
-- **Perfect sync**: Same tempo as foundation for seamless alternation
-- **Doubled layers**: Thicker guitar walls, harmony vocals, pad washes
-- **Climax building**: Progressive intensity through four 15-second sections
-- **Usage**: Alternate with Part 1 (verse), or layer both for maximum intensity
+Distinct chorus with contrasting melodic/harmonic content at 140 BPM (~1 minute of content):
+- **Different bass progression**: I-bVII-bII-I movement (vs verse's static I-bII)
+- **Wide interval hook**: Power-chord fourths/fifths [0 7 12 17] (vs verse's stepwise [0 1 3 6])
+- **Modal shift**: Locrian mode for added dissonance (vs verse's Phrygian)
+- **Pedal tone tremolo**: Sustained power on root with harmonic fifth (vs verse's moving notes)
+- **Staccato rhythm**: Syncopated hits and short bursts (vs verse's sustained build)
+- **Perfect sync**: Same tempo as foundation for seamless alternation or layering
 
 **Combined workflow**: Record verse section → Record chorus section → Alternate/layer as needed → Create additional instrumental stems → Mix and export to Suno.
 
