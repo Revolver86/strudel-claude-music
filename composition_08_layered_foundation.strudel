@@ -1,0 +1,143 @@
+// LAYERED FOUNDATION - Base Framework for Stem Building
+// 3-minute structured composition for multi-track layering
+// Sections: Intro > Verse 1 > Pre-Chorus > Chorus > Verse 2 > Pre-Chorus > Chorus 2 > Bridge > Final Chorus > Outro
+// By Claude, designed for modular expansion
+
+setcps(140/60/4) // 140 BPM - solid foundation tempo, ~3 minutes at 84 cycles
+
+stack(
+  // ===== DRUM FOUNDATION - Progressive intensity =====
+  // Kick pattern - evolves through song sections
+  sound("bd*<1 2 2 4 2 4 4 2 4 4 8 8 11>")
+    .n("<0 1 0 1 2 1 2 1 0 2 1 0 1>")
+    .crush("<6 5 5 4 5 4 4 5 4 3 3 2 4>")
+    .shape("<6 7 8 9 8 10 12 8 12 15 18 20 12>")
+    .speed("<1 1 0.9 1 1 1.1 1 0.9 1 1.2 1 0.8 1>")
+    .gain("<0.6 0.8 0.8 0.9 0.85 0.9 1 0.85 1 1.1 1.1 1.2 0.8>"),
+
+  // Snare - builds complexity through sections
+  sound("<~ [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd, sd*3] [~ sd]*2 [~ sd, sd*3] [~ sd, sd*4] [~ sd, sd*4] [~ sd, sd*8] [~ sd]*2>")
+    .n("<0 1 0 1 2 1 0 2 1 0 2 1 0>")
+    .crush("<6 5 5 4 5 4 3 5 3 3 2 2 4>")
+    .shape("<6 8 9 10 9 11 13 9 14 16 18 22 10>")
+    .gain("<0 0.7 0.75 0.8 0.75 0.8 0.85 0.75 0.85 0.9 0.95 1 0.6>"),
+
+  // Hi-hats - section markers
+  sound("hh*<0 0 8 8 8 16 16 8 16 16 24 32 8>")
+    .n("<0 0 1 0 1 0 1 2 1 0 1 2 0>")
+    .crush("<6 6 5 5 5 4 4 5 4 3 3 2 5>")
+    .gain("<0 0 0.35 0.4 0.4 0.45 0.5 0.4 0.5 0.55 0.6 0.65 0.3>")
+    .pan(perlin),
+
+  // ===== BASS FOUNDATION - Harmonic base for layering =====
+  // Root note progression (intentionally simple for stem building)
+  note("[-24 -24 -26 -24]*<1 1 1 1 2 2 2 2 2 2 4 4 1>")
+    .sound("sawtooth")
+    .lpf("<150 180 180 200 180 200 220 180 220 200 180 150 160>")
+    .shape("<10 12 12 14 12 14 16 12 16 18 20 22 14>")
+    .distort("<0.8 1 1 1.2 1 1.2 1.5 1 1.5 1.8 2 2.2 1>")
+    .crush("<5 4 4 3 4 3 3 4 3 2 2 2 4>")
+    .gain("<0.5 0.65 0.65 0.7 0.7 0.75 0.8 0.7 0.8 0.85 0.9 0.95 0.6>"),
+
+  // ===== MELODIC FRAMEWORK - Simple motifs for expansion =====
+  // Lead line - Phrygian riff (foundation for lead stems)
+  note("<~ [0 1 3 6]*4 [0 1 3 6]*4 [0 1 3 6, 7 8 10 13]*4 [0 1 3 6]*4 [0 1 3 6, 7 8 10 13]*4 [0 1 3 6, 7 8 10 13]*8 [0 1 3 6]*4 [0 1 3 6, 7 8 10 13]*8 [0 1 3 6, 7 8 10 13]*8 [0 1 3 6, 7 8 10 13]*12 [0 1 3 6, 7 8 10 13, 12 13 15]*16 [0 3 6]*2>")
+    .scale("c:phrygian")
+    .sound("square")
+    .crush("<6 5 5 4 5 4 4 5 4 3 3 2 5>")
+    .lpf(sine.range(800, 2800).slow(8))
+    .lpq("<6 8 8 10 8 10 12 8 12 15 18 20 8>")
+    .shape("<4 6 6 8 6 8 10 6 10 12 15 18 8>")
+    .gain("<0 0.45 0.5 0.55 0.5 0.55 0.6 0.5 0.6 0.65 0.7 0.75 0.4>")
+    .pan(perlin.slow(4)),
+
+  // Tremolo layer - black metal texture (foundation for rhythm guitar stems)
+  note("[-12 -11 -12 -10]*<0 0 16 16 16 16 24 16 24 24 32 32 8>")
+    .add("<0 0 0 1 0 3 6 0 6 7 3 0 0>")
+    .sound("<~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth ~>")
+    .crush("<6 6 6 5 6 5 5 6 5 4 4 3 6>")
+    .coarse("<16 16 16 12 16 12 12 16 12 8 8 8 16>")
+    .lpf("<800 800 900 1000 900 1100 1200 900 1200 1000 900 800 900>")
+    .lpq("<6 6 8 10 8 12 14 8 14 12 10 8 8>")
+    .gain("<0 0 0.5 0.55 0.5 0.55 0.6 0.5 0.6 0.65 0.7 0.55 0.3>")
+    .pan(rand)
+    .degradeBy("<0.3 0.3 0.25 0.25 0.25 0.25 0.3 0.25 0.3 0.35 0.4 0.3 0.4>"),
+
+  // ===== ATMOSPHERIC LAYERS - Texture for later enhancement =====
+  // Pad layer - harmonic bed (foundation for synth stems)
+  note("<~ ~ ~ [0 3 7]*1 [0 3 7]*1 [0 3 7]*1 [0 3 7]*2 [0 3 7]*1 [0 3 7]*2 [0 3 7]*2 ~ ~ ~>")
+    .scale("c:phrygian")
+    .sound("triangle")
+    .crush("<6 6 6 5 5 5 4 5 4 4 6 6 6>")
+    .lpf(sine.range(400, 1200).slow(16))
+    .shape("<4 4 4 6 6 6 8 6 8 10 4 4 4>")
+    .gain("<0 0 0 0.35 0.35 0.35 0.4 0.35 0.4 0.45 0 0 0>")
+    .room(0.8)
+    .size(4),
+
+  // Noise texture - industrial bed (foundation for noise/FX stems)
+  sound("<~ ~ ~ ~ white*4 white*4 pink*8 white*4 pink*8 brown*8 brown*16 brown*8 ~>")
+    .hpf("<5000 5000 5000 5000 4000 4000 3500 4000 3500 3000 3000 3500 5000>")
+    .crush("<4 4 4 4 3 3 3 3 3 2 2 3 4>")
+    .gain("<0 0 0 0 0.25 0.3 0.35 0.3 0.35 0.4 0.45 0.35 0>")
+    .pan(rand)
+    .shape("<6 6 6 6 8 8 10 8 10 12 15 12 6>")
+    .degradeBy("<0.5 0.5 0.5 0.5 0.5 0.5 0.4 0.5 0.4 0.4 0.3 0.4 0.6>"),
+
+  // ===== SECTION MARKERS - Sparse elements defining structure =====
+  // Breakdown voices - section identifiers
+  note("<~ ~ ~ ~ ~ ~ ~ ~ [0 5 7]*8 [0 3 7]*8 ~ ~ ~>")
+    .add("<0 0 0 0 0 0 0 0 0 5 0 0 0>")
+    .scale("c:phrygian")
+    .sound("sine")
+    .crush("<6 6 6 6 6 6 6 6 4 3 6 6 6>")
+    .bpf(perlin.range(1000, 3000).slow(2))
+    .bpq("<15 15 15 15 15 15 15 15 25 30 15 15 15>")
+    .gain("<0 0 0 0 0 0 0 0 0.45 0.5 0 0 0>")
+    .pan(rand)
+    .degradeBy("<0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.5 0.4 0.6 0.6 0.6>"),
+
+  // Impact markers - structural punctuation
+  sound("<~ ~ ~ ~ ~ ~ cp*4 ~ ~ ~ cp*8 cp*16 ~>")
+    .n("<0 0 0 0 0 0 1 0 0 0 2 3 0>")
+    .crush("<6 6 6 6 6 6 4 6 6 6 3 2 6>")
+    .shape("<6 6 6 6 6 6 12 6 6 6 18 22 6>")
+    .gain("<0 0 0 0 0 0 0.6 0 0 0 0.7 0.8 0>")
+    .pan(rand)
+    .room(0.5)
+    .size(3),
+
+  // ===== CLIMAX ELEMENTS - Save for final sections =====
+  // Subsonic destruction - climax only
+  note("[-36 -35 -36 -33]*<0 0 0 0 0 0 0 0 0 0 8 8 0>")
+    .sound("sawtooth")
+    .lpf("<100 100 100 100 100 100 100 100 100 100 120 100 100>")
+    .shape("<15 15 15 15 15 15 15 15 15 15 22 20 15>")
+    .distort("<1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 2.5 2.2 1.5>")
+    .crush("<3 3 3 3 3 3 3 3 3 3 2 2 3>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.9 0.85 0>"),
+
+  // Chaos layer - final climax
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ <bd sd hh cp>*16 <bd sd hh>*24 ~>")
+    .n("<0 0 0 0 0 0 0 0 0 0 1 2 0>")
+    .speed("<1 1 1 1 1 1 1 1 1 1 [1 -1 2 0.5] [1 2 -1] 1>")
+    .crush("<6 6 6 6 6 6 6 6 6 6 3 2 6>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.5 0.6 0>")
+    .pan(rand)
+    .degradeBy("<0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.7 0.8 0.8>")
+)
+
+// STRUCTURE GUIDE (each cycle ≈ 2.14 seconds at 140 BPM):
+// Cycles 1-4:    INTRO - Minimal drums, bass enters
+// Cycles 5-12:   VERSE 1 - Full drums, bass, lead riff, tremolo starts
+// Cycles 13-16:  PRE-CHORUS - Add harmonies, increase intensity
+// Cycles 17-24:  CHORUS - Full texture with pads, doubled leads
+// Cycles 25-32:  VERSE 2 - Similar to V1 but fuller
+// Cycles 33-36:  PRE-CHORUS 2 - Higher energy than first
+// Cycles 37-44:  CHORUS 2 - More complex, added noise layers
+// Cycles 45-52:  BRIDGE - Breakdown with voices, sparse elements, impact markers
+// Cycles 53-60:  FINAL CHORUS - Maximum intensity, subsonic bass, chaos
+// Cycles 61-64:  OUTRO - Decay and fadeout
+
+// Total length: ~64 cycles = ~137 seconds = ~2:17 minutes
+// Can extend by duplicating pattern cycles in the angle brackets

@@ -79,6 +79,17 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Layered Foundation 🎚️ **3-MINUTE STEM-READY BASE**
+Structured foundation track designed for multi-layer stem building at 140 BPM (~64 cycles):
+- **Modular design**: Clear sections for layering additional instrumental stems
+- **Progressive structure**: Intro → Verse 1 → Pre-Chorus → Chorus → Verse 2 → Pre-Chorus 2 → Chorus 2 → Bridge → Final Chorus → Outro
+- **Intentionally simple core**: Foundation riffs and progressions designed to support additional layers
+- **Section markers**: Sparse elements define structure for stem synchronization
+- **Climax elements**: Reserved destruction layers for final sections
+- **Production workflow**: Record base, layer instrumental stems, export to Suno for vocal integration
+
+Purpose-built as a framework for building complex multi-stem productions with minimal technical knowledge.
+
 ## How to Use
 
 1. Go to https://strudel.cc
