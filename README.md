@@ -95,7 +95,16 @@ Distinct chorus with contrasting melodic/harmonic content at 140 BPM (~1 minute 
 - **Staccato rhythm**: Syncopated hits and short bursts (vs verse's sustained build)
 - **Perfect sync**: Same tempo as foundation for seamless alternation or layering
 
-**Combined workflow**: Record verse section → Record chorus section → Alternate/layer as needed → Create additional instrumental stems → Mix and export to Suno.
+### 08c - Layered Breakdown 🎚️ **STEM-READY BASE (Part 3: Breakdown)**
+Sparse atmospheric section creating tension and contrast at 140 BPM (~30 seconds of content):
+- **Scattered percussion**: Occasional hits, not driving pulse (vs verse/chorus steady rhythm)
+- **Droning bass**: Sustained ominous tones (vs verse's root / chorus's progression)
+- **Dissonant atmosphere**: Tritones, minor 2nds, schizophrenic high voices
+- **Broken melodies**: Fragmented lead, lots of space and silence
+- **Half-time feel**: Sparse, degraded rhythm creating tension
+- **Building intensity**: Gradual noise sweep and pulsing tension preparing return to main sections
+
+**Combined workflow**: Record verse → Record chorus → Record breakdown → Arrange sections (V-V-C-V-B-C-C) → Create instrumental stems → Layer and mix → Export to Suno.
 
 ## How to Use
 
