@@ -5,6 +5,19 @@
 
 ---
 
+## ⚠️ CRITICAL: Function Name Corrections
+
+**MUST READ BEFORE CODING:**
+
+1. **Vowel Filter**: The function is `.vowel()` NOT `.formant()`
+   - ❌ WRONG: `.formant("<a e i o u>")`
+   - ✅ CORRECT: `.vowel("<a e i o u>")`
+   - This is a formant filter, but the Strudel function name is `vowel()`
+
+Using `.formant()` will cause: `error: note(...).sound(...).formant is not a function`
+
+---
+
 ## Table of Contents
 1. [Advanced Sample Manipulation](#advanced-sample-manipulation)
 2. [Sample Overlap Control](#sample-overlap-control)
@@ -137,21 +150,28 @@ sound("hh*8 ~ hh*4 ~").choke(1)
 
 ## Extended Audio Effects
 
-### formant()
-Vowel-like filter shapes:
+### vowel()
+**IMPORTANT: The function is `.vowel()` NOT `.formant()`**
+
+Vowel-like formant filter shapes:
 ```javascript
 note("c2*8")
   .sound("sawtooth")
-  .formant("<a e i o u>")  // cycle through vowels
+  .vowel("<a e i o u>")  // cycle through vowels
 
 // Available vowels:
 // a e i o u ae aa oe ue y uh un en an on
+
+// Working example from official docs:
+note("[c2 <eb2 <g2 g1>>]*2").s('sawtooth').vowel("<a e i <o u>>")
 ```
 
 **Use Cases**:
 - Vocal-like basslines
 - Talking synths
 - Formant sweeps
+
+**Common Mistake**: Using `.formant()` will cause an error. The correct function is `.vowel()`.
 
 ### djf()
 DJ-style filter (requires SuperDirt):
@@ -794,7 +814,21 @@ $: note("c e g").sound("piano")
 
 ## Edge Cases & Gotchas
 
-### 1. Sample Loading Cache Issues
+### 1. ⚠️ CRITICAL: .formant() vs .vowel()
+**Problem**: Using `.formant()` causes `is not a function` error
+
+**Solution**: The function is `.vowel()` NOT `.formant()`
+```javascript
+// ❌ WRONG - Will cause error
+note("c2*8").sound("sawtooth").formant("<a e i o u>")
+
+// ✅ CORRECT - Works perfectly
+note("c2*8").sound("sawtooth").vowel("<a e i o u>")
+```
+
+**Why this is confusing**: It IS a formant filter (creates vowel sounds), but Strudel names the function `vowel()`.
+
+### 2. Sample Loading Cache Issues
 **Problem**: New samples from GitHub not loading due to cached strudel.json
 
 **Solution**:
@@ -803,17 +837,17 @@ $: note("c e g").sound("piano")
 samples('github:user/repo', {cache: false})
 ```
 
-### 2. Orbit Conflicts
+### 3. Orbit Conflicts
 **Problem**: Multiple patterns with same orbit fighting over effect parameters
 
 **Solution**: Use different orbits for different effect contexts
 
-### 3. MIDI Note 0
+### 4. MIDI Note 0
 **Problem**: MIDI note 0 incorrectly treated as false
 
 **Status**: Fixed in recent versions, but beware in older code
 
-### 4. irand() in Pattern Notation
+### 5. irand() in Pattern Notation
 **Problem**: Can't use `irand().fast()` directly
 
 **Solution**:
@@ -825,7 +859,7 @@ samples('github:user/repo', {cache: false})
 note("c*8").add(irand(12)).fast(2)
 ```
 
-### 5. arrange() vs timeCat()
+### 6. arrange() vs timeCat()
 **Problem**: arrange() had compatibility issues
 
 **Solution**: Use timeCat() for time-based arrangement:
@@ -836,7 +870,7 @@ timeCat(
 )
 ```
 
-### 6. High Resonance Warnings
+### 7. High Resonance Warnings
 **Problem**: High lpq/hpq/bpq values can be LOUD
 
 **Solution**: Start low, increase gradually:
@@ -848,7 +882,7 @@ note("c2")
   .gain(0.6)  // reduce gain for high resonance
 ```
 
-### 7. Pattern Notation vs Function Calls
+### 8. Pattern Notation vs Function Calls
 **Problem**: Mini-notation strings have limitations
 
 **Solution**: Complex logic needs functions:
@@ -863,7 +897,7 @@ cat(
 )
 ```
 
-### 8. Browser Performance
+### 9. Browser Performance
 **Problem**: Complex patterns can cause audio glitches
 
 **Solutions**:
@@ -1081,7 +1115,7 @@ note(wchoose([
 ### Filters
 - `lpf()`, `hpf()`, `bpf()`, `lpq()`, `hpq()`, `bpq()`
 - `lpenv()`, `hpenv()`, `bpenv()`
-- `formant()`
+- `vowel()` - formant filter (NOT .formant()!)
 
 ### Effects
 - `delay()`, `room()`, `reverb()`
