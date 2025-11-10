@@ -14,7 +14,13 @@
    - ✅ CORRECT: `.vowel("<a e i o u>")`
    - This is a formant filter, but the Strudel function name is `vowel()`
 
+2. **Euclid Rotation**: The function `.euclid()` only takes 2 parameters, not 3
+   - ❌ WRONG: `.euclid(3, 7, 2)` → Error: "expects 2 inputs but got 3"
+   - ✅ CORRECT: `.euclid(3, 7).early(0.14)` OR `sound("cp(3,7,2)")`
+   - Mini-notation supports 3 parameters, function form doesn't
+
 Using `.formant()` will cause: `error: note(...).sound(...).formant is not a function`
+Using `.euclid(n, m, rotation)` will cause: `error: .euclid() expects 2 inputs but got 3`
 
 ---
 
@@ -905,6 +911,32 @@ cat(
 - Reduce grain counts
 - Lower pattern complexity
 - Use degradeBy() to thin patterns
+
+### 10. ⚠️ CRITICAL: euclid() Rotation Parameter
+**Problem**: `.euclid()` function only takes 2 parameters, not 3
+
+**Error**: `.euclid() expects 2 inputs but got 3`
+
+**Solution**: Use mini-notation OR use `.early()` for rotation
+```javascript
+// ❌ WRONG - Will cause error
+sound("cp").euclid(3, 7, 2)  // 3rd parameter not supported in function form
+
+// ✅ CORRECT - Mini-notation supports 3 parameters
+sound("cp(3,7,2)")  // Rotation works in mini-notation
+
+// ✅ CORRECT - Use .early() for rotation effect
+sound("cp")
+  .euclid(3, 7)
+  .early(0.14)  // Shift timing to rotate pattern
+
+// ✅ CORRECT - Alternating rotation
+sound("cp")
+  .euclid(3, 7)
+  .early("<0 0.14 0.28>")  // Different rotation each cycle
+```
+
+**Why this is confusing**: Tidal Cycles supports 3 parameters for `euclid`, and Strudel's mini-notation does too, but the `.euclid()` function form doesn't.
 
 ---
 

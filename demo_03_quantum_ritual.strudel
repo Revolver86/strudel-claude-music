@@ -90,7 +90,8 @@ stack(
 
   // === POLYMETRIC CLAP - 3 over 7 ===
   sound("cp")
-    .euclid(3, 7, "<0 1 2>")              // 3 hits, rotated each cycle
+    .euclid(3, 7)                          // 3 hits across 7 steps
+    .early("<0 0.14 0.28>")                // Rotate by shifting timing
     .bank("RolandTR909")
     .degradeBy(slider(0.15, 0, 0.6, 0.05)) // 🎚️ Glitch amount
     .room(0.4)
