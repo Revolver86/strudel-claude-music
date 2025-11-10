@@ -35,10 +35,7 @@ stack(
     .orbit(0),
 
   // === CHORD PROGRESSION: ireal Jazz Voicings ===
-  chord("Em7 Gmaj7 Am7 Bm7 Em7 Gmaj7 Cmaj7 D7 Em7 A7 Dm7 G7 Em7 Bm7 Am7 Em7")
-    .dict('ireal')  // Using 638 professional voicings!
-    .voicing()
-    .mode('below')  // 🎛️ Try: 'below' 'above' 'duck' 'root'
+  note("<[e3,g3,b3] [g3,b3,d4,fs4] [a3,c4,e4] [b3,d4,fs4] [e3,g3,b3] [g3,b3,d4,fs4] [c4,e4,g4,b4] [d3,fs3,a3,c4] [e3,g3,b3] [a3,cs4,e4,g4] [d3,f3,a3,c4] [g3,b3,d4,f4] [e3,g3,b3] [b3,d4,fs4] [a3,c4,e4] [e3,g3,b3]>")
     .sound("triangle")
     .lpf(sine.range(400, 1800).slow(8))  // 🎛️ Change .slow(8) to 2-16
     .lpq(3)  // 🎛️ Try 1-8 for resonance
