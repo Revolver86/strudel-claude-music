@@ -1,0 +1,329 @@
+// MEMETIC DESCENT - Live Performance Demo
+// Fully playable song with mute controls, mouse interaction, and sliders
+// By Claude - Dark atmospheric piece with unique harmonic structures
+//
+// 🎮 HOW TO PLAY THIS SONG:
+//
+// 1. MUTE/UNMUTE: Add _ before $: to mute that layer
+//    Example: _$: sound("bd*4")  ← This layer is muted
+//             $: sound("bd*4")   ← This layer plays
+//
+// 2. MOUSE CONTROL:
+//    - Move mouse LEFT/RIGHT (X) = Controls filters and pitch
+//    - Move mouse UP/DOWN (Y) = Controls volumes and reverb
+//
+// 3. SLIDERS: Drag to adjust in real-time
+//
+// 4. PERFORM: Press Ctrl+Enter after each change to update live!
+
+setcps(128/60/4) // 128 BPM - dark atmospheric tempo
+
+// === LAYER 1: KICK (Foundation) ===
+// Uncomment (remove _) to bring in the kick
+$: sound("bd*4")
+  .n("<0 1 0 2>")
+  .bank("RolandTR909")
+  .gain(slider(1.1, 0.7, 1.5))     // 🎚️ KICK POWER
+  .shape(slider(8, 4, 16))          // 🎚️ KICK DISTORTION
+  .lpf(100)
+  .orbit(0)
+
+// === LAYER 2: SUB BASS (Deep Foundation) ===
+// Phrygian dominant scale - exotic Spanish/metal flavor
+_$: note("<e1 f1 gs1 a1 b1 c2 d2 e1>*2")
+  .s("sawtooth")
+  .lpf(slider(180, 80, 400))       // 🎚️ SUB DARKNESS
+  .shape(18)
+  .gain(slider(0.7, 0.3, 1))       // 🎚️ SUB VOLUME
+  .orbit(1)
+
+// === LAYER 3: ACID BASSLINE (Movement) ===
+// Chromatic movement with vowel filter - talking bass
+_$: note("<c2 cs2 d2 eb2 e2 f2 fs2 g2>*4")
+  .s("sawtooth")
+  .lpf(slider(350, 150, 800))      // 🎚️ ACID FILTER
+  .lpenv(slider(2, 0, 5))           // 🎚️ ACID ENVELOPE
+  .lpq(slider(15, 5, 25))           // 🎚️ ACID RESONANCE
+  .vowel("<a e i o u>")             // Talking effect
+  .gain(slider(0.65, 0.3, 1))      // 🎚️ ACID VOLUME
+  .orbit(1)
+
+// === LAYER 4: POLYRHYTHMIC CLAP ===
+// 5 hits across 7 steps - algorithmic groove
+_$: sound("cp")
+  .euclid(5, 7)
+  .early("<0 0.14 0.28>")          // Rotation for variation
+  .bank("RolandTR909")
+  .gain(slider(0.9, 0.5, 1.2))     // 🎚️ CLAP VOLUME
+  .room(0.4)
+  .orbit(0)
+
+// === LAYER 5: HI-HATS (Texture) ===
+// Euclidean pattern that changes
+_$: sound("hh")
+  .euclid("<11 13 15 9>", 16)
+  .bank("RolandTR909")
+  .gain(slider(0.4, 0, 0.7))       // 🎚️ HAT VOLUME
+  .pan(perlin)
+  .crush(slider(8, 4, 16))         // 🎚️ HAT CRUNCH
+  .orbit(0)
+
+// === LAYER 6: QUARTAL CHORDS (Ambiguous Harmony) ===
+// Stacked 4ths - no major/minor, modern sound
+_$: note("<[c3,f3,bb3,eb4] [cs3,fs3,b3,e4] [d3,g3,c4,f4] [eb3,ab3,db4,gb4]>")
+  .s("square")
+  .lpf(mousex.range(400, 3000))    // 🖱️ MOUSE X = BRIGHTNESS
+  .lpq(3)
+  .gain(mousey.range(0, 0.6))      // 🖱️ MOUSE Y = CHORD VOLUME
+  .room(slider(0.5, 0, 0.9))       // 🎚️ CHORD REVERB
+  .orbit(2)
+
+// === LAYER 7: WHOLE TONE MELODY (Floating) ===
+// No half steps - ambiguous dreamlike quality
+_$: note("<[c5 d5 e5 fs5]*3 [d5 e5 fs5 gs5]*3 [e5 fs5 gs5 bb5]*2 [fs5 gs5 bb5 c6]*2>")
+  .s("triangle")
+  .add(mousex.range(0, 7).round()) // 🖱️ MOUSE X = TRANSPOSE
+  .lpf(slider(2500, 800, 5000))    // 🎚️ MELODY BRIGHTNESS
+  .crush(slider(10, 6, 16))        // 🎚️ MELODY LOFI
+  .gain(slider(0.5, 0, 0.9))       // 🎚️ MELODY VOLUME
+  .delay(0.4)
+  .room(0.4)
+  .orbit(3)
+
+// === LAYER 8: OCTATONIC ARP (Tension) ===
+// Alternating whole/half steps - perpetual tension
+_$: note("c4 cs4 eb4 e4 fs4 g4 a4 bb4")
+  .fast("<2 3 4 3>")
+  .s("sawtooth")
+  .lpf(slider(1600, 600, 3500))    // 🎚️ ARP FILTER
+  .lpenv(slider(1.8, 0, 4))         // 🎚️ ARP ENVELOPE
+  .lpq(20)
+  .gain(slider(0.45, 0, 0.8))      // 🎚️ ARP VOLUME
+  .pan(rand)
+  .orbit(4)
+
+// === LAYER 9: DISSONANT STABS (Impact) ===
+// Minor 2nd clusters - harsh hits
+_$: note("<~ [c4,cs4,d4] ~ ~ ~ [f4,fs4,g4] ~ ~>")
+  .s("square")
+  .lpf(5000)
+  .attack(0.01)
+  .decay(0.2)
+  .gain(slider(0.8, 0.3, 1.2))     // 🎚️ STAB POWER
+  .room(0.7)
+  .orbit(5)
+
+// === LAYER 10: NOISE SWEEP (Atmosphere) ===
+// Prime number euclidean - non-repeating feel
+_$: sound("white")
+  .euclid("<5 7 11 13>", 16)
+  .hpf(slider(6000, 2000, 12000))  // 🎚️ NOISE FREQUENCY
+  .gain(slider(0.2, 0, 0.4))       // 🎚️ NOISE VOLUME
+  .pan(rand)
+  .orbit(6)
+
+// === LAYER 11: GRANULAR TEXTURE (Glitch) ===
+// Chopped noise with vowel filter
+_$: sound("pink*16")
+  .chop(32)
+  .degradeBy(slider(0.7, 0.3, 0.9)) // 🎚️ GRAIN SPARSENESS
+  .vowel(choose(["a", "e", "o", "u"]))
+  .bpf(perlin.range(800, 4000))
+  .gain(slider(0.3, 0, 0.6))        // 🎚️ TEXTURE VOLUME
+  .pan(rand)
+  .orbit(6)
+
+// === LAYER 12: RHYTHMIC VOCAL (Talking) ===
+// Vowel-filtered noise with rhythm
+_$: sound("brown")
+  .euclid(3, 8)
+  .vowel("<a e i o u>")
+  .bpf(slider(1200, 400, 3000))    // 🎚️ VOCAL FILTER
+  .bpq(15)
+  .gain(slider(0.35, 0, 0.7))      // 🎚️ VOCAL VOLUME
+  .orbit(7)
+
+// === LAYER 13: PAD (Harmonic Major) ===
+// Exotic scale with b6 - middle-eastern flavor
+_$: note("<c3 d3 e3 f3 g3 ab3 b3>*2")
+  .add("<0 7 12>")
+  .s("sine")
+  .gain(mousey.range(0, 0.5))      // 🖱️ MOUSE Y = PAD VOLUME
+  .room(slider(0.8, 0.3, 0.95))    // 🎚️ PAD REVERB
+  .attack(0.8)
+  .release(1.5)
+  .lpf(1000)
+  .orbit(8)
+
+// === LAYER 14: TRITONE BASS HITS (Maximum Tension) ===
+// Devil's interval - C to F#
+_$: note("<c1 fs1 c1 fs1 d1 gs1 d1 gs1>*2")
+  .s("sawtooth")
+  .vowel("<a u>")
+  .lpf(slider(250, 100, 600))      // 🎚️ TRITONE FILTER
+  .shape(slider(16, 8, 25))        // 🎚️ TRITONE DISTORTION
+  .gain(slider(0.6, 0.2, 1))       // 🎚️ TRITONE VOLUME
+  .orbit(9)
+
+// === LAYER 15: MICRORHYTHM PERCUSSION ===
+// Non-standard subdivisions for organic feel
+_$: sound("<bd sd rim cp>")
+  .n(irand(3))
+  .fast("<1 1.5 2 2.5>")
+  .degradeBy(slider(0.6, 0.2, 0.9)) // 🎚️ PERC SPARSENESS
+  .speed(choose([0.8, 1, 1.2]))
+  .gain(slider(0.4, 0, 0.8))        // 🎚️ PERC VOLUME
+  .pan(rand)
+  .orbit(10)
+
+// ============================================================
+// 🎮 PERFORMANCE GUIDE:
+// ============================================================
+//
+// 🎬 SUGGESTED SONG STRUCTURE:
+//
+// INTRO (0:00 - 0:30):
+//   - Start with: Kick, Sub Bass, Noise Sweep
+//   - Mute everything else
+//   - Gradually adjust sliders to taste
+//
+// BUILD (0:30 - 1:00):
+//   - Unmute: Hi-Hats, Clap
+//   - Add: Quartal Chords (use mouse to control!)
+//   - Raise noise sweep slider
+//
+// DROP (1:00 - 1:30):
+//   - Unmute: Acid Bassline, Whole Tone Melody
+//   - Use mouse X to control chord brightness
+//   - Use mouse Y to control chord/pad volume
+//
+// BREAKDOWN (1:30 - 2:00):
+//   - Mute: Kick, Clap
+//   - Unmute: Pad, Granular Texture, Rhythmic Vocal
+//   - Lower all volume sliders, raise reverb
+//
+// BUILDUP (2:00 - 2:15):
+//   - Gradually unmute everything
+//   - Push noise sweep slider up
+//   - Increase distortion/crush sliders
+//
+// CLIMAX (2:15 - 2:45):
+//   - All layers playing
+//   - Mouse control for dynamic performance
+//   - High energy, all sliders pushed
+//
+// OUTRO (2:45 - 3:00):
+//   - Mute: Melody, Arp, Stabs
+//   - Keep: Kick, Sub, Pad
+//   - Fade with volume sliders
+//
+// ============================================================
+// 🖱️ MOUSE CONTROL SUMMARY:
+// ============================================================
+//
+// LAYER 6 (Chords):
+//   - X (left-right) = Filter brightness (400-3000 Hz)
+//   - Y (up-down) = Chord volume (0-0.6)
+//
+// LAYER 7 (Melody):
+//   - X (left-right) = Transpose melody (0-7 semitones)
+//
+// LAYER 13 (Pad):
+//   - Y (up-down) = Pad volume (0-0.5)
+//
+// TIP: Move mouse diagonally for combined effects!
+//
+// ============================================================
+// 🎚️ SLIDER SUMMARY (20 total):
+// ============================================================
+//
+// DRUMS:
+// - Layer 1: Kick Power, Kick Distortion
+// - Layer 4: Clap Volume
+// - Layer 5: Hat Volume, Hat Crunch
+// - Layer 15: Perc Sparseness, Perc Volume
+//
+// BASS:
+// - Layer 2: Sub Darkness, Sub Volume
+// - Layer 3: Acid Filter, Acid Envelope, Acid Resonance, Acid Volume
+// - Layer 14: Tritone Filter, Tritone Distortion, Tritone Volume
+//
+// MELODIC:
+// - Layer 6: Chord Reverb
+// - Layer 7: Melody Brightness, Melody LoFi, Melody Volume
+// - Layer 8: Arp Filter, Arp Envelope, Arp Volume
+// - Layer 9: Stab Power
+// - Layer 13: Pad Reverb
+//
+// TEXTURE:
+// - Layer 10: Noise Frequency, Noise Volume
+// - Layer 11: Grain Sparseness, Texture Volume
+// - Layer 12: Vocal Filter, Vocal Volume
+//
+// ============================================================
+// 💡 PERFORMANCE TIPS:
+// ============================================================
+//
+// 1. START SIMPLE: Begin with just 3-4 layers
+// 2. BUILD GRADUALLY: Unmute one layer at a time
+// 3. USE MOUSE: Move it during intense moments
+// 4. SLIDER AUTOMATION: Record multiple takes focusing on different sliders
+// 5. CREATE TENSION: Mute kick before drops
+// 6. TEXTURAL BUILDS: Unmute noise/granular layers for buildups
+// 7. BREAKDOWNS: Mute drums, keep pads/texture
+// 8. EXPERIMENT: Every combination sounds different!
+//
+// ⚡ QUICK MUTE COMBOS:
+//
+// MINIMAL (Intro):
+//   Layers: 1, 2, 10
+//
+// GROOVE (Body):
+//   Layers: 1, 3, 4, 5
+//
+// MELODIC (Breakdown):
+//   Layers: 6, 7, 11, 13
+//
+// FULL POWER (Drop):
+//   All layers except maybe 15
+//
+// ATMOSPHERIC (Ambient):
+//   Layers: 10, 11, 12, 13
+//
+// ============================================================
+// 🎵 MUSIC THEORY USED (No Stock Music Here!):
+// ============================================================
+//
+// - Phrygian Dominant: E F G# A B C D (Spanish/metal)
+// - Chromatic Bass: Semitone movement, not functional I-IV-V
+// - Quartal Harmony: Stacked 4ths (C-F-Bb-Eb), no major/minor
+// - Whole Tone Scale: C D E F# G# A# (floating, ambiguous)
+// - Octatonic Scale: C C# Eb E F# G A Bb (tension)
+// - Harmonic Major: C D E F G Ab B (exotic)
+// - Tritone Relationships: C to F# (devil's interval)
+// - Minor 2nd Clusters: C C# D (harsh dissonance)
+// - Euclidean Rhythms: 5/7, 11/16, 13/16, 3/8
+// - Prime Numbers: 5, 7, 11, 13 (non-repeating feel)
+//
+// ============================================================
+// 🚀 RECORD & EDIT WORKFLOW:
+// ============================================================
+//
+// 1. Record PASS 1: Focus on muting/unmuting layers
+// 2. Record PASS 2: Focus on mouse movement
+// 3. Record PASS 3: Focus on slider automation
+// 4. Record PASS 4: Different layer combinations
+// 5. Record PASS 5: Wild experimentation
+//
+// Edit together the best moments from each pass!
+// Then run through Suno with your Technomagi lyrics!
+//
+// ============================================================
+//
+// Press Ctrl+Enter to start!
+// Press Ctrl+. to stop everything
+//
+// Remember: _ before $: = MUTED
+//           No _ = PLAYING
+//
+// Have fun! 🎮🎵✨
