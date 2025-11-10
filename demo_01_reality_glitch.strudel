@@ -1,0 +1,181 @@
+// REALITY GLITCH - Interactive Demo
+// 2-3 minute structured demo showcasing advanced Strudel features
+// By Claude - Demonstrating: voicings, formant, granular, signal modulation
+//
+// LIVE TWEAKABLE PARAMETERS (marked with 🎛️):
+// - Search for 🎛️ comments to find parameters you can adjust in real-time
+// - Try changing numbers while it plays for instant feedback
+
+setcps(140/60/4) // 140 BPM - glitchy electronica tempo
+
+stack(
+  // === FOUNDATION: Intelligent Kick Pattern ===
+  sound("bd*<4 4 6 4 4 8 4 2>")
+    .n("<0 1 0 2>")
+    .gain("<0.9 1 1.1 1.1 1.2 1.3 1.2 0.8>")  // 🎛️ Try 0.7-1.5
+    .shape("<6 7 8 9 10 12 10 5>")  // 🎛️ Try 3-15 for distortion
+    .lpf(perlin.range(80, 150))
+    .crush("<5 4 4 3 3 2 2 6>")  // 🎛️ Try 2-7 (lower = harsher)
+    .orbit(0),
+
+  // === SNARE: Euclidean Patterns ===
+  sound("sd")
+    .euclid("<3 5 7 3>", 8)  // 🎛️ Change first number (3-8)
+    .gain("<0.8 0.9 1 0.9 1.1 1.2 0.7>")
+    .shape(8)
+    .room(0.2)
+    .orbit(0),
+
+  // === HI-HATS: Degrading Pattern ===
+  sound("hh*<8 16 8 24 8 32 16 0>")
+    .degradeBy("<0.3 0.4 0.5 0.3 0.6 0.7 0.8 0.9>")  // 🎛️ Try 0.1-0.9
+    .gain("<0.3 0.4 0.5 0.5 0.6 0.6 0.4 0>")
+    .pan(rand)
+    .crush(6)
+    .orbit(0),
+
+  // === CHORD PROGRESSION: ireal Jazz Voicings ===
+  chord("<Em7 G^7 Am7 Bm7 | Em7 G^7 C^7 D7 | Em7 A7 Dm7 G7 | Em7 Bm7 Am7 Em7>")
+    .dict('ireal')  // Using 638 professional voicings!
+    .voicing()
+    .mode('below')  // 🎛️ Try: 'below' 'above' 'duck' 'root'
+    .sound("triangle")
+    .lpf(sine.range(400, 1800).slow(8))  // 🎛️ Change .slow(8) to 2-16
+    .lpq(3)  // 🎛️ Try 1-8 for resonance
+    .gain("<0 0.4 0.45 0.5 0.5 0.55 0.55 0.4>")
+    .room(0.4)
+    .orbit(1),
+
+  // === FORMANT BASS: Talking Synthesis ===
+  note("<e1 e1 g1 e1 | e1 g1 a1 b1 | e1 a1 d1 g1 | e1 b0 a0 e1>*2")
+    .sound("sawtooth")
+    .formant("<a e i o u a o u>")  // 🎛️ Try: a e i o u ae oe uh
+    .lpf(200)
+    .shape("<10 12 14 16 18 20 18 12>")  // 🎛️ Try 8-25
+    .gain("<0 0.6 0.65 0.7 0.75 0.8 0.85 0.6>")
+    .orbit(2),
+
+  // === GRANULAR MELODY: Chopped Sine Waves ===
+  note("<[e4 g4 a4 b4]*8 [g4 a4 b4 d5]*8 [a4 b4 d5 e5]*12 [e4 g4 b4 e5]*16 [e4 g4 a4 b4]*24 [g4 b4 d5]*32 [e4 b4]*16 ~>")
+    .sound("sine")
+    .chop("<4 8 16 8 32 16 8 1>")  // 🎛️ Granular density: Try 4-64
+    .degradeBy("<0.2 0.3 0.4 0.3 0.5 0.6 0.5 0.8>")  // 🎛️ Grain removal
+    .speed(perlin.range(0.9, 1.1))
+    .pan(rand)
+    .gain("<0 0.35 0.4 0.45 0.5 0.55 0.5 0.3>")
+    .delay(0.4)  // 🎛️ Try 0.1-0.8
+    .delaytime(0.125)
+    .room(0.6)
+    .orbit(3),
+
+  // === TEXTURAL PAD: Wavetable with Signal Modulation ===
+  note("<e3 g3 a3 b3>*2")
+    .s("wt_dbass")  // Wavetable from AKWF set
+    .n(sine.segment(8).range(0, 7))  // 🎛️ Change segment(8) to 2-16
+    .lpf(saw.range(300, 2000).slow(6))  // Sawtooth filter sweep
+    .lpq(5)
+    .gain("<0 0 0.3 0.35 0.4 0.45 0.4 0.25>")
+    .room(0.8)  // 🎛️ Try 0.3-0.9 for reverb
+    .orbit(4),
+
+  // === GLITCH PERCUSSION: Random Sample Manipulation ===
+  sound("<~ ~ <bd sd hh cp>*8 <bd sd>*16 ~ <bd hh cp>*24 <bd sd hh>*32 ~>")
+    .n(irand(4))
+    .speed(choose([-2, -1, 0.5, 1, 1.5, 2]))  // 🎛️ Add/remove speeds
+    .slice(8, irand(8))  // Random slice selection
+    .crush(irand(6).add(2))
+    .coarse(choose([8, 16, 32]))
+    .pan(rand)
+    .gain("<0 0 0.4 0.5 0 0.6 0.7 0.3>")
+    .orbit(5),
+
+  // === VOCAL TEXTURE: Formant Clouds ===
+  note("<[e4 g4 b4]*4 [g4 b4 d5]*4 [a4 d5 e5]*6 [e4 b4 e5]*8 ~ ~ ~ ~>")
+    .sound("triangle")
+    .formant(choose(["a", "e", "i", "o", "u", "ae"]))  // 🎛️ Random vowels
+    .chop(16)
+    .degradeBy(0.6)  // 🎛️ Try 0.3-0.9
+    .bpf(perlin.range(800, 3500))  // Band-pass filter
+    .bpq(20)  // 🎛️ Try 5-30 (can get LOUD!)
+    .gain("<0 0 0.3 0.35 0.4 0.45 0.5 0.2>")
+    .pan(rand)
+    .room(0.7)
+    .orbit(6),
+
+  // === SQUEEZE HARMONY: Advanced Pattern Math ===
+  note("<e g a b>")
+    .add.squeeze("<0 7 12 19>")  // Squeezes intervals into notes
+    .sound("sine")
+    .gain("<0 0 0 0.25 0.3 0.35 0.4 0.2>")
+    .lpf(2000)
+    .room(0.5)
+    .orbit(7),
+
+  // === RHYTHMIC NOISE: Structured Chaos ===
+  sound("<~ white*8 pink*16 white*8 brown*24 pink*32 white*64 brown*8>")
+    .hpf(sine2.range(3000, 8000).fast(4))  // Bipolar signal modulation
+    .crush("<4 3 2 3 2 2 2 5>")
+    .gain("<0 0.2 0.25 0.3 0.35 0.4 0.45 0.15>")  // 🎛️ Try 0.1-0.5
+    .pan(rand)
+    .orbit(8),
+
+  // === LEAD MELODY: Swing & Humanization ===
+  note("<~ ~ [e5 g5 b5 d6]*4 [g5 b5 d6 e6]*4 [e5 a5 d6]*6 [b5 e6 g6]*8 [e5 g5]*4 ~>")
+    .scale("e:minor")
+    .sound("square")
+    .lpf(sine.range(1200, 3500).slow(4))
+    .crush("<6 5 4 4 3 2 3 6>")
+    .swingBy(0.1, 4)  // 🎛️ Swing amount: Try 0.05-0.3
+    .gain("<0 0 0.4 0.45 0.5 0.55 0.6 0.3>")
+    .delay(0.3)
+    .room(0.4)
+    .orbit(9),
+
+  // === COMPRESSED RHYTHM: Time Manipulation ===
+  sound("<~ ~ ~ bd*4 ~ ~ bd*8 ~>")
+    .compress(0.6, 1)  // Only plays in last 40% of cycle
+    .gain(1.2)  // 🎛️ Try 0.8-1.5
+    .shape(15)
+    .orbit(0),
+
+  // === SUB BASS: Deep Foundation ===
+  note("<e0 e0 g0 e0 | e0 g0 a0 b0 | e0 a0 d0 g0 | e0 b-1 a-1 e0>*<1 1 1 1 1 1 2 1>")
+    .sound("sawtooth")
+    .lpf("<100 100 100 120 120 150 180 80>")  // 🎛️ Try 80-200
+    .shape("<12 14 16 18 20 22 20 10>")
+    .distort(1)  // 🎛️ Try 0.5-2
+    .gain("<0 0.6 0.65 0.7 0.75 0.8 0.85 0.5>")
+    .orbit(2)
+)
+
+// SECTION GUIDE (measured in cycles):
+// Cycles 1-2: Intro - Drums + minimal texture
+// Cycles 3-4: Build - Add chords and formant bass
+// Cycles 5-6: Full - All elements, maximum density
+// Cycles 7-8: Breakdown - Texture focus, drums drop
+// Cycles 9-10: Climax - Everything returns, high energy
+// Cycles 11-12: Outro - Gradual fade via angle brackets
+
+// TIPS FOR LIVE TWEAKING:
+// 1. Find a 🎛️ parameter
+// 2. Change the value while pattern is playing
+// 3. Press Ctrl+Enter to update
+// 4. Instant sonic transformation!
+//
+// SAFE EXPERIMENTS:
+// - gain values (0.3-1.2)
+// - crush values (2-7)
+// - shape values (5-15)
+// - .slow() values (2-16)
+// - degradeBy values (0.1-0.9)
+//
+// DRAMATIC CHANGES:
+// - formant vowels (a/e/i/o/u)
+// - euclid patterns
+// - voicing modes
+// - filter cutoff ranges
+//
+// DANGEROUS (can be LOUD):
+// - bpq/lpq/hpq above 15
+// - gain above 1.5
+// - distort above 2
