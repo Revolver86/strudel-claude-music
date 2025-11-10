@@ -1,0 +1,240 @@
+// QUANTUM RITUAL - Experimental Interactive Demo
+// Odd meters, non-functional harmony, quartal voicings, polyrhythms
+// By Claude - Breaking away from stock music clichés
+//
+// 🎚️ SLIDERS: Real-time performance control
+// 🎵 UNIQUE ELEMENTS: 7/8 feel, stacked 4ths, whole tone scales, chromatic bass
+
+setcps(147/60/7) // 147 BPM in 7/8 - asymmetric groove
+
+stack(
+  // === CHROMATIC BASS - Not your typical root movement ===
+  // Moving in minor 2nds and tritones, avoiding functional harmony
+  note("<c1 cs1 d1 eb1 e1 f1 fs1 a1>*2")  // Chromatic climb with tritone leap
+    .s("sawtooth")
+    .lpf(slider(250, 80, 600, 10))       // 🎚️ Sub bass darkness
+    .lpenv(slider(1.2, 0, 4, 0.1))        // 🎚️ Envelope amount
+    .lpq(slider(8, 1, 20, 1))             // 🎚️ Resonance
+    .shape(12)
+    .gain(slider(0.75, 0.4, 1, 0.05))     // 🎚️ Bass power
+    ._pianoroll()
+    .orbit(0),
+
+  // === QUARTAL HARMONY - Stacked 4ths instead of triads ===
+  // No major/minor - ambiguous modal sound
+  note("<[c3,f3,bb3,eb4] [cs3,fs3,b3,e4] [eb3,ab3,db4,gb4] [e3,a3,d4,g4] [f3,bb3,eb4,ab4] [fs3,b3,e4,a4] [g3,c4,f4,bb4]>")
+    .s("square")
+    .lpf(sine.range(slider(600, 400, 2000, 50), slider(2400, 1000, 5000, 100)).slow(11))  // 🎚️ Filter sweep range
+    .lpq(3)
+    .gain(slider(0.45, 0, 0.8, 0.05))     // 🎚️ Chord volume
+    .room(0.5)
+    .duck("bd*7", 4, 0.15)
+    ._pianoroll()
+    .orbit(1),
+
+  // === WHOLE TONE MELODY - No half steps, pure ambiguity ===
+  // Whole tone scale: every note is a whole step apart
+  note("<[c5 d5 e5 fs5]*3 [d5 e5 fs5 gs5]*3 [e5 fs5 gs5 bb5]*3 [fs5 gs5 bb5 c6]*3 [c5 d5 fs5 gs5]*2 [d5 e5 bb5 c6]*2 [e5 fs5 d6]*3>")
+    .s("triangle")
+    .lpf(slider(3200, 1000, 8000, 100))  // 🎚️ Brightness
+    .crush(slider(8, 4, 16, 1))           // 🎚️ Lo-fi texture
+    .gain(slider(0.55, 0, 1, 0.05))       // 🎚️ Lead volume
+    .delay(0.4)
+    .delayfeedback(0.6)
+    .room(0.3)
+    ._pianoroll()
+    .orbit(2),
+
+  // === POLYRHYTHMIC KICK - 7 against 5 ===
+  sound("bd")
+    .n("<0 1 0 2 1>")
+    .euclid(5, 7)                          // 5 hits across 7 steps
+    .bank("RolandTR909")
+    .gain(slider(1.1, 0.7, 1.4, 0.05))    // 🎚️ Kick intensity
+    .shape(7)
+    .orbit(3),
+
+  // === EUCLIDEAN HATS - Shifting patterns ===
+  sound("hh")
+    .euclid("<11 13 9 15>", 16)           // Euclidean with changing hits
+    .bank("RolandTR909")
+    .gain(slider(0.4, 0, 0.7, 0.05))      // 🎚️ Hat level
+    .pan(perlin)
+    .crush(slider(10, 4, 16, 1))          // 🎚️ Hat crunch
+    .orbit(3),
+
+  // === OCTATONIC ARPEGGIO - Alternating whole/half steps ===
+  // Octatonic scale creates tension without resolution
+  note("c4 cs4 eb4 e4 fs4 g4 a4 bb4")
+    .fast("<2 3 2 3 4 3 2>")              // Shifting speeds
+    .s("sawtooth")
+    .lpf(slider(1800, 600, 4000, 100))    // 🎚️ Arp filter
+    .lpenv(slider(2.2, 0, 5, 0.1))        // 🎚️ Arp envelope
+    .lpq(18)
+    .gain(slider(0.48, 0, 0.9, 0.05))     // 🎚️ Arp volume
+    .pan(rand)
+    ._pianoroll()
+    .orbit(4),
+
+  // === DISSONANT STABS - Minor 2nd clusters ===
+  note("<~ [c4,cs4,d4,eb4] ~ ~ ~ [f4,fs4,g4,ab4] ~>")
+    .s("square")
+    .lpf(5000)
+    .attack(0.01)
+    .decay(0.15)
+    .sustain(0)
+    .release(0.1)
+    .gain(slider(0.7, 0, 1, 0.05))        // 🎚️ Stab power
+    .room(0.6)
+    .orbit(5),
+
+  // === POLYMETRIC CLAP - 3 over 7 ===
+  sound("cp")
+    .euclid(3, 7, "<0 1 2>")              // 3 hits, rotated each cycle
+    .bank("RolandTR909")
+    .degradeBy(slider(0.15, 0, 0.6, 0.05)) // 🎚️ Glitch amount
+    .room(0.4)
+    .gain(0.85)
+    .orbit(3),
+
+  // === HARMONIC MAJOR SCALE PAD - Exotic flavor ===
+  // Harmonic major: major scale with b6
+  note("<c3 d3 e3 f3 g3 ab3 b3>*2")
+    .add("<0 7 12>")                      // Add octaves/fifths
+    .s("sine")
+    .gain(slider(0.35, 0, 0.7, 0.05))     // 🎚️ Pad volume
+    .room(0.8)
+    .attack(0.8)
+    .release(1.5)
+    .lpf(1200)
+    .orbit(6),
+
+  // === TRITONE JUMPS - Maximum tension ===
+  note("<c2 fs2 c2 fs2 d2 gs2 d2 gs2>*2")
+    .s("sawtooth")
+    .vowel(choose(["a", "e", "o", "u"]))
+    .lpf(slider(320, 100, 800, 20))       // 🎚️ Sub harmonic filter
+    .shape(slider(14, 8, 25, 1))          // 🎚️ Sub distortion
+    .gain(slider(0.65, 0.3, 1, 0.05))     // 🎚️ Sub presence
+    .orbit(7),
+
+  // === RHYTHMIC NOISE - Prime number patterns ===
+  sound("white")
+    .euclid("<5 7 11 13>", 16)            // Prime numbers create non-repeating feel
+    .hpf(slider(8000, 3000, 15000, 500))  // 🎚️ Noise frequency
+    .gain(slider(0.25, 0, 0.5, 0.05))     // 🎚️ Noise amount
+    .pan(rand)
+    .orbit(8),
+
+  // === MICRORHYTHMIC PERCUSSION ===
+  sound("<bd sd rim cp>")
+    .n(irand(3))
+    .fast("<1 1.5 2 2.5 3>")              // Non-standard subdivisions
+    .degradeBy(slider(0.55, 0.2, 0.9, 0.05))  // 🎚️ Sparseness
+    .speed(choose([0.8, 1, 1.2, 1.5]))
+    .gain(slider(0.4, 0, 0.8, 0.05))      // 🎚️ Perc level
+    .pan(rand)
+    .orbit(9),
+
+  // === CHROMATIC GLIDE BASS ===
+  note("<c2 b1 bb1 a1 ab1 g1 fs1 f1>")   // Descending chromaticism
+    .s("sawtooth")
+    .lpf(slider(180, 60, 400, 10))        // 🎚️ Deep bass filter
+    .shape(16)
+    .gain(slider(0.7, 0.3, 1, 0.05))      // 🎚️ Glide bass volume
+    .orbit(10)
+)
+
+// 🎚️ SLIDER GUIDE:
+//
+// BASS CONTROLS:
+// - Line 15: Sub bass filter (80-600 Hz) - deep rumble control
+// - Line 16: Sub envelope (0-4) - attack character
+// - Line 17: Sub resonance (1-20) - harmonic emphasis
+// - Line 18: Bass power (0.4-1)
+// - Line 84: Sub harmonic filter (100-800 Hz) - tritone bass darkness
+// - Line 85: Sub distortion (8-25) - grit
+// - Line 86: Sub presence (0.3-1)
+// - Line 106: Deep bass filter (60-400 Hz) - chromatic glide depth
+// - Line 108: Glide bass volume (0.3-1)
+//
+// HARMONIC CONTROLS:
+// - Line 25: Quartal chord filter min (400-2000 Hz)
+// - Line 25: Quartal chord filter max (1000-5000 Hz)
+// - Line 27: Chord volume (0-0.8)
+// - Line 35: Whole tone melody brightness (1000-8000 Hz)
+// - Line 36: Lo-fi texture (4-16) - lower = crunchier
+// - Line 37: Lead volume (0-1)
+// - Line 54: Octatonic arp filter (600-4000 Hz)
+// - Line 55: Octatonic arp envelope (0-5)
+// - Line 57: Arp volume (0-0.9)
+// - Line 68: Dissonant stab power (0-1)
+// - Line 78: Harmonic major pad volume (0-0.7)
+//
+// RHYTHM CONTROLS:
+// - Line 45: Kick intensity (0.7-1.4)
+// - Line 51: Euclidean hat level (0-0.7)
+// - Line 52: Hat crunch (4-16)
+// - Line 75: Polymetric clap glitch (0-0.6)
+// - Line 92: Prime noise frequency (3000-15000 Hz)
+// - Line 93: Noise amount (0-0.5)
+// - Line 99: Microrhythm sparseness (0.2-0.9) - higher = more sparse
+// - Line 101: Percussion level (0-0.8)
+//
+// 🎵 WHY THIS IS DIFFERENT:
+//
+// HARMONY:
+// ❌ NO: I-IV-V-vi progressions, major/minor triads, functional cadences
+// ✅ YES: Quartal harmony (stacked 4ths), chromatic movement, tritone jumps
+//        Whole tone scale (no leading tones), octatonic scale (symmetrical)
+//        Harmonic major (exotic), dissonant clusters (minor 2nds)
+//
+// RHYTHM:
+// ❌ NO: Standard 4/4, predictable patterns, on-beat accents
+// ✅ YES: 7/8 feel, euclidean rhythms (5/7, 3/7, 11/16, 13/16)
+//        Polyrhythms (3 against 7), polymeter (patterns of different lengths)
+//        Prime number patterns (5, 7, 11, 13), non-standard subdivisions
+//
+// MELODY:
+// ❌ NO: Stepwise motion, diatonic scales, predictable phrases
+// ✅ YES: Whole tone (ambiguous), octatonic (tension), tritone leaps
+//        Chromatic glides, dissonant intervals, asymmetric phrasing
+//
+// 🎭 MUSIC THEORY USED:
+//
+// - **Quartal Harmony**: Chords built in 4ths (C-F-Bb-Eb) instead of 3rds
+//   Creates ambiguous, modern sound - neither major nor minor
+//
+// - **Whole Tone Scale**: 6-note scale, all whole steps (C D E F# G# A#)
+//   No leading tone = no resolution = floating, dreamlike quality
+//
+// - **Octatonic Scale**: Alternating whole/half steps (C C# Eb E F# G A Bb)
+//   Symmetrical = no tonic = perpetual tension
+//
+// - **Harmonic Major**: Major scale with b6 (C D E F G Ab B)
+//   Exotic middle-eastern flavor, not common in western pop
+//
+// - **Chromatic Bass**: Moving by semitones, not scale degrees
+//   Avoids functional bass movement (I-IV-V)
+//
+// - **Tritone Relationships**: Interval of 6 semitones (C to F#)
+//   Maximum dissonance, traditionally "diabolic interval"
+//
+// - **Euclidean Rhythms**: Distribute N hits evenly over M steps
+//   Creates non-western, algorithmic groove patterns
+//
+// - **Polymeter**: Different patterns with different cycle lengths
+//   Creates evolving, non-repeating macro-structure
+//
+// ⚡ PERFORMANCE TIPS:
+//
+// 1. **Start sparse**: Mute some layers, bring in gradually
+// 2. **Use odd-meter feel**: The 7/8 creates forward motion
+// 3. **Embrace dissonance**: These aren't "wrong notes" - they're tension
+// 4. **Contrast sections**: Pull back pads/noise, then drop back in
+// 5. **Multiple takes**: Record focusing on different slider groups
+// 6. **Layer variations**: Stack recordings with different settings
+//
+// This will sound NOTHING like stock music when you put it through Suno.
+// The odd meters, non-functional harmony, and algorithmic rhythms make
+// it impossible to be "another generic EDM track."
