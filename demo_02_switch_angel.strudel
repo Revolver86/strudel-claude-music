@@ -1,0 +1,167 @@
+// SWITCH ANGEL - Interactive Trance Demo
+// Slider-driven performance with acid envelopes and visual feedback
+// By Claude - Inspired by live coded trance aesthetics
+//
+// 🎚️ SLIDERS: Drag to control in real-time
+// 📊 VISUALS: Inline piano rolls show what's playing
+// 🎵 PERFECT FOR: Recording multiple passes with different slider positions
+
+setcps(138/60/4) // 138 BPM - classic trance tempo
+
+stack(
+  // === ACID BASSLINE with TB-303 style envelope ===
+  note("<d3 d3 d3 a3 bb3 d2 f4>*4")
+    .s("sawtooth")
+    .lpf(slider(400, 100, 3000, 10))  // 🎚️ Drag for filter sweep
+    .lpenv(slider(2.5, 0, 8, 0.1))     // 🎚️ Acid envelope amount
+    .lpq(slider(12, 1, 30, 1))         // 🎚️ Resonance (careful - can squeal!)
+    .ftype('ladder')                    // TB-303 style ladder filter
+    .distort(0.4)
+    .gain(0.8)
+    ._pianoroll()                      // 📊 Visualize the pattern
+    .orbit(0),
+
+  // === SUPERSAW PADS with filter sweep ===
+  note("<[d4,fs4,a4] [c4,e4,g4] [bb3,d4,f4] [a3,cs4,e4]>")
+    .s("sawtooth")
+    .layer(
+      x => x.add(0.02),   // Detune for supersaw effect
+      x => x.add(-0.02),
+      x => x.add(0.05),
+      x => x.add(-0.05)
+    )
+    .lpf(sine.range(400, slider(2500, 800, 5000, 100)).slow(8))  // 🎚️ Filter sweep range
+    .lpq(2)
+    .gain(slider(0.5, 0, 1, 0.05))     // 🎚️ Pad volume
+    .room(0.6)
+    .duck("<bd bd bd bd>*4", 3, 0.2)    // Sidechain pumping to kick
+    .orbit(1),
+
+  // === TRANCE LEAD with envelope ===
+  note("<[d5 f5 a5 d6]*2 [c5 e5 g5 c6]*2 [bb4 d5 f5 bb5]*2 [a4 cs5 e5 a5]*2>")
+    .s("triangle")
+    .lpf(slider(2800, 500, 8000, 100))  // 🎚️ Lead brightness
+    .lpq(4)
+    .gain(slider(0.6, 0, 1, 0.05))      // 🎚️ Lead volume
+    .delay(0.3)
+    .delayfeedback(0.5)
+    .room(0.4)
+    ._pianoroll()                       // 📊 Visualize the melody
+    .orbit(2),
+
+  // === KICK with sidechain trigger ===
+  sound("bd*4")
+    .n("<0 0 1 0>")
+    .bank("RolandTR909")
+    .gain(slider(1.2, 0.8, 1.5, 0.05))  // 🎚️ Kick power
+    .shape(6)
+    .orbit(3),
+
+  // === CLOSED HAT ===
+  sound("hh*16")
+    .bank("RolandTR909")
+    .gain(slider(0.35, 0, 0.8, 0.05))   // 🎚️ Hat volume
+    .pan(sine.slow(4))
+    .orbit(3),
+
+  // === OPEN HAT ===
+  sound("~ ~ oh ~")
+    .bank("RolandTR909")
+    .gain(0.5)
+    .room(0.3)
+    .orbit(3),
+
+  // === CLAP with degradation ===
+  sound("~ cp ~ cp")
+    .bank("RolandTR909")
+    .degradeBy(slider(0.2, 0, 0.8, 0.05))  // 🎚️ Glitch amount
+    .room(0.4)
+    .gain(0.9)
+    .orbit(3),
+
+  // === ACID ARPEGGIO with slider-controlled pattern ===
+  note("d4 <f4 e4> a4 <bb4 a4>")
+    .s("square")
+    .crush(slider(6, 2, 16, 1))         // 🎚️ Bit depth (lower = crunchier)
+    .lpf(slider(1200, 300, 4000, 50))   // 🎚️ Arp filter
+    .lpenv(slider(1.8, 0, 6, 0.1))      // 🎚️ Arp envelope
+    .lpq(15)
+    .gain(slider(0.5, 0, 1, 0.05))      // 🎚️ Arp volume
+    ._pianoroll()                       // 📊 Visualize arpeggio
+    .orbit(4),
+
+  // === SUB BASS following kick ===
+  note("<d1 d1 d1 d1>*4")
+    .s("sawtooth")
+    .lpf(slider(120, 60, 200, 5))       // 🎚️ Sub bass cutoff
+    .shape(10)
+    .gain(slider(0.7, 0, 1, 0.05))      // 🎚️ Sub volume
+    .orbit(5),
+
+  // === NOISE SWEEP for transitions ===
+  sound("white*8")
+    .hpf(sine.range(2000, slider(12000, 4000, 18000, 500)).slow(8))  // 🎚️ Noise sweep
+    .gain(slider(0.15, 0, 0.5, 0.05))   // 🎚️ Noise volume
+    .pan(rand)
+    .orbit(6),
+
+  // === TRANCE STAB ===
+  note("<~ [d4,fs4,a4,d5] ~ ~>")
+    .s("sawtooth")
+    .lpf(4000)
+    .lpq(5)
+    .attack(0.01)
+    .decay(0.2)
+    .sustain(0)
+    .release(0.1)
+    .gain(slider(0.8, 0, 1.2, 0.05))    // 🎚️ Stab power
+    .room(0.5)
+    .orbit(7)
+)
+
+// 🎚️ SLIDER GUIDE:
+//
+// BASS CONTROLS:
+// - Line 13: Filter cutoff (100-3000 Hz) - sweep for acid effect
+// - Line 14: Envelope amount (0-8) - higher = more "squelch"
+// - Line 15: Resonance (1-30) - higher = more "screamy" (careful!)
+// - Line 39: Sub bass cutoff (60-200 Hz) - thickness
+// - Line 40: Sub volume (0-1)
+//
+// MELODIC CONTROLS:
+// - Line 25: Pad sweep range (800-5000 Hz) - brightness ceiling
+// - Line 27: Pad volume (0-1) - overall pad level
+// - Line 33: Lead brightness (500-8000 Hz) - sparkle
+// - Line 35: Lead volume (0-1)
+// - Line 51: Arp filter (300-4000 Hz)
+// - Line 52: Arp envelope (0-6) - acid squelch on arp
+// - Line 54: Arp volume (0-1)
+//
+// RHYTHM CONTROLS:
+// - Line 44: Kick power (0.8-1.5) - push harder for distortion
+// - Line 49: Hat volume (0-0.8)
+// - Line 60: Clap glitch (0-0.8) - randomly remove claps
+// - Line 50: Bit crush (2-16) - lo-fi effect (lower = crunchier)
+//
+// EFFECTS CONTROLS:
+// - Line 67: Noise sweep (4000-18000 Hz) - risers/transitions
+// - Line 68: Noise volume (0-0.5)
+// - Line 77: Stab power (0-1.2) - trance chord hits
+//
+// 🎵 PERFORMANCE TIPS:
+// 1. Start with bass filter and envelope - these are your main expression
+// 2. Use pad volume to build/drop sections
+// 3. Noise sweep creates tension for buildups
+// 4. Clap glitch adds variation
+// 5. Record multiple passes focusing on different slider groups
+// 6. Edit the best moments together in your DAW
+//
+// 📊 VISUALIZATION:
+// Piano rolls show on bass (line 18), lead (line 35), and arp (line 54)
+// Watch them to see what notes are playing!
+//
+// ⚡ QUICK EXPERIMENTS:
+// - Sweep bass filter while adjusting envelope for classic acid
+// - Automate noise sweep during builds
+// - Pull pad volume down for breakdown, push up for drop
+// - Adjust multiple sliders simultaneously for complex changes
