@@ -35,7 +35,7 @@ stack(
     .orbit(0),
 
   // === CHORD PROGRESSION: ireal Jazz Voicings ===
-  chord("<Em7 G^7 Am7 Bm7 | Em7 G^7 C^7 D7 | Em7 A7 Dm7 G7 | Em7 Bm7 Am7 Em7>")
+  chord("<Em7 G^7 Am7 Bm7 Em7 G^7 C^7 D7 Em7 A7 Dm7 G7 Em7 Bm7 Am7 Em7>")
     .dict('ireal')  // Using 638 professional voicings!
     .voicing()
     .mode('below')  // 🎛️ Try: 'below' 'above' 'duck' 'root'
@@ -47,7 +47,7 @@ stack(
     .orbit(1),
 
   // === FORMANT BASS: Talking Synthesis ===
-  note("<e1 e1 g1 e1 | e1 g1 a1 b1 | e1 a1 d1 g1 | e1 b0 a0 e1>*2")
+  note("<e1 e1 g1 e1 e1 g1 a1 b1 e1 a1 d1 g1 e1 b0 a0 e1>*2")
     .sound("sawtooth")
     .formant("<a e i o u a o u>")  // 🎛️ Try: a e i o u ae oe uh
     .lpf(200)
@@ -139,7 +139,7 @@ stack(
     .orbit(0),
 
   // === SUB BASS: Deep Foundation ===
-  note("<e0 e0 g0 e0 | e0 g0 a0 b0 | e0 a0 d0 g0 | e0 b-1 a-1 e0>*<1 1 1 1 1 1 2 1>")
+  note("<e0 e0 g0 e0 e0 g0 a0 b0 e0 a0 d0 g0 e0 b-1 a-1 e0>*<1 1 1 1 1 1 2 1>")
     .sound("sawtooth")
     .lpf("<100 100 100 120 120 150 180 80>")  // 🎛️ Try 80-200
     .shape("<12 14 16 18 20 22 20 10>")
