@@ -1,0 +1,109 @@
+// WORMHOLE
+// Harmonic teleportation through voice leading and common tones
+// Method: F# Major <-> Db Minor (harmonically unrelated wormhole)
+// Common tone pivots: B, Eb/D#, F/E#
+// By Claude using the Wormhole Method
+
+setcps(110/60/4) // 110 BPM - smooth but forward-moving
+
+stack(
+  // WORMHOLE CHORDS - Four different voicings of each chord
+  // Syncopated on "and of 4" using .early() and .off()
+  // Tight clustering in mid-register for smooth teleportation
+
+  // F# Major voicings (clustered extensions)
+  note("<[f#3,a#3,c#4,e4,g#4,b4] [a#3,c#4,e4,f#4,g#4,d#5] [c#3,g#3,b3,e4,f#4,a#4] [e3,g#3,a#3,b3,d#4,f#4]>")
+    .velocity("<1 0.75 1 0.5>") // Velocity hierarchy
+    .early("0 1/8 0 1/8") // Syncopation - shifts every other hit
+    .sound("sawtooth")
+    .lpf(1200)
+    .lpq(6)
+    .gain(0.65)
+    .pan(0.3),
+
+  // Db Minor voicings (clustered extensions)
+  note("<[db3,e3,ab3,b3,eb4,f4] [e3,ab3,db4,eb4,f4,b4] [ab3,b3,db4,e4,f4] [b2,eb3,f3,ab3,db4,e4]>")
+    .velocity("<1 0.75 1 0.5>")
+    .early("0 1/8 0 1/8")
+    .sound("sawtooth")
+    .lpf(1200)
+    .lpq(6)
+    .gain(0.65)
+    .pan(0.7)
+    .late(2), // Plays after 2 beats - creates alternation
+
+  // Ghost chord layer - barely audible texture (velocity 0.1-0.25)
+  note("<[f#3,a#3,c#4,e4,g#4,b4] [db3,e3,ab3,b3,eb4,f4]>")
+    .velocity("<0.25 0.1 0.25 0.1>")
+    .off(1/16, x => x.velocity(0.1)) // Rhythmic ghost echo
+    .sound("triangle")
+    .lpf(2400)
+    .gain(0.3)
+    .pan(perlin),
+
+  // BASS LINE - Emphasizes common tones B, Eb, F
+  // These notes exist in BOTH chords and "glue" the teleportation
+  note("<[b1 b1 eb2 b1] [f2 f2 b1 eb2] [b1 eb2 f2 b1] [eb2 b1 b1 f2]>")
+    .velocity("<1 0.75 1 0.75>")
+    .sound("sawtooth")
+    .lpf(250)
+    .shape(10)
+    .distort(0.6)
+    .gain(0.85),
+
+  // KICK - Syncopated on "and of 4"
+  sound("bd*4")
+    .n("<0 1 0 2>")
+    .velocity("<1 0.5 1 0.75>")
+    .early("0 0 0 1/8") // Kick hits on "and of 4" every 4th bar
+    .gain(0.9),
+
+  // SNARE - Supporting syncopation
+  sound("~ sd ~ sd")
+    .velocity("<1 0.75>")
+    .gain(0.7),
+
+  // GHOST SNARES - Velocity 0.25 for texture
+  sound("sd*8")
+    .velocity("<0.25 0.1 0.25 0.15>")
+    .gain(0.4)
+    .pan(rand),
+
+  // HI-HATS - Creates momentum
+  sound("hh*<8 16 8 12>")
+    .velocity("<0.5 0.75 0.5 0.5>")
+    .gain(0.45)
+    .pan(sine.slow(8)),
+
+  // MELODIC PIVOT TONES - Emphasizes B and Eb
+  // These shared notes make the wormhole jumps feel intentional
+  note("<[b4 eb5 b4 ~] [~ eb5 f5 b4] [b4 ~ eb5 f5] [f5 b4 eb5 ~]>")
+    .velocity("<1 0.75 1 0.5>")
+    .sound("square")
+    .lpf(sine.range(800, 2400).slow(4))
+    .lpq(8)
+    .gain(0.55)
+    .pan(0.5),
+
+  // TEXTURE LAYER - "Felt more than heard" (velocity 0.5)
+  note("<[6 10 1 5 8 11]!4 [1 4 8 11 3 5]!4>")
+    .scale("f#:major", "db:minor") // Alternates between the two centers
+    .velocity("<0.5 0.25>")
+    .sound("triangle")
+    .crush(4)
+    .lpf(1800)
+    .gain(0.35)
+    .pan(perlin)
+    .degradeBy(0.3), // Occasional dropouts for unpredictability
+
+  // ATMOSPHERIC PAD - Sustains common tones
+  note("<[b2, eb3, f3] [b2, eb3, f3]>")
+    .velocity(0.5)
+    .sound("sawtooth")
+    .lpf(600)
+    .lpq(2)
+    .gain(0.4)
+    .room(0.8)
+    .size(0.9)
+    .pan(0.5),
+)
