@@ -52,9 +52,10 @@ stack(
   note("0")
     .late(50)
     .scale("G:major")
-    .s("bass")
+    .s("sawtooth")
     .octave(2)
-    .gain(0.4),
+    .lpf(250)
+    .gain(0.5),
 
   // Minimal percussion - deep into satiation (rep 100, ~3:42)
   // By now the phrase is pure texture
