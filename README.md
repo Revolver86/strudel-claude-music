@@ -79,6 +79,16 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Proprioceptive Failure 🧠 **SPATIAL DISORIENTATION**
+A 3.5-minute exploration of losing your sense of where your body is in space at 118 BPM:
+- **Initial Disorientation** (0:00-0:45): Rhythm establishes, first timing "miss" at 0:15, melody lands wrong
+- **Growing Mismatch** (0:45-1:30): Bass drops UP instead of down, stereo field behaves impossibly
+- **Full Dissociation** (1:30-2:30): Multiple tempo subdivisions (5, 7, 11), spatial positioning violates physics
+- **Phantom Limb** (2:30-3:15): Attempted return to original groove but the memory is wrong
+- **Recalibration Failure** (3:15-end): Everything tries to sync, almost succeeds, one element continues alone then cuts
+
+Features E Dorian tonality with pitch drift, polyrhythmic divisions that feel "wrong", timing offsets (`.early()`, `.late()`), bass panned impossibly hard right, melodies that overshoot target notes, and sounds in negative space. Not chaos - consistently wrong internal logic. Your prediction engine constantly misfires.
+
 ## How to Use
 
 1. Go to https://strudel.cc
