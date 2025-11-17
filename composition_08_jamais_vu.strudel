@@ -9,47 +9,57 @@ setcps(98/60/4) // 98 BPM - comfortable walking pace, familiar rhythm
 stack(
   // THEME A - The melody that stays IDENTICAL throughout
   // E major: E F# G# B G# F# E C#
-  // This exact pattern repeats but becomes increasingly unrecognizable
-  note("0 2 4 7 4 2 0 -3")
+  // Same notes, increasingly unrecognizable context
+  note("[0 2 4 7 4 2 0 -3]")
     .scale("E:major")
-    // Timbral evolution: warm piano → detuned → cold sine → alien triangle → return (broken)
-    // 18 iterations of piano, 6 of piano, 11 of detuned gtr, 16 of sine, etc.
-    .sound("piano*18, piano*6, gtr*11, sine*16, sine*10, sine*6, triangle*8, triangle*6, piano*14")
-    // Detune evolution: pure → slightly off → pure but feels wrong
-    .detune("0*18, 0*6, 5*11, 0*16, 0*10, 0*6, 0*8, 0*6, 0*14")
-    // Filter evolution: warm → cold → alien → back (but different)
-    .lpf("4000*18, 4000*6, 2000*11, 3000*16, 2500*10, 1200*6, 1500*8, 1200*6, 3500*14")
-    .hpf("0*18, 0*6, 0*11, 0*16, 200*10, 800*6, 600*8, 800*6, 0*14")
-    // Reverb evolution: intimate → distant → void → back (still distant)
-    .room("0.3*18, 0.3*6, 0.5*11, 0.7*16, 0.8*10, 0.9*6, 0.85*8, 0.9*6, 0.4*14")
-    // Spatial evolution: centered → slightly off → jumping → back (wrong)
-    .pan("0*18, 0*6, 0*11, 0*16, <0.2 -0.2>*10, <-0.8 0.8 -0.6 0.6>*6, <-0.7 0.7 -0.8 0.8>*8, <-0.8 0.8>*6, 0.1*14")
-    .gain("0.7*18, 0.7*6, 0.65*11, 0.6*16, 0.55*10, 0.5*6, 0.5*8, 0.48*6, 0.6*14")
+    // Timbral evolution: warm → detuned → cold → alien → return (but broken)
+    .sound("<piano piano piano piano gtr gtr sine sine sine triangle triangle piano piano>")
+    // Detune only on guitar section
+    .detune("<0 0 0 0 5 5 0 0 0 0 0 0 0>")
+    // Filter evolution: warm → darker → cold → alien → back (different)
+    .lpf("<4000 4000 3500 3000 2000 2000 3000 2500 2000 1500 1200 3500 3000>")
+    .hpf("<0 0 0 0 0 0 0 200 400 600 800 0 0>")
+    // Reverb evolution: intimate → distant → void → still distant
+    .room("<0.3 0.3 0.4 0.5 0.5 0.6 0.7 0.8 0.85 0.9 0.9 0.5 0.5>")
+    // Spatial evolution: centered → slightly off → jumping → still wrong
+    .pan("<0 0 0 0 0 0.2 -0.2 0.3 -0.4 <-0.8 0.8 -0.6 0.6> <-0.7 0.7> 0.1 0.1>")
+    .gain("<0.7 0.7 0.7 0.7 0.65 0.65 0.6 0.55 0.5 0.48 0.45 0.6 0.6>")
     .sustain(0.8),
 
-  // HARMONIC SUPPORT - Evolves from full to bare to absent to returned (disconnected)
-  // E major triad support that gradually abandons the melody
-  note("[0 4 7]*18, [0 4 7]*6, [0 4 7]*11, [0 7]*16, [0 7]*10, ~*6, ~*8, ~*6, [0 4 7]*14")
+  // HARMONIC SUPPORT - Full → bare → absent → returned (disconnected)
+  // E major triad that gradually abandons the melody
+  note("<[0 4 7] [0 4 7] [0 4 7] [0 4 7] [0 4 7] [0 7] [0 7] [0 7] [0 7] ~ ~ [0 4 7] [0 4 7]>")
     .scale("E:major")
-    .sound("piano*18, piano*6, gtr*11, sine*16, sine*10, ~*6, ~*8, ~*6, piano*14")
-    .lpf("2500*18, 2500*6, 1800*11, 2000*16, 1500*10, ~*6, ~*8, ~*6, 2200*14")
-    .room("0.4*18, 0.4*6, 0.6*11, 0.75*16, 0.8*10, ~*6, ~*8, ~*6, 0.5*14")
-    .gain("0.35*18, 0.35*6, 0.32*11, 0.28*16, 0.25*10, 0*6, 0*8, 0*6, 0.3*14")
+    .sound("<piano piano piano gtr gtr gtr sine sine sine ~ ~ piano piano>")
+    .lpf("<2500 2500 2400 2000 1800 1800 2000 1800 1500 ~ ~ 2200 2200>")
+    .room("<0.4 0.4 0.5 0.6 0.6 0.65 0.75 0.8 0.85 ~ ~ 0.5 0.5>")
+    .gain("<0.35 0.35 0.35 0.32 0.32 0.3 0.28 0.25 0.22 0 0 0.3 0.3>")
     .sustain(2),
 
-  // BASS ANCHOR - Grounding that loosens then disappears
-  note("-12*18, -12*6, -12*11, -12*16, -12*10, ~*6, ~*8, ~*6, -12*14")
+  // BASS ANCHOR - Grounding that loosens
+  note("<-12 -12 -12 -12 -12 -12 -12 -12 -12 ~ ~ -12 -12>")
     .scale("E:major")
     .sound("sawtooth")
-    .lpf("200*18, 200*6, 180*11, 150*16, 130*10, ~*6, ~*8, ~*6, 180*14")
-    .gain("0.4*18, 0.4*6, 0.38*11, 0.35*16, 0.3*10, 0*6, 0*8, 0*6, 0.35*14")
+    .lpf("<200 200 190 180 170 160 150 140 130 ~ ~ 180 180>")
+    .gain("<0.4 0.4 0.4 0.38 0.36 0.34 0.32 0.28 0.25 0 0 0.35 0.35>")
     .sustain(2),
 
-  // AMBIENT TEXTURE - The void opening
-  sound("~*18, ~*6, ~*11, ~*16, white*160, white*96, pink*128, pink*96, ~*14")
-    .hpf("~*18, ~*6, ~*11, ~*16, 4000*10, 4500*6, 5000*8, 5500*6, ~*14")
-    .lpf("~*18, ~*6, ~*11, ~*16, 8000*10, 7500*6, 7000*8, 6500*6, ~*14")
-    .gain("0*18, 0*6, 0*11, 0*16, 0.15*10, 0.2*6, 0.25*8, 0.3*6, 0.1*14")
+  // AMBIENT TEXTURE - The void opening up
+  sound("<~ ~ ~ ~ ~ ~ white*16 white*16 white*16 pink*16 pink*16 ~ ~>")
+    .hpf("<~ ~ ~ ~ ~ ~ 4000 4500 5000 5500 6000 ~ ~>")
+    .lpf("<~ ~ ~ ~ ~ ~ 8000 8000 7500 7000 6500 ~ ~>")
+    .gain("<0 0 0 0 0 0 0.15 0.18 0.2 0.25 0.28 0.08 0.08>")
     .room(0.9)
-    .pan(sine.slow(32))
+    .pan(sine.slow(32)),
+
+  // SECONDARY MELODY - Doubling that becomes disorienting
+  note("<~ ~ ~ [0 2 4 7 4 2 0 -3] [0 2 4 7 4 2 0 -3] [0 2 4 7 4 2 0 -3] [0 2 4 7 4 2 0 -3] [0 2 4 7 4 2 0 -3] [0 2 4 7 4 2 0 -3] [0 2 4 7 4 2 0 -3] [0 2 4 7 4 2 0 -3] ~ ~>")
+    .scale("E:major")
+    .sound("<~ ~ ~ gtr sine sine triangle triangle triangle triangle triangle ~ ~>")
+    .lpf("<~ ~ ~ 1800 2500 2000 1200 1000 800 1000 1200 ~ ~>")
+    .detune("<~ ~ ~ 7 -7 10 -10 12 -12 15 -15 ~ ~>")
+    .gain("<0 0 0 0.25 0.3 0.32 0.35 0.38 0.4 0.38 0.35 0 0>")
+    .pan("<~ ~ ~ 0.5 -0.5 0.6 -0.6 0.7 -0.7 0.8 -0.8 ~ ~>")
+    .sustain(0.8)
+    .delay(0.3).delaytime(1/8)
 )
