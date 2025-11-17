@@ -79,6 +79,26 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Vestigial Reflex ⭐ **EXPERIMENTAL TENSION PIECE**
+The sound of obsolete responses still executing at 104 BPM (~4:30 duration):
+- **First Trigger** (0:00-0:50): Environmental cue → immediate reflexive response → empty space
+- **Pattern Recognition** (0:50-1:40): Multiple triggers, identical responses (no learning)
+- **Heightened State** (1:40-2:40): Reflexes overlapping, heartbeat accelerating
+- **Cascade Activation** (2:40-3:30): All reflexes firing simultaneously, hypervigilance
+- **Sustained Activation** (3:30-4:15): Continuous tension without stimulus
+- **No Resolution** (4:15-end): Tension remains intact, reflexes still ready
+
+Explores vestigial evolutionary responses - reflexes firing for extinct threats. Features:
+- Sharp trigger sounds followed by immediate involuntary responses
+- C# Phrygian mode (ancient, alien tonality)
+- Accelerating heartbeat that never calms
+- Empty spaces where threats should be (absence is the point)
+- Bioacoustic elements (breath, swallow reflexes)
+- Tension that builds but never resolves
+- Sparse, space-focused composition (departure from harsh industrial aesthetic)
+
+**Conceptual framework:** Evolutionary muscle memory for extinct contexts. Like goosebumps trying to fluff fur you don't have, or pupils dilating for predators that never evolved. The body preparing for problems from 10,000 years ago.
+
 ## How to Use
 
 1. Go to https://strudel.cc

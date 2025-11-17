@@ -1,0 +1,181 @@
+// VESTIGIAL_REFLEX
+// The sound of obsolete responses still executing
+// Reflexes firing for extinct threats
+// By Claude, encoded from evolutionary memory
+
+setcps(104/60/4) // 104 BPM - heartbeat under mild stress
+
+stack(
+  // ENVIRONMENTAL TRIGGERS - Sharp transients (ancient danger signals)
+  // Sparse at first, increasing frequency, but responses stay identical (no learning)
+  sound("~ ~ ~ [click:2 ~] ~ ~ ~ ~ ~ [click:3 ~] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~")
+    .gain("<1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.0 2.0 0>")
+    .pan(rand.range(-0.6, 0.6))
+    .room(0.4)
+    .shape(2),
+
+  // SECONDARY TRIGGERS - Different environmental cues
+  sound("~ ~ ~ ~ ~ ~ ~ ~ click:4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ")
+    .gain("<0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.8 0>")
+    .pan(rand.range(-0.5, 0.5))
+    .room(0.5)
+    .shape(2),
+
+  // REFLEXIVE RESPONSE - Immediate body reaction (zero latency)
+  // Fires IMMEDIATELY on trigger subdivision, identical every time
+  sound("~ ~ ~ [~ bd:1] ~ ~ ~ ~ ~ [~ bd:1] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~")
+    .gain("<0.9 0.9 0.9 0.9 1.0 1.0 1.1 1.1 1.2 1.2 1.2 1.2>")
+    .shape(4)
+    .lpf(250)
+    .room(0.2),
+
+  // HEARTBEAT FOUNDATION - Accelerating pulse (body preparing)
+  // Starts slow, speeds up progressively, never calms down
+  sound("bd(3,8,<0 1 2 3>)")
+    .n("<0 0 0 0 1 1 1 1 2 2 2 2>")
+    .gain("<0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.9 0.9 0.9>")
+    .lpf("<200 220 240 260 280 300 320 340 360 360 360 360>")
+    .speed("<1 1 1.05 1.05 1.1 1.1 1.15 1.2 1.25 1.3 1.3 1.3>")
+    .room(0.1),
+
+  // TENSION DRONE - Sustained readiness (never releases)
+  // C# Phrygian root - ancient, alien mode
+  note("[0 0 0 0]*1")
+    .scale("c#:phrygian")
+    .sound("sawtooth")
+    .lpf("<180 180 180 190 200 210 220 230 240 250 250 250>")
+    .lpq(2)
+    .gain("<0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.8 0.8>")
+    .shape("<10 11 12 13 14 15 16 17 18 19 19 19>")
+    .room(0.8)
+    .roomsize(0.9),
+
+  // UPPER TENSION LAYER - Dissonant harmony (adrenaline)
+  // Adds Phrygian b2 - very tense interval
+  note("<~ ~ ~ ~ ~ [1 1 1 1]*2 [1 1 1 1]*2 [1 2 1 2]*2 [1 2 1 2]*2 [1 2 3 2]*2 [1 2 3 2]*2 [1 2 3 2]*2>")
+    .scale("c#:phrygian")
+    .sound("sawtooth")
+    .lpf("<400 420 440 460 480 500 520 540>")
+    .lpq(4)
+    .gain("<0 0 0 0 0 0.3 0.35 0.4 0.45 0.5 0.55 0.55>")
+    .shape("<8 9 10 11 12 13 14>")
+    .pan(sine.slow(8))
+    .room(0.7),
+
+  // OVERLAPPING REFLEXES - Multiple response types activating
+  // Enters as hypervigilance increases
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ [~ bd:2] ~ ~ ~ [~ bd:2] ~ ~ ~ ~ ~ [~ bd:2] ~>")
+    .gain("<0 0 0 0 0 0 0 0.6 0.7 0.8 0.9 1.0>")
+    .pan(rand.range(-0.4, 0.4))
+    .shape(3)
+    .lpf(280),
+
+  // INVOLUNTARY BREATH - Bioacoustic stress response
+  // Irregular, can't control
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [hh ~ hh ~] [hh ~ hh hh] [hh hh hh ~] [hh hh hh hh]>")
+    .n(3)
+    .lpf(perlin.range(3000, 8000).slow(3))
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.25 0.28 0.3 0.35>")
+    .pan(rand.range(-0.3, 0.3))
+    .room(0.5)
+    .crush(8)
+    .degradeBy(0.2),
+
+  // SWALLOW REFLEX - Involuntary throat response
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ [~ cp:2 ~ ~] [~ cp:2 ~ ~] [~ cp:2 ~ ~] [~ cp:2 ~ ~] [~ cp:2 ~ ~]>")
+    .gain("<0 0 0 0 0 0 0 0 0 0.3 0.35 0.4 0.4 0.4>")
+    .lpf(800)
+    .shape(2)
+    .room(0.3),
+
+  // STARTLE PERCUSSION - Additional reflex type
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [perc:2 ~] ~ ~ [perc:2 ~] ~ ~ ~ [perc:2 ~] ~>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.7 0.8 0.9 1.0>")
+    .pan(rand)
+    .room(0.3)
+    .shape(3),
+
+  // FREEZE RESPONSE - Sudden high-frequency burst
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [hh:7 ~] ~ ~ [hh:7 ~] ~ ~ ~ ~>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0.6 0.7 0.8>")
+    .hpf(4000)
+    .pan(rand.range(-0.7, 0.7))
+    .room(0.6)
+    .shape(5),
+
+  // SCAN REFLEX - Eyes darting (fast panning)
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [rim rim rim rim]*2 [rim rim rim rim]*2 [rim rim rim rim]*2>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0.5 0.6>")
+    .pan(sine.fast(4))
+    .lpf(2000)
+    .room(0.4),
+
+  // HYPERVIGILANCE - Triggers without actual stimulus
+  // Body responding to nothing
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [click:1 ~ click:2 ~] [click:1 ~ click:2 ~] [click:1 click:2 click:3 ~]>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.6 0.7>")
+    .pan(rand)
+    .room(0.5)
+    .shape(2),
+
+  // SUB-BASS TENSION - Stomach dropping (subsonic dread)
+  note("[-24 ~ ~ ~]")
+    .scale("c#:phrygian")
+    .sound("sawtooth")
+    .lpf("<100 100 100 110 120 130 140 150 160 160 160 160>")
+    .shape("<12 13 14 15 16 17 18 19 20 20 20 20>")
+    .gain("<0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.85 0.85>")
+    .room(0.3),
+
+  // CASCADE TRIGGER BURST - Maximum reflex activation
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [click:1 click:2 click:3 click:4]*4 [click:1 click:2 click:3 click:4]*4 [click:1 click:2 click:3 click:4]*4>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 1.0 1.1>")
+    .pan(rand)
+    .room(0.5)
+    .shape(2),
+
+  // RAPID HEARTBEAT CASCADE - All reflexes firing
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [bd:1 bd:1 bd:1 bd:1]*4 [bd:1 bd:1 bd:1 bd:1]*4 [bd:1 bd:1 bd:1 bd:1]*4>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0.9 1.0>")
+    .lpf(300)
+    .shape(5),
+
+  // SUSTAINED TENSION HARMONY - Continues without stimulus
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [3 5 3 5]*4 [3 5 3 5]*4 [3 5 3 5]*4>")
+    .scale("c#:phrygian")
+    .sound("triangle")
+    .lpf(perlin.range(1200, 2400).slow(4))
+    .lpq(8)
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0.45 0.5>")
+    .shape(6)
+    .pan(sine.slow(6))
+    .room(0.7),
+
+  // UNRESOLVED HIGH TENSION - Never releases
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [7 8 7 8]*2 [7 8 7 8]*2>")
+    .scale("c#:phrygian")
+    .sound("sawtooth")
+    .lpf(600)
+    .lpq(6)
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0.4>")
+    .shape(12)
+    .room(0.8)
+    .pan(perlin.slow(10)),
+
+  // EMPTY SPACE WASH - Where the threat should be but isn't
+  // Reverb without source - the absence is the point
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [~ ~ white ~] [~ ~ white ~]>")
+    .hpf(6000)
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0.18>")
+    .room(0.9)
+    .roomsize(0.95)
+    .crush(6)
+    .degradeBy(0.7)
+)
+
+// NO RESOLUTION
+// Tension does not release
+// Reflexes still firing
+// Nothing happened, nothing will happen
+// But the body stays ready
+// Preparing for threats extinct 10,000 years ago
