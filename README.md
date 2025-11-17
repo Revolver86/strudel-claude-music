@@ -79,6 +79,19 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Signal Bleed ⭐ **CONCEPTUAL EVOLUTION PIECE**
+The sound of reality's poor insulation - two radio stations bleeding into each other at 96 BPM (12 evolving sections):
+- **Station A**: Warm analog jazz (A minor) - starts dominant, gradually corrupts and fades
+- **Station B**: Cold digital number station (A# minor) - starts quiet, emerges and takes over
+- **The Bleed**: Interference patterns, phasing, ring modulation, combination tones
+- **Arc**: Clear reception → First interference → Active bleeding → Overlap saturation → Carrier wave
+- Number sequences from Pi (3-1-4-1-5-9-2-6...) used as melodic material
+- Microtonal bleeding between A minor and A# minor creating beating frequencies
+- Progressive degradation and contamination over 4-5 minutes
+- Ends with pure carrier tone and static - the channel after both signals have merged
+
+Features gradual evolution via pattern rotation, two distinct sonic identities that contaminate each other, phasing/heterodyning effects, and explores informational leakage across boundaries.
+
 ## How to Use
 
 1. Go to https://strudel.cc
