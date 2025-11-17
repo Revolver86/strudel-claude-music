@@ -1,0 +1,131 @@
+// SLEEPER CELL ACTIVATION
+// Espionage thriller as electronic music
+// The moment dormant protocols execute
+// By Claude, for the professionals
+
+setcps(98/60/4) // 98 BPM - controlled, professional pace
+
+stack(
+  // PRIMARY RHYTHM - mundane to militaristic
+  // Deep Cover: boring 4/4 | Signal: disruption | Protocol: precise polyrhythm | Vanish: return
+  sound("bd*<4!34 [4 ~ 4 4]!8 [4 4 3 5]!49 4!29>")
+    .n("<0!34 1!8 2!49 0!29>")
+    .gain("<0.7!34 0.8!8 0.85!49 0.6!29>")
+    .crush("<12!34 8!8 10!49 12!29>")
+    .lpf("<2000!34 1000!8 3000!49 2000!29>"),
+
+  // SNARE - appears normal, becomes mechanical
+  sound("[~ sd ~ sd]!34, [~ sd ~ ~]!8, [~ sd(3,8) ~ sd]!49, [~ sd ~ sd]!29")
+    .gain("<0.6!34 0.7!8 0.75!49 0.55!29>")
+    .room("<0.2!34 0!8 0!49 0.2!29>")
+    .crush("<10!34 6!8 8!49 10!29>"),
+
+  // HI-HATS - footsteps, too regular (concealed surveillance)
+  sound("hh*<8!34 [8 ~ ~ 16]!8 [8 7 9 11]!49 8!29>")
+    .gain("<0.3!34 0.4!8 0.45!49 0.3!29>")
+    .crush("<11!34 7!8 9!49 11!29>")
+    .pan("<0.5!34 [0 0.5 1]!8 [0 0.5 1]!49 0.5!29>")
+    .hpf("<8000!34 6000!8 9000!49 8000!29>"),
+
+  // CLAPS/DOORS - everyday sounds, sudden precision
+  sound("<~ [~ ~ cp ~]!34 [~ cp]!8 [~ cp ~ cp]!49 [~ ~ cp ~]!29>")
+    .gain("<0!34 0.5!8 0.6!49 0.4!29>")
+    .room("<0.3!34 0!8 0!49 0.3!29>"),
+
+  // PHONE TONES - encrypted communication (number station vibes)
+  note("<[f4 f4 f4 f4]!34 [f4 ab4 c5 f5]!8 [f4 ab4 c5 f5 f4 ab4]!49 [f4 f4]!29>")
+    .sound("sine")
+    .gain("<0!34 0.3!8 0.4!49 0.25!29>")
+    .delay("<0!34 0.3!8 0.5!49 0.3!29>")
+    .delaytime("<0!34 1/8!8 1/16!49 1/8!29>")
+    .delayfeedback("<0!34 0.6!8 0.7!49 0.5!29>")
+    .crush("<10!34 6!8 8!49 10!29>"),
+
+  // BASS - mundane to menacing
+  note("<[f2 ~ f2 ~]!34 [f2 f2 ~ f2]!8 [f2 ab2 c3 eb3]*2!49 [f2 ~ f2 ~]!29>")
+    .sound("<sine!34 triangle!8 sawtooth!49 sine!29>")
+    .lpf("<200!34 300!8 400!49 200!29>")
+    .shape("<0!34 1!8 2!49 0!29>")
+    .gain("<0.5!34 0.6!8 0.7!49 0.45!29>"),
+
+  // MELODY - innocuous to intentional
+  // F minor: f, ab, c, eb (Aeolian: f, g, ab, c, eb with chromatic insertions)
+  note("<[f4 ab4 c5 eb5]/2!34 [f4 ab4 b4 c5]!8 [f4 g4 ab4 c5 eb5 f5]*2!49 [f4 ab4]/2!29>")
+    .sound("<triangle!34 square!8 square!49 triangle!29>")
+    .lpf("<1500!34 1200!8 1800!49 1500!29>")
+    .lpq("<1!34 3!8 2!49 1!29>")
+    .gain("<0!34 0.35!8 0.5!49 0.3!29>")
+    .crush("<10!34 7!8 8!49 10!29>")
+    .pan("<0.5!34 [0.3 0.7]!8 [0.2 0.5 0.8]!49 0.5!29>"),
+
+  // GLITCH - mask slipping (wrongness underneath)
+  sound("<[~ ~ ~ hh]!34 [~ hh ~ ~]!8 ~ [~ ~ ~ ~]!29>")
+    .speed("<-1!34 [2 -2 0.5]!8 ~ ~>")
+    .gain("<0.2!34 0.4!8 ~ ~>")
+    .crush("<5!34 3!8 ~ ~>")
+    .pan("<rand!42 ~ ~>"),
+
+  // RADIO STATIC - covert comms
+  sound("<~!34 white*16!8 [white*8 ~]!49 ~!29>")
+    .hpf("<~!34 5000!8 6000!49 ~!29>")
+    .lpf("<~!34 8000!8 9000!49 ~!29>")
+    .gain("<~!34 0.15!8 0.2!49 ~!29>")
+    .crush("<~!34 4!8 5!49 ~!29>")
+    .pan("<~!34 [0 1]!8 [0 0.5 1]!49 ~!29>"),
+
+  // MORSE CODE - activation signal
+  sound("<~!34 [cp*8 ~ cp*8 ~]!8 [cp(5,8) ~]!49 ~!29>")
+    .n("<~!34 3!8 3!49 ~!29>")
+    .gain("<~!34 0.35!8 0.25!49 ~!29>")
+    .lpf("<~!34 2000!8 3000!49 ~!29>")
+    .crush("<~!34 6!8 7!49 ~!29>"),
+
+  // TRITONE - danger, dissonance (the wrongness revealed)
+  note("<~!34 [f4 b4 f4 b4]!8 [f3 b3 f4 b4]*2!49 ~!29>")
+    .sound("<~!34 sawtooth!8 square!49 ~!29>")
+    .lpf("<~!34 800!8 1200!49 ~!29>")
+    .lpq("<~!34 5!8 4!49 ~!29>")
+    .gain("<~!34 0.3!8 0.4!49 ~!29>")
+    .shape("<~!34 2!8 3!49 ~!29>"),
+
+  // CLOCK TICK - countdown, precision timing
+  sound("<~!34 ~!8 [rim(7,8) ~]!49 [rim*4 ~]!29>")
+    .n("<~!34 ~!8 4!49 4!29>")
+    .gain("<~!34 ~!8 0.4!49 0.25!29>")
+    .hpf("<~!34 ~!8 3000!49 3000!29>")
+    .pan("<~!34 ~!8 sine.slow(8)!49 0.5!29>"),
+
+  // PARALLEL MINOR SECONDS - creeping wrongness
+  note("<~!34 ~!8 [[f4 gb4] [ab4 a4] [c5 db5]]*4!49 ~!29>")
+    .sound("<~!34 ~!8 sine!49 ~!29>")
+    .gain("<~!34 ~!8 0.25!49 ~!29>")
+    .delay("<~!34 ~!8 0.4!49 ~!29>")
+    .delaytime("<~!34 ~!8 1/12!49 ~!29>"),
+
+  // QUARTAL HARMONY - cold, analytical (protocol execution)
+  note("<~!34 ~!8 [[f3 c4] [c4 g4] [eb3 bb3]]/2!49 ~!29>")
+    .sound("<~!34 ~!8 triangle!49 ~!29>")
+    .lpf("<~!34 ~!8 1000!49 ~!29>")
+    .gain("<~!34 ~!8 0.35!49 ~!29>"),
+
+  // SUSPENDED TENSION - unresolved (threat persists)
+  note("<[f3 c4 eb4]/4!34 ~!8 [[f3 c4] [ab3 eb4]]/2!49 [f3 c4 eb4]/4!29>")
+    .sound("sine")
+    .gain("<0.25!34 ~!8 0.3!49 0.2!29>")
+    .room("<0.3!34 ~!8 0.1!49 0.3!29>"),
+
+  // TYPING - reports filed, intelligence gathered
+  sound("<~!34 ~!8 ~ [hh*32 ~]!29>")
+    .n("<~!34 ~!8 ~ 5!29>")
+    .gain("<~!34 ~!8 ~ 0.3!29>")
+    .speed("<~!34 ~!8 ~ [1 0.9 1.1]!29>")
+    .hpf("<~!34 ~!8 ~ 7000!29>")
+    .pan("<~!34 ~!8 ~ rand!29>"),
+
+  // SUB-BASS DRONE - hidden infrastructure
+  note("<f1!34 [f1 f1 gb1 f1]!8 [f1 ab1 f1 ab1]!49 f1!29>")
+    .sound("sawtooth")
+    .lpf("<100!34 150!8 180!49 100!29>")
+    .shape("<5!34 8!8 10!49 5!29>")
+    .gain("<0.4!34 0.5!8 0.6!49 0.35!29>")
+)
