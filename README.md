@@ -79,6 +79,16 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Tetris Effect ⭐ **COGNITIVE PERSISTENCE**
+The sound of pattern recognition that won't turn off - 5:30 of geometric obsession at 140 BPM (48 cycles):
+- **[0:00-1:08] Pure Game Logic**: Geometric tetromino melodies, grid-locked percussion, pattern completion "clears"
+- **[1:08-2:17] Pattern Persistence**: Ambient sounds (birds, casio, wind) appear off-grid, brain trying to incorporate
+- **[2:17-3:47] Reality Conforming**: Environmental sounds gradually quantize to grid, multiple game layers overlap
+- **[3:47-5:03] Perceptual Colonization**: Everything sounds like falling blocks, reality fully grid-locked
+- **[5:03-5:30] Incomplete Pattern**: Builds toward final "clear" but stops one piece short - tension sustains forever
+
+Features tetromino-shaped melodic sequences (I-piece, L-piece, T-piece, Z-piece), environmental sounds forced to quantize, simulated tempo acceleration through density increase, hypnagogic phantom blocks, and critically - an incomplete ending that never resolves. The game continues in your head.
+
 ## How to Use
 
 1. Go to https://strudel.cc
