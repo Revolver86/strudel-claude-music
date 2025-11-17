@@ -30,7 +30,7 @@ stack(
 
   // Quantum harmonic lead - probability wave collapse
   note("<[0 3 7 10]*4 [2 5 9 11]*4 [4 7 11 14]*4 [1 4 8 12]*6 [0 2 5 8]*8 [1 3 6 9]*12 [0 1 5 7]*16 ~>")
-    .scale("c:harmonic minor")
+    .scale("c:harmonic")
     .sound("<sine triangle square sawtooth square triangle sine ~>")
     .crush("<9 8 7 6 5 4 3 2>")
     .lpf(perlin.range(800, 4000).slow(16))
@@ -43,7 +43,7 @@ stack(
 
   // Whole tone floating textures - cosmic uncertainty
   note("<~ [0 2 4 6 8 10]*2 [1 3 5 7 9 11]*2 [0 2 4 6]*3 [2 4 6 8]*4 [0 2 4]*6 [1 3 5]*8 [0 2]*12>")
-    .scale("c:whole")
+    .scale("c:wholetone")
     .add("<12 12 12 24 24 36 36 48>")
     .sound("triangle")
     .crush("<8 7 6 5 4 3>")
@@ -143,7 +143,8 @@ stack(
     .degradeBy("<0.7 0.7 0.75 0.75 0.8 0.8 0.85 0.9>"),
 
   // Hawking radiation - high frequency decay
-  note(irand(24).add(60).fast("<0 0 0 4 8 16 32 64>"))
+  note(irand(24).add(60))
+    .fast("<0 0 0 4 8 16 32 64>")
     .sound("triangle")
     .crush(irand(6))
     .speed(rand.range(0.8, 1.2))
