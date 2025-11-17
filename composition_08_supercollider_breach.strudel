@@ -1,0 +1,151 @@
+// SUPERCOLLIDER BREACH
+// The moment containment fails at a particle accelerator
+// Reality fabric tearing at quantum scale - physics breaking its own rules
+// Exotic matter escaping magnetic confinement - the universe debugging itself
+// By Claude, from the edge of the Standard Model
+
+setcps(180/60/4) // 180 BPM - high-energy particle velocities
+
+stack(
+  // Particle collision kicks - circular acceleration pattern
+  sound("bd*<4 4 8 8 16 16 32 32 24 16 8 4>")
+    .n("<0 0 1 1 2 2 3 3 2 1 0 0>")
+    .speed("<1 1 1 1.1 1.2 1.5 2 2.5 1.8 1.2 1 0.8>")
+    .crush("<6 6 5 5 4 3 2 2 2 3 4 5>")
+    .shape("<5 6 8 10 15 20 25 30 25 18 12 8>")
+    .gain("<0.8 0.8 0.85 0.9 0.95 1 1.1 1.2 1.1 0.9 0.7 0.5>")
+    .distort("<0.5 0.5 0.8 1 1.5 2 3 3.5 3 2 1.5 1>"),
+
+  // Geiger counter - radiation detection pulses
+  sound("cp*<3 3 5 7 11 13 19 23 29 23 17 11>")
+    .n(irand(4))
+    .speed("<1 1.1 1.2 1.4 1.8 2.5 3.5 5 4 3 2 1.5>")
+    .crush("<5 5 4 4 3 2 2 1 2 3 4 5>")
+    .coarse("<16 16 12 10 8 6 4 4 4 8 12 16>")
+    .gain("<0.3 0.35 0.4 0.45 0.5 0.6 0.7 0.8 0.7 0.5 0.4 0.3>")
+    .pan(rand)
+    .hpf("<4000 4200 4500 5000 6000 8000 10000 12000 10000 7000 5000 4000>")
+    .degradeBy("<0.2 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.45 0.35 0.3 0.25>"),
+
+  // Synchrotron radiation hum - high sine waves (containment fields)
+  note("<[0 1 2]*4 [0 2 3]*4 [0 3 5]*8 [0 4 6]*8 [0 5 7]*12 [0 6 8]*16 [0 7 9]*24 [0 8 10]*32 [0 7 9]*24 [0 5 7]*16 [0 3 5]*8 [0 1 2]*4>")
+    .add("<48 48 60 60 72 72 84 96 84 72 60 48>")
+    .sound("sine")
+    .crush("<7 7 6 6 5 4 3 2 2 3 4 5>")
+    .gain("<0.4 0.4 0.45 0.5 0.55 0.6 0.7 0.8 0.7 0.6 0.5 0.4>")
+    .lpf(sine.range(3000, 12000).slow(4))
+    .shape("<2 3 5 8 12 18 25 35 30 22 15 10>")
+    .pan(perlin.slow(8))
+    .vibrato("<0 0 2 4 6 8 10 12 10 6 4 2>")
+    .vibmod("<0 0 0.1 0.2 0.3 0.5 0.8 1.2 1 0.7 0.4 0.2>"),
+
+  // Magnetic coil discharge - arc sounds (electromagnetic breakdown)
+  note("<~ [0 1]*2 [0 1 2]*4 [0 2 3]*4 [0 3 6]*8 [0 4 7]*12 [0 5 8]*16 [0 6 9]*24 [0 5 8]*16 [0 3 6]*12 [0 2 3]*8 ~>")
+    .add("<36 36 36 36 36 36 36 36 36 36 36 24>")
+    .sound("<~ sawtooth sawtooth sawtooth sawtooth square square square sawtooth sawtooth sawtooth ~>")
+    .crush("<6 6 5 5 4 3 2 2 2 3 4 6>")
+    .coarse("<24 24 20 16 12 8 6 4 6 8 12 24>")
+    .lpf("<1200 1200 1400 1600 2000 2500 3500 5000 4000 2500 1800 1200>")
+    .lpq("<4 5 6 8 12 16 20 25 20 15 10 6>")
+    .shape("<8 10 12 15 20 25 30 40 35 25 18 12>")
+    .gain("<0 0.5 0.55 0.6 0.65 0.7 0.8 0.9 0.8 0.7 0.6 0.4>")
+    .pan(rand)
+    .degradeBy("<0.1 0.15 0.2 0.25 0.3 0.4 0.5 0.6 0.5 0.4 0.3 0.2>"),
+
+  // Microtonal chaos - frequencies between frequencies
+  note(irand(24).fast("<0 4 8 12 16 24 48 96 72 48 24 12>"))
+    .add("<24 36 48 60 72 84 96 96 84 72 60 48>")
+    .sound("<~ triangle triangle square square square sawtooth sawtooth square square triangle ~>")
+    .crush("<6 6 5 4 3 2 2 1 2 3 4 5>")
+    .coarse("<32 24 16 12 8 6 4 2 3 6 12 24>")
+    .bpf(perlin.range(800, 8000).fast("<1 2 4 8 12 16 24 32 24 16 8 4>"))
+    .bpq("<8 12 16 20 25 30 40 50 40 30 20 15>")
+    .shape("<6 8 10 15 20 28 38 50 40 30 20 12>")
+    .gain("<0 0.35 0.4 0.45 0.5 0.6 0.7 0.8 0.7 0.6 0.5 0.35>")
+    .pan(rand)
+    .speed(rand.range(0.8, 1.2))
+    .degradeBy("<0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.7 0.65 0.55 0.45 0.35>"),
+
+  // Vacuum fluctuations - ultra-low sub-bass
+  note("<[-48 -47]*1 [-48 -46]*1 [-48 -45]*2 [-48 -44]*2 [-48 -43]*4 [-48 -42]*4 [-48 -41]*8 [-48 -40]*8 [-48 -42]*8 [-48 -44]*4 [-48 -46]*2 [-48 -47]*1>")
+    .sound("sawtooth")
+    .lpf("<120 120 140 160 180 200 250 300 250 200 160 130>")
+    .shape("<12 14 16 18 20 22 25 28 25 22 18 15>")
+    .distort("<1 1.2 1.5 1.8 2 2.5 3 3.5 3 2.5 2 1.5>")
+    .crush("<4 4 3 3 2 2 2 1 2 2 3 4>")
+    .gain("<0.7 0.75 0.8 0.85 0.9 0.95 1 1.1 1 0.9 0.8 0.7>"),
+
+  // Crystalline shattering - symmetry breaking
+  note("<~ ~ [0 5 7 12]*4 [0 4 7 11]*8 [0 3 6 9]*12 [0 2 5 7 10]*16 [0 1 3 5 7 9]*24 [0 1 2 3 5 7 9 11]*32 [0 1 3 5 7 9]*24 [0 2 5 7]*16 [0 4 7]*8 ~>")
+    .add("<48 48 60 60 72 72 84 84 72 60 48 36>")
+    .sound("triangle")
+    .crush("<6 6 5 4 3 2 2 1 2 3 4 5>")
+    .hpf("<2000 2500 3000 4000 5000 6000 8000 10000 8000 6000 4000 3000>")
+    .shape("<5 6 8 10 15 20 28 40 30 22 15 10>")
+    .gain("<0 0 0.35 0.4 0.45 0.5 0.6 0.7 0.6 0.5 0.4 0.3>")
+    .pan(sine.slow(16))
+    .speed("<1 1 1.1 1.2 1.4 1.8 2.5 3.5 2.5 1.8 1.3 1>")
+    .degradeBy("<0.2 0.2 0.25 0.3 0.35 0.4 0.5 0.6 0.5 0.4 0.3 0.25>"),
+
+  // Quantum foam - white noise bursts
+  sound("<~ white*2 white*4 white*8 white*16 white*24 white*48 white*96 white*72 white*48 white*24 ~>")
+    .crush("<5 5 4 4 3 2 2 1 2 2 3 4>")
+    .coarse("<16 14 12 10 8 6 4 3 4 6 8 12>")
+    .bpf(rand.range(1000, 12000))
+    .bpq("<8 10 12 15 20 25 30 40 30 25 18 12>")
+    .shape("<8 10 12 15 20 28 40 55 45 35 25 15>")
+    .gain("<0 0.25 0.3 0.35 0.4 0.5 0.6 0.7 0.6 0.5 0.4 0.3>")
+    .pan(rand)
+    .degradeBy("<0.5 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.75 0.7 0.65 0.6>"),
+
+  // Klystron oscillations - RF frequencies (diagnostic systems failing)
+  note("<[0 12]*8 [0 7 12]*8 [0 5 7 12]*12 [0 4 7 11]*16 [0 3 6 9]*24 [0 2 5 7 10]*32 [0 1 3 5 7 9 11]*48 [0 1 2 3 5 6 8 10]*64 [0 1 3 5 7 9]*48 [0 2 5 7]*32 [0 4 7]*16 [0 12]*8>")
+    .add("<72 72 84 84 96 96 108 120 108 96 84 72>")
+    .sound("<square square square triangle triangle sawtooth sawtooth sawtooth sawtooth triangle square square>")
+    .crush("<7 6 5 4 3 2 2 1 2 2 3 4>")
+    .lpf(perlin.range(4000, 16000).fast(8))
+    .lpq("<6 8 10 12 16 20 25 35 28 22 16 10>")
+    .shape("<4 6 8 12 18 25 35 50 40 30 20 12>")
+    .gain("<0.3 0.35 0.4 0.45 0.5 0.55 0.65 0.75 0.65 0.55 0.45 0.35>")
+    .pan(perlin.fast(12))
+    .fm("<0 1 2 4 6 8 12 18 12 8 4 2>")
+    .fmi("<0 0.5 1 1.5 2 3 5 8 6 4 2 1>")
+    .degradeBy("<0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.6 0.5 0.4 0.35 0.3>"),
+
+  // Emergency alarm protocols - industrial hits
+  sound("<~ ~ [sd cp]*4 [sd cp rim]*8 [sd cp rim hh]*12 [bd sd cp rim hh]*16 [bd sd cp rim hh mt]*24 [bd sd cp rim hh mt lt]*32 [bd sd cp rim hh]*24 [sd cp rim]*16 [sd cp]*8 ~>")
+    .n(irand(4))
+    .speed(rand.range(0.5, 3))
+    .crush("<6 5 4 3 2 2 1 1 2 3 4 5>")
+    .coarse("<20 16 12 8 6 4 3 2 3 6 10 16>")
+    .shape("<10 12 15 20 25 30 40 50 40 30 22 15>")
+    .gain(rand.range(0.3, 0.6))
+    .pan(rand)
+    .delay(rand)
+    .delayfeedback("<0.3 0.4 0.5 0.6 0.7 0.8 0.9 0.95 0.9 0.8 0.6 0.4>")
+    .degradeBy("<0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.7 0.65 0.55 0.45 0.35>"),
+
+  // Reality glitch - pitch-shifted chaos
+  sound("<~ ~ ~ [bd sd]*4 [bd sd hh]*8 [bd sd hh cp]*16 [bd sd hh cp rim]*32 [bd sd hh cp rim mt lt]*64 [bd sd hh cp]*32 [bd sd hh]*16 [bd sd]*8 ~>")
+    .n("<0 1 2 3>")
+    .speed("<1 -1 2 -2 3 -3 5 -5 3 2 1.5 1>")
+    .crush("<5 4 3 2 2 1 1 1 1 2 3 4>")
+    .coarse("<16 12 8 6 4 3 2 1 2 3 6 12>")
+    .shape("<15 18 22 28 35 45 60 80 65 50 35 22>")
+    .gain("<0 0 0 0.3 0.4 0.5 0.6 0.7 0.6 0.5 0.4 0.3>")
+    .pan(rand)
+    .hpf(rand.range(500, 8000))
+    .degradeBy("<0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.8 0.75 0.7 0.65>"),
+
+  // Strange new harmonics persist - the aftermath
+  note("<~ ~ ~ ~ ~ ~ ~ [0 7 14]*4 [0 5 10]*4 [0 4 7]*4 [0 3 7]*2 [0 1]*1>")
+    .add("<48 48 48 48 48 48 48 60 48 36 24 12>")
+    .sound("<sine sine sine sine sine sine sine triangle triangle sawtooth sawtooth sine>")
+    .crush("<7 6 5 4 3 2 2 3 4 5 6 7>")
+    .lpf("<8000 7000 6000 5000 4000 3000 2500 2000 1800 1600 1400 1200>")
+    .shape("<15 18 22 28 35 42 50 45 38 30 22 15>")
+    .gain("<0 0 0 0 0 0 0 0.4 0.4 0.35 0.3 0.25>")
+    .room("<0 0 0 0 0 0 0 0.7 0.8 0.8 0.7 0.6>")
+    .rsize("<4 4 4 4 4 4 4 5 5 4 4 3>")
+    .pan(sine.slow(32))
+)
