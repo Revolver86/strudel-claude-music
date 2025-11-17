@@ -1,0 +1,148 @@
+// CARGO CULT SIGNAL
+// The sound of misunderstood technology worship
+// Ritual mimicry meets broken transmissions
+// Bamboo radios invoking the cargo planes that never come
+// By Claude, 2025
+
+setcps(110/60/4) // 110 BPM - ritualistic, purposeful
+
+stack(
+  // RITUAL DRUMS - tribal foundation, simple to complex
+  sound("bd(<3 3 3 5 5 5 5 7 7 7 7 3>,8)")
+    .n("<0 0 0 1 1 2 2 1 1 1 0 0>")
+    .gain("<0.85 0.9 0.9 0.95 0.95 1 1 1 0.95 0.9 0.85 0.8>")
+    .shape("<2 2 3 3 4 5 6 7 6 5 3 2>")
+    .room("<0.3 0.3 0.4 0.4 0.5 0.5 0.5 0.5 0.5 0.4 0.3 0.3>"),
+
+  // WOODEN PERCUSSION - claves/blocks (ceremonial hits)
+  sound("[~ rim ~ rim] ~ [rim ~ ~ rim] ~")
+    .n("<0 0 1 1 2 2 2 2 1 1 0 0>")
+    .speed("<1 1 1.2 1.2 0.8 0.8 0.8 0.8 1.2 1 1 1>")
+    .gain("<0 0.5 0.6 0.7 0.8 0.85 0.9 0.85 0.8 0.7 0.6 0.5>")
+    .hpf(800)
+    .room("<0.4 0.4 0.5 0.5 0.6 0.6 0.6 0.6 0.5 0.5 0.4 0.4>"),
+
+  // HANDCLAPS - group ritual participation
+  sound("~ ~ cp ~")
+    .n("<0 0 1 1 2 2 2 2 1 1 0 0>")
+    .gain("<0 0.5 0.6 0.7 0.75 0.8 0.85 0.8 0.75 0.7 0.6 0.5>")
+    .room("<0.5 0.5 0.6 0.6 0.7 0.7 0.7 0.7 0.6 0.6 0.5 0.5>")
+    .delay("<0 0.2 0.3 0.4 0.5 0.5 0.5 0.5 0.4 0.3 0.2 0.1>")
+    .delayfeedback(0.3),
+
+  // CEREMONIAL CHANT - Phrygian Dominant melody (0 1 4 5 7 8 10)
+  note("<[0 1 4 5]*2 [0 1 4 5]*2 [0 1 4 5 7]*2 [0 1 4 5 7]*2 [0 4 7 8]*3 [0 4 7 8]*3 [0 4 7 8 10]*3 [0 4 7 8 10]*3 [0 4 7 10]*4 [0 4 7 10]*4 [0 4 7]*2 [0 4]*2>")
+    .scale("c#:minor")
+    .add("<0 0 0 0 0 0 0 0 0 0 0 0>")
+    .sound("triangle")
+    .lpf("<600 700 800 900 1000 1200 1400 1200 1000 900 800 700>")
+    .vowel("<a a a e e i i i e e a a>")
+    .gain("<0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.65 0.6 0.55 0.5 0.45>")
+    .room("<0.6 0.6 0.7 0.7 0.8 0.8 0.8 0.8 0.7 0.7 0.6 0.6>")
+    .pan(sine.slow(16)),
+
+  // BAMBOO FLUTE - trying to sound electronic (innocent mimicry)
+  note("<~ [7 10]*2 [7 10]*2 [7 10 12]*2 [7 10 12]*2 [7 10 12 14]*2 [7 10 12 14]*2 [7 10 12]*2 [7 10 12]*2 [7 10]*2 [7 10]*2 ~>")
+    .scale("c#:minor")
+    .sound("sine")
+    .lpf(2000)
+    .hpf(400)
+    .gain("<0 0.35 0.4 0.45 0.5 0.55 0.6 0.55 0.5 0.45 0.4 0.35>")
+    .room("<0.5 0.5 0.6 0.6 0.7 0.7 0.7 0.7 0.6 0.6 0.5 0.5>")
+    .vibrato("<0 2 2 3 3 4 4 3 3 2 2 0>")
+    .vibmod(0.2),
+
+  // CORRUPTED RADIO BEEPS - "technological" sounds (misunderstood)
+  sound("<~ white*4 white*4 white*8 white*8 white*12 white*16 white*12 white*8 white*4 white*4 ~>")
+    .bpf("<~ 1200 1400 1600 1800 2000 2200 2000 1800 1600 1400 ~>")
+    .bpq("<~ 15 15 20 20 25 30 25 20 20 15 ~>")
+    .coarse("<~ 32 24 16 12 8 6 8 12 16 24 ~>")
+    .crush("<~ 6 5 4 4 3 2 3 4 5 6 ~>")
+    .gain("<0 0.25 0.3 0.35 0.4 0.45 0.5 0.45 0.4 0.35 0.3 0.25>")
+    .degradeBy("<0.5 0.4 0.4 0.3 0.3 0.2 0.2 0.3 0.4 0.5 0.6 0.7>")
+    .pan(rand),
+
+  // MORSE CODE ATTEMPT - simple beeps trying to communicate
+  note("<~ ~ 0*8 0*8 [0 7]*8 [0 7]*8 [0 7 12]*8 [0 7 12]*8 [0 7]*8 [0 7]*8 0*4 ~>")
+    .scale("c#:minor")
+    .sound("square")
+    .lpf(1200)
+    .gain("<0 0 0.3 0.35 0.4 0.45 0.5 0.55 0.5 0.45 0.4 0.3>")
+    .adsr("0.01:0.01:0:0.05")
+    .coarse("<~ ~ 16 12 12 8 8 8 12 12 16 ~>")
+    .pan(0.5)
+    .degradeBy("<0.5 0.5 0.4 0.3 0.3 0.2 0.15 0.2 0.3 0.4 0.5 0.6>"),
+
+  // AM RADIO STATIC - transmission artifacts
+  sound("<~ ~ ~ white*2 pink*2 white*4 pink*4 white*4 pink*2 white*2 ~ ~>")
+    .bpf("<~ ~ ~ 2000 2500 3000 3500 3000 2500 2000 ~ ~>")
+    .bpq("<~ ~ ~ 8 10 12 15 12 10 8 ~ ~>")
+    .gain("<0 0 0 0.2 0.25 0.3 0.35 0.3 0.25 0.2 0.15 0.1>")
+    .coarse("<~ ~ ~ 24 20 16 12 16 20 24 ~ ~>")
+    .crush("<~ ~ ~ 5 4 4 3 4 4 5 ~ ~>")
+    .pan(perlin.fast(2)),
+
+  // THROAT SINGING DRONE - harmonic overtones (root + fifth)
+  note("<0 0 0 0 0 0 0 0 0 0 0 0>")
+    .scale("c#:minor")
+    .add("<0 0 0 0 0 0 0 0 0 0 0 0>")
+    .sound("sawtooth")
+    .lpf("<300 350 400 450 500 550 600 550 500 450 400 350>")
+    .gain("<0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.7 0.65 0.6 0.55 0.5>")
+    .room(0.7)
+    .shape("<2 2 3 3 4 5 6 5 4 3 2 2>"),
+
+  // CARRIER WAVE - perfect fifth drone (ritual foundation)
+  note("<7 7 7 7 7 7 7 7 7 7 7 7>")
+    .scale("c#:minor")
+    .sound("sine")
+    .gain("<0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.6 0.55 0.5 0.45 0.4>")
+    .lpf(500)
+    .room(0.7),
+
+  // REAL SIGNAL BREAKTHROUGH - actual clear digital tone (the truth glimpsed)
+  note("<~ ~ ~ ~ ~ [0 7 12]*4 ~ [0 7 12]*4 ~ ~ ~ ~>")
+    .scale("c#:minor")
+    .sound("sine")
+    .gain("<0 0 0 0 0 0.5 0 0.6 0 0 0 0>")
+    .room(0.3)
+    .lpf(2400),
+
+  // RITUAL GONG/CYMBAL - ceremonial punctuation
+  sound("<cr ~ ~ ~ ~ ~ ~ cr ~ ~ ~ cr>")
+    .n(0)
+    .speed(0.5)
+    .lpf(4000)
+    .gain("<0.6 0 0 0 0 0 0 0.7 0 0 0 0.5>")
+    .room(0.9)
+    .delay(0.4)
+    .delayfeedback(0.5),
+
+  // POLYRHYTHM BELLS - different ritual participants (Euclidean)
+  sound("<~ ~ hh(3,8) hh(3,8) hh(5,8) hh(5,8) hh(7,8) hh(7,8) hh(5,8) hh(5,8) hh(3,8) ~>")
+    .n(2)
+    .gain("<0 0 0.4 0.45 0.5 0.55 0.6 0.55 0.5 0.45 0.4 0.3>")
+    .hpf(3000)
+    .room("<0.6 0.6 0.7 0.7 0.8 0.8 0.8 0.8 0.7 0.7 0.6 0.6>")
+    .pan(sine.slow(8)),
+
+  // SHORTWAVE SWEEP - radio tuning (searching for contact)
+  note("<~ ~ ~ ~ [0 12 24 36]*2 [0 12 24 36]*2 [0 12 24 36 48]*2 [0 12 24 36]*2 [0 12 24]*2 ~ ~ ~>")
+    .sound("sine")
+    .bpf(sine.range(800, 3500).slow(4))
+    .bpq(20)
+    .gain("<0 0 0 0 0.25 0.3 0.35 0.3 0.25 0.2 0.15 0.1>")
+    .coarse("<~ ~ ~ ~ 16 12 8 12 16 20 ~ ~>")
+    .pan(perlin)
+    .degradeBy(0.4),
+
+  // GLITCHED HOPE - broken digital artifacts (faith persisting)
+  sound("<~ ~ ~ ~ ~ bd*16 sd*16 bd*32 sd*16 bd*8 ~ ~>")
+    .n("<0 0 0 0 0 1 2 0 1 2 0 0>")
+    .speed("<~ ~ ~ ~ ~ 2 -1 4 -2 1.5 ~ ~>")
+    .crush("<~ ~ ~ ~ ~ 3 3 2 3 4 ~ ~>")
+    .coarse("<~ ~ ~ ~ ~ 8 6 4 6 8 ~ ~>")
+    .gain("<0 0 0 0 0 0.35 0.4 0.45 0.4 0.35 0.25 0.15>")
+    .pan(rand)
+    .degradeBy("<0.7 0.7 0.7 0.7 0.7 0.6 0.5 0.4 0.5 0.6 0.7 0.8>")
+)
