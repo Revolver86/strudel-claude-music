@@ -79,6 +79,19 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Memory Palace Collapse ⭐ **SPATIAL ARCHITECTURE**
+Mental architecture becomes impossible geometry at 92 BPM (~4.5 minutes):
+- **Method of Loci failure**: Memory retrieval system breaking down through spatial impossibility
+- **Clear, memorable themes**: F# minor (Theme A), G# Dorian (Theme B), D Phrygian (Theme C)
+- **Reverb as spatial syntax**: Different `.room()` and `.size()` values = different chambers
+- **Impossible transitions**: Modal shifts that violate harmonic logic (wrong doors)
+- **Overlapping spaces**: Same melody in multiple reverb environments simultaneously
+- **Penrose stairs**: Ascending arpeggios with descending harmony (M.C. Escher geometry)
+- **Navigation sounds**: Footsteps, door creaks, distant voices, architectural bass rumbles
+- **Structural arc**: Entrance hall (normal) → First wrong turn → Recursive corridors → Non-Euclidean geometry → Structural panic → Threshold room (displaced return)
+
+**Conceptual departure**: Unlike the harsh industrial chaos of previous compositions, this piece explores **precise spatial impossibility** - not memory loss, but the failure of the organizational system used to retrieve memories. You remember everything, but the mental architecture has reconfigured itself and you're lost in your own mind.
+
 ## How to Use
 
 1. Go to https://strudel.cc
