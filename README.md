@@ -79,6 +79,17 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Jamais Vu ⭐ **PSYCHOLOGICAL EXPLORATION**
+The sound of recognition failure - exploring the opposite of déjà vu at 98 BPM (~5-6 minutes):
+- **The Familiar** (0:00-1:00): Simple 8-bar melody in E major, warm piano, establishing home
+- **First Glitch** (1:00-1:45): Same melody but timbre feels wrong, recognition struggling
+- **Contextual Void** (1:45-2:45): Cold timbre, bare harmonic support, melody becoming unplaceable
+- **Recognition Failure** (2:45-3:45): Alien timbre, spatial displacement, complete defamiliarization
+- **Alienated Presence** (3:45-4:45): Maximum estrangement - you know you should know this
+- **Failed Homecoming** (4:45-end): Warm timbre returns but recognition won't reconnect
+
+Features identical melody throughout with progressive timbral/contextual alienation. Unlike other compositions, this piece explores subtle psychological territory - the dissolution of familiarity while the object stays the same. No resolution - the connection remains broken.
+
 ## How to Use
 
 1. Go to https://strudel.cc
