@@ -79,6 +79,15 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Blood Meridian Sun ☀️ **HARSH AMERICANA**
+The desert as weapon. Distance as torture. A 3-minute journey through hostile landscape at 128 BPM:
+- **Departure** (0:00-0:40): Sparse hoofbeats, Phrygian drone, grim determination, heat shimmer
+- **Endurance** (0:40-1:40): Hypnotic repetition intensifies, euclidean polyrhythms, hallucinations begin
+- **Violence** (1:40-2:10): Sudden eruption of chaos, polyrhythmic madness, industrial assault, no heroism
+- **Aftermath** (2:10-3:00): Return to sparse pulse but corrupted, motifs broken, desert wins
+
+Features E Phrygian mode exclusively, extreme dryness (minimal reverb), euclidean rhythms for desert hypnosis, sudden violence from monotony, metallic/bone percussion textures, and space as compositional element. Not fantasy evil - nature's indifference as algorithm. The sun as relentless mathematical function.
+
 ## How to Use
 
 1. Go to https://strudel.cc
