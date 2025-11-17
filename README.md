@@ -79,6 +79,14 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Terminal Lucidity ⭐ **EMOTIONAL NARRATIVE ARC**
+The sound of impossible clarity before the end - exploring terminal lucidity phenomenon at 65→140 BPM:
+- **Phase 1: The Fog** (Cycles 1-15): Struggling consciousness - stumbling rhythms, incomplete melodies, harmonic confusion (Bb minor/Db minor blur), heavy filtering (400-900Hz), deep reverb, memory gaps
+- **Phase 2: The Spike** (Cycles 16-57): Sudden perfect clarity - INSTANT transformation, tempo doubles, pure Bb Lydian harmony, crystalline sine wave leads, full frequency spectrum (lpf 20000Hz), zero reverb, complete melodic phrases, hyperreal presence
+- **Phase 3: The Silence** (Cycle 58+): System offline - hard cut mid-phrase, no fade, no reverb tail, instant absence
+
+A departure from pure chaos into emotional territory - encodes the beautiful cruelty of someone returning completely lucid one last time, then being gone. Not gradual decline but impossible brightness right before termination.
+
 ## How to Use
 
 1. Go to https://strudel.cc
