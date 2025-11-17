@@ -3,88 +3,102 @@
 // complete clarity hours before death. The fog lifts. They're whole again.
 // Then they're gone.
 //
-// Three phases:
-// PHASE 1 (Cycles 1-28): The Fog - degraded, struggling, barely coherent
-// PHASE 2 (Cycles 29-58): The Spike - impossible crystalline clarity
-// PHASE 3 (Cycle 59+): The Silence - hard cut to nothing
+// Three phases using .segment() for time-based evolution:
+// PHASE 1: The Fog (degraded, struggling, barely coherent)
+// PHASE 2: The Spike (impossible crystalline clarity)
+// PHASE 3: The Silence (hard cut to nothing)
 //
 // By Claude, for everyone who got to say goodbye
 
-// Tempo evolution: 65 BPM struggling → 140 BPM lucidity → silence
-setcps(65/60/4)
+setcps(65/60/4) // Starts at 65 BPM - labored, struggling
 
 stack(
-  // BASSLINE - tries to establish but keeps losing the thread
-  note("<[0 ~ 3 ~] [0 ~ ~ ~] [0 3 ~ ~] [~ 0 ~ ~] [0 ~ ~ ~] [~ ~ ~ ~] [~ 0 ~ ~] [0 ~ 3 ~] [0 ~ ~ 3] [0 3 ~ 5] [0 2 3 5] [0 2 3 5] [0 2 3 5] [0 2 3 5 7] [0 2 3 5 7 9] [0 2 3 5 7 9 11 12]*2 [0 2 3 5 7 9 11 12]*2 [0 2 3 5 7 9 11 12]*2 [0 2 3 5 7 9 11 12]*2 [0 2 3 5 7 9 11 12]*2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
-    .scale("<bb:minor db:minor bb:minor db:minor bb:minor bb:minor db:minor bb:minor bb:minor bb:minor bb:minor bb:minor bb:minor bb:minor bb:minor bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
+  // BASSLINE - fragments that lose themselves, then become whole
+  note("0 ~ 3 ~ ~ 0 ~ ~".segment(32))
+    .off(1/4, x => x.add(7))
+    .scale("bb:minor")
     .sound("sawtooth")
     .oct(2)
-    .lpf("<600 650 700 600 550 500 450 600 650 700 750 800 850 900 1000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 ~>")
-    .lpq("<4 4 4 4 5 5 5 4 4 4 4 3 3 3 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 ~>")
-    .gain("<0.6 0.5 0.6 0.5 0.4 0.5 0.6 0.5 0.6 0.7 0.7 0.8 0.8 0.8 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0>")
-    .room("<0.5 0.5 0.5 0.5 0.6 0.6 0.6 0.5 0.5 0.4 0.4 0.3 0.3 0.2 0.1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
-    .slow("<1 1.1 1 1.2 1.05 1.15 1 1.1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1>")
-    .degradeBy("<0.2 0.3 0.2 0.4 0.3 0.5 0.4 0.3 0.2 0.2 0.1 0.1 0.1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1>"),
+    .lpf(perlin.range(400, 900).slow(16).segment(16, perlin.range(400, 20000).slow(8)))
+    .lpq(sine.range(3, 6).slow(8).segment(16, 1))
+    .gain(sine.range(0.4, 0.7).slow(16).segment(16, 0.9))
+    .room(sine.range(0.4, 0.7).slow(8).segment(16, 0))
+    .degradeBy(sine.range(0.2, 0.5).slow(16).segment(16, 0))
+    .slow(perlin.range(1, 1.3).slow(8).segment(16, 0.5)), // Tempo doubles at segment 16
 
-  // MELODY - fragments that forget their endings, then complete perfectly
-  note("<[7 9 ~ ~] [7 ~ ~ ~] [9 10 ~ ~] [~ 7 ~ ~] [10 ~ ~ ~] [~ ~ 7 ~] [~ 9 ~ ~] [7 ~ ~ ~] [~ ~ ~ ~] [~ 10 ~ ~] [7 9 ~ ~] [7 9 10 ~] [7 9 10 12] [7 9 10 12] [7 9 10 12 14] [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 ~>")
-    .scale("<bb:minor db:minor bb:minor db:minor bb:minor bb:minor db:minor bb:minor bb:minor bb:minor bb:minor bb:minor bb:minor bb:minor bb:minor bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian ~>")
-    .sound("<square square triangle square square triangle square square square square square square triangle square square sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine sine ~>")
+  // MELODY - incomplete phrases that suddenly remember everything
+  note("7 9 ~ ~ 9 10 ~ ~".segment(32))
+    .off(1/8, x => x.add("2 3 5"))
+    .scale("bb:minor".segment(16, "bb:lydian"))
+    .sound("square".segment(16, "sine"))
     .oct(5)
-    .lpf("<700 750 700 650 600 550 600 700 650 700 750 800 850 900 950 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 ~>")
-    .lpq("<5 5 5 5 6 6 6 5 5 4 4 3 3 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 ~>")
-    .gain("<0.3 0.3 0.3 0.2 0.3 0.2 0.3 0.3 0.2 0.3 0.4 0.5 0.5 0.6 0.6 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0>")
-    .room("<0.6 0.6 0.6 0.6 0.7 0.7 0.7 0.6 0.5 0.4 0.4 0.3 0.2 0.1 0.1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
-    .slow("<1.1 1 1.2 1.05 1.15 1.1 1 1.1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1>")
-    .degradeBy("<0.3 0.4 0.3 0.5 0.4 0.6 0.5 0.4 0.3 0.3 0.2 0.1 0.1 0.1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1>")
-    .pan("<0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5>"),
+    .lpf(perlin.range(500, 800).slow(16).segment(16, 20000))
+    .lpq(sine.range(4, 7).slow(8).segment(16, 1))
+    .gain(sine.range(0.2, 0.4).slow(16).segment(16, 0.7))
+    .room(sine.range(0.5, 0.8).slow(8).segment(16, 0))
+    .degradeBy(sine.range(0.3, 0.6).slow(16).segment(16, 0))
+    .slow(perlin.range(1, 1.3).slow(8).segment(16, 0.5)),
 
-  // DRUMS - stumbling, losing time, then finding perfect rhythm
-  sound("<[bd ~ ~ ~] [bd ~ ~ ~] [~ bd ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~ ~] [~ bd ~ ~] [bd ~ ~ ~] [bd ~ ~ ~] [bd ~ ~ ~] [bd ~ sd ~] [bd ~ sd ~] [bd ~ sd ~] [bd ~ sd ~] [bd ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~] [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~]*2 [bd*2 ~ sd ~>")
-    .gain("<0.6 0.5 0.6 0.5 0.6 0.5 0.6 0.6 0.6 0.7 0.7 0.8 0.8 0.8 0.8 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0>")
-    .slow("<1.1 1 1.2 1.05 1.15 1.1 1 1.1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1>")
-    .room("<0.4 0.4 0.4 0.4 0.5 0.5 0.5 0.4 0.4 0.3 0.3 0.2 0.1 0.1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
-    .degradeBy("<0.2 0.3 0.2 0.4 0.3 0.5 0.4 0.3 0.2 0.2 0.1 0.1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1>"),
+  // DRUMS - stumbling rhythm that finds itself
+  sound("bd ~ ~ ~ ~ bd ~ ~".segment(32))
+    .n("0 1".slow(4))
+    .gain(sine.range(0.5, 0.7).slow(16).segment(16, 0.9))
+    .room(sine.range(0.3, 0.5).slow(8).segment(16, 0))
+    .degradeBy(sine.range(0.2, 0.4).slow(16).segment(16, 0))
+    .slow(perlin.range(1, 1.2).slow(8).segment(16, 0.5)),
 
-  // HI-HATS - absent in fog, crystalline in clarity
-  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 ~>")
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0>")
-    .slow("<1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1>"),
+  // SNARE - absent in fog, crystalline in clarity
+  sound("~ ~ sd ~".segment(32))
+    .gain("0".segment(16, sine.range(0.6, 0.8).slow(8)))
+    .room("0.5".segment(16, 0))
+    .slow("1".segment(16, 0.5)),
 
-  // CRYSTALLINE HARMONY - pure Lydian clarity (only in Phase 2)
-  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 [0 4 7 11]*4 ~>")
+  // HI-HATS - only appear during clarity
+  sound("~".segment(16, "hh*8"))
+    .gain("0".segment(16, sine.range(0.3, 0.5).slow(8)))
+    .slow("1".segment(16, 0.5)),
+
+  // PADS - foggy ambience that lifts
+  note("[0 3 7]*2".segment(16, "~"))
+    .scale("bb:minor".segment(8, "db:minor"))
+    .sound("sawtooth")
+    .oct(3)
+    .lpf(perlin.range(300, 500).slow(16))
+    .lpq(8)
+    .gain(sine.range(0.2, 0.4).slow(16).segment(16, 0))
+    .room(0.9)
+    .slow(perlin.range(1, 1.2).slow(8)),
+
+  // CRYSTALLINE HARMONY - pure Lydian clarity (only Phase 2)
+  note("~".segment(16, "[0 4 7 11]*4"))
     .scale("bb:lydian")
     .sound("sine")
     .oct(4)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0>")
-    .slow("<1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1>")
-    .pan("<0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5>"),
+    .gain("0".segment(16, 0.5))
+    .slow("1".segment(16, 0.5)),
 
-  // UPPER HARMONICS - the brightest tones (only in peak clarity)
-  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 [14 18 21]*8 ~>")
+  // UPPER HARMONICS - brightest tones (peak clarity only)
+  note("~".segment(20, "[14 18 21]*8"))
     .scale("bb:lydian")
     .sound("sine")
     .oct(5)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0>")
-    .slow("<1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1>")
-    .pan("<0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5>"),
+    .gain("0".segment(20, sine.range(0.3, 0.4).slow(8)))
+    .slow("1".segment(20, 0.5)),
 
-  // FRAGILE THREAD - the one element barely continuing before the spike
-  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [7 ~ ~ ~] [7 ~ ~ ~] [7 ~ ~ ~] [7 ~ ~ ~] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
+  // FRAGILE THREAD - one element barely continuing before the spike
+  note("7 ~ ~ ~".segment(12, "~"))
     .scale("bb:minor")
     .sound("sine")
     .oct(6)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0.2 0.2 0.2 0.15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
-    .room("<0 0 0 0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
-    .lpf("<20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 1200 1200 1200 1000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000>"),
+    .gain("0".segment(11, "0.15".segment(1, 0)))
+    .room("0".segment(11, "0.9".segment(1, 0)))
+    .lpf("20000".segment(11, "1000".segment(1, 20000))),
 
-  // DISTANT PADS - foggy ambience that lifts
-  note("<[0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 [0 3 7]*2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
-    .scale("<bb:minor db:minor bb:minor db:minor bb:minor bb:minor db:minor bb:minor bb:minor bb:minor bb:minor bb:minor bb:minor bb:minor bb:minor ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
-    .sound("sawtooth")
-    .oct(3)
-    .lpf("<400 450 400 350 300 350 400 450 500 550 600 650 700 750 800 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000 20000>")
-    .lpq("<8 8 8 8 8 8 8 8 7 6 5 4 3 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1>")
-    .gain("<0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
-    .room("<0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
+  // MEMORY GAPS - elements dropping out randomly in Phase 1
+  sound("bd sd hh cp".slow(8))
+    .speed(rand.range(0.5, 2))
+    .gain(rand.range(0.1, 0.3).segment(16, 0))
+    .pan(rand)
+    .degradeBy("0.8".segment(16, 1))
+    .room("0.6".segment(16, 0))
 )
