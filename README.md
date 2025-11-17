@@ -79,6 +79,15 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Deep Sea Pressure ⭐ **BATHYPELAGIC EXPEDITION**
+A 4-minute descent into the abyssal zone at crushing 55 BPM:
+- **Bathyal Zone** (0:00-0:50): Last light fading, pressure building, familiar structures dissolving
+- **Abyssopelagic Descent** (0:50-2:00): Total darkness at 4000m, alien bioluminescent life, hull creaking
+- **Hadal Maximum** (2:00-3:00): 6000m+ depth, maximum pressure, something massive detected in darkness
+- **Trench Floor** (3:00-4:00): Bottom reached, sparse bioluminescence, crushing stillness
+
+Departure from fast aggression - focuses on extreme slowness (55 BPM), crushing sub-bass weight, descending Gb Phrygian tonality, bioluminescent pulses in darkness, structural stress sounds, and progressive low-pass filtering. The sound of being compressed by an entire ocean where biology operates on alien rules. Requires strong sub-bass response for full experience.
+
 ## How to Use
 
 1. Go to https://strudel.cc
