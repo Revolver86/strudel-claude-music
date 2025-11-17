@@ -114,6 +114,141 @@ setcps(YOUR_BPM/60/4)  // e.g., setcps(200/60/4) for 200 BPM
 .degradeBy(0.8)         // remove 80% of events
 ```
 
+## Creating Songs with Timed Sections
+
+Strudel provides several powerful functions for creating complete songs with distinct sections (intro, verse, chorus, breakdown, outro, etc.):
+
+### Using `arrange()` for Song Structure
+
+The `arrange()` function is the primary tool for creating long-form compositions. It sequences multiple patterns over specific numbers of cycles:
+
+```javascript
+arrange(
+  [4, pattern1],  // Pattern 1 plays for 4 cycles
+  [2, pattern2],  // Pattern 2 plays for 2 cycles
+  [8, pattern3]   // Pattern 3 plays for 8 cycles
+)
+```
+
+**Complete song example:**
+```javascript
+setcps(130/60/4)  // 130 BPM
+
+// Define reusable sections
+const intro = sound("bd ~ ~ ~").gain(0.8)
+const verse = sound("bd*4, [~ sd]*2, hh*8")
+const chorus = sound("bd*4, sd*2, hh*16").gain(1.2)
+const breakdown = note("c e g").sound("sine").slow(2)
+const outro = sound("bd ~ ~ ~").degradeBy(0.5)
+
+// Arrange into full song
+arrange(
+  [4, intro],      // 4 cycles intro
+  [8, verse],      // 8 cycles verse
+  [8, chorus],     // 8 cycles chorus
+  [4, breakdown],  // 4 cycles breakdown
+  [8, verse],      // 8 cycles verse (repeat)
+  [8, chorus],     // 8 cycles chorus (repeat)
+  [4, outro]       // 4 cycles outro
+)
+```
+
+### Using `timeCat()` for Custom Durations
+
+`timeCat()` (also called `stepcat`) concatenates patterns proportionally to steps per cycle:
+
+```javascript
+timeCat(
+  [3, sound("bd sd")],  // 3 steps
+  [1, sound("cp*4")]    // 1 step
+)
+// Same as: sound("bd sd@3 cp*4")
+```
+
+**Key Difference:** `arrange()` uses `timeCat()` internally but ensures nothing is shuffled or sped up incorrectly, making it better for song structures.
+
+### Using Alternation `<>` for Section Variation
+
+The angle bracket notation cycles through different values/patterns each cycle:
+
+```javascript
+// Different kick pattern each cycle
+sound("bd*<4 8 6 16>")
+
+// Different sections cycling
+note("<[c e g]*4 [d f a]*4 [e g b]*4>")
+  .sound("piano")
+```
+
+**Advanced section alternation:**
+```javascript
+stack(
+  // Kicks build in intensity across 8 cycles
+  sound("bd*<4 4 4 4 8 8 16 4>")
+    .gain("<0.8 0.9 1.0 1.1 1.2 1.2 1.3 0.6>"),
+
+  // Lead appears in certain sections
+  note("<~ [0 2 4]*8 ~ [0 2 4 7]*16>")
+    .sound("square")
+)
+```
+
+### Using `cat()`/`slowcat()` for Sequential Sections
+
+Play different patterns sequentially, one per cycle:
+
+```javascript
+cat(
+  sound("bd sd bd sd"),      // Cycle 1
+  sound("bd*4, hh*8"),       // Cycle 2
+  note("c e g").sound("sine") // Cycle 3
+)
+// Then repeats from beginning
+```
+
+### Using `sequence()`/`fastcat()` Within a Cycle
+
+Concatenate patterns within a single cycle:
+
+```javascript
+sequence(
+  sound("bd*2"),   // First quarter
+  sound("sd*2"),   // Second quarter
+  sound("hh*4")    // Remaining half
+)
+```
+
+### Combining Techniques for Complex Structures
+
+**Example: 2-minute song with progressive intensity:**
+```javascript
+setcps(160/60/4)  // 160 BPM = ~32 cycles in 2 minutes
+
+stack(
+  // Drums build from sparse to intense
+  sound("bd*<4 4 4 4 8 8 16 16>"),
+
+  // Lead appears in sections 2, 4, 6, 8 (verses/choruses)
+  note("<~ [0 1 6 11]*8 ~ [2 7 9 14]*8 ~ [0 3 7]*12 ~ [0 5]*16>")
+    .scale("c:phrygian")
+    .sound("square"),
+
+  // Breakdown section (cycle 5) uses different sounds
+  sound("<~ ~ ~ ~ white*8 ~ ~ ~>")
+    .gain(0.3)
+)
+```
+
+### Best Practices for Song Structure
+
+1. **Use `const` to define reusable sections** - Makes code cleaner and easier to modify
+2. **Plan your cycles** - Calculate how many cycles you need: `(BPM × duration_seconds) / 240`
+   - Example: 160 BPM × 120 seconds / 240 = 80 cycles for a 2-minute song at 160 BPM
+3. **Use `arrange()` for complete songs** - Better than `timeCat()` for maintaining timing
+4. **Use `<>` alternation for gradual changes** - Great for building/reducing intensity
+5. **Combine `stack()` with sections** - Layer multiple evolving patterns
+6. **Comment your sections** - Use `// Intro`, `// Verse`, etc. for clarity
+
 ## Technical Notes
 
 All compositions use:
@@ -124,6 +259,7 @@ All compositions use:
 - **Euclidean rhythms** for polyrhythmic complexity
 - **Perlin/rand signals** for organic chaos
 - **Multiple layered patterns** via stack()
+- **Angle bracket alternation** (`<>`) for section progression
 
 ## Philosophy
 

@@ -518,24 +518,52 @@ sequence(
 )
 ```
 
-### TimeCat
+### TimeCat (also called `stepcat`)
 
-Concatenate with custom durations:
+Concatenate with custom durations proportionally to steps per cycle:
 ```javascript
 timeCat(
-  [3, sound("bd sd")],
-  [1, sound("cp*4")]
+  [3, sound("bd sd")],  // 3 steps
+  [1, sound("cp*4")]    // 1 step
 )
+// Equivalent to: sound("bd sd@3 cp*4")
 ```
+
+**Note:** While similar to `arrange()`, `timeCat()` can behave unexpectedly when patterns span multiple cycles with different lengths. Use `arrange()` for song structures instead.
 
 ### Arrange
 
-Arrange patterns over multiple cycles:
+Arrange patterns over multiple cycles (PRIMARY TOOL FOR LONG-FORM COMPOSITION):
 ```javascript
 arrange(
   [4, sound("bd sd")],
   [2, sound("cp*4")],
   [4, note("c e g").sound("piano")]
+)
+```
+
+**Important:** `arrange()` uses `timeCat()` internally but works differently to ensure nothing is shuffled or sped up incorrectly. This makes it the preferred function for complete song structures.
+
+**Complete song example with sections:**
+```javascript
+setcps(130/60/4)  // 130 BPM
+
+// Define reusable sections using const
+const intro = sound("bd ~ ~ ~").gain(0.8)
+const verse = sound("bd*4, [~ sd]*2, hh*8")
+const chorus = sound("bd*4, sd*2, hh*16").gain(1.2)
+const breakdown = note("c e g").sound("sine").slow(2)
+const outro = sound("bd ~ ~ ~").degradeBy(0.5)
+
+// Arrange into full song structure
+arrange(
+  [4, intro],      // 4 cycles intro
+  [8, verse],      // 8 cycles verse
+  [8, chorus],     // 8 cycles chorus
+  [4, breakdown],  // 4 cycles breakdown
+  [8, verse],      // 8 cycles verse (repeat)
+  [8, chorus],     // 8 cycles chorus (repeat)
+  [4, outro]       // 4 cycles outro
 )
 ```
 
@@ -945,6 +973,178 @@ stack(
 
 ---
 
+---
+
+## Long-Form Composition & Song Structure
+
+### Key Concepts for Multi-Section Songs
+
+Creating complete compositions with distinct sections (intro, verse, chorus, breakdown, outro) requires understanding several techniques:
+
+#### 1. Using `arrange()` for Complete Songs
+
+`arrange()` is the primary tool for sequencing patterns over multiple cycles. It ensures proper timing without unexpected shuffling or speed changes.
+
+**Song Structure Pattern:**
+```javascript
+setcps(BPM/60/4)  // Set tempo
+
+// Define sections with const
+const intro = ...
+const verse = ...
+const chorus = ...
+
+// Arrange into song
+arrange(
+  [cycles, section1],
+  [cycles, section2],
+  ...
+)
+```
+
+**Calculating Cycles:**
+- Formula: `(BPM × duration_seconds) / 240`
+- Example: 160 BPM × 120 seconds / 240 = 80 cycles for 2 minutes
+- At 160 BPM: 1 cycle ≈ 1.5 seconds
+
+#### 2. Section Variation with Angle Brackets `<>`
+
+Use alternation to create sections that evolve over cycles:
+
+```javascript
+stack(
+  // Drums build intensity over 8 cycles
+  sound("bd*<4 4 4 4 8 8 16 4>")
+    .gain("<0.8 0.9 1.0 1.1 1.2 1.2 1.3 0.6>"),
+
+  // Lead appears only in certain cycles (sections)
+  note("<~ [0 2 4]*8 ~ [0 2 4 7]*16 ~ ~ ~ ~>")
+    .sound("square"),
+
+  // Different effects per section
+  sound("hh*8")
+    .crush("<5 5 4 4 3 3 2 5>")
+)
+```
+
+This technique is powerful for:
+- Progressive intensity buildup
+- Instrument entrances/exits
+- Parameter automation over sections
+- Creating verse/chorus distinctions
+
+#### 3. Modular Composition with `const`
+
+Define reusable musical sections:
+
+```javascript
+const drums = sound("bd*4, [~ sd]*2, hh*8")
+const bass = note("c2 ~ eb2 ~ g2 ~ c1 ~").sound("sawtooth").lpf(800)
+const lead = note("0 2 4 7".scale("C:minor")).sound("square")
+
+// Combine sections
+const verse = stack(drums, bass)
+const chorus = stack(drums, bass, lead).gain(1.2)
+```
+
+#### 4. Advanced Techniques
+
+**DJ-Style Mixing:**
+While not yet fully implemented, the community is working on automated transitions between patterns with:
+- Configurable play duration
+- Fade duration
+- Pattern crossfading
+
+**Layered Thinking for Long-Form:**
+1. Individual patterns (basic building blocks)
+2. Patterns of patterns (sections)
+3. Sequences of patterns (song structure)
+4. Real-time editing at any level
+
+**Conditional Pattern Inclusion:**
+```javascript
+// Use alternation to "mute" sections
+const maybeLead = note("<~ ~ [c e g]*8 [c e g]*8>").sound("sine")
+
+// Or use degradeBy for sparse sections
+const sparseDrums = sound("bd*4").degradeBy("<0 0 0.5 0.8>")
+```
+
+#### 5. Best Practices
+
+1. **Comment your sections clearly:**
+   ```javascript
+   // === INTRO (0:00-0:15) ===
+   // === VERSE 1 (0:15-0:37) ===
+   ```
+
+2. **Plan cycle counts:**
+   - Calculate total cycles needed
+   - Allocate to intro/verse/chorus/etc.
+   - Consider musical phrasing (4, 8, 16 cycle sections)
+
+3. **Use consistent tempo:**
+   ```javascript
+   setcps(BPM/60/4)  // Set once at the top
+   ```
+
+4. **Test sections individually:**
+   ```javascript
+   // Test just the chorus
+   chorus
+
+   // Then test full arrangement
+   arrange([4, intro], [8, chorus])
+   ```
+
+5. **Use stack() for simultaneous evolution:**
+   ```javascript
+   stack(
+     evolvingDrums,
+     evolvingBass,
+     evolvingLead
+   )
+   ```
+
+### Comparison: arrange() vs timeCat() vs cat()
+
+| Function | Duration | Use Case | Behavior |
+|----------|----------|----------|----------|
+| `arrange([n, p])` | n cycles | Complete songs | Stable timing, no shuffling |
+| `timeCat([n, p])` | n steps | Within-cycle | Can shuffle multi-cycle patterns |
+| `cat(p1, p2)` | 1 cycle each | Sequential sections | Simple alternation |
+| `sequence(p1, p2)` | Split 1 cycle | Fast changes | Within-cycle splitting |
+
+### Example: 2-Minute Song Structure
+
+```javascript
+setcps(160/60/4)  // 160 BPM = ~1.5 sec/cycle
+
+// 120 seconds / 1.5 = 80 cycles total
+// Structure: Intro(8) + Verse(16) + Breakdown(8) + Verse(16) + Climax(24) + Outro(8)
+
+const intro = sound("bd ~ ~ ~").gain(0.6)
+const verse = stack(
+  sound("bd*4").crush(4),
+  note("[0 1 6]*8").scale("c:phrygian").sound("square")
+)
+const breakdown = note("[-12 -11]*4").sound("sine").slow(2)
+const climax = verse.gain(1.3).crush(2)
+const outro = intro.degradeBy(0.7)
+
+arrange(
+  [8, intro],
+  [16, verse],
+  [8, breakdown],
+  [16, verse],
+  [24, climax],
+  [8, outro]
+)
+// Total: 8+16+8+16+24+8 = 80 cycles ✓
+```
+
+---
+
 ## Conclusion
 
 Strudel.cc is a powerful, accessible platform for algorithmic music composition and live coding. Its pattern-based approach, combined with mini-notation syntax and extensive synthesis/effects capabilities, makes it suitable for:
@@ -954,6 +1154,7 @@ Strudel.cc is a powerful, accessible platform for algorithmic music composition 
 - Generative composition
 - Music education
 - Rapid prototyping of musical ideas
+- **Complete song composition with multi-section structures**
 
 The browser-based nature means you can start coding music immediately at https://strudel.cc without any installation or configuration.
 
