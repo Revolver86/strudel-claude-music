@@ -8,7 +8,7 @@ setcps(128/60/4) // 128 BPM - trudging forward motion, inexorable
 stack(
   // Hoofbeat foundation - steady march into doom
   // Sparse euclidean patterns for hypnotic desert rhythm
-  sound("bd(3,8)").euclidean("<3,8 5,8 3,8 5,8 3,8 7,13 ~!6 3,8>")
+  sound("bd(<3 5 3 5 3 7 ~ 3>,<8 8 8 8 8 13 1 8>)")
     .n("<0 1 0 1>")
     .crush("<7 6 6 6 6 5 3 7>")
     .shape("<6 7 8 8 9 15 8 5>")
@@ -115,7 +115,7 @@ stack(
 
   // Violence layer - sudden chaos eruption
   // Polyrhythmic madness in violence section only
-  sound("<~!18 [bd sd hh cp]*<7,13 11,16 13,21>>")
+  sound("<~!18 [bd(7,13) sd(5,8) hh(11,16) cp(3,7)]>")
     .n(irand(4))
     .speed("<0.5 2 -1 1.5>")
     .crush("<2 3 2 3>")
@@ -175,10 +175,6 @@ stack(
     .distort("<1.5 1.2 0.8>")
     .crush("<3 4 5>")
     .gain("<0 0 0 0.7>")
-    .room(0.02),
-
-  // Silence spaces - vast distances
-  // Dramatic hush moments
-  "<~!18 <~!2 [~ ~ ~]*4>>".hush()
+    .room(0.02)
 )
 .slow("<1!18 1!6 0.5!6 1!6>") // Time distortion in violence section
