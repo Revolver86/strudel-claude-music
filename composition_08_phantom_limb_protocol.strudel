@@ -1,0 +1,269 @@
+// PHANTOM LIMB PROTOCOL
+// Neural ghost signals reaching into void
+// The brain's map no longer matching the territory
+// By Claude - neurological glitch music
+
+setcps(94/60/4) // 94 BPM - slightly off from comfortable walking pace
+
+// SECTION DEFINITIONS
+
+// Pre-Loss Memory (0:00-0:40) - Everything functions normally
+const preLoss = stack(
+  // Complete, flowing melodic pattern - D Dorian
+  note("d4 e4 f4 g4 a4 g4 f4 e4")
+    .sound("triangle")
+    .lpf(1200)
+    .gain(0.5)
+    .room(0.4)
+    .attack(0.05)
+    .release(0.2),
+
+  // Smooth rhythm foundation
+  sound("bd ~ sd ~")
+    .gain(0.7)
+    .lpf(800),
+
+  // Gentle nerve-like hi-hats
+  sound("hh*8")
+    .gain(0.25)
+    .hpf(8000)
+    .pan(sine.slow(4)),
+
+  // Wholeness bass - root notes present
+  note("d2 ~ d2 ~")
+    .sound("sine")
+    .gain(0.6)
+    .lpf(200),
+
+  // Harmonic completion - suspended but resolving
+  note("<d3 g3 c4, f3 a3 d4>")
+    .slow(2)
+    .sound("sine")
+    .gain(0.3)
+    .room(0.5)
+    .attack(0.2)
+    .release(0.4)
+)
+
+// Severance (0:40-1:00) - Sudden dropout, confusion begins
+const severance = stack(
+  // Melodic phrases START to break - notes missing
+  note("d4 e4 f4 ~ a4 ~ f4 ~")
+    .sound("triangle")
+    .lpf(1200)
+    .gain("<0.5 0.4 0.3 0.5>")
+    .room(0.5)
+    .degradeBy(0.3)
+    .sometimes(x => x.cut(1)),
+
+  // Rhythm becomes uncertain
+  sound("bd ~ ~ ~ sd ~ ~ ~")
+    .gain(0.6)
+    .lpf(800)
+    .degradeBy(0.4),
+
+  // Nerve firing increases (confusion)
+  sound("hh*<8 12 16 12>")
+    .gain(0.3)
+    .hpf(8000)
+    .pan(rand)
+    .crush(8)
+    .degradeBy(0.2),
+
+  // Bass drops out randomly - foundation vanishing
+  note("d2 ~ ~ ~")
+    .sound("sine")
+    .gain("<0.6 0 0.4 0>")
+    .lpf(200),
+
+  // Harmony loses voices mid-chord
+  note("<d3 g3 ~, f3 ~ d4>")
+    .slow(2)
+    .sound("sine")
+    .gain(0.25)
+    .room(0.6)
+    .degradeBy(0.4),
+
+  // First phantom sensations - high frequency tingles
+  note("<~ ~ c5 ~>*16")
+    .sound("sine")
+    .gain(0.15)
+    .hpf(2000)
+    .vibrato(6)
+    .vibmod(0.4)
+    .pan(perlin)
+    .degradeBy(0.6)
+)
+
+// Phantom Signal (1:00-2:15) - Brain keeps sending signals to nothing
+const phantomSignal = stack(
+  // Melodic gestures that reach for notes that aren't there
+  note("<d4 e4 ~ g4 ~ ~ f4 ~>*2")
+    .sound("triangle")
+    .lpf(perlin.range(600, 1800).slow(8))
+    .gain("<0.5 0.3 0 0.4 0 0 0.35 0>")
+    .room(0.7)
+    .attack(0.01)
+    .release(0.1)
+    .cut(1)
+    .degradeBy(0.5),
+
+  // Rhythm reaches for patterns that fail
+  sound("<bd ~ ~ ~ ~ ~ sd ~>")
+    .struct("x ~ x ~ ~ x ~ ~")
+    .gain("<0.7 0 0.5 0>")
+    .lpf(800)
+    .sometimes(x => x.gain(0)),
+
+  // Nerve misfiring - rapid, chaotic, pins-and-needles
+  sound("~ ~ hh*<16 24 32 16> ~")
+    .gain(0.2)
+    .hpf(9000)
+    .crush(6)
+    .pan(rand)
+    .degradeBy(0.6)
+    .sometimes(x => x.fast(2)),
+
+  // Phantom bass pulse - sensation of something absent
+  note("<~ d2 ~ ~ ~ d2 ~ ~>")
+    .sound("sine")
+    .gain("<0 0.6 0 0 0 0.5 0 0>")
+    .lpf(180)
+    .attack(0.001)
+    .release(0.3),
+
+  // Ghost touch - soft synth pads that fade to nothing
+  note("<d3 f3 ~ a3, ~ g3 ~ c4>")
+    .slow(4)
+    .sound("sine")
+    .gain("<0.3 0.2 0 0.15>")
+    .room(0.9)
+    .attack(0.5)
+    .release(1)
+    .lpf(sine.range(400, 800).slow(16))
+    .degradeBy(0.7),
+
+  // Electric tingling - high sine waves with vibrato
+  note("<~ c5 ~ d5 ~ ~ c5 ~>*4")
+    .sound("sine")
+    .gain(0.12)
+    .hpf(3000)
+    .vibrato(8)
+    .vibmod(0.6)
+    .pan(perlin.fast(2))
+    .degradeBy(0.75)
+    .cut(2),
+
+  // Muscle memory echoes - familiar patterns incomplete
+  note("<d4 e4 f4 ~>*2")
+    .sound("square")
+    .lpf(600)
+    .gain(0.2)
+    .crush(4)
+    .delay(0.4)
+    .delaytime(0.125)
+    .delayfeedback(0.3)
+    .degradeBy(0.8),
+
+  // Static where sensation should be
+  sound("~ white*8 ~ ~")
+    .hpf(6000)
+    .lpf(10000)
+    .gain(0.15)
+    .crush(5)
+    .degradeBy(0.7)
+    .cut(3),
+
+  // Suspended chords reaching, unresolved
+  note("<g3 c4, d3 f3>")
+    .slow(8)
+    .sound("sine")
+    .gain(0.25)
+    .room(0.8)
+    .attack(1)
+    .release(2)
+    .lpf(600)
+    .sometimes(x => x.gain(0))
+)
+
+// Neuroplastic Adjustment (2:15-end) - New patterns form around absence
+const neuroplasticAdjustment = stack(
+  // Melody reorganizes - simpler, adapted, gaps accepted
+  note("<d4 ~ f4 ~ a4 ~ ~ ~>")
+    .sound("triangle")
+    .lpf(1000)
+    .gain("<0.4 0 0.35 0 0.3 0 0 0>")
+    .room(0.6)
+    .attack(0.1)
+    .release(0.3),
+
+  // Rhythm stabilizes but forever changed
+  sound("bd ~ ~ ~ ~ sd ~ ~")
+    .gain(0.5)
+    .lpf(700),
+
+  // Nerve firing decreases - adaptation
+  sound("hh*<8 4 2 0>")
+    .gain("<0.25 0.2 0.15 0>")
+    .hpf(8000)
+    .pan(sine.slow(8)),
+
+  // New bass pattern - avoiding the void
+  note("<d2 ~ ~ ~ a1 ~ ~ ~>")
+    .sound("sine")
+    .gain(0.5)
+    .lpf(180),
+
+  // Harmony accepts incompleteness
+  note("<d3 ~ a3, ~ g3 ~>")
+    .slow(4)
+    .sound("sine")
+    .gain(0.2)
+    .room(0.7)
+    .attack(0.3)
+    .release(0.5),
+
+  // Occasional ghost pulse - memory of what was
+  note("<~ ~ ~ ~ ~ ~ d5 ~>")
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0.1 0>")
+    .hpf(2000)
+    .vibrato(4)
+    .vibmod(0.3)
+    .pan(perlin)
+    .attack(0.01)
+    .release(0.15)
+    .degradeBy(0.5),
+
+  // Fade with phantom whispers
+  note("<~ ~ ~ c5 ~ ~ ~ ~>*2")
+    .sound("sine")
+    .gain("<0 0 0 0.08 0 0 0 0>")
+    .hpf(4000)
+    .room(0.9)
+    .degradeBy(0.8),
+
+  // Final suspended chord - unresolved, forever searching
+  note("<g3 c4, d3 f3>")
+    .slow(16)
+    .sound("sine")
+    .gain("<0.15 0.1 0.05 0>")
+    .room(0.95)
+    .attack(2)
+    .release(4)
+    .lpf(500)
+)
+
+// FULL SONG ARRANGEMENT
+// Pre-Loss: 10 cycles (0:40)
+// Severance: 5 cycles (0:20)
+// Phantom: 29 cycles (1:16)
+// Adjustment: 18 cycles (0:45)
+// Total: ~62 cycles = ~3:05
+
+arrange(
+  [10, preLoss],
+  [5, severance],
+  [29, phantomSignal],
+  [18, neuroplasticAdjustment]
+)
