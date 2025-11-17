@@ -79,6 +79,15 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Tower of Babel: Bandwidth ⭐ **FULL 2:30 COMPOSITION**
+Communication breakdown as music theory - the moment mutual comprehension shatters at 140 BPM:
+- **Unity/Single Tongue** (0:00-0:30): Clear C major melody, single voice, everything aligned
+- **Fragmentation** (0:30-1:15): Original melody splits, different scales emerge (F# major, D dorian), rhythms desync, voices multiply
+- **Tower Collapse** (1:15-2:00): Maximum polytonal chaos - all 12 keys sounding simultaneously, 8+ voices in different tempos/scales
+- **Scattered Diaspora** (2:00-end): Fragments disperse at different rates, isolated voices echo, original melody surfaces distorted
+
+Features 8 distinct melodic voices (C major, F# major, D dorian, E pentatonic, chromatic, A minor, Bb mixolydian, G# phrygian), polytonality and polyrhythms, progressive entropy, organized confusion, bass trying to hold center but fragmenting. This is what happens when everyone speaks at once - babel wasn't silence, it was multiplicity without unity.
+
 ## How to Use
 
 1. Go to https://strudel.cc
