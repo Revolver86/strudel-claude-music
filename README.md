@@ -79,6 +79,19 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Semantic Satiation ⭐ **CONCEPTUAL DEPARTURE**
+A radical departure from the harsh aesthetic - exploring meaning-loss through exact repetition at 108 BPM:
+- **Not chaos, but clarity dissolving** - one simple phrase in G major repeats 180+ times
+- **Semantic satiation phenomenon** - like saying "bowl" until it's just mouth sounds
+- **Invariance as transformation** - the phrase never changes, your perception breaks
+- **6-7 minute duration** - long enough for true perceptual satiation to occur
+- **Minimal variation** - contextual elements shift attention without altering the core phrase
+- **Meaning recovery** - stopping and restarting reveals how fragile semantic content is
+
+This piece explores how repetition dissolves meaning. The same musical phrase, repeated exactly, transforms from meaningful melody → geometric pattern → pure texture → abstract vibration. The violence is perceptual, not sonic. Clean. Patient. Hypnotic. A study in how familiarity breeds abstraction.
+
+**Listen for 5-6 minutes straight to experience true satiation.**
+
 ## How to Use
 
 1. Go to https://strudel.cc
