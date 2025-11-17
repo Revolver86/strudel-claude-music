@@ -79,6 +79,17 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Saccadic Masking ⭐ **PERCEPTUAL NEUROSCIENCE EXPLORATION**
+Explores the phenomenon of perceptual gaps during eye movements at 116 BPM (~5 minutes):
+- **[0:00-1:00] Continuous Perception**: Smooth, seamless musical flow - masking is working
+- **[1:00-1:45] First Reveal**: Micro-cuts begin appearing (50-150ms gaps)
+- **[1:45-2:45] Perceptual Gaps Exposed**: Multiple cuts, some masked by reverb, some exposed
+- **[2:45-3:45] Failed Masking**: Longer gaps (300-500ms), editing breaking down
+- **[3:45-4:30] Revealed Structure**: More absence than presence, truth emerging
+- **[4:30-end] Edited Reality**: Final sustained note with exposed micro-cuts
+
+Features B minor tonality, overlapping layers that mask discontinuities, reverb/delay fill-in mechanisms, progressive gap exposure, rhythmic elements with invisible beat skips, and the gradual revelation that continuous perception is an illusion. Represents the discontinuous reality beneath perceived continuity - consciousness as edited film rather than live feed.
+
 ## How to Use
 
 1. Go to https://strudel.cc
