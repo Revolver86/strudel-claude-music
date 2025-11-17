@@ -79,6 +79,15 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Cicada Emergence Theorem ⭐ **EVOLUTIONARY MATHEMATICS**
+Prime number biology meets algorithmic composition at 140 BPM:
+- **Underground Countdown**: Deep 17-beat pulse, patient soil sounds, dormant anticipation
+- **Mass Emergence**: Exponential multiplication, euclidean prime rhythms (17, 13, 11, 7)
+- **Peak Chorus**: 16 layered swarm voices, frequency ascent to 6kHz, overwhelming drone
+- **Decline/Renewal**: Return to deep bass, next 17-year cycle beginning
+
+Features A Mixolydian tonality, cicada-frequency formants, prime number polyrhythms, organic build from 1x to 32x multiplication, and progressive pitch ascent (60Hz → 6000Hz). Captures the mathematics of Magicicada Brood X emergence - 17 years of patience exploding into ecstatic life.
+
 ## How to Use
 
 1. Go to https://strudel.cc
