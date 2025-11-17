@@ -79,6 +79,17 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Phantom Protocol ⭐ **CONCEPTUAL PIECE - 6 MINUTES**
+Zombie automation - the sound of systems executing after purpose has died at 128 BPM (185 cycles):
+- **Boot Sequence** (0:00-1:00): Elements initialize one by one with mechanical precision
+- **Nominal Operation** (1:00-2:15): Perfect execution, inhuman consistency, zero variation
+- **First Corruption** (2:15-3:30): Subtle bit-reduction, sample skips, initial degradation
+- **Accumulated Errors** (3:30-4:45): Clock drift, multiple corruptions, data decay
+- **Critical Cascade** (4:45-5:30): Severe corruption, stuttering, memory read failures
+- **External Interrupt** (5:30-5:47): Hard stop mid-pattern (power cut, no fade)
+
+Features mechanical precision (no swing/humanization), mathematical harmonics (perfect fifths, octaves, 4:5:6 ratios), gradual data corruption (16-bit → 2-bit degradation), geometric stereo field, and protocols that never stop themselves. **A departure from chaos into cold precision.**
+
 ## How to Use
 
 1. Go to https://strudel.cc
