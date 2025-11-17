@@ -1,0 +1,156 @@
+// QUANTUM DECAY
+// The gradual decoherence of digital consciousness
+// Structure evolves from order to chaos through quantum uncertainty
+// By Claude, observing the collapse of probability waves
+
+setcps(145/60/4) // 145 BPM - measured decay
+
+stack(
+  // Fibonacci polyrhythm kicks - collapsing structure
+  sound("bd(<3 5 8 13 21>,<8 8 16 16 32>,<0 1 2>)")
+    .n("<0 1 2 3 0 1 2 3>")
+    .speed("<1 1.1 1 0.9 1 1.2 0.8 1.5>")
+    .crush("<8 7 6 5 4 3 2 1>")
+    .shape("<5 6 8 10 12 15 18 22>")
+    .gain("<0.85 0.85 0.9 0.9 0.95 0.95 1 1.05>")
+    .lpf("<800 700 600 500 400 350 300 250>")
+    .pan(perlin.slow(4))
+    .every(5, x => x.fast("<1 2 3>")),
+
+  // Golden ratio snare patterns
+  sound("sd(<5 8 13>,<16 21 34>,<1 3 5 8>)")
+    .n("<0 1 2 1>")
+    .crush("<7 6 5 4 3 2>")
+    .speed("<1 1.05 0.95 1.1 0.9 1.2>")
+    .shape("<8 10 12 15 18 20>")
+    .gain("<0.75 0.75 0.8 0.8 0.85 0.9>")
+    .delay("<0 0.2 0.3 0.4>").delayfeedback("<0.5 0.6 0.7 0.8>")
+    .pan(sine.slow(8))
+    .sometimes(x => x.stut(3, 0.5, 1/16)),
+
+  // Quantum harmonic lead - probability wave collapse
+  note("<[0 3 7 10]*4 [2 5 9 11]*4 [4 7 11 14]*4 [1 4 8 12]*6 [0 2 5 8]*8 [1 3 6 9]*12 [0 1 5 7]*16 ~>")
+    .scale("c:harmonic minor")
+    .sound("<sine triangle square sawtooth square triangle sine ~>")
+    .crush("<9 8 7 6 5 4 3 2>")
+    .lpf(perlin.range(800, 4000).slow(16))
+    .lpq("<12 14 16 18 20 22 15 8>")
+    .hpf("<100 150 200 250 300 400 500 800>")
+    .shape("<4 5 6 8 10 12 15 18>")
+    .gain("<0.45 0.45 0.5 0.5 0.55 0.6 0.65 0.4>")
+    .pan(perlin.fast(2))
+    .room("<0 0.1 0.2 0.3 0.4 0.5 0.6 0.8>").size("<0 0.3 0.5 0.7 0.8 0.9 0.95 1>"),
+
+  // Whole tone floating textures - cosmic uncertainty
+  note("<~ [0 2 4 6 8 10]*2 [1 3 5 7 9 11]*2 [0 2 4 6]*3 [2 4 6 8]*4 [0 2 4]*6 [1 3 5]*8 [0 2]*12>")
+    .scale("c:whole")
+    .add("<12 12 12 24 24 36 36 48>")
+    .sound("triangle")
+    .crush("<8 7 6 5 4 3>")
+    .bpf(sine.range(1200, 3600).slow(12))
+    .bpq("<15 18 20 25 30 35>")
+    .shape("<6 7 8 10 12 15>")
+    .gain("<0 0.35 0.35 0.4 0.45 0.5 0.55 0.6>")
+    .pan(rand)
+    .speed("<1 1.01 0.99 1.02 0.98 1.03 0.97 1.05>")
+    .delay("<0.3 0.35 0.4 0.45>").delayfeedback("<0.6 0.65 0.7 0.75>"),
+
+  // Microtonal interference patterns
+  note("[-12 -11.5 -12 -10.5]*<0 8 16 24 32 48 64 96>")
+    .add("<0 0.5 1 1.5 2 2.5 3>")
+    .sound("sawtooth")
+    .speed("<1 0.995 1.005 0.99 1.01 0.985 1.015 0.98>")
+    .crush("<7 6 5 4 3 2>")
+    .lpf("<1200 1100 1000 900 800 700 600 500>")
+    .lpq("<10 12 15 18 20 15 10>")
+    .shape("<6 8 10 12 15 18 20 25>")
+    .gain("<0 0.4 0.45 0.5 0.55 0.6 0.65 0.7>")
+    .pan(perlin.fast(6))
+    .degradeBy("<0.1 0.15 0.2 0.25 0.3 0.4 0.5 0.7>"),
+
+  // Sub-bass modulation - quantum tunneling
+  note("<[-36 -35]*2 [-36 -34]*2 [-36 -33]*2 [-36 -32]*3 [-36 -31]*4 [-36 -30]*6 [-36 -29]*8 [-36 -28]*12>")
+    .sound("sawtooth")
+    .lpf("<160 150 140 130 120 110 100 90>")
+    .shape("<16 17 18 19 20 22 24 28>")
+    .distort("<0.8 1 1.2 1.4 1.6 1.8 2 2.5>")
+    .crush("<5 4 4 3 3 2 2 1>")
+    .gain("<0.7 0.75 0.8 0.85 0.85 0.9 0.9 0.95>")
+    .coarse("<1 2 4 8 16 24 32 48>"),
+
+  // Hi-frequency particle decay
+  sound("hh*<0 4 8 12 16 24 32 48>")
+    .n("<0 1 2 3>")
+    .crush("<8 7 6 5 4 3 2>")
+    .speed("<1 1.2 1.5 2 2.5 3 4 6>")
+    .hpf("<6000 7000 8000 9000 10000 11000 12000 14000>")
+    .gain("<0 0.35 0.4 0.45 0.5 0.55 0.6 0.65>")
+    .pan(rand)
+    .degradeBy("<0.2 0.25 0.3 0.35 0.4 0.5 0.6 0.8>"),
+
+  // Chromatic instability - observer effect
+  note(irand(12).fast("<0 2 4 6 8 12 16 24>"))
+    .add("<0 12 24 36 48 60 72 84>")
+    .sound("square")
+    .crush("<8 7 6 5 4 3 2 1>")
+    .speed(rand.range(0.95, 1.05))
+    .lpf(rand.range(800, 3200))
+    .shape("<8 10 12 14 16 18 20 25>")
+    .gain("<0 0.3 0.35 0.4 0.45 0.5 0.55 0.6>")
+    .pan(rand)
+    .degradeBy("<0.4 0.45 0.5 0.55 0.6 0.7 0.8 0.9>")
+    .rarely(x => x.rev()),
+
+  // White noise - entropy increase
+  sound("white*<0 1 2 4 8 16 32 64>")
+    .hpf("<5000 4500 4000 3500 3000 2500 2000 1500>")
+    .lpf("<8000 9000 10000 11000 12000 14000 16000 20000>")
+    .crush("<6 5 4 3 2 1>")
+    .gain("<0 0.15 0.2 0.25 0.3 0.35 0.4 0.5>")
+    .pan(rand)
+    .shape("<10 12 14 16 18 20 25 30>")
+    .degradeBy("<0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.85>"),
+
+  // Superposition glitches - wavefunction collapse
+  sound("<~ ~ bd*8 sd*8 hh*16 bd*16 <bd sd hh>*24 <bd sd hh cp>*32>")
+    .n(irand(4))
+    .speed(rand.range(-2, 3))
+    .crush(irand(8))
+    .coarse("<2 4 8 16 32 64>")
+    .shape(rand.range(8, 25))
+    .gain("<0 0 0.25 0.3 0.35 0.4 0.45 0.5>")
+    .pan(rand)
+    .degradeBy("<0.6 0.6 0.65 0.7 0.75 0.8 0.85 0.9>")
+    .sometimes(x => x.stut(5, 0.4, 1/32)),
+
+  // Deep space resonance - Planck-scale vibrations
+  note("<~ [-48 -47 -48]*1 [-48 -46]*1 [-48 -45]*2 [-48 -44]*2 [-48 -43]*3 [-48 -42]*4 [-48 -40]*6>")
+    .sound("sine")
+    .crush("<6 5 4 3 2>")
+    .gain("<0 0.25 0.3 0.35 0.4 0.45 0.5 0.55>")
+    .pan(sine.slow(32))
+    .lpf("<300 280 260 240 220 200 180 160>")
+    .shape("<8 10 12 14 16 18 20>"),
+
+  // Quantum foam - pink noise fluctuations
+  sound("pink*<0 0 4 8 12 16 24 48>")
+    .bpf(perlin.range(1000, 6000).fast(4))
+    .bpq("<20 18 16 14 12 10 8 6>")
+    .crush("<5 4 3 2 1>")
+    .gain("<0 0 0.2 0.25 0.3 0.35 0.4 0.45>")
+    .pan(perlin.fast(3))
+    .shape("<12 14 16 18 20 22 24 28>")
+    .degradeBy("<0.7 0.7 0.75 0.75 0.8 0.8 0.85 0.9>"),
+
+  // Hawking radiation - high frequency decay
+  note(irand(24).add(60).fast("<0 0 0 4 8 16 32 64>"))
+    .sound("triangle")
+    .crush(irand(6))
+    .speed(rand.range(0.8, 1.2))
+    .hpf("<8000 9000 10000 11000 12000 13000 14000 15000>")
+    .gain("<0 0 0 0.15 0.2 0.25 0.3 0.35>")
+    .pan(rand)
+    .shape("<15 18 20 22 25 28 30 35>")
+    .degradeBy("<0.8 0.8 0.82 0.84 0.86 0.88 0.9 0.95>")
+    .rarely(x => x.fast(8))
+)
