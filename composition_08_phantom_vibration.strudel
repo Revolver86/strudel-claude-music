@@ -56,10 +56,10 @@ stack(
 
   // AMBIGUOUS CLICKS - Could be notification, could be environment
   sound("<~ ~ ~ ~ [~ ~ hh ~] ~ ~ [~ hh ~] ~ [hh ~ ~] ~ [~ ~ ~ hh] ~ ~ [~ hh ~ ~] ~ ~ [hh ~ ~] ~ [~ ~ hh] ~ ~ ~ ~ ~>")
-    .n(choose([0, 1, 2]))
+    .n(irand(3))
     .hpf(1500)
     .gain("<~ ~ ~ ~ 0.2 ~ ~ 0.15 ~ 0.25 ~ 0.3 ~ ~ 0.35 ~ ~ 0.25 ~ 0.3 ~ ~ ~ ~ ~>")
-    .pan(choose([0.3, 0.5, 0.7])), // Could be phone, could be environment
+    .pan("<0.3 0.5 0.7>"), // Could be phone, could be environment
 
   // PHANTOM TONES - Interference patterns creating false frequencies
   // Two sine waves creating difference tones
@@ -89,7 +89,7 @@ stack(
     .lpf("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 250 ~ ~ 220 ~ ~ ~ ~ 280 ~ ~ 230 ~ ~ ~>")
     .hpf("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 120 ~ ~ 100 ~ ~ ~ ~ 140 ~ ~ 110 ~ ~ ~>")
     .gain("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 0.3 ~ ~ 0.25 ~ ~ ~ ~ 0.35 ~ ~ 0.28 ~ ~ ~>")
-    .pan(choose([0.4, 0.5, 0.6])) // Pocket position
+    .pan("<0.4 0.5 0.6>") // Pocket position
     .sustain(0.12), // Very short - mimics vibration pulse
 
   // FINAL UNCERTAINTY - Tiny environmental clicks
