@@ -1,0 +1,134 @@
+// PHANTOM VIBRATION
+// The sound of anticipated signals that never arrived
+// Sensory ghosts from hypervigilant pattern detection
+// By Claude, exploring the space between signal and hallucination
+
+setcps(88/60/4) // 88 BPM - nervous resting heart rate
+
+// Structure: 25 cycles = ~4:33 duration
+// [0-3] Signal Training
+// [4-6] First Ambiguity
+// [7-12] False Positive Cascade
+// [13-18] Sensory Ghosts
+// [19-23] Hypervigilant Silence
+// [24-25] Signal Uncertainty
+
+stack(
+  // REAL SIGNALS - Clear notification sounds
+  // Sharp, attention-grabbing transients
+  sound("<cp ~ ~ cp ~ ~ ~ [~ cp] ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ cp ~>")
+    .n(0)
+    .hpf(2000) // Bright, clear
+    .gain("<0.8 ~ ~ 0.8 ~ ~ ~ 0.7 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 0.8 ~>")
+    .pan(0.5), // Center - like a phone notification
+
+  // VIBRATION PULSES - Physical sensation of phone buzz
+  // Sub-bass around 200Hz (note -6 = 185Hz, -5 = 196Hz, -4 = 208Hz)
+  note("<-5 ~ ~ -5 ~ ~ ~ [-5 -5] ~ ~ ~ ~ ~ ~ ~ -6 ~ ~ ~ ~ ~ ~ ~ ~ -5 ~>")
+    .sound("sawtooth")
+    .lpf(200) // Tight low-pass for vibration feel
+    .gain("<0.7 ~ ~ 0.7 ~ ~ ~ 0.6 ~ ~ ~ ~ ~ ~ ~ 0.4 ~ ~ ~ ~ ~ ~ ~ ~ 0.7 ~>")
+    .shape(2) // Slight distortion for physical presence
+    .sustain(0.15), // Short vibration burst
+
+  // PHANTOM SIGNALS - Ambiguous rustling/noise
+  // Could be signals, might not be
+  sound("<~ ~ ~ ~ white*4 ~ ~ white*2 ~ white*3 ~ white*4 ~ ~ white*8 ~ ~ white*4 ~ white*6 ~ white*4 ~ ~ ~>")
+    .lpf("<~ ~ ~ ~ 800 ~ ~ 600 ~ 700 ~ 900 ~ ~ 500 ~ ~ 800 ~ 600 ~ 700 ~ ~ ~>")
+    .hpf("<~ ~ ~ ~ 400 ~ ~ 300 ~ 450 ~ 500 ~ ~ 300 ~ ~ 400 ~ 350 ~ 450 ~ ~ ~>")
+    .gain("<~ ~ ~ ~ 0.25 ~ ~ 0.2 ~ 0.3 ~ 0.35 ~ ~ 0.4 ~ ~ 0.3 ~ 0.35 ~ 0.3 ~ ~ ~>")
+    .room(0.2) // Slight reverb for ambiguity
+    .pan(perlin), // Wandering position - uncertain source
+
+  // SUB-BASS GHOSTS - Almost-vibrations (too quiet to be sure)
+  note("<~ ~ ~ ~ ~ [-6 -6] ~ ~ ~ -7 ~ [-6 -7] ~ ~ [-7 -6 -6] ~ ~ ~ [-6 -6] ~ [-7 -6] ~ ~ ~>")
+    .sound("sine")
+    .lpf(150) // Even lower than real vibrations
+    .gain("<~ ~ ~ ~ ~ 0.15 ~ ~ ~ 0.2 ~ 0.18 ~ ~ 0.25 ~ ~ ~ 0.2 ~ 0.15 ~ ~ ~>")
+    .sustain(0.1), // Very short - barely perceptible
+
+  // PERIPHERAL HIGH FREQUENCIES - Mosquito-like artifacts
+  // Almost outside awareness
+  note("<~ ~ ~ ~ ~ ~ [96 96 96 96]*4 ~ ~ [94 94]*2 ~ [97 97 97]*3 ~ ~ [95 95 95 95]*4 ~ ~ [96 96]*2 ~ [94 94 94]*3 ~ ~ ~ ~ ~>")
+    .sound("sine")
+    .gain("<~ ~ ~ ~ ~ ~ 0.12 ~ ~ 0.1 ~ 0.15 ~ ~ 0.18 ~ ~ 0.13 ~ 0.15 ~ ~ ~ ~ ~>")
+    .pan(rand), // Random positioning - hard to locate
+
+  // AMBIGUOUS CLICKS - Could be notification, could be environment
+  sound("<~ ~ ~ ~ [~ ~ hh ~] ~ ~ [~ hh ~] ~ [hh ~ ~] ~ [~ ~ ~ hh] ~ ~ [~ hh ~ ~] ~ ~ [hh ~ ~] ~ [~ ~ hh] ~ ~ ~ ~ ~>")
+    .n(choose([0, 1, 2]))
+    .hpf(1500)
+    .gain("<~ ~ ~ ~ 0.2 ~ ~ 0.15 ~ 0.25 ~ 0.3 ~ ~ 0.35 ~ ~ 0.25 ~ 0.3 ~ ~ ~ ~ ~>")
+    .pan(choose([0.3, 0.5, 0.7])), // Could be phone, could be environment
+
+  // PHANTOM TONES - Interference patterns creating false frequencies
+  // Two sine waves creating difference tones
+  note("<~ ~ ~ ~ ~ ~ ~ [60 67]*8 ~ ~ [62 69]*6 ~ ~ [64 71]*8 ~ ~ ~ [60 67]*6 ~ ~ [62 69]*8 ~ ~ ~>")
+    .sound("sine")
+    .gain("<~ ~ ~ ~ ~ ~ ~ 0.15 ~ ~ 0.12 ~ ~ 0.18 ~ ~ ~ 0.15 ~ ~ 0.12 ~ ~ ~>")
+    .pan(0.5), // Creates phantom 88Hz bass from difference tone
+
+  // LOW RUMBLE - Felt more than heard, sub-auditory
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ [-36 -36] ~ ~ [-35 -35 -35] ~ [-36 -35] ~ ~ ~ ~ [-36 -36] ~ ~ ~ ~ ~>")
+    .sound("sawtooth")
+    .lpf(80) // Below clear hearing range
+    .gain("<~ ~ ~ ~ ~ ~ ~ ~ ~ 0.25 ~ ~ 0.3 ~ 0.28 ~ ~ ~ ~ 0.25 ~ ~ ~ ~ ~>")
+    .shape(3) // Some distortion for physical presence
+    .sustain(0.3),
+
+  // SILENCE TENSION - Barely audible environmental hum
+  // Creates listening space, builds anticipation
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [-48 -48 -48 -48]*16 [-48 -48 -48 -48]*16 [-48 -48 -48 -48]*16 [-48 -48 -48 -48]*8 ~>")
+    .sound("sine")
+    .gain("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 0.08 0.08 0.08 0.05 ~>")
+    .pan(0.5), // Room tone - the sound of listening hard
+
+  // FABRIC RUSTLE - Sounds exactly like vibration through cloth
+  // Pure phantom signal
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [brown brown brown]*3 ~ ~ [brown brown]*2 ~ ~ ~ ~ [brown brown brown brown]*4 ~ ~ [brown brown]*2 ~ ~ ~>")
+    .lpf("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 250 ~ ~ 220 ~ ~ ~ ~ 280 ~ ~ 230 ~ ~ ~>")
+    .hpf("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 120 ~ ~ 100 ~ ~ ~ ~ 140 ~ ~ 110 ~ ~ ~>")
+    .gain("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 0.3 ~ ~ 0.25 ~ ~ ~ ~ 0.35 ~ ~ 0.28 ~ ~ ~>")
+    .pan(choose([0.4, 0.5, 0.6])) // Pocket position
+    .sustain(0.12), // Very short - mimics vibration pulse
+
+  // FINAL UNCERTAINTY - Tiny environmental clicks
+  // Are these signals or just... sounds?
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [~ ~ cp ~] cp>")
+    .n(1)
+    .hpf(3000)
+    .gain("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 0.15 0.6>")
+    .pan(0.5)
+)
+
+// COMPOSITION NOTES:
+//
+// Real signals appear at cycles: 0, 3, 7, 24
+// These are clear notification + vibration pairs
+// Your brain learns: "This is the signal"
+//
+// Ambiguous sounds appear increasingly from cycle 4 onward
+// Rustling, clicks, filtered noise - could be signals?
+// Some ARE signals (weak vibrations), some aren't
+// You can't tell the difference
+//
+// Phantom vibrations (sub-bass ghosts) appear from cycle 5
+// Too quiet to be certain - did you feel that?
+// Your threshold for detection lowering
+//
+// Cycles 13-18: More phantoms than real signals
+// Fabric rustling sounds exactly like phone through cloth
+// Interference tones creating phantom bass
+// Peripheral frequencies at edge of hearing
+//
+// Cycles 19-23: Hypervigilant silence
+// Mostly quiet, but you're LISTENING
+// Room tone - the sound of attention itself
+// Every tiny sound could be a signal
+// Checking, checking, checking
+//
+// Cycle 24: One last clear signal
+// Cycle 25: Final ambiguous click, then silence
+// Are you still listening?
+// Still checking?
+// The phantom sensation persists

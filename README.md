@@ -79,6 +79,25 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Phantom Vibration ⚠️ **PSYCHOLOGICAL DEPARTURE**
+A 4:30 exploration of hallucinated signals from hypervigilance at 88 BPM (25 cycles):
+- **Signal Training** (0:00-0:45): Clear notification sounds + vibration pulses - learning the pattern
+- **First Ambiguity** (0:45-1:30): Real signals mixed with ambiguous rustling - first false positives
+- **False Positive Cascade** (1:30-2:30): Increasing uncertainty - phantom vibrations, unclear sources
+- **Sensory Ghosts** (2:30-3:30): More phantoms than real - fabric rustling, interference tones, sub-auditory rumble
+- **Hypervigilant Silence** (3:30-4:15): Extreme tension - room tone, peripheral frequencies, listening hard
+- **Signal Uncertainty** (4:15-end): Final signal, ambiguous click, unresolved fade
+
+**WARNING**: This composition represents a complete aesthetic departure from the harsh industrial/black metal territory. Instead of chaos and aggression, this explores psychological tension through:
+- Sharp notification sounds (clear transients)
+- Sub-bass vibration pulses (~200Hz phone buzz sensation)
+- Ambiguous rustling and filtered noise (could be signals, might not be)
+- Strategic silence (building anticipation)
+- Peripheral frequencies (almost outside awareness)
+- False positives (sounds that feel like notifications but aren't)
+
+The piece trains your expectation with real signals, then introduces increasingly ambiguous sounds until you can't distinguish real sensory input from phantom sensation. No harsh distortion or aggressive elements - this is subtle, insidious, psychological.
+
 ## How to Use
 
 1. Go to https://strudel.cc
