@@ -17,9 +17,10 @@ setcps(120/60/4) // 120 BPM - constant "real time" (never changes)
 stack(
   // METRONOME PULSE - unwavering temporal reference (always 120 BPM)
   // This represents "real time" - never wavers, never changes
-  sound("click*4")
+  sound("rim*4")
     .gain("<0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.5 0.4 0.3 0.2 0.1 0 0>")
-    .pan(0.5),
+    .pan(0.5)
+    .hpf(2000),
 
   // PRIMARY PAD - time-stretching during transitions
   // Normal speed, then slows at transitions (subjectively stretched), then catches up
