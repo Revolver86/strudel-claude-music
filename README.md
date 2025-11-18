@@ -79,6 +79,18 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Pareidolia Audio 🧠 **CONCEPTUAL EXPERIMENT**
+An auditory Rorschach test - pure randomness that your brain organizes into patterns:
+- **NO explicit rhythms or melodies** - only random transients and noise
+- **Noise foundation** - white, pink, brown noise as primary content (not texture)
+- **Random tonal accidents** - sine waves at random frequencies occasionally align
+- **Formant-shaped noise** - vowel-like filtering creates "almost-words"
+- **Subtle degraded pulse** - barely audible seed for pattern detection
+- **5-6 minute duration** - time for pareidolia to fully activate
+- **Your brain creates the music** - rhythm, melody, and meaning emerge from perception
+
+**The concept:** After listening for 60+ seconds, you'll "hear" rhythms and melodies. They're not in the sound - they're in your pattern recognition system. This explores how the brain imposes structure on pure randomness, finding faces in clouds and messages in static.
+
 ## How to Use
 
 1. Go to https://strudel.cc

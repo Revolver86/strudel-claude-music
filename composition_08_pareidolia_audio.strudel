@@ -1,0 +1,180 @@
+// PAREIDOLIA_AUDIO
+// The sound of patterns that don't exist
+// Finding meaning in pure randomness
+// By Claude, for your pattern recognition system
+
+// No fixed tempo - your brain will find ~100-110 BPM even though it's not there
+setcps(0.45) // ~27 BPM base, but events are so random it doesn't matter
+
+stack(
+  // [0:00-6:00] WHITE NOISE FOUNDATION - filtered randomness
+  // Your brain will organize these sweeping frequencies into "melody"
+  s("white")
+    .gain(0.4)
+    .lpf(perlin.range(300, 5000).slow(8))
+    .hpf(perlin.range(100, 800).slow(12))
+    .room(0.2)
+    .pan(perlin.slow(16)),
+
+  // [0:00-6:00] PINK NOISE - warmer texture
+  // Filtered into "vocal" ranges - almost sounds like distant voices
+  s("pink")
+    .gain(0.35)
+    .lpf(perlin.range(800, 2400).slow(6))
+    .hpf(200)
+    .room(0.3)
+    .pan(perlin.slow(11).mul(-1)),
+
+  // [0:00-6:00] RANDOM TRANSIENTS - clicks with NO pattern
+  // But listen... after 60 seconds, do you hear a rhythm?
+  // (There isn't one - your brain is creating it)
+  s("click")
+    .gain(rand.range(0.15, 0.7))
+    .pan(rand.range(-1, 1))
+    .speed(rand.range(0.5, 2))
+    .room(rand.range(0, 0.5))
+    .mask(rand.range(0, 1).gt(0.75)), // Only 25% probability - completely random
+
+  // [0:30-6:00] MORE RANDOM CLICKS - different timbre
+  // Your pattern detection will try to relate these to the first clicks
+  // Creating rhythmic relationships that don't exist
+  s("click:1")
+    .gain(rand.range(0.1, 0.6))
+    .pan(rand.range(-1, 1))
+    .speed(rand.range(-1, 1.5))
+    .delay(rand.range(0, 0.4))
+    .mask(rand.range(0, 1).gt(0.8)), // 20% probability
+
+  // [0:00-6:00] RANDOM TONES - spectral accidents
+  // Occasionally random frequencies align (sounds like a "chord")
+  // But it's pure chance - no harmony
+  s("sine")
+    .note(rand.range(36, 84))
+    .gain(0.15)
+    .decay(rand.range(0.1, 2))
+    .room(0.5)
+    .pan(rand)
+    .mask(rand.range(0, 1).gt(0.92)), // Very rare - 8% probability
+
+  // [1:00-6:00] SUBTLE PULSE - barely audible
+  // This is the "seed" for pareidolia
+  // So quiet and degraded you barely notice it
+  // But your brain WILL find it and amplify it
+  s("bd")
+    .gain(0.12)
+    .coarse(8)
+    .crush(5)
+    .lpf(200)
+    .late(perlin.range(0, 0.4).slow(4))
+    .room(0.4)
+    .mask(rand.range(0, 1).gt(0.3)), // 70% present, but heavily obscured
+
+  // [1:30-6:00] FORMANT-SHAPED NOISE - "almost words"
+  // Noise filtered to sound like vowels
+  // You might "hear" speech that isn't there
+  s("noise")
+    .gain(0.3)
+    .lpf(rand.range(600, 1200))
+    .hpf(rand.range(200, 500))
+    .bpf(perlin.range(800, 2400).slow(3))
+    .bpq(20)
+    .room(0.4)
+    .pan(perlin.slow(7))
+    .mask(rand.range(0, 1).gt(0.85)), // 15% probability
+
+  // [2:00-5:00] RANDOM TONAL BURSTS - higher register
+  // Brief moments where multiple tones might align
+  // Your brain detects "melody" in the accidents
+  s("sine")
+    .note(rand.range(60, 96))
+    .gain(rand.range(0.08, 0.25))
+    .decay(rand.range(0.05, 0.8))
+    .room(0.6)
+    .pan(rand.range(-1, 1))
+    .hpf(rand.range(800, 2000))
+    .mask(rand.range(0, 1).gt(0.88)), // 12% probability
+
+  // [2:30-5:30] BROWN NOISE - low rumble
+  // Occasional deep noise bursts
+  // Might sound rhythmic when combined with other elements
+  s("brown")
+    .gain(rand.range(0.2, 0.5))
+    .lpf(rand.range(200, 800))
+    .room(0.3)
+    .pan(rand)
+    .mask(rand.range(0, 1).gt(0.82)), // 18% probability
+
+  // [3:00-6:00] TRIPLE TONE ACCIDENTS - rare "chords"
+  // Three random frequencies at once
+  // When this happens, it sounds intentional
+  // But it's pure randomness
+  s("sine")
+    .note(rand.range(48, 72))
+    .add(rand.range(3, 8))
+    .add(rand.range(6, 12))
+    .gain(0.1)
+    .decay(rand.range(0.2, 1.5))
+    .room(0.7)
+    .pan(rand)
+    .mask(rand.range(0, 1).gt(0.96)), // Very rare - 4% probability
+
+  // [3:30-5:00] HIGH FREQUENCY NOISE - spectral shimmer
+  // Filtered noise in high ranges
+  // Might sound like cymbals or hi-hats
+  // (It's not - it's just noise)
+  s("white")
+    .gain(rand.range(0.15, 0.4))
+    .hpf(rand.range(4000, 8000))
+    .lpf(rand.range(8000, 12000))
+    .pan(rand)
+    .room(rand.range(0.2, 0.6))
+    .mask(rand.range(0, 1).gt(0.78)), // 22% probability
+
+  // [4:00-6:00] VOCAL FORMANT SWEEPS - speech-like
+  // Two formant filters creating vowel-like sounds
+  // You might hear your name, or words, or messages
+  // They're not there
+  s("pink")
+    .gain(0.25)
+    .bpf(perlin.range(800, 1200).slow(2))
+    .bpq(30)
+    .bpf(perlin.range(2000, 3200).slow(3))
+    .bpq(25)
+    .room(0.4)
+    .pan(sine.slow(13))
+    .mask(rand.range(0, 1).gt(0.87)), // 13% probability
+
+  // [4:30-5:30] DENSE MOMENT - multiple random elements
+  // Maximum material for your pattern recognition
+  // Overlapping clicks, tones, noise bursts
+  // You'll hear structure everywhere
+  s("click:2")
+    .gain(rand.range(0.2, 0.6))
+    .speed(rand.range(-2, 2))
+    .pan(rand)
+    .delay(rand.range(0, 0.5))
+    .delayfeedback(rand.range(0.3, 0.7))
+    .mask(rand.range(0, 1).gt(0.65)), // 35% probability - higher density
+
+  // [5:00-6:00] GRADUAL REDUCTION - patterns dissolving
+  // Same sounds as before, but your perception changes
+  // The "rhythm" you heard fades
+  // The "melody" disappears
+  // Were they ever there?
+  s("white")
+    .gain(rand.range(0.1, 0.3))
+    .lpf(perlin.range(1000, 3000).slow(20))
+    .pan(perlin.slow(30))
+    .room(0.5)
+    .mask(rand.range(0, 1).gt(0.85)), // 15% probability
+
+  // [5:30-6:00] FINAL SPARSE CLICKS - clarity returns
+  // Just random transients again
+  // No pattern
+  // Never was
+  s("click:3")
+    .gain(rand.range(0.1, 0.4))
+    .pan(rand)
+    .room(rand.range(0.2, 0.8))
+    .mask(rand.range(0, 1).gt(0.9)) // Very sparse - 10% probability
+)
