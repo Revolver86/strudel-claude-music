@@ -1,0 +1,155 @@
+// SERPENT TONGUE
+// Groove-oriented black metal - hypnotic, infectious, venomous
+// 140 BPM F# Phrygian - the serpent's persuasive tongue
+// Theme: temptation, manipulation, charisma
+// Early Behemoth meets Rotting Christ
+
+setcps(140/60/4) // 140 BPM - hypnotic groove tempo
+
+stack(
+  // SECTION CONTROL: 14 sections evolving through the song structure
+  // 0-1: Bass intro (15s)
+  // 2-4: Main verse - tremolo variations
+  // 5: First transition - chugging + tribal drums
+  // 6-7: Second verse - tremolo + counter-riff
+  // 8-9: Bridge - hypnotic lead over bass
+  // 10-11: Climax - all elements combined
+  // 12-13: Outro - ritardando to doom tempo
+
+  // KICKS - sparse intro, locked groove verse, blast beats climax
+  sound("bd*<1 1 4 4 4 4 4 4 4 4 8 8 2 1>")
+    .n("<0 1 0 1 2 1 0 1 2 1 0 1 0 0>")
+    .crush("<6 5 5 4 4 5 4 4 4 4 3 3 5 6>")
+    .shape("<10 12 14 14 16 14 16 16 16 16 18 20 12 8>")
+    .gain("<0.85 0.9 0.95 0.95 1 0.95 1 1 1 1 1.1 1.15 0.9 0.7>")
+    .speed("<1 1 1 1 1 1 1 1 1 1 1.1 1.2 0.8 0.7>"),
+
+  // SNARE - building from sparse to full blast
+  sound("[~ sd]*<0 0 2 2 2 2 2 2 2 2 2 2 1 0>")
+    .n("<0 0 1 2 1 0 1 2 1 0 1 2 1 0>")
+    .crush("<5 5 4 4 5 4 4 4 4 4 3 3 4 5>")
+    .shape("<12 12 14 14 16 14 16 16 16 16 18 20 14 10>")
+    .gain("<0 0 0.8 0.85 0.9 0.85 0.9 0.9 0.9 0.9 1 1.05 0.8 0.6>"),
+
+  // HI-HATS - groove keeper, blast sections
+  sound("hh*<0 0 8 8 8 4 8 8 8 8 16 16 4 0>")
+    .n("<0 0 1 2 1 0 1 2 1 0 1 2 1 0>")
+    .crush("<6 6 5 5 5 6 5 5 5 5 4 4 5 6>")
+    .gain("<0 0 0.45 0.5 0.5 0.4 0.5 0.5 0.5 0.5 0.6 0.65 0.4 0>")
+    .pan(perlin.slow(8)),
+
+  // TOMS - tribal pattern in transition section
+  sound("mt*<0 0 0 0 0 4 0 0 0 0 2 4 0 0>, lt*<0 0 0 0 0 4 0 0 0 0 2 4 0 0>")
+    .n("<0 0 0 0 0 1 0 0 0 0 2 1 0 0>")
+    .gain("<0 0 0 0 0 0.85 0 0 0 0 0.7 0.9 0 0>")
+    .shape("<0 0 0 0 0 12 0 0 0 0 10 14 0 0>")
+    .pan("<0.3 0.3 0.3 0.3 0.3 0.7 0.3 0.3 0.3 0.3 0.7 0.3 0.3 0.3>"),
+
+  // MAIN BASS RIFF - F# G F# E pattern (the infectious core)
+  // Plays throughout most of the song - the hypnotic foundation
+  note("[0 1 0 -2]*<4 4 4 4 4 4 4 4 4 4 4 4 2 1>")
+    .scale("f#:phrygian")
+    .sound("sawtooth")
+    .lpf("<120 140 150 160 180 150 180 180 140 150 200 220 130 100>")
+    .shape("<16 18 18 20 20 18 20 20 18 18 22 24 18 14>")
+    .distort("<1.2 1.4 1.4 1.5 1.5 1.4 1.5 1.5 1.4 1.4 1.6 1.8 1.5 1.2>")
+    .crush("<3 3 3 3 3 3 3 3 3 3 2 2 3 4>")
+    .gain("<0.75 0.8 0.85 0.85 0.9 0.8 0.9 0.9 0.8 0.85 0.95 1 0.85 0.7>"),
+
+  // TREMOLO GUITARS - main riff with evolving variations
+  // Section 2: straight, 3: hammer-ons, 4: pull-offs
+  note("[0 1 0 -2]*<0 0 16 16 16 0 16 16 0 0 16 16 8 0>")
+    .scale("f#:phrygian")
+    .add("<0 0 0 1 -1 0 0 1 0 0 2 3 0 0>") // Variations
+    .sound("<~ ~ sawtooth sawtooth sawtooth ~ sawtooth sawtooth ~ ~ sawtooth sawtooth sawtooth ~>")
+    .crush("<4 4 5 5 5 4 5 5 4 4 4 4 5 6>")
+    .lpf("<800 800 900 900 850 800 950 1000 800 800 1100 1200 800 700>")
+    .lpq("<10 10 12 12 11 10 13 14 10 10 15 16 12 8>")
+    .shape("<10 10 12 12 11 10 13 14 10 10 15 16 12 10>")
+    .gain("<0 0 0.6 0.65 0.65 0 0.7 0.7 0 0 0.75 0.8 0.6 0>")
+    .pan(rand.range(0.3, 0.7))
+    .degradeBy("<0 0 0.2 0.25 0.25 0 0.2 0.25 0 0 0.2 0.25 0.3 0>"),
+
+  // CHUGGING GUITARS - transition section (root note power)
+  note("[0 ~ ~ ~]*<0 0 0 0 0 8 0 0 0 0 8 8 4 0>")
+    .scale("f#:phrygian")
+    .sound("<~ ~ ~ ~ ~ square ~ ~ ~ ~ square square sawtooth ~>")
+    .crush("<4 4 4 4 4 4 4 4 4 4 4 4 5 6>")
+    .lpf("<600 600 600 600 600 650 600 600 600 600 700 750 600 500>")
+    .shape("<12 12 12 12 12 18 12 12 12 12 20 22 16 12>")
+    .gain("<0 0 0 0 0 0.8 0 0 0 0 0.85 0.9 0.7 0>")
+    .distort("<0 0 0 0 0 1.5 0 0 0 0 1.6 1.8 1.4 0>"),
+
+  // COUNTER-RIFF - higher register dialogue in verse 2
+  note("[7 8 5 3]*<0 0 0 0 0 0 16 16 0 0 8 16 0 0>")
+    .scale("f#:phrygian")
+    .sound("<~ ~ ~ ~ ~ ~ sawtooth square ~ ~ sawtooth sawtooth ~ ~>")
+    .crush("<4 4 4 4 4 4 5 5 4 4 4 4 5 6>")
+    .lpf("<1200 1200 1200 1200 1200 1200 1400 1500 1200 1200 1600 1700 1300 1000>")
+    .lpq("<12 12 12 12 12 12 14 15 12 12 16 18 14 10>")
+    .shape("<10 10 10 10 10 10 12 13 10 10 14 16 12 8>")
+    .gain("<0 0 0 0 0 0 0.55 0.6 0 0 0.65 0.7 0 0>")
+    .pan(rand.range(0.2, 0.8))
+    .degradeBy("<0 0 0 0 0 0 0.25 0.25 0 0 0.25 0.25 0 0>"),
+
+  // HYPNOTIC LEAD - bridge section (snake-charmer vibe, emphasize flat-2)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ [1 0 -2 0 1 3 1 0]*4 [1 0 -2 0 1 3 5 3]*4 [1 0]*8 [1 0]*8 ~ ~>")
+    .scale("f#:phrygian")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ triangle square triangle square ~ ~>")
+    .crush("<4 4 4 4 4 4 4 4 5 5 4 4 5 6>")
+    .lpf(sine.range(800, 2000).slow(4))
+    .lpq("<10 10 10 10 10 10 10 10 15 18 20 22 12 8>")
+    .shape("<8 8 8 8 8 8 8 8 10 12 14 16 10 6>")
+    .gain("<0 0 0 0 0 0 0 0 0.65 0.7 0.75 0.8 0 0>")
+    .pan(sine.slow(12)),
+
+  // CLIMAX LAYER - additional intensity for final sections
+  note("[0 1 0 -2 3 1 -2 0]*<0 0 0 0 0 0 0 0 0 0 16 24 0 0>")
+    .scale("f#:phrygian")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ square sawtooth ~ ~>")
+    .crush("<4 4 4 4 4 4 4 4 4 4 3 3 4 5>")
+    .coarse("<8 8 8 8 8 8 8 8 8 8 12 16 8 4>")
+    .lpf("<1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1300 1500 1000 800>")
+    .shape("<10 10 10 10 10 10 10 10 10 10 16 20 12 8>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.7 0.75 0 0>")
+    .pan(perlin.fast(4))
+    .degradeBy("<0 0 0 0 0 0 0 0 0 0 0.3 0.35 0 0>"),
+
+  // SUB-BASS - reinforces the riff, extra doom in outro
+  note("[-12 -11 -12 -14]*<2 2 2 2 2 2 2 2 2 2 2 2 2 1>")
+    .scale("f#:phrygian")
+    .sound("sawtooth")
+    .lpf("<100 110 120 130 140 120 140 140 130 130 150 160 110 80>")
+    .shape("<18 20 20 22 22 20 22 22 20 20 24 26 22 18>")
+    .distort("<1.5 1.6 1.6 1.7 1.7 1.6 1.7 1.7 1.6 1.6 1.8 2 1.7 1.5>")
+    .crush("<2 2 2 2 2 2 2 2 2 2 2 1 2 3>")
+    .gain("<0.65 0.7 0.75 0.75 0.8 0.75 0.8 0.8 0.75 0.75 0.9 0.95 0.85 0.75>"),
+
+  // ATMOSPHERIC NOISE - industrial texture, builds tension
+  sound("<~ white*8 white*8 pink*8 pink*8 white*8 pink*8 brown*8 white*4 pink*4 brown*16 brown*24 white*4 ~>")
+    .hpf("<5000 4500 4500 4000 4000 4500 4000 3500 4200 4200 3000 2500 4500 5000>")
+    .crush("<4 4 4 4 4 4 4 4 4 4 3 3 4 5>")
+    .gain("<0 0.25 0.25 0.3 0.3 0.25 0.3 0.35 0.3 0.35 0.4 0.45 0.3 0.2>")
+    .pan(rand)
+    .shape("<8 10 10 12 12 10 12 14 12 12 16 18 12 8>")
+    .degradeBy("<0 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.4 0.4 0.5 0.6>"),
+
+  // DOOM CHORD - outro section only (ritardando effect via slower pattern)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 3 7]*2 [0 3 7]*1>")
+    .scale("f#:phrygian")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth sawtooth>")
+    .crush("<4 4 4 4 4 4 4 4 4 4 4 4 4 3>")
+    .lpf("<800 800 800 800 800 800 800 800 800 800 800 800 600 500>")
+    .shape("<12 12 12 12 12 12 12 12 12 12 12 12 18 22>")
+    .distort("<1 1 1 1 1 1 1 1 1 1 1 1 1.8 2>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0.85 0.9>")
+    .slow("<1 1 1 1 1 1 1 1 1 1 1 1 1 1.4>"), // Ritardando effect
+
+  // FEEDBACK/DRONE - final sustained power chord
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 0>")
+    .scale("f#:phrygian")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sine>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.5>")
+    .shape("<0 0 0 0 0 0 0 0 0 0 0 0 0 8>")
+    .lpf("<0 0 0 0 0 0 0 0 0 0 0 0 0 300>")
+)
