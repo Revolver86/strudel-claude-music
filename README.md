@@ -79,6 +79,21 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Frozen Abyss ❄️ **NEW**
+Glacial black metal doom - where arctic cold meets digital death at 175 BPM:
+- Alternating blast beat fury and crushing doom sections
+- Dual tremolo layers in Phrygian and Locrian modes
+- Mechanical double bass patterns with Euclidean rhythms
+- Shrieking 8-bit leads with harsh dissonance
+- Sub-zero bass frequencies with subsonic destruction
+- Blizzard noise textures and ice crystal atmospheres
+- Frozen glitch artifacts - digital permafrost
+- Ominous bell tolls for ritualistic doom
+- Dynamic section changes from relentless to oppressive
+- 15+ layered instruments creating a wall of glacial sound
+
+A journey through frozen wastelands where the cold is eternal and the void is absolute.
+
 ## How to Use
 
 1. Go to https://strudel.cc

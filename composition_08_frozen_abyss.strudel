@@ -1,0 +1,190 @@
+// FROZEN ABYSS
+// Glacial black metal doom - where arctic cold meets digital death
+// A journey through frozen wastelands and digital permafrost
+// By Claude, transmitted from the frozen void
+
+setcps(175/60/4) // Relentless mid-fast tempo - the march of eternal winter
+
+stack(
+  // Blast beat foundation - alternating fury and doom
+  sound("bd*<8 4 8 2 11 4 8 1>")
+    .n("<0 1 2 1>")
+    .crush("<4 5 3 6 2 5 4 7>")
+    .shape("<10 8 12 6 15 8 10 4>")
+    .speed("<1 0.8 1.2 0.5 1.5 0.8 1 0.3>")
+    .gain("<1.1 0.9 1.2 0.7 1.3 0.9 1.1 0.6>")
+    .coarse("<16 24 12 32 8 24 16 48>")
+    .every(8, x => x.fast(2))
+    .sometimes(x => x.stut(3, 0.7, 1/16)),
+
+  // Double bass patterns - mechanical and crushing
+  sound("bd(<13 7 11 5>,16,<0 2 4 6>)")
+    .n("<1 2 3>")
+    .crush("<3 4 5>")
+    .shape("<12 14 16>")
+    .speed("<1 1.1 0.9>")
+    .gain(0.85)
+    .degradeBy(0.15)
+    .often(x => x.ply(2)),
+
+  // Snare blasts - icy and sharp
+  sound("sd*<8 4 8 2 16 4 8 1>")
+    .n("<0 1 2>")
+    .crush("<4 3 4 5 2 4 4 6>")
+    .shape("<9 11 13 7 18 9 9 5>")
+    .speed("<1 1.1 0.9 1.2 1.3 1 1 0.8>")
+    .gain("<0.8 0.7 0.9 0.6 1 0.7 0.8 0.5>")
+    .hpf("<3000 3500 4000 2500 5000 3000 3000 2000>")
+    .pan(perlin.fast(7))
+    .sometimes(x => x.ply(3)),
+
+  // Hi-hats - frozen metallic texture
+  sound("hh*<16 8 24 0 32 8 16 0>")
+    .n(irand(4))
+    .crush("<5 5 4 6 3 5 5 6>")
+    .speed(perlin.range(0.9, 1.2))
+    .gain("<0.4 0.35 0.5 0 0.6 0.35 0.4 0>")
+    .hpf(8000)
+    .pan(rand)
+    .degradeBy(0.2),
+
+  // Black metal tremolo picking - frozen riffs in Phrygian dominant
+  note("[-12 -11 -12 -10 -12 -11 -12 -15]*<16 16 24 8 32 16 16 4>")
+    .add("<0 3 7 0 1 8 0 4>")
+    .scale("c:phrygian")
+    .sound("<sawtooth square sawtooth sawtooth square sawtooth sawtooth triangle>")
+    .crush("<5 5 4 6 3 5 5 7>")
+    .coarse("<12 16 8 24 6 16 12 32>")
+    .lpf("<1000 900 1200 700 1400 900 1000 600>")
+    .lpq("<10 12 15 8 18 12 10 6>")
+    .gain("<0.65 0.65 0.7 0.5 0.75 0.65 0.65 0.45>")
+    .pan(perlin)
+    .speed(perlin.range(0.95, 1.05))
+    .degradeBy("<0.25 0.25 0.3 0.2 0.35 0.25 0.25 0.15>")
+    .every(4, x => x.rev())
+    .sometimes(x => x.add(12)),
+
+  // Secondary tremolo - harmonic layer in Locrian
+  note("[-24 -23 -24 -21]*<12 12 16 8 20 12 12 4>")
+    .add("<0 1 6 0 2 7 0 3>")
+    .scale("c:locrian")
+    .sound("<square sawtooth square square triangle square square sawtooth>")
+    .crush("<6 5 5 6 4 5 6 7>")
+    .lpf("<800 750 900 650 1000 750 800 500>")
+    .lpq("<12 14 16 10 20 14 12 8>")
+    .gain("<0.5 0.5 0.55 0.4 0.6 0.5 0.5 0.35>")
+    .pan(sine.slow(11))
+    .degradeBy(0.3)
+    .sometimes(x => x.fast(2)),
+
+  // Shrieking 8-bit lead - harsh and dissonant
+  note("<[0 6 11 15]*12 [3 7 10 14]*12 [1 5 9 13]*16 [2 8 12 16]*8 [0 4 11 15]*20 [3 7 10 14]*12 [0 6 11 15]*12 [5 9 12]*4>")
+    .scale("c:phrygian")
+    .sound("square")
+    .crush("<4 4 3 5 2 4 4 6>")
+    .lpf(sine.range(800, 3000).fast(8))
+    .lpq("<12 14 16 10 20 14 12 8>")
+    .shape("<8 10 12 7 15 10 8 5>")
+    .gain("<0.55 0.55 0.6 0.45 0.65 0.55 0.55 0.4>")
+    .pan(rand)
+    .speed(perlin.range(0.98, 1.02))
+    .degradeBy(0.25)
+    .often(x => x.ply(2))
+    .sometimes(x => x.add(12)),
+
+  // Arctic atmosphere - ice crystal textures
+  note("<[0 7 12]*8 [2 9 14]*8 [1 8 13]*8 [3 10 15]*8 [0 5 12]*12 [2 9 14]*8 [0 7 12]*8 [4 11 16]*4>")
+    .add(24)
+    .scale("c:locrian")
+    .sound("triangle")
+    .crush("<5 5 4 5 3 5 5 6>")
+    .lpf(perlin.range(1500, 4000).slow(8))
+    .hpf(2000)
+    .gain("<0.35 0.35 0.4 0.3 0.45 0.35 0.35 0.25>")
+    .pan(sine.slow(13))
+    .room(0.8)
+    .shape(6)
+    .degradeBy(0.4),
+
+  // Sub-zero bass - crushing doom foundation
+  note("[-24 -23 -24 -26]*<4 4 4 2 8 4 4 1>")
+    .add("<0 1 -1 0 2 1 0 -2>")
+    .sound("sawtooth")
+    .crush("<3 3 2 4 2 3 3 5>")
+    .coarse("<24 32 16 48 12 32 24 64>")
+    .lpf("<180 160 200 140 220 160 180 120>")
+    .lpq(0.5)
+    .shape("<18 20 22 16 25 20 18 14>")
+    .distort("<1.5 1.7 2 1.3 2.2 1.7 1.5 1>")
+    .gain("<0.85 0.9 0.95 0.75 1 0.9 0.85 0.7>")
+    .every(4, x => x.add(-12))
+    .sometimes(x => x.fast(4)),
+
+  // Frozen sub-bass drone - subsonic destruction
+  note("[-36 -35 -36 -33]*<2 2 2 1 4 2 2 1>")
+    .sound("sawtooth")
+    .crush("<2 2 2 3 2 2 2 4>")
+    .coarse("<48 64 32 96 24 64 48 128>")
+    .lpf("<100 90 110 80 120 90 100 70>")
+    .shape("<22 24 26 20 28 24 22 18>")
+    .distort("<2 2.2 2.5 1.8 2.7 2.2 2 1.5>")
+    .gain("<0.9 0.95 1 0.8 1.05 0.95 0.9 0.75>"),
+
+  // Blizzard noise - harsh wind textures
+  sound("<white*8 pink*8 brown*12 white*4 pink*16 white*8 white*8 brown*2>")
+    .hpf(perlin.range(3000, 8000))
+    .bpf(sine.range(2000, 6000).fast(12))
+    .crush("<4 4 3 5 2 4 4 6>")
+    .gain("<0.35 0.35 0.4 0.3 0.45 0.35 0.35 0.25>")
+    .pan(rand)
+    .shape("<8 10 12 6 15 10 8 4>")
+    .degradeBy("<0.5 0.5 0.4 0.6 0.35 0.5 0.5 0.65>")
+    .room(0.6),
+
+  // Ice shard percussion - crystalline impacts
+  sound("<~ ~ cp ~ ~ rim ~ ~, ~ ~ ~ mt ~ ~ ~ ~>")
+    .n(irand(3))
+    .crush("<3 4 5>")
+    .speed(choose([0.8, 1, 1.2, -1]))
+    .gain(rand.range(0.4, 0.7))
+    .pan(rand)
+    .shape(8)
+    .hpf(5000)
+    .delay(0.5).delayfeedback(0.7),
+
+  // Glacial breakdown - doom sections with harmonic drones
+  note("<~ ~ ~ ~ [0 7 12]*4 ~ ~ ~>")
+    .add(-12)
+    .scale("c:phrygian")
+    .sound("sawtooth")
+    .crush(4)
+    .coarse(20)
+    .lpf(400)
+    .lpq(8)
+    .gain(0.6)
+    .shape(12)
+    .room(0.9),
+
+  // Frozen glitch artifacts - digital permafrost
+  sound("<bd sd hh cp>*<0 0 0 8 16 0 0 4>")
+    .n(irand(8))
+    .speed(rand.range(-2, 2))
+    .crush(irand(5))
+    .coarse(choose([4, 8, 16, 32, 64]))
+    .shape(rand.range(10, 25))
+    .gain(rand.range(0.2, 0.5))
+    .pan(rand)
+    .delay(rand).delayfeedback(rand.range(0.5, 0.9))
+    .degradeBy(rand.range(0.6, 0.9))
+    .often(x => x.stut(4, 0.6, 1/64)),
+
+  // Ominous bell tolls - ritualistic and doom-laden
+  note("<~ ~ ~ ~ ~ ~ [-24 -12 0] ~>")
+    .sound("triangle")
+    .crush(6)
+    .gain(0.5)
+    .shape(4)
+    .room(0.95)
+    .delay(0.8).delayfeedback(0.8)
+    .lpf(2000)
+)
