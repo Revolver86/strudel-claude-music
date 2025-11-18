@@ -1,0 +1,291 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// KINGDOM OF RUST
+// ═══════════════════════════════════════════════════════════════════════════
+// An epic atmospheric black metal journey through fallen glory and reclamation
+// 155 BPM, C# minor - a tale told in movements
+// By Claude, in the spirit of Emperor, Summoning, and Mgła
+//
+// STORY: This is the tale of an empire's rise, fall, corruption, and eventual
+// reclamation by new forces. The long view of history - how glory turns to
+// rust, how time and nature reclaim all things, and how from the ashes of
+// the old, something new and fierce emerges.
+//
+// STRUCTURE (14 movements):
+// ─────────────────────────────────────────────────────────────────────────
+// [0-1]   INTRO: The Fallen Empire (45 seconds)
+//         Majestic clean guitar arpeggios (C#m - Amaj7 - E - B)
+//         Cathedral reverb, distant war drums building
+//         Strings pad creates atmosphere of lost grandeur
+//
+// [2-3]   MOVEMENT I: Glory Remembered
+//         Blast beats triumphant, three guitar layers
+//         Lead melody soars through C# natural minor scale
+//         Harmony in fifths - this is the empire at its height
+//         Power chords anchor the memory of strength
+//
+// [4]     TRANSITION: The Fall
+//         Marching kick/snare (no blasts)
+//         Palm-muted guitars chug like machinery grinding down
+//         8 bars of industrial decay - the empire crumbles
+//
+// [5-6]   MOVEMENT II: Occupation by Rust
+//         C# Phrygian mode - exotic and menacing
+//         Furious blast beats return but darker
+//         Harsh noise sweeps represent chaos and corruption
+//         The flat-2nd creates an unsettling atmosphere
+//
+// [7]     BRIDGE: Reflection and Loss
+//         All falls silent - just clean guitar and bass
+//         Melancholic solo, expressive and mournful
+//         12 bars of solitude, processing the devastation
+//         This is the quiet after the storm
+//
+// [8-9]   MOVEMENT III: The Reclamation Begins
+//         Sparse kick and bass, synchronized pattern
+//         Gradually add tom fills, building tension
+//         Original melody returns but transformed, darker
+//         From nothing, strength rebuilds over 16 bars
+//
+// [10-11] MOVEMENT IV: The Battle Climax
+//         ALL themes combine - orchestral density
+//         Three guitar melodies in different registers
+//         Strings pad, subsonic bass, harsh vocal textures
+//         24 bars of absolute cathartic power
+//         Every instrument tells the story of reclamation
+//
+// [12-13] OUTRO: Victory and Transcendence
+//         Ascending riff climbs full octave (C# to C#)
+//         Slowing effect through pattern manipulation
+//         Massive sustained C# power chord with full reverb
+//         Fade to solo clean guitar - peaceful resolution
+//         The cycle completes, ready to begin again
+// ═══════════════════════════════════════════════════════════════════════════
+
+setcps(155/60/4) // 155 BPM - epic tempo
+
+stack(
+  // === MOVEMENT PROGRESSION DRUMS ===
+  // Section 0-1: Intro (distant war drums building)
+  // Section 2-3: Glory (blast beats triumphant)
+  // Section 4: Fall (marching pattern)
+  // Section 5-6: Occupation (furious blasts)
+  // Section 7: Reflection (silence)
+  // Section 8-9: Reclamation (building from sparse)
+  // Section 10-11: Battle (full power)
+  // Section 12-13: Victory (slowing, fading)
+
+  // Kick drum - the heartbeat of empire
+  sound("bd*<0 2 8 8 4 8 8 0 1 4 8 8 4 2>")
+    .n("<0 0 1 2 0 3 4 0 0 1 2 3 1 0>")
+    .gain("<0.3 0.5 0.9 0.95 0.8 1 1.1 0 0.4 0.7 1 1.2 0.8 0.4>")
+    .crush("<6 5 4 3 5 3 2 6 5 4 3 2 4 5>")
+    .shape("<3 5 8 10 8 12 15 0 5 8 10 15 8 5>"),
+
+  // Snare - the voice of conflict
+  sound("[~ sd]*<0 1 2 2 2 2 2 0 0 1 2 2 2 1>")
+    .gain("<0.2 0.4 0.8 0.85 0.7 0.9 1 0 0.3 0.6 0.85 1 0.7 0.4>")
+    .crush("<6 5 4 3 5 3 2 6 5 4 3 2 4 5>")
+    .shape("<3 5 8 10 8 12 15 0 5 8 10 15 8 5>"),
+
+  // Hi-hats - texture of time
+  sound("hh*<0 0 8 16 0 16 24 0 0 4 16 24 8 0>")
+    .gain("<0 0 0.3 0.4 0 0.45 0.5 0 0 0.25 0.4 0.5 0.3 0>")
+    .crush("<6 6 5 4 6 3 3 6 6 5 4 3 5 6>")
+    .pan(perlin),
+
+  // Toms - war drums in intro and builds
+  sound("<[~ ~ lt ht] [~ lt ~ mt] ~ ~ ~ ~ ~ ~ [~ lt] [lt mt] ~ ~ ~ ~>")
+    .gain("<0.6 0.7 0 0 0 0 0 0 0.5 0.7 0 0 0 0>")
+    .shape("<5 6 0 0 0 0 0 0 4 6 0 0 0 0>"),
+
+  // === GUITAR LAYER 1: CLEAN ARPEGGIOS (INTRO & OUTRO) ===
+  // C# minor - Amaj7 - E - B progression
+  note("<[0 4 7 11 16 11 7 4]*2 [0 4 8 11 16 11 8 4]*2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 4 7 11 16 11 7 4]*2 [0 4 8 11 16]*1>")
+    .add("<0 9 4 11 0 0 0 0 0 0 0 0 0 4>") // chord root shifts
+    .scale("c#:minor")
+    .sound("<gtr gtr ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ gtr gtr>")
+    .room("<0.9 0.9 0 0 0 0 0 0 0 0 0 0 0.9 0.95>")
+    .size("<0.9 0.9 0 0 0 0 0 0 0 0 0 0 0.9 0.95>")
+    .gain("<0.5 0.55 0 0 0 0 0 0 0 0 0 0 0.5 0.4>")
+    .pan(sine.slow(16)),
+
+  // === GUITAR LAYER 2: RHYTHM POWER CHORDS ===
+  note("<<~ ~> <~ ~> [0 0 0 0]*4 [0 0 0 0]*4 [0 0 0 0]*4 [[-2 3] [-2 3] [-2 3] [-2 3]]*4 [[-2 3] [-2 3] [-2 3] [-2 3]]*4 ~ [-12 -12]*2 [-12 -12 0 0]*2 [0 0 0 0]*4 [0 0 0 0]*4 [0 2 4 5]*4 [0 2 4 5 7 9 11 12]*2>")
+    .scale("c#:minor")
+    .sound("<~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth ~ sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth>")
+    .lpf("<0 0 800 900 700 1200 1400 0 600 800 1000 1200 1800 2000>")
+    .lpq("<0 0 12 15 10 20 25 0 8 12 15 20 12 8>")
+    .shape("<0 0 12 14 10 16 18 0 8 12 14 18 10 6>")
+    .distort("<0 0 0.8 1 0.6 1.2 1.5 0 0.5 0.8 1 1.5 0.8 0.4>")
+    .gain("<0 0 0.7 0.75 0.65 0.8 0.85 0 0.5 0.65 0.75 0.85 0.7 0.5>")
+    .crush("<6 6 5 4 5 3 3 6 5 4 3 3 4 5>"),
+
+  // === GUITAR LAYER 3: TRIUMPHANT LEAD MELODY ===
+  // Ascending C# natural minor, soaring and majestic
+  note("<<~ ~> <~ ~> [0 2 4 7 9 11 14 16]*2 [16 14 11 9 7 4 2 0]*2 ~ [0 1 0 1 0 1 0 1]*4 [0 1 0 1 0 1 0 1]*4 ~ ~ [0 2 4]*4 [0 2 4 7 9 11 14 16]*2 [0 2 4 7 9 11 14 16 19 21]*2 ~>")
+    .scale("c#:minor")
+    .sound("<~ ~ square square ~ square square ~ ~ square square square ~ ~>")
+    .crush("<0 0 6 5 0 4 3 0 0 5 4 3 0 0>")
+    .lpf(sine.range(1200, 2800).slow(4))
+    .lpq("<0 0 15 18 0 22 25 0 0 12 18 25 0 0>")
+    .gain("<0 0 0.6 0.65 0 0.7 0.75 0 0 0.5 0.65 0.75 0 0>")
+    .pan(rand.segment(128)),
+
+  // === GUITAR LAYER 4: HARMONY (FIFTHS ABOVE) ===
+  note("<<~ ~> <~ ~> [7 9 11 14 16 18 21 23]*2 [23 21 18 16 14 11 9 7]*2 ~ [7 8 7 8 7 8 7 8]*4 [7 8 7 8 7 8 7 8]*4 ~ ~ [7 9 11]*4 [7 9 11 14 16 18 21 23]*2 [7 9 11 14 16 18 21 23 26 28]*2 ~>")
+    .scale("c#:minor")
+    .sound("<~ ~ square square ~ square square ~ ~ square square square ~ ~>")
+    .crush("<0 0 6 5 0 4 3 0 0 5 4 3 0 0>")
+    .lpf(sine.range(1400, 3200).slow(4))
+    .lpq("<0 0 15 18 0 22 25 0 0 12 18 25 0 0>")
+    .gain("<0 0 0.55 0.6 0 0.65 0.7 0 0 0.45 0.6 0.7 0 0>")
+    .pan(rand.segment(128)),
+
+  // === BASS: THE FOUNDATION ===
+  note("<[-24 -24]*2 [-24 -24]*2 [-24 -24]*4 [-24 -24]*4 [-24 -24]*4 [[-26 -21] [-26 -21]]*4 [[-26 -21] [-26 -21]]*4 [-24 -24]*2 [-36 -36 -24 -24]*2 [-36 -24 -36 -24]*2 [-24 -24]*4 [-24 -24]*4 [-24 -22 -20 -19]*4 [-24 -22 -20 -19 -17 -15 -13 -12]*2>")
+    .scale("c#:minor")
+    .sound("sawtooth")
+    .lpf("<150 180 200 220 180 250 280 120 150 180 220 280 200 180>")
+    .shape("<10 12 16 18 14 20 22 8 12 16 18 22 14 10>")
+    .distort("<0.8 1 1.5 1.8 1.2 2 2.2 0.5 1 1.5 1.8 2.2 1.5 1>")
+    .crush("<5 4 3 3 4 2 2 5 4 3 3 2 3 4>")
+    .gain("<0.6 0.7 0.8 0.85 0.75 0.9 0.95 0.5 0.65 0.75 0.85 0.95 0.8 0.6>"),
+
+  // === STRINGS PAD: CATHEDRAL ATMOSPHERE ===
+  note("<[0 7 12 16]*1 [0 7 12 16]*1 ~ ~ ~ ~ ~ ~ ~ ~ [0 7 12 16]*1 [0 7 12 16]*1 [0 7 12]*1 [0 7 12]*1>")
+    .scale("c#:minor")
+    .sound("<sine sine ~ ~ ~ ~ ~ ~ ~ ~ sine sine sine sine>")
+    .room("<0.95 0.95 0 0 0 0 0 0 0 0 0.95 0.95 0.98 0.99>")
+    .size("<0.95 0.95 0 0 0 0 0 0 0 0 0.95 0.95 0.98 0.99>")
+    .lpf("<800 800 0 0 0 0 0 0 0 0 800 800 900 1000>")
+    .gain("<0.35 0.4 0 0 0 0 0 0 0 0 0.35 0.4 0.45 0.5>")
+    .slow(2),
+
+  // === EMOTIONAL CLEAN LEAD SOLO (BRIDGE) ===
+  // Melancholic, expressive, mournful
+  note("<~ ~ ~ ~ ~ ~ ~ [0 2 4 7 4 2 0 -2 0 4 7 11 7 4 11 14]*1 ~ ~ ~ ~ ~ ~>")
+    .scale("c#:minor")
+    .sound("<~ ~ ~ ~ ~ ~ ~ gtr ~ ~ ~ ~ ~ ~>")
+    .room("<0 0 0 0 0 0 0 0.85 0 0 0 0 0 0>")
+    .size("<0 0 0 0 0 0 0 0.85 0 0 0 0 0 0>")
+    .gain("<0 0 0 0 0 0 0 0.65 0 0 0 0 0 0>")
+    .pan(0.5)
+    .delay(0.3)
+    .delaytime(0.375)
+    .delayfeedback(0.4),
+
+  // === HARSH NOISE TEXTURE (OCCUPATION) ===
+  sound("<~ ~ ~ ~ ~ white*16 pink*24 ~ ~ ~ white*8 brown*16 ~ ~>")
+    .hpf("<0 0 0 0 0 3000 4000 0 0 0 3500 5000 0 0>")
+    .crush("<0 0 0 0 0 3 2 0 0 0 3 2 0 0>")
+    .gain("<0 0 0 0 0 0.35 0.4 0 0 0 0.3 0.45 0 0>")
+    .pan(rand)
+    .shape("<0 0 0 0 0 15 20 0 0 0 12 18 0 0>"),
+
+  // === PHRYGIAN MENACE (OCCUPATION RIFF) ===
+  // Emphasizing the flat-2nd for exotic darkness
+  note("<~ ~ ~ ~ ~ [0 1 3 5]*8 [0 1 3 5 7 8]*12 ~ ~ ~ [0 1 3 5]*4 [0 1 3 5 7 8 10]*8 ~ ~>")
+    .scale("c#:phrygian")
+    .sound("<~ ~ ~ ~ ~ sawtooth sawtooth ~ ~ ~ sawtooth sawtooth ~ ~>")
+    .lpf("<0 0 0 0 0 1000 1200 0 0 0 1100 1400 0 0>")
+    .lpq("<0 0 0 0 0 18 22 0 0 0 20 25 0 0>")
+    .shape("<0 0 0 0 0 14 18 0 0 0 16 20 0 0>")
+    .crush("<0 0 0 0 0 4 3 0 0 0 4 3 0 0>")
+    .gain("<0 0 0 0 0 0.7 0.75 0 0 0 0.75 0.8 0 0>")
+    .pan(rand.segment(64)),
+
+  // === ATMOSPHERIC SHIMMER (INTRO/OUTRO) ===
+  sound("<~ triangle*8 ~ ~ ~ ~ ~ ~ ~ ~ ~ triangle*4 triangle*2 triangle*1>")
+    .n("<0 1 0 0 0 0 0 0 0 0 0 2 3 4>")
+    .crush("<0 6 0 0 0 0 0 0 0 0 0 5 5 6>")
+    .gain("<0 0.25 0 0 0 0 0 0 0 0 0 0.3 0.35 0.4>")
+    .pan(rand)
+    .room("<0 0.8 0 0 0 0 0 0 0 0 0 0.85 0.9 0.95>"),
+
+  // === CLIMAX TEXTURE: HARSH VOCALS-AS-TEXTURE ===
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ brown*32 pink*32 ~ ~>")
+    .hpf("<0 0 0 0 0 0 0 0 0 0 2000 2500 0 0>")
+    .lpf("<0 0 0 0 0 0 0 0 0 0 4000 4500 0 0>")
+    .bpf("<0 0 0 0 0 0 0 0 0 0 3000 3200 0 0>")
+    .bpq("<0 0 0 0 0 0 0 0 0 0 15 18 0 0>")
+    .crush("<0 0 0 0 0 0 0 0 0 0 3 2 0 0>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.4 0.45 0 0>")
+    .pan(sine.slow(2))
+    .shape("<0 0 0 0 0 0 0 0 0 0 18 22 0 0>"),
+
+  // === SUBSONIC DEPTH (CLIMAX) ===
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [-36 -35 -36 -33]*4 [-36 -35 -36 -33]*4 ~ ~>")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth sawtooth ~ ~>")
+    .lpf("<0 0 0 0 0 0 0 0 0 0 120 130 0 0>")
+    .shape("<0 0 0 0 0 0 0 0 0 0 24 26 0 0>")
+    .distort("<0 0 0 0 0 0 0 0 0 0 2.5 3 0 0>")
+    .crush("<0 0 0 0 0 0 0 0 0 0 2 2 0 0>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.75 0.8 0 0>"),
+
+  // === RECLAMATION MELODY (TRIUMPHANT BUT DARKER) ===
+  // Original triumphant melody transformed to minor/darker
+  note("<~ ~ ~ ~ ~ ~ ~ ~ [0 2 4 7 9 11 14 16]*2 [0 2 4 7 9]*2 [0 2 4 7 9 11 14 16]*2 [0 2 4 7 9 11 14 16 19 21 23 26]*2 ~ ~>")
+    .scale("c#:minor")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ square square square square ~ ~>")
+    .crush("<0 0 0 0 0 0 0 0 5 4 4 3 0 0>")
+    .lpf("<0 0 0 0 0 0 0 0 1000 1400 1800 2400 0 0>")
+    .lpq("<0 0 0 0 0 0 0 0 12 15 18 22 0 0>")
+    .gain("<0 0 0 0 0 0 0 0 0.5 0.6 0.7 0.75 0 0>")
+    .shape("<0 0 0 0 0 0 0 0 8 10 12 15 0 0>")
+    .pan(0.3),
+
+  // === CYMBAL CRASHES (EPIC MOMENTS) ===
+  sound("<~ ~ [~ ~ ~ oh] [~ ~ ~ oh] ~ [~ ~ ~ oh] [~ ~ ~ oh] ~ ~ ~ [~ ~ ~ oh] [~ ~ ~ oh] [oh ~ ~ ~] [oh ~ ~ ~]>")
+    .gain("<0 0 0.7 0.75 0 0.8 0.85 0 0 0 0.75 0.8 0.6 0.5>")
+    .room("<0 0 0.7 0.7 0 0.75 0.8 0 0 0 0.75 0.8 0.85 0.9>")
+    .pan(0.5),
+
+  // === ADDITIONAL CLIMAX LAYER: THIRD HARMONY ===
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [14 16 18 21 23 25 28 30]*2 [14 16 18 21 23 25 28 30 33 35]*2 ~ ~>")
+    .scale("c#:minor")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ square square ~ ~>")
+    .crush("<0 0 0 0 0 0 0 0 0 0 3 2 0 0>")
+    .lpf("<0 0 0 0 0 0 0 0 0 0 2400 3000 0 0>")
+    .lpq("<0 0 0 0 0 0 0 0 0 0 20 25 0 0>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.65 0.7 0 0>")
+    .pan(0.7),
+
+  // === OUTRO ASCENDING RIFF (CLIMBING OCTAVE) ===
+  // Simulates slowing by using slower note divisions
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 2 4 5 7 9 11 12]*2 [0 2 4 5 7 9 11 12]*1>")
+    .scale("c#:minor")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth sawtooth>")
+    .lpf("<0 0 0 0 0 0 0 0 0 0 0 0 1500 1200>")
+    .shape("<0 0 0 0 0 0 0 0 0 0 0 0 12 10>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0.75 0.7>")
+    .room("<0 0 0 0 0 0 0 0 0 0 0 0 0.8 0.85>"),
+
+  // === FINAL MASSIVE CHORD (HELD C#) ===
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 7 12 16 19]*1>")
+    .scale("c#:minor")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth>")
+    .lpf("<0 0 0 0 0 0 0 0 0 0 0 0 0 2000>")
+    .shape("<0 0 0 0 0 0 0 0 0 0 0 0 0 20>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.9>")
+    .room("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.95>")
+    .size("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.95>")
+    .slow(4),
+
+  // === EPIC ORCHESTRAL DEPTH (CLIMAX) ===
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 7 12]*2 [0 7 12 16]*2 [0 7 12]*1 [0 7 12]*1>")
+    .scale("c#:minor")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ triangle triangle triangle triangle>")
+    .lpf("<0 0 0 0 0 0 0 0 0 0 1200 1500 1000 900>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.5 0.55 0.6 0.65>")
+    .room("<0 0 0 0 0 0 0 0 0 0 0.9 0.9 0.95 0.98>")
+    .size("<0 0 0 0 0 0 0 0 0 0 0.9 0.9 0.95 0.98>")
+    .slow(2),
+
+  // === BASS DRONE (BRIDGE & OUTRO) ===
+  note("<~ ~ ~ ~ ~ ~ ~ [-24]*1 ~ ~ ~ ~ [-24 -24]*2 [-24]*1>")
+    .sound("<~ ~ ~ ~ ~ ~ ~ sawtooth ~ ~ ~ ~ sawtooth sawtooth>")
+    .lpf("<0 0 0 0 0 0 0 100 0 0 0 0 150 120>")
+    .shape("<0 0 0 0 0 0 0 6 0 0 0 0 10 8>")
+    .gain("<0 0 0 0 0 0 0 0.5 0 0 0 0 0.6 0.55>")
+    .slow(4)
+)
