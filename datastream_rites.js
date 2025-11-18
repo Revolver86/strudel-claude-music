@@ -8,22 +8,19 @@ const dphrygdom = (octave) => [0,1,3,4,5,6,7].map(x => `d${octave}`.freq * Math.
 
 // === INTRO: Hypnotic Polyrhythmic Percussion + Bass Drone (45 seconds) ===
 // Euclidean patterns: 5/8, 7/8, 3/4 creating polyrhythmic texture
-const intro_perc1 = s("bd:5")
-  .euclidean(5, 8)
+const intro_perc1 = s("bd:5(5,8)")
   .gain(0.8)
   .lpf(800)
   .room(0.4)
   .distort(0.3)
 
-const intro_perc2 = s("cp:2")
-  .euclidean(7, 8)
+const intro_perc2 = s("cp:2(7,8)")
   .gain(0.6)
   .hpf(1200)
   .delay(0.2)
   .delaytime(0.125)
 
-const intro_perc3 = s("hh:7")
-  .euclidean(3, 4)
+const intro_perc3 = s("hh:7(3,4)")
   .gain(0.5)
   .lpf(3000)
   .crush(6)
@@ -60,16 +57,15 @@ const verse_guitar1 = note("<[d3 eb3 f#3 g3] [g3 a3 bb3 c4] [c4 d4 eb4 f#4] [f#4
   .sustain(0.1)
   .fast(4) // Tremolo picking speed
 
-// Second tremolo: descending chromatic answer
-const verse_guitar2 = note("<[bb4 a4 ab4 g4] [g4 f#4 f4 e4] [e4 eb4 d4 db4] [db4 c4 b3 bb3]>")
+// Second tremolo: descending chromatic answer (call-response offset in pattern)
+const verse_guitar2 = note("<~ [bb4 a4 ab4 g4] ~ [g4 f#4 f4 e4] ~ [e4 eb4 d4 db4] ~ [db4 c4 b3 bb3]>")
   .s("sawtooth")
   .gain(0.6)
   .lpf(2000)
   .distort(0.6)
   .room(0.3)
   .sustain(0.1)
-  .fast(4)
-  .late(0.5) // Call and response timing
+  .fast(2) // Adjusted for new pattern length
 
 // Industrial metallic percussion (ritualistic)
 const verse_industrial = s("[metal:0 ~ metal:2 ~]*2")
@@ -123,9 +119,9 @@ const verse2_choir = note("<d4 eb4 f#4 g4>")
   .s("square")
   .gain(0.3)
   .stack(
-    note("<d4 eb4 f#4 g4>").s("square").gain(0.3).note.add(0.1),
-    note("<d4 eb4 f#4 g4>").s("square").gain(0.3).note.add(-0.1),
-    note("<d4 eb4 f#4 g4>").s("square").gain(0.3).note.add(0.2)
+    note("<d4 eb4 f#4 g4>").s("square").gain(0.3).add(0.1),
+    note("<d4 eb4 f#4 g4>").s("square").gain(0.3).add(-0.1),
+    note("<d4 eb4 f#4 g4>").s("square").gain(0.3).add(0.2)
   )
   .crush(5)
   .lpf(1500)
