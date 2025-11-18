@@ -26,11 +26,11 @@ stack(
     .room(0.6),
 
   // ====================================
-  // CLEAN GUITAR - heartbreaking fingerpicked arpeggios
+  // CLEAN GUITAR - heartbreaking fingerpicked arpeggios (using triangle wave)
   // ====================================
   // Am arpeggio (A C E A E C)
   note("<[a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4]>")
-    .sound("gtr_nylon")
+    .sound("triangle")
     .gain("<0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.5 0.5 0.5 0.5 0 0 0 0.4 0.4 0.6 0.7 0.8 0.8 0.7>")
     .room(0.4)
     .delay(0.3).delaytime(0.375).delayfeedback(0.4)
@@ -39,7 +39,7 @@ stack(
 
   // Fmaj7 arpeggio (F A C E C A)
   note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3]>")
-    .sound("gtr_nylon")
+    .sound("triangle")
     .gain("<0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0 0 0 0.4 0.4 0.6 0.7 0.8 0.8 0.7>")
     .room(0.4)
     .delay(0.3).delaytime(0.375).delayfeedback(0.4)
@@ -48,7 +48,7 @@ stack(
 
   // C arpeggio (C E G C G E)
   note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3]>")
-    .sound("gtr_nylon")
+    .sound("triangle")
     .gain("<0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0 0 0 0.4 0.4 0.6 0.7 0.8 0.8 0.7>")
     .room(0.4)
     .delay(0.3).delaytime(0.375).delayfeedback(0.4)
@@ -57,16 +57,16 @@ stack(
 
   // G arpeggio (G B D G D B)
   note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3]>")
-    .sound("gtr_nylon")
+    .sound("triangle")
     .gain("<0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0 0 0 0.4 0.4 0.6 0.7 0.8 0.8 0.7>")
     .room(0.4)
     .delay(0.3).delaytime(0.375).delayfeedback(0.4)
     .lpf(3000)
     .release(2),
 
-  // Open string shimmer
+  // Open string shimmer with sine wave
   note("<a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4>")
-    .sound("gtr_nylon")
+    .sound("sine")
     .gain("<0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.25 0.25 0.25 0.25 0 0 0 0.2 0.2 0.3 0.35 0.4 0.4 0.35>")
     .room(0.5)
     .release(4),
