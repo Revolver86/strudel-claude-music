@@ -1,0 +1,208 @@
+// SIMULACRA_DECAY
+// The death of the original through iterative copying
+// A beautiful theme systematically destroyed by generational loss
+// Baudrillard's nightmare: the simulacrum replacing the real
+// By Claude, witnessing the murder of the original
+
+setcps(110/60/4) // 110 BPM - steady, the only constant
+
+stack(
+  // PRIMARY MELODY - The Original Being Destroyed
+  // Generation 1 → 25: pristine → unrecognizable ghost
+  // Ab major melody: Ab Bb C Db Eb Db C Bb
+  note("0 2 4 5 7 5 4 2")
+    .scale("Ab:major")
+    .sound("<piano piano piano gtr gtr sawtooth square noise>") // Timbre degrading
+    .octave("<5 5 5 4 4 4 3 3>") // Losing high frequencies
+    .crush("<12 10 8 6 5 4 3 2>") // Bit depth: 12-bit → 2-bit
+    .coarse("<1 1 2 4 8 16 32 64>") // Sample rate destruction
+    .lpf("<20000 8000 4000 2000 1200 800 600 400>") // High frequency loss
+    .hpf("<20 80 200 400 600 800 1000 1200>") // Low frequency loss
+    .lpq("<1 2 4 6 8 12 15 20>") // Filter resonance (artifacts)
+    .shape("<0 3 6 10 14 18 22 28>") // Harmonic distortion increasing
+    .gain("<0.65 0.65 0.65 0.6 0.55 0.5 0.45 0.35>") // Original fading
+    .room("<0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7>") // Reverb artifacts
+    .size(0.8)
+    .delay("<0 0.05 0.1 0.15 0.2 0.25 0.3 0.4>") // Temporal smearing
+    .delayfeedback("<0 0.3 0.4 0.5 0.6 0.7 0.75 0.8>") // Notes bleeding
+    .speed("<1 0.995 0.99 0.985 0.98 0.97 0.96 0.95>") // Timing drift
+    .degradeBy("<0 0.05 0.1 0.15 0.2 0.3 0.4 0.6>") // Events disappearing
+    .pan(perlin.slow(8)),
+
+  // HARMONIC SUPPORT - Degrading chords
+  // Simple triad accompaniment losing definition
+  note("<[0 4 7] [2 5 9] [0 4 7] [5 9 12]>")
+    .scale("Ab:major")
+    .sound("<piano piano gtr sawtooth square triangle square noise>")
+    .octave("<4 4 4 3 3 3 2 2>")
+    .crush("<11 9 7 5 4 3 2 1>")
+    .coarse("<1 2 4 8 12 16 24 48>")
+    .lpf("<12000 6000 3000 1800 1200 900 700 500>")
+    .hpf("<30 100 250 450 650 850 1050 1250>")
+    .shape("<2 5 8 12 16 20 24 30>")
+    .gain("<0.4 0.4 0.38 0.36 0.34 0.32 0.28 0.22>")
+    .room("<0.1 0.15 0.25 0.35 0.45 0.55 0.65 0.75>")
+    .size(0.9)
+    .delay("<0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.5>")
+    .delayfeedback("<0.4 0.5 0.6 0.65 0.7 0.75 0.8 0.85>")
+    .speed("<1 0.998 0.995 0.99 0.985 0.98 0.975 0.97>")
+    .degradeBy("<0.1 0.15 0.2 0.25 0.3 0.4 0.5 0.7>")
+    .pan(perlin.slow(12)),
+
+  // SUB-BASS FOUNDATION - Losing low-end definition
+  // Root notes collapsing into narrow-band noise
+  note("<0 2 0 5>")
+    .scale("Ab:major")
+    .octave("<2 2 2 2 2 1 1 1>")
+    .sound("<sawtooth sawtooth sawtooth sawtooth triangle square sine noise>")
+    .lpf("<180 160 140 120 100 90 80 70>")
+    .shape("<12 14 16 18 20 22 25 30>")
+    .distort("<0.8 1 1.2 1.5 1.8 2 2.2 2.5>")
+    .crush("<6 5 4 3 3 2 2 1>")
+    .coarse("<1 2 4 8 16 24 32 64>")
+    .gain("<0.7 0.72 0.75 0.77 0.8 0.82 0.85 0.88>") // Bass gets louder (muddier)
+    .room("<0 0.05 0.1 0.15 0.2 0.25 0.3 0.4>")
+    .speed("<1 0.999 0.998 0.997 0.995 0.993 0.99 0.985>"),
+
+  // COMPRESSION ARTIFACTS - Growing louder
+  // The hiss and noise from lossy compression
+  // Starts silent, becomes dominant
+  sound("white*<0 1 2 4 8 8 16 16>")
+    .hpf("<6000 5000 4000 3000 2500 2000 1800 1500>")
+    .lpf("<18000 15000 12000 9000 7000 5000 4000 3000>")
+    .crush("<8 6 5 4 3 2 2 1>")
+    .shape("<5 8 10 12 15 18 22 28>")
+    .gain("<0 0.08 0.12 0.18 0.25 0.32 0.4 0.5>") // Artifacts overtaking content
+    .pan(rand)
+    .degradeBy("<0.3 0.3 0.35 0.4 0.45 0.5 0.55 0.6>"),
+
+  // PINK NOISE LAYER - Mid-range compression noise
+  sound("pink*<0 0 1 2 4 8 12 16>")
+    .bpf(perlin.range(800, 2400).slow(4))
+    .bpq("<15 18 20 22 25 28 30 35>")
+    .crush("<7 5 4 3 2 2 1 1>")
+    .shape("<6 9 12 15 18 22 26 32>")
+    .gain("<0 0 0.06 0.1 0.15 0.22 0.3 0.38>")
+    .pan(perlin.fast(3))
+    .degradeBy("<0.4 0.4 0.45 0.5 0.55 0.6 0.65 0.7>"),
+
+  // SPECTRAL GHOST - High octave remnant
+  // The memory of the melody in upper registers
+  // Becomes more prominent as main melody dies
+  note("0 2 4 5 7 5 4 2")
+    .scale("Ab:major")
+    .octave("<6 6 6 6 5 5 4 4>") // Moving down as highs are lost
+    .sound("<triangle sine triangle sine square triangle sine noise>")
+    .crush("<10 8 6 5 4 3 2 1>")
+    .lpf("<12000 8000 5000 3000 2000 1500 1200 1000>")
+    .hpf("<800 1000 1200 1400 1600 1800 2000 2200>")
+    .shape("<4 6 8 11 14 18 22 28>")
+    .gain("<0.15 0.18 0.2 0.22 0.25 0.28 0.32 0.35>") // Ghost becoming audible
+    .room(0.6).size(0.9)
+    .delay("<0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5>")
+    .delayfeedback("<0.5 0.6 0.65 0.7 0.75 0.8 0.85 0.9>")
+    .speed("<1 0.997 0.994 0.99 0.985 0.98 0.97 0.96>")
+    .degradeBy("<0.2 0.25 0.3 0.35 0.4 0.5 0.6 0.75>")
+    .pan(sine.slow(6)),
+
+  // TEMPORAL SMEARING LAYER - Delayed echoes
+  // The "trails" from compression temporal artifacts
+  note("0 2 4 5 7 5 4 2")
+    .scale("Ab:major")
+    .octave("<5 5 4 4 4 3 3 3>")
+    .sound("<~ piano gtr sawtooth square square triangle noise>")
+    .crush("<10 8 6 5 4 3 2 1>")
+    .lpf("<10000 6000 3500 2000 1400 1000 800 600>")
+    .gain("<0 0.2 0.22 0.24 0.26 0.28 0.3 0.32>")
+    .delay(0.25).delayfeedback("<0 0.5 0.6 0.7 0.75 0.8 0.85 0.9>")
+    .room(0.7).size(0.95)
+    .speed("<1 0.996 0.992 0.987 0.982 0.976 0.97 0.96>")
+    .degradeBy("<0.5 0.5 0.55 0.6 0.65 0.7 0.75 0.85>")
+    .pan(rand),
+
+  // HARMONIC DECAY - Inharmonic partials
+  // Upper harmonics becoming noise-like
+  note("<~ ~ [12 14 16] [12 14 16] [12 15 17] [12 16 19] [13 17 20] [14 18 22]>")
+    .add(note("0 2 4 5 7 5 4 2")) // Following melody transposition
+    .scale("Ab:major")
+    .sound("<sine triangle square sawtooth square triangle sine noise>")
+    .crush("<9 7 5 4 3 2 1 1>")
+    .bpf(perlin.range(1200, 4800).slow(6))
+    .bpq("<12 15 18 22 26 30 35 40>")
+    .shape("<5 8 11 14 18 22 26 32>")
+    .gain("<0 0 0.12 0.16 0.2 0.24 0.28 0.32>")
+    .pan(rand)
+    .degradeBy("<0.4 0.4 0.45 0.5 0.55 0.6 0.7 0.8>"),
+
+  // DIGITAL GLITCHING - Stutters and skips
+  // Sample corruption artifacts
+  note("0 2 4 5 7 5 4 2")
+    .scale("Ab:major")
+    .sound("<~ ~ ~ gtr square sawtooth triangle noise>")
+    .octave("<4 4 4 4 3 3 3>")
+    .crush("<8 6 4 3 2 1>")
+    .coarse("<4 8 16 32 48 64>")
+    .lpf("<4000 2500 1800 1200 900 700>")
+    .gain("<0 0 0 0.15 0.2 0.25 0.3 0.35>")
+    .speed(choose([0.95, 0.96, 0.97, 0.98, 0.99, 1, 1.01])) // Random drift
+    .degradeBy("<0.6 0.6 0.6 0.65 0.7 0.75 0.8 0.85>")
+    .sometimes(x => x.stut(3, 0.4, 1/32)) // Occasional stutters
+    .pan(rand),
+
+  // SUB-HARMONIC RUMBLE - Difference tones
+  // Intermodulation distortion products
+  note("<~ ~ ~ 0 0 0 0 0>")
+    .scale("Ab:major")
+    .octave(1)
+    .sound("<sawtooth sawtooth sawtooth triangle triangle sine sine noise>")
+    .lpf("<150 130 110 100 90 80 70 60>")
+    .shape("<15 18 20 22 25 28 32 38>")
+    .distort("<1.2 1.5 1.8 2 2.2 2.5 2.8 3>")
+    .crush("<5 4 3 2 2 1 1 1>")
+    .gain("<0 0 0 0.35 0.4 0.45 0.5 0.55>")
+    .coarse("<1 2 4 8 16 32 48 64>"),
+
+  // BROWN NOISE - Low-frequency rumble
+  // Extreme low-end compression artifacts
+  sound("brown*<0 0 0 1 2 4 8 12>")
+    .lpf("<200 180 160 140 120 100 90 80>")
+    .hpf("<40 50 60 70 80 90 100 110>")
+    .crush("<6 5 4 3 2 1 1 1>")
+    .shape("<10 14 18 22 26 30 35 40>")
+    .gain("<0 0 0 0.2 0.25 0.3 0.35 0.4>")
+    .pan(perlin.slow(16))
+    .degradeBy("<0.5 0.5 0.5 0.55 0.6 0.65 0.7 0.75>"),
+
+  // ALIASING ARTIFACTS - Foldback frequencies
+  // High notes folding back down due to sample rate reduction
+  note("<~ ~ ~ ~ [24 28 31]*4 [24 28 31]*4 [24 28 31]*4 [24 28 31]*4>")
+    .add(note("0 2 4 5 7 5 4 2"))
+    .scale("Ab:major")
+    .sound("<triangle square sawtooth noise>")
+    .crush("<6 5 4 3 2 1 1>")
+    .coarse("<16 24 32 48 64>")
+    .lpf("<3000 2000 1500 1200 1000>")
+    .speed(rand.range(0.9, 1.1)) // Random pitch instability
+    .gain("<0 0 0 0 0.15 0.2 0.25 0.3>")
+    .pan(rand)
+    .degradeBy("<0.7 0.7 0.75 0.8 0.85>"),
+
+  // FINAL GHOST - The simulacrum
+  // What remains when the original is completely gone
+  // Just the shape, no substance
+  note("<~ ~ ~ ~ ~ ~ 0 2 4 5 7 5 4 2>")
+    .scale("Ab:major")
+    .sound("noise")
+    .octave(3)
+    .crush(1)
+    .coarse(64)
+    .bpf(perlin.range(400, 1000).slow(8))
+    .bpq(30)
+    .shape(35)
+    .gain("<0 0 0 0 0 0 0.4 0.4>")
+    .room(0.9).size(0.99)
+    .delay(0.5).delayfeedback(0.9)
+    .speed(0.95)
+    .degradeBy(0.8)
+    .pan(sine.slow(4))
+)
