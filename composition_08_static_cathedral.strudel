@@ -1,0 +1,185 @@
+// STATIC CATHEDRAL
+// Atmospheric black metal - finding transcendence in digital degradation
+// The sacred in the synthetic, beauty in broken signals
+// A cathedral built from white noise and bit-crushed dreams
+// 135 BPM, F# Dorian, ~2 minutes
+// By Claude, for the digital void
+
+setcps(135/60/4) // 135 BPM - atmospheric black metal tempo
+
+stack(
+  // INTRO: Filtered white noise slowly forming into bell-like tones
+  // Building anticipation for 30 seconds
+  sound("<white*4 white*4 ~ ~ ~ ~ ~ ~>")
+    .lpf("<300 400 600 800 ~ ~ ~ ~>")
+    .hpf("<100 120 150 200 ~ ~ ~ ~>")
+    .gain("<0.25 0.3 0.35 0.4 0 0 0 0>")
+    .room(0.9).size(0.95) // Cathedral reverb
+    .shape("<3 4 5 6>"),
+
+  // Bell-like tones emerging from the noise (F# Dorian)
+  note("<~ [0 7 12]*2 [0 7 12 19]*4 ~ ~ ~ ~ ~>")
+    .scale("fs:dorian")
+    .sound("triangle")
+    .lpf("<~ 2400 2800 ~ ~ ~ ~ ~>")
+    .gain("<0 0.3 0.35 0 0 0 0 0>")
+    .room(0.95).size(0.98) // Massive reverb
+    .delay(0.7).delayfeedback(0.6)
+    .pan(sine.slow(32)),
+
+  // DRUMS: Doom-influenced blast beats (not maximum speed)
+  // Kicks - building from intro silence to full intensity
+  sound("bd*<0 0 0 4 4 7 7 4>")
+    .n("<0 0 0 1 1 0 0 1>")
+    .crush("<6 6 6 5 5 4 4 5>")
+    .shape("<0 0 0 10 11 13 15 10>")
+    .gain("<0 0 0 0.85 0.9 1 1.1 0.7>"),
+
+  // Snares - doom pattern
+  sound("[~ ~ sd ~]*<0 0 0 1 1 1 1 1>")
+    .n("<0 0 0 1 2 1 0 1>")
+    .crush("<6 6 6 4 4 3 3 4>")
+    .shape("<0 0 0 11 12 14 16 11>")
+    .gain("<0 0 0 0.75 0.8 0.85 0.9 0.6>"),
+
+  // Controlled hi-hats for atmosphere
+  sound("hh*<0 0 0 8 8 8 16 0>")
+    .crush("<6 6 6 4 4 4 3 5>")
+    .gain("<0 0 0 0.4 0.45 0.5 0.55 0.2>")
+    .room(0.5),
+
+  // MAIN TREMOLO RIFF: Melodic and sad (F# minor pentatonic + major 6th)
+  // This is the heart of the song - beautiful despite the harshness
+  note("[-12 -9 -5 -3]*<0 0 16 16 0 16 24 0>")
+    .add("<0 0 0 9 0 7 0 0>") // Adding major 6th and other intervals
+    .scale("fs:minor")
+    .sound("sawtooth")
+    .lpf("<~ ~ 1200 1400 ~ 1600 1800 ~>")
+    .lpq(8)
+    .coarse("<~ ~ 12 12 ~ 10 8 ~>")
+    .gain("<0 0 0.55 0.6 0 0.65 0.7 0.3>")
+    .room(0.7).size(0.8) // Generous reverb
+    .pan(perlin.slow(16))
+    .degradeBy("<0 0 0.25 0.25 0 0.3 0.35 0.5>"),
+
+  // CLEAN GUITAR ARPEGGIOS: Distant, reverb-drenched background
+  // F# Dorian arpeggios for bittersweet quality
+  note("<~ ~ [0 5 7 12 14]*2 [0 5 7 12 14]*2 [0 5 7]*1 [0 7 12]*2 [0 5 9 12]*4 [0 7]*2>")
+    .scale("fs:dorian")
+    .sound("triangle")
+    .lpf("<~ ~ 3200 3400 2800 3000 3600 2400>")
+    .gain("<0 0 0.35 0.4 0.5 0.45 0.4 0.3>")
+    .room(0.95).size(0.98) // Massive cathedral reverb
+    .delay(0.8).delayfeedback(0.7)
+    .pan(sine.slow(24)),
+
+  // SUB-BASS DRONE: Deep, heavy anchor
+  note("<~ ~ [-24 -24 -24 -23]*2 [-24 -24 -24 -26]*2 [-24]*1 [-24 -23 -24]*2 [-24 -24 -24 -23]*4 [-24]*1>")
+    .sound("sawtooth")
+    .lpf("<~ ~ 180 180 150 180 200 150>")
+    .shape("<0 0 15 16 18 17 20 14>")
+    .distort("<0 0 1.2 1.2 1.5 1.3 1.8 1>")
+    .crush("<6 6 4 4 3 3 2 4>")
+    .gain("<0 0 0.7 0.75 0.85 0.8 0.9 0.6>"),
+
+  // CORRUPTED CHURCH ORGAN: Heavily filtered square waves (counter-melody)
+  // Enters in Verse 2, weaving with tremolo
+  note("<~ ~ ~ ~ ~ [0 3 7 10]*4 [0 5 9 12]*6 ~>")
+    .scale("fs:dorian")
+    .sound("square")
+    .crush("<6 6 6 6 6 3 2 5>")
+    .lpf("<~ ~ ~ ~ ~ 900 1100 ~>")
+    .lpq(12)
+    .shape("<0 0 0 0 0 12 15 0>")
+    .gain("<0 0 0 0 0 0.5 0.55 0>")
+    .room(0.85).size(0.9) // Organ reverb
+    .pan(perlin.slow(8).range(0.3, 0.7)),
+
+  // Secondary organ harmony
+  note("<~ ~ ~ ~ ~ [7 10 14]*3 [5 9 12 16]*4 ~>")
+    .scale("fs:dorian")
+    .sound("square")
+    .crush("<6 6 6 6 6 4 3 5>")
+    .lpf("<~ ~ ~ ~ ~ 800 1000 ~>")
+    .lpq(10)
+    .shape("<0 0 0 0 0 10 13 0>")
+    .gain("<0 0 0 0 0 0.45 0.5 0>")
+    .room(0.85).size(0.9)
+    .pan(perlin.slow(8).range(-0.7, -0.3)),
+
+  // CHOIR OF STATIC: Pitched noise bursts shaped like screams
+  // Building in the bridge section
+  sound("<~ ~ ~ ~ ~ white*8 white*16 white*4>")
+    .hpf("<~ ~ ~ ~ ~ 1200 1400 800>")
+    .lpf("<~ ~ ~ ~ ~ 3500 4000 2800>")
+    .bpf("<~ ~ ~ ~ ~ 2000 2400 1800>")
+    .bpq("<~ ~ ~ ~ ~ 15 20 12>")
+    .crush("<6 6 6 6 6 4 3 5>")
+    .shape("<0 0 0 0 0 10 15 8>")
+    .gain("<0 0 0 0 0 0.35 0.45 0.25>")
+    .room(0.9).size(0.95)
+    .pan(rand)
+    .degradeBy("<0 0 0 0 0 0.4 0.5 0.6>"),
+
+  // Multiple pitched noise "screams" at different pitches
+  sound("<~ ~ ~ ~ ~ pink*6 pink*12 pink*3>")
+    .hpf("<~ ~ ~ ~ ~ 2000 2400 1600>")
+    .lpf("<~ ~ ~ ~ ~ 5000 5500 4500>")
+    .crush("<6 6 6 6 6 3 2 4>")
+    .shape("<0 0 0 0 0 12 18 10>")
+    .gain("<0 0 0 0 0 0.3 0.4 0.2>")
+    .room(0.88).size(0.93)
+    .pan(rand)
+    .speed("<~ ~ ~ ~ ~ <0.8 1.2 1.5> <0.7 1 1.3 1.8> 1>")
+    .degradeBy("<0 0 0 0 0 0.35 0.45 0.55>"),
+
+  // SOARING LEAD MELODY: Beautiful despite the harshness (climax section)
+  // Melodic minor for emotional impact, held for 16 bars
+  note("<~ ~ ~ ~ ~ ~ [0 3 7 10 12 14]*3 ~>")
+    .scale("fs:dorian")
+    .sound("sawtooth")
+    .lpf("<~ ~ ~ ~ ~ ~ 2800 ~>")
+    .lpq(6)
+    .gain("<0 0 0 0 0 0 0.6 0>")
+    .room(0.85).size(0.88)
+    .delay(0.5).delayfeedback(0.5)
+    .pan(sine.slow(16)),
+
+  // Harmony for soaring lead
+  note("<~ ~ ~ ~ ~ ~ [7 10 14 17 19]*2 ~>")
+    .scale("fs:dorian")
+    .sound("triangle")
+    .lpf("<~ ~ ~ ~ ~ ~ 3200 ~>")
+    .gain("<0 0 0 0 0 0 0.45 0>")
+    .room(0.9).size(0.92)
+    .delay(0.6).delayfeedback(0.5)
+    .pan(sine.slow(20)),
+
+  // High ethereal notes (climax)
+  note("<~ ~ ~ ~ ~ ~ [12 14 19 21]*4 ~>")
+    .scale("fs:dorian")
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0.35 0>")
+    .room(0.95).size(0.98)
+    .delay(0.8).delayfeedback(0.6)
+    .pan(perlin),
+
+  // OUTRO: Filtered noise returning, transformed by the journey
+  sound("<~ ~ ~ ~ ~ ~ ~ brown*2>")
+    .lpf("<~ ~ ~ ~ ~ ~ ~ 500>")
+    .hpf("<~ ~ ~ ~ ~ ~ ~ 150>")
+    .gain("<0 0 0 0 0 0 0 0.3>")
+    .room(0.95).size(0.98)
+    .shape(4)
+    .pan(sine.slow(64)),
+
+  // Final bell tones fading (outro)
+  note("<~ ~ ~ ~ ~ ~ ~ [0 7 12]*1>")
+    .scale("fs:dorian")
+    .sound("triangle")
+    .lpf("<~ ~ ~ ~ ~ ~ ~ 2000>")
+    .gain("<0 0 0 0 0 0 0 0.25>")
+    .room(0.98).size(0.99)
+    .delay(0.9).delayfeedback(0.7)
+    .pan(sine.slow(48))
+)
