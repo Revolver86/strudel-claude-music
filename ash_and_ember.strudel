@@ -1,0 +1,268 @@
+// ASH AND EMBER
+// Atmospheric Depressive Black Metal
+// 125 BPM, A minor
+// Theme: Aftermath of loss, the quiet after destruction
+// Woods of Desolation meets Austere meets early Burzum
+// Song structure: intro(15) -> verse1(8) -> peak1(8) -> transition(8) -> verse2(8) -> bridge(16) -> climax(12) -> outro(16)
+
+setcps(125/60/4)
+
+stack(
+  // ====================================
+  // AMBIENT FOUNDATION - dying fire crackle, always present
+  // ====================================
+  sound("<wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind ~ wind>*2")
+    .speed(0.3)
+    .lpf(800)
+    .hpf(40)
+    .gain("<0.15 0.15 0.15 0.15 0.15 0.15 0.15 0.15 0.08 0.08 0.05 0.05 0.05 0.05 0.03 0.1 0.12 0.15 0.2 0.2 0.2 0.2>")
+    .room(0.8),
+
+  // Low ambient noise layer for texture
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ noise*32 noise*32 noise*32 noise*32 noise*32 noise*32 noise*32>")
+    .lpf(600)
+    .hpf(200)
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0.08 0.08 0.08 0.08 0.08 0.08>")
+    .room(0.6),
+
+  // ====================================
+  // CLEAN GUITAR - heartbreaking fingerpicked arpeggios
+  // ====================================
+  // Am arpeggio (A C E A E C)
+  note("<[a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4] [a3 c4 e4 a4 e4 c4]>")
+    .sound("gtr_nylon")
+    .gain("<0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.5 0.5 0.5 0.5 0 0 0 0.4 0.4 0.6 0.7 0.8 0.8 0.7>")
+    .room(0.4)
+    .delay(0.3).delaytime(0.375).delayfeedback(0.4)
+    .lpf(3000)
+    .release(2),
+
+  // Fmaj7 arpeggio (F A C E C A)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3] [f3 a3 c4 e4 c4 a3]>")
+    .sound("gtr_nylon")
+    .gain("<0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0 0 0 0.4 0.4 0.6 0.7 0.8 0.8 0.7>")
+    .room(0.4)
+    .delay(0.3).delaytime(0.375).delayfeedback(0.4)
+    .lpf(3000)
+    .release(2),
+
+  // C arpeggio (C E G C G E)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3] [c3 e3 g3 c4 g3 e3]>")
+    .sound("gtr_nylon")
+    .gain("<0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0 0 0 0.4 0.4 0.6 0.7 0.8 0.8 0.7>")
+    .room(0.4)
+    .delay(0.3).delaytime(0.375).delayfeedback(0.4)
+    .lpf(3000)
+    .release(2),
+
+  // G arpeggio (G B D G D B)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3] [g3 b3 d4 g4 d4 b3]>")
+    .sound("gtr_nylon")
+    .gain("<0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0 0 0 0.4 0.4 0.6 0.7 0.8 0.8 0.7>")
+    .room(0.4)
+    .delay(0.3).delaytime(0.375).delayfeedback(0.4)
+    .lpf(3000)
+    .release(2),
+
+  // Open string shimmer
+  note("<a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4>")
+    .sound("gtr_nylon")
+    .gain("<0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.25 0.25 0.25 0.25 0 0 0 0.2 0.2 0.3 0.35 0.4 0.4 0.35>")
+    .room(0.5)
+    .release(4),
+
+  // ====================================
+  // DRUMS - slow measured blast beats
+  // ====================================
+  // Kick - driving pattern
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ bd*2 bd*2 bd*2 bd*2 bd*2 bd*2 bd*2 bd*2 bd*2 bd*2 bd*2 bd*2 ~ ~>")
+    .gain("<0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.9 0.9 0.8 0.8 0.8 0 0>")
+    .shape(0.3)
+    .room(0.2),
+
+  // Snare - every other beat
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 ~ ~>")
+    .gain("<0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0 0>")
+    .shape(0.4)
+    .room(0.3),
+
+  // Hi-hat - steady hypnotic pattern
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 hh*8 ~ ~>")
+    .gain("<0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0 0>")
+    .shape(0.3)
+    .room(0.2),
+
+  // Sparse kick for transition (section 11-12)
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ bd ~ ~ ~ ~ bd ~ ~ ~ ~ ~ ~>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.7 0.7 0 0 0 0 0 0 0 0 0 0>")
+    .room(0.3),
+
+  // Bridge half-time kick (sections 13-14)
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ bd ~ bd bd ~ ~ ~ ~ ~>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0.8 0 0 0 0 0 0 0>")
+    .room(0.5),
+
+  // Bridge half-time snare
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [~ ~ ~ sd]*2 [~ ~ ~ sd]*2 ~ ~ ~ ~ ~ ~ ~>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0.7 0 0 0 0 0 0 0>")
+    .room(0.5),
+
+  // ====================================
+  // BASS - root notes following progression
+  // ====================================
+  note("<a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1 a1>")
+    .sound("sawtooth")
+    .lpf(400)
+    .gain("<0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.9 0.9 0.8 0.8 0.5 0 0>")
+    .sustain(1.8)
+    .room(0.2),
+
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1 f1>")
+    .sound("sawtooth")
+    .lpf(400)
+    .gain("<0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.9 0.9 0.8 0.8 0.5 0 0>")
+    .sustain(1.8)
+    .room(0.2),
+
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1 c1>")
+    .sound("sawtooth")
+    .lpf(400)
+    .gain("<0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.9 0.9 0.8 0.8 0.5 0 0>")
+    .sustain(1.8)
+    .room(0.2),
+
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1 g1>")
+    .sound("sawtooth")
+    .lpf(400)
+    .gain("<0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.9 0.9 0.8 0.8 0.5 0 0>")
+    .sustain(1.8)
+    .room(0.2),
+
+  // ====================================
+  // DISTORTED RHYTHM GUITAR - power chords
+  // ====================================
+  // Am power chord (A2 + E3)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ [a2 e3] [a2 e3] [a2 e3] [a2 e3] [a2 e3] [a2 e3] [a2 e3] [a2 e3] [a2 e3] [a2 e3] [a2 e3] [a2 e3] ~ ~>")
+    .sound("sawtooth")
+    .lpf(2500)
+    .hpf(100)
+    .distort(0.7)
+    .room(0.4)
+    .gain("<0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0 0 0 0.8 0.8 0.7 0.7 0.4 0 0>")
+    .delay(0.2).delaytime(0.375).delayfeedback(0.3)
+    .sustain(1.9),
+
+  // F power chord (F2 + C3)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3] [f2 c3]>")
+    .sound("sawtooth")
+    .lpf(2500)
+    .hpf(100)
+    .distort(0.7)
+    .room(0.4)
+    .gain("<0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0 0 0 0.8 0.8 0.7 0.7 0.4 0 0>")
+    .delay(0.2).delaytime(0.375).delayfeedback(0.3)
+    .sustain(1.9),
+
+  // C power chord (C2 + G3)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3] [c2 g3]>")
+    .sound("sawtooth")
+    .lpf(2500)
+    .hpf(100)
+    .distort(0.7)
+    .room(0.4)
+    .gain("<0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0 0 0 0.8 0.8 0.7 0.7 0.4 0 0>")
+    .delay(0.2).delaytime(0.375).delayfeedback(0.3)
+    .sustain(1.9),
+
+  // G power chord (G2 + D3)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3] [g2 d3]>")
+    .sound("sawtooth")
+    .lpf(2500)
+    .hpf(100)
+    .distort(0.7)
+    .room(0.4)
+    .gain("<0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0 0 0 0.8 0.8 0.7 0.7 0.4 0 0>")
+    .delay(0.2).delaytime(0.375).delayfeedback(0.3)
+    .sustain(1.9),
+
+  // Bridge whole note chords (sections 13-14)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [a2 e3] [a2 e3] ~ ~ ~ ~ ~ ~ ~>")
+    .sound("sawtooth")
+    .lpf(2000)
+    .distort(0.7)
+    .room(0.6)
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0 0 0 0 0 0 0>")
+    .sustain(7),
+
+  // ====================================
+  // WEEPING LEAD - emotional melody (sections 10-11, 15-16)
+  // ====================================
+  // First phrase - climbing with pain
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ [e4 f4 g4 f4 e4 d4]*2 [e4 f4 g4 f4 e4 d4]*2 ~ ~ ~ ~ [e4 f4 g4 f4 e4 d4] [e4 f4 g4 f4 e4 d4] ~ ~ ~ ~ ~ ~>")
+    .sound("sawtooth")
+    .gain("<0 0 0 0 0 0 0 0 0 0.65 0.65 0 0 0 0 0.7 0.7 0 0 0 0 0>")
+    .lpf(3500)
+    .hpf(200)
+    .distort(0.5)
+    .room(0.5)
+    .delay(0.4).delaytime(0.5).delayfeedback(0.5)
+    .vibrato(4, 0.1)
+    .sustain(0.8)
+    .release(0.6),
+
+  // Second phrase
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~, ~ ~ ~ ~ ~ ~ ~ ~ ~ [f4 g4 a4 g4 f4 e4]*2 [f4 g4 a4 g4 f4 e4]*2 ~ ~ ~ ~ [f4 g4 a4 g4 f4 e4] [f4 g4 a4 g4 f4 e4] ~ ~ ~ ~ ~ ~>")
+    .sound("sawtooth")
+    .gain("<0 0 0 0 0 0 0 0 0 0.65 0.65 0 0 0 0 0.7 0.7 0 0 0 0 0>")
+    .lpf(3500)
+    .hpf(200)
+    .distort(0.5)
+    .room(0.5)
+    .delay(0.4).delaytime(0.5).delayfeedback(0.5)
+    .vibrato(4, 0.1)
+    .sustain(0.8)
+    .release(0.6),
+
+  // ====================================
+  // HARMONY LEADS - parallel thirds (sections 12-13, 15-16)
+  // ====================================
+  // Upper harmony
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [e4 f4 g4 f4]*3 [e4 f4 g4 f4]*3 ~ ~ [e4 f4 g4 f4]*2 [e4 f4 g4 f4]*2 ~ ~ ~ ~ ~ ~>")
+    .sound("sawtooth")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0 0 0.6 0.6 0 0 0 0 0>")
+    .lpf(3500)
+    .hpf(200)
+    .distort(0.5)
+    .room(0.5)
+    .delay(0.4).delaytime(0.5).delayfeedback(0.5)
+    .vibrato(4, 0.1)
+    .sustain(0.8)
+    .release(0.6),
+
+  // Lower harmony (third below)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [c4 d4 e4 d4]*3 [c4 d4 e4 d4]*3 ~ ~ [c4 d4 e4 d4]*2 [c4 d4 e4 d4]*2 ~ ~ ~ ~ ~ ~>")
+    .sound("sawtooth")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0 0 0.6 0.6 0 0 0 0 0>")
+    .lpf(3500)
+    .hpf(300)
+    .distort(0.5)
+    .room(0.5)
+    .delay(0.4).delaytime(0.5).delayfeedback(0.5)
+    .vibrato(4, 0.1)
+    .sustain(0.8)
+    .release(0.6),
+
+  // ====================================
+  // BRIDGE SORROWFUL LEAD - climbing and falling (sections 13-14)
+  // ====================================
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [a3 c4 e4 f4 g4 a4 g4 f4 e4 d4 c4 a3] [a3 c4 e4 f4 g4 a4 g4 f4 e4 d4 c4 a3] ~ ~ ~ ~ ~ ~ ~>")
+    .sound("sawtooth")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0.7 0 0 0 0 0 0 0>")
+    .lpf(3000)
+    .distort(0.6)
+    .room(0.6)
+    .delay(0.5).delaytime(0.75).delayfeedback(0.6)
+    .vibrato(3, 0.15)
+    .sustain(3)
+    .release(2)
+)
