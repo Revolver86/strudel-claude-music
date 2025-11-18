@@ -100,8 +100,7 @@ stack(
 
   // === GUITAR LAYER 1: CLEAN ARPEGGIOS (INTRO & OUTRO) ===
   // C# minor - Amaj7 - E - B progression
-  note("<[0 4 7 11 16 11 7 4]*2 [0 4 8 11 16 11 8 4]*2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 4 7 11 16 11 7 4]*2 [0 4 8 11 16]*1>")
-    .add("<0 9 4 11 0 0 0 0 0 0 0 0 0 4>") // chord root shifts
+  note("<[0 4 7 11 16 11 7 4]*2 [9 13 17 20 25 20 17 13]*2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [4 8 11 15 20 15 11 8]*2 [4 8 11 15 20]*1>")
     .scale("c#:minor")
     .sound("<gtr gtr ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ gtr gtr>")
     .room("<0.9 0.9 0 0 0 0 0 0 0 0 0 0 0.9 0.95>")
