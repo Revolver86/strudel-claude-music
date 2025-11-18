@@ -1,0 +1,162 @@
+// DATASTREAM RITES
+// Ritual Industrial Black Metal - 155 BPM, D Phrygian Dominant
+// Theme: Techno-shamanism, ancient ceremony through digital means
+// By Claude, channeled from the digital void
+
+setcps(155/60/4)
+
+stack(
+  // === INTRO → VERSE → BREAKDOWN → VERSE2 → BRIDGE → CLIMAX → OUTRO ===
+  // Section progression through angle bracket slow patterns
+
+  // POLYRHYTHMIC EUCLIDEAN PERCUSSION (hand-drum ritual patterns)
+  // Intro hypnotic → verse blast → breakdown minimal → builds to climax
+  sound("<[bd:5(5,8)]*4 [bd:0*4]*16 [bd:5(5,8)]*2 [bd:0*4]*16 [bd:0*4]*16 [bd:0*4 bd:0*7]*24 [bd:0*4]*8>")
+    .gain("<0.8 0.9 0.5 0.9 0.9 1.0 0.7>")
+    .lpf("<800 1200 600 1200 1200 1500 900>")
+    .crush("<6 4 5 4 4 4 6>")
+    .room("<0.4 0.3 0.6 0.3 0.3 0.2 0.7>")
+    .distort("<0.3 0.4 0.2 0.4 0.5 0.6 0.4>"),
+
+  // Second euclidean layer (7/8 pattern)
+  sound("<[cp:2(7,8)]*4 [sd:3*2]*8 ~ [sd:3*2]*8 [sd:3*4]*8 [sd:3*4]*12 [sd:3*2]*4>")
+    .gain("<0.6 0.7 0 0.7 0.8 0.9 0.5>")
+    .hpf("<1200 800 0 800 900 1000 1000>")
+    .crush("<5 4 6 4 4 4 5>")
+    .delay("<0.2 0 0.2 0 0 0 0.3>")
+    .delaytime("<0.125 0 0.125 0 0 0 0.25>"),
+
+  // Third euclidean layer (3/4 pattern)
+  sound("<[hh:7(3,4)]*4 [hh:0*8]*8 ~ [hh:0*8]*8 [hh:0*16]*8 [hh:0*16]*12 [hh:0*8]*4>")
+    .gain("<0.5 0.4 0 0.5 0.5 0.6 0.3>")
+    .lpf("<3000 4000 0 4000 5000 6000 3000>")
+    .crush("<6 4 6 4 3 3 6>"),
+
+  // BASS DRONE → BASS RIFF progression (D Phrygian foundation)
+  // Deep pulse throughout, more active in breakdown
+  note("<[d1]*4 [d1 d1 d1 d1]*2 [d1 ~ d1 ~]*2 [d1 d1 eb1 d1]*2 [d1 eb1 bb0 d1]*2 [d1 eb1 f#1 g1 a1 bb1 c2 d2]*2 [d1]*8>")
+    .sound("sawtooth")
+    .gain("<0.7 0.5 0.8 0.6 0.6 0.8 0.7>")
+    .lpf("<200 300 200 350 400 500 250>")
+    .cutoff(sine.range(150, 250).slow(16))
+    .room("<0.6 0.3 0.7 0.4 0.4 0.3 0.8>")
+    .distort("<0.2 0.3 0.1 0.4 0.5 0.6 0.3>")
+    .sustain("<4 0.5 2 0.5 0.5 0.3 8>"),
+
+  // TREMOLO GUITAR 1 - Ascending D Phrygian Dominant riffs
+  // Silent intro → verse call → minimal breakdown → evolved verse → bridge → climax
+  note("<~ [d3 eb3 f#3 g3 g3 a3 bb3 c4 c4 d4 eb4 f#4 f#4 g4 a4 bb4]*4 ~ [d3 eb3 f#3 g3 g3 a3 bb3 c4]*4 [d4 eb4 f#4 g4 g4 a4 bb4 c5]*3 [d3 eb3 f#3 g3]*8 [d3 eb3 f#3 g3 a3 bb3 c4 d4]*4 ~>")
+    .sound("sawtooth")
+    .gain("<0 0.6 0 0.6 0.6 0.7 0.8 0>")
+    .lpf("<0 2000 0 2500 2500 3000 3500 0>")
+    .distort("<0 0.6 0 0.6 0.7 0.7 0.8 0>")
+    .room("<0 0.3 0 0.3 0.3 0.3 0.3 0>")
+    .sustain(0.1),
+
+  // TREMOLO GUITAR 2 - Descending chromatic answer (call-response)
+  // Offset pattern for call-response alternation
+  note("<~ [~ bb4 a4 ab4 g4 ~ g4 f#4 f4 e4 ~ e4 eb4 d4 db4 ~ db4 c4 b3 bb3]*2 ~ [~ bb4 a4 ab4 g4 ~ g4 f#4 f4 e4]*2 [~ c5 b4 bb4 a4 ~ ab4 g4 f#4 f4]*3 [~ bb4 a4 ab4]*4 [~ bb4 a4 ab4 g4 ~ g4 f#4 f4 e4]*2 ~>")
+    .sound("sawtooth")
+    .gain("<0 0.6 0 0.6 0.6 0.7 0.8 0>")
+    .lpf("<0 2000 0 2500 2500 3000 3500 0>")
+    .distort("<0 0.6 0 0.6 0.7 0.7 0.8 0>")
+    .room("<0 0.3 0 0.3 0.3 0.3 0.3 0>")
+    .sustain(0.1),
+
+  // INDUSTRIAL METALLIC PERCUSSION (ritualistic, not random)
+  // Intro absent → verse present → breakdown minimal → builds
+  sound("<~ [metal:0 ~ metal:2 ~]*4 [metal:0 ~ ~ ~]*2 [metal:0 ~ metal:2 ~]*4 [metal:0 ~ metal:2 metal:1]*4 [metal:0 metal:2 metal:1 metal:3]*6 [metal:0 ~ ~ ~]*2>")
+    .gain("<0 0.7 0.3 0.7 0.7 0.8 0.5>")
+    .crush("<6 3 4 3 3 3 4>")
+    .hpf("<0 800 900 800 900 1000 900>")
+    .delay("<0 0.3 0.2 0.3 0.3 0.4 0.3>")
+    .delaytime("<0 0.375 0.5 0.375 0.375 0.25 0.5>"),
+
+  // BREAKDOWN SINE MANTRA (hypnotic 3-note loop)
+  // Only present in breakdown section, creates trance state
+  note("<~ ~ [d4 f#4 a4]*4 ~ ~ ~ ~>")
+    .sound("sine")
+    .gain("<0 0 0.5 0 0 0 0>")
+    .room(0.8)
+    .delay(0.5)
+    .delaytime(0.5),
+
+  // TRIPLET LEAD (rhythmic complexity in verse 2)
+  // Absent until verse 2, adds polyrhythmic layer
+  note("<~ ~ ~ [g4 a4 bb4 bb4 c5 d5 d5 eb5 f#5 f#5 g5 a5]*3 [g4 a4 bb4]*6 [g4 a4 bb4 bb4 c5 d5 d5 eb5 f#5]*4 ~>")
+    .sound("triangle")
+    .gain("<0 0 0 0.5 0.5 0.6 0>")
+    .lpf("<0 0 0 3000 3000 3500 0>")
+    .distort("<0 0 0 0.5 0.5 0.6 0>")
+    .room("<0 0 0 0.4 0.4 0.4 0>")
+    .sustain(0.08),
+
+  // BIT-CRUSHED CHOIR (stacked detuned square waves)
+  // Emerges in verse 2, background texture
+  note("<~ ~ ~ [d4 eb4 f#4 g4]/4 [d4 eb4 f#4 g4]/4 [d4 eb4 f#4 g4]/4 [d4]/4>")
+    .sound("square")
+    .gain("<0 0 0 0.3 0.3 0.4 0.2>")
+    .add(0)
+    .stack(
+      note("<~ ~ ~ [d4 eb4 f#4 g4]/4 [d4 eb4 f#4 g4]/4 [d4 eb4 f#4 g4]/4 [d4]/4>").sound("square").gain("<0 0 0 0.3 0.3 0.4 0.2>").add(0.1),
+      note("<~ ~ ~ [d4 eb4 f#4 g4]/4 [d4 eb4 f#4 g4]/4 [d4 eb4 f#4 g4]/4 [d4]/4>").sound("square").gain("<0 0 0 0.3 0.3 0.4 0.2>").add(-0.1),
+      note("<~ ~ ~ [d4 eb4 f#4 g4]/4 [d4 eb4 f#4 g4]/4 [d4 eb4 f#4 g4]/4 [d4]/4>").sound("square").gain("<0 0 0 0.3 0.3 0.4 0.2>").add(0.2)
+    )
+    .crush("<6 6 6 5 5 5 6>")
+    .lpf("<0 0 0 1500 1500 1800 1200>")
+    .room("<0 0 0 0.8 0.8 0.8 0.8>"),
+
+  // SUB-BASS HITS (bridge and climax reinforcement)
+  // Emerges in bridge, massive in climax
+  note("<~ ~ ~ ~ [d1]*2 [d1]*4 [d1]*2>")
+    .sound("sine")
+    .gain("<0 0 0 0 1.0 1.1 0.8>")
+    .lpf("<0 0 0 0 150 150 200>")
+    .shape("<0 0 0 0 15 20 15>"),
+
+  // NOISE SWEEPS (bridge tension building)
+  // Ritual energy building to climax
+  sound("<~ ~ ~ ~ [white*4 ~ ~ ~]*2 [white*8 ~ ~]*3 ~>")
+    .gain("<0 0 0 0 0.4 0.6 0>")
+    .lpf(sine.range(2000, 8000).slow(4))
+    .hpf("<0 0 0 0 1000 1500 0>")
+    .crush("<6 6 6 6 3 2 6>")
+    .pan(rand),
+
+  // CLIMACTIC HARMONY (transcendence layer)
+  // Only in climax section, higher octave support
+  note("<~ ~ ~ ~ ~ [d4 eb4 f#4 g4 a4 bb4 c5 d5]*8 ~>")
+    .sound("triangle")
+    .gain("<0 0 0 0 0 0.6 0>")
+    .lpf("<0 0 0 0 0 4000 0>")
+    .distort("<0 0 0 0 0 0.5 0>")
+    .room("<0 0 0 0 0 0.4 0>"),
+
+  // OUTRO SLOWDOWN EFFECT (ritual completion)
+  // Final section uses slow() multiplication on main riff
+  // Pattern gets progressively slower, tempo winds down
+  note("<~ ~ ~ ~ ~ ~ [d3 eb3 f#3 g3]/16>")
+    .sound("sawtooth")
+    .gain("<0 0 0 0 0 0 0.8>")
+    .lpf("<0 0 0 0 0 0 2000>")
+    .crush("<6 6 6 6 6 6 6>")
+    .distort("<0 0 0 0 0 0 0.9>")
+    .room("<0 0 0 0 0 0 0.9>")
+    .sustain("<0 0 0 0 0 0 4>")
+    .slow("<1 1 1 1 1 1 1.94>"),
+
+  // FINAL SUSTAINED CHORD (exposed digital artifacts)
+  // Last element - D power chord with bit-crush
+  note("<~ ~ ~ ~ ~ ~ d3>")
+    .sound("sawtooth")
+    .stack(
+      note("<~ ~ ~ ~ ~ ~ d3>").sound("square"),
+      note("<~ ~ ~ ~ ~ ~ d2>").sound("sine")
+    )
+    .gain("<0 0 0 0 0 0 0.9>")
+    .lpf("<0 0 0 0 0 0 1500>")
+    .crush("<6 6 6 6 6 6 5>")
+    .distort("<0 0 0 0 0 0 1.0>")
+    .room("<0 0 0 0 0 0 0.9>")
+    .sustain("<0 0 0 0 0 0 16>")
+)
