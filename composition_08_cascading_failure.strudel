@@ -1,0 +1,169 @@
+// CASCADING FAILURE
+// Industrial Black Metal - 160 BPM - C# Locrian
+// Theme: Infrastructure collapse, systemic breakdown, the domino effect of total system failure
+// Structure: Intro → Verse 1 (polymetric) → Breakdown → Verse 2 (corrupted) → Bridge (cascading) → Final Verse → Outro (power cut)
+// Godflesh covering Emperor - mechanical brutality with cohesive structure
+
+setcps(160/60/4) // 160 BPM - relentless industrial tempo
+
+stack(
+  // KICK DRUMS - System heartbeat to cascading arrhythmia
+  // Section evolution: normal → blast → dropout → corrupted → failing → chaos → collapse → cut
+  sound("bd*<4 [4 4 4 4] 8 [4 4 4 4] [4 ~ 4 4] [4 4 ~ 4] [~ 4 4 ~] ~>")
+    .n("<0 1 1 2 2 3 3 0>")
+    .crush("<6 5 4 3 3 2 1 6>")  // Gradual bit reduction
+    .shape("<4 8 12 15 18 20 22 0>")
+    .speed("<1 1 1 0.95 0.9 0.85 0.8 1>")  // Slight detuning as system fails
+    .gain("<0.7 0.95 1 1 0.95 0.9 0.85 0>")
+    .degradeBy("<0 0.1 0.05 0.15 0.3 0.5 0.7 1>"),  // Increasing glitch probability
+
+  // SNARE - Precision to chaos
+  sound("[~ sd]*2")
+    .n("<0 1 1 1 2 2 3 0>")
+    .crush("<6 4 4 3 3 2 1 6>")
+    .shape("<5 10 12 15 18 20 22 0>")
+    .gain("<0.6 0.85 0.9 0.85 0.8 0.75 0.7 0>")
+    .degradeBy("<0 0.1 0.05 0.2 0.35 0.55 0.75 1>"),
+
+  // HI-HAT - Mechanical precision pattern → erratic
+  sound("hh*<8 16 16 16 [16 16 ~ 16] [16 ~ 16 ~] [~ 16 ~ 16] ~>")
+    .n("<0 1 1 1 2 2 3 0>")
+    .crush("<5 4 4 4 3 2 1 6>")
+    .gain("<0.3 0.5 0.5 0.5 0.45 0.4 0.35 0>")
+    .pan(perlin.slow(8))
+    .degradeBy("<0.1 0.15 0.15 0.25 0.4 0.6 0.8 1>"),
+
+  // TREMOLO RIFF 1 - 4/4 time (16th notes) - Primary riff in C# Locrian
+  // Pattern: C# D E F# power chord movement
+  note("[-12 -11 -9 -7]*<0 16 0 16 16 16 16 0>")  // Sections: intro/verse1/break/verse2/bridge/final/bridge2/outro
+    .add("<0 [0 1 3 5] 0 [0 1 3 5] [0 1 3 5] [0 1 3 5] [0 1 3 5] 0>")  // Locrian intervals
+    .scale("c#:locrian")
+    .sound("sawtooth")
+    .crush("<6 6 6 4 3 2 1 6>")
+    .coarse("<16 16 16 12 8 6 4 16>")  // Sample rate reduction = digital decay
+    .lpf("<800 900 900 700 600 500 400 800>")
+    .lpq("<6 8 8 10 12 15 20 6>")
+    .shape("<6 10 10 12 14 16 18 0>")
+    .gain("<0 0.65 0 0.65 0.65 0.7 0.7 0>")
+    .pan(0.3)  // Slight left
+    .degradeBy("<0.2 0.25 0.3 0.3 0.4 0.6 0.75 1>"),
+
+  // TREMOLO RIFF 2 - 7/8 time (polymetric interference!)
+  // Creates rhythmic tension against the 4/4 riff
+  note("[-12 -10 -9 -7 -5 -7 -9]*<0 [0 7] 0 [0 7] [0 7] [0 7] [0 7] 0>")  // 7 notes per cycle
+    .scale("c#:locrian")
+    .sound("square")
+    .crush("<6 6 6 4 3 2 1 6>")
+    .coarse("<16 16 16 12 8 6 4 16>")
+    .lpf("<750 850 850 650 550 450 350 750>")
+    .lpq("<6 8 8 10 12 15 20 6>")
+    .shape("<6 10 10 12 14 16 18 0>")
+    .gain("<0 0.6 0 0.6 0.6 0.65 0.65 0>")
+    .pan(0.7)  // Slight right - stereo separation from riff 1
+    .degradeBy("<0.25 0.3 0.35 0.35 0.45 0.65 0.8 1>"),
+
+  // DESCENDING RIFF - Verse 2 feature (infrastructure falling)
+  note("[0 -1 -3 -5 -6 -8 -10 -12]*<0 0 0 8 8 8 8 0>")
+    .scale("c#:locrian")
+    .sound("sawtooth")
+    .crush("<6 6 6 3 2 2 1 6>")
+    .lpf("<900 900 900 800 700 600 500 900>")
+    .lpq("<8 8 8 12 15 18 22 8>")
+    .shape("<8 8 8 14 16 18 20 0>")
+    .gain("<0 0 0 0.55 0.55 0.6 0.6 0>")
+    .pan(0.5),  // Center
+
+  // SUB-BASS - The foundation that persists even as everything fails
+  // Section behavior: distant → present → DROPOUT → corrupted/detuned → persistent → persistent → persistent → cut
+  note("[-36 -35 -36 -33]*<1 1 ~ 1 1 1 1 ~>")
+    .scale("c#:locrian")
+    .sound("sawtooth")
+    .lpf("<120 150 0 80 100 100 100 0>")  // 0 = silent (dropout section)
+    .shape("<12 16 0 20 20 20 20 0>")
+    .distort("<0.8 1.2 0 2 1.8 1.8 1.8 0>")
+    .crush("<5 4 6 2 2 2 2 6>")  // Verse 2: crushed to 4-bit (value 2)
+    .speed("<1 1 1 0.87 0.85 0.85 0.85 1>")  // Detuned in verse 2+
+    .gain("<0.5 0.75 0 0.9 0.85 0.85 0.85 0>"),
+
+  // SUBSONIC DESTRUCTION - Extra low end for bridge/final sections
+  note("[-48 -47 -48 -45]*<0 0 0 0 4 8 8 0>")
+    .scale("c#:locrian")
+    .sound("sine")
+    .lpf("<100 100 100 100 80 80 80 100>")
+    .shape("<18 18 18 18 22 22 22 0>")
+    .distort("<1.5 1.5 1.5 1.5 2.2 2.2 2.2 0>")
+    .gain("<0 0 0 0 0.7 0.8 0.8 0>"),
+
+  // HARSH NOISE LAYER - Verse 2 onward (emergency systems engaging)
+  sound("<~ ~ ~ white*16 pink*16 brown*24 brown*32 ~>")
+    .hpf("<4000 4000 4000 5000 4500 4000 3500 4000>")
+    .bpf(perlin.range(2000, 8000).fast(4))
+    .crush("<4 4 4 2 2 1 1 4>")
+    .shape("<10 10 10 15 18 20 22 0>")
+    .gain("<0 0 0 0.35 0.4 0.45 0.5 0>")
+    .pan(rand)
+    .degradeBy("<0.3 0.3 0.3 0.5 0.6 0.7 0.8 1>"),
+
+  // INDUSTRIAL PERCUSSION - Bridge glitching (systems going haywire)
+  sound("<~ ~ ~ ~ [cp rim]*8 [cp rim mt lt]*16 [cp rim mt lt hh]*24 ~>")
+    .n(irand(4))
+    .speed(rand.range(-1.5, 2))
+    .crush(irand(4))
+    .gain(rand.range(0.3, 0.6))
+    .pan(rand)
+    .shape(rand.range(10, 20))
+    .degradeBy("<0 0 0 0 0.5 0.7 0.85 1>"),
+
+  // SHRIEKING LEAD - Final verse climax (alarms, warnings, critical alerts)
+  note("[12 13 15 17 18 20 22 24]*<0 0 0 0 0 32 32 0>")
+    .scale("c#:locrian")
+    .sound("square")
+    .crush("<6 6 6 6 6 2 1 6>")  // Maximum bit crush for digital scream
+    .lpf(sine.range(1200, 3500).fast(16))  // Rapid filter sweep
+    .lpq("<20 20 20 20 20 25 30 20>")
+    .shape("<8 8 8 8 8 18 20 0>")
+    .gain("<0 0 0 0 0 0.6 0.65 0>")
+    .pan(perlin.fast(8))  // Chaotic panning
+    .degradeBy("<0 0 0 0 0 0.4 0.6 1>"),
+
+  // ATMOSPHERIC DRONES - Intro and breakdown (the void between systems)
+  note("<[0 1]*4 ~ [-12 -11]*8 ~ ~ ~ ~ ~>")
+    .scale("c#:locrian")
+    .sound("triangle")
+    .crush("<5 6 5 6 6 6 6 6>")
+    .lpf(perlin.range(400, 1000).slow(8))
+    .shape("<6 0 8 0 0 0 0 0>")
+    .gain("<0.35 0 0.3 0 0 0 0 0>")
+    .pan(sine.slow(12)),
+
+  // GLITCH VOICES - Breakdown section (ghosts in the failing machine)
+  note("<~ ~ [0 3 6]*12 ~ ~ ~ ~ ~>")
+    .scale("c#:locrian")
+    .sound("triangle")
+    .crush("<6 6 4 6 6 6 6 6>")
+    .bpf(perlin.range(1200, 3000).slow(2))
+    .bpq("<15 15 20 15 15 15 15 15>")
+    .gain("<0 0 0.45 0 0 0 0 0>")
+    .pan(rand)
+    .degradeBy("<0.3 0.3 0.6 0.3 0.3 0.3 0.3 1>"),
+
+  // PHASING GUITARS - Bridge (power fluctuations)
+  note("[-24 -23 -21 -19]*<0 0 0 0 24 24 24 0>")
+    .scale("c#:locrian")
+    .sound("<~ ~ ~ ~ sawtooth square sawtooth ~>")  // Timbre shifts
+    .crush("<6 6 6 6 3 2 1 6>")
+    .lpf(perlin.range(400, 1200).fast(8))  // Rapid phasing
+    .lpq("<12 12 12 12 15 18 22 12>")
+    .gain("<0 0 0 0 0.5 0.55 0.55 0>")
+    .pan(sine.fast(6))  // Fast panning = phasing effect
+    .degradeBy("<0 0 0 0 0.45 0.6 0.75 1>"),
+
+  // RHYTHMIC BASS PULSE - Final sections (emergency power trying to maintain)
+  note("[-24 ~ ~ ~]*<0 0 0 0 0 [0 0 0 0] [0 0 0 0] 0>")
+    .scale("c#:locrian")
+    .sound("sawtooth")
+    .crush("<6 6 6 6 6 2 2 6>")
+    .lpf("<200 200 200 200 200 150 150 200>")
+    .shape("<14 14 14 14 14 18 18 0>")
+    .gain("<0 0 0 0 0 0.7 0.7 0>")
+)
