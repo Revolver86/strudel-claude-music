@@ -154,15 +154,31 @@ s("piano")            // can use shorthand s()
 ```
 
 ### Common Drum Samples
+
+**⚠️ IMPORTANT - Sound Not Found Errors:**
+Common sounds that **DO NOT exist** in Strudel (will cause errors):
+- `click` ❌ - Use `rim` or `cp` instead
+- `clk` ❌ - Use `rim` instead
+- `metronome` ❌ - Use `rim` with `.hpf(2000)` instead
+- `tick` ❌ - Use `hh` or `rim` instead
+
+**Verified working drum samples:**
 - `bd` - bass drum
 - `sd` - snare drum
 - `hh` - hi-hat (closed)
 - `oh` - open hi-hat
 - `cp` - clap
-- `rim` - rimshot
+- `rim` - rimshot (use for metronome/click sounds)
 - `lt/mt/ht` - low/mid/high tom
 - `rd` - ride cymbal
 - `cr` - crash cymbal
+
+**For metronome/click sounds:**
+```javascript
+sound("rim*4").hpf(2000)  // Bright, clock-like pulse
+sound("cp*4")             // Sharper attack
+sound("hh*4").hpf(3000)   // Very short, crisp
+```
 
 ### Sample Banks
 
