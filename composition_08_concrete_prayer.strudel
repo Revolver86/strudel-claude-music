@@ -22,11 +22,10 @@ stack(
   sound("brown*<32 64 48 32 64 40 32 64 48 32 64 40 32 64 48>")
     .slow(15)
     .hpf(sine.range(1500, 2500))
-    .crush("<2 3 2 2 3 2 2 3 2 2 3 2 2 3 2>".slow(15))
-    .distort("<1.5 2 1.7 1.6 1.9 1.8 1.5 2 1.7 1.6 1.9 1.8 1.5 2 1.7>".slow(15))
-    .gain("<0.7 0.8 0.75 0.7 0.8 0.75 0.7 0.8 0.75 0.7 0.8 0.75 0.7 0.8 0.75>".slow(15).early(0))
-    .pan(rand)
-    .cutoff("<1 0>".slow(15.5)), // Cut after intro
+    .crush(2.5)
+    .distort(1.7)
+    .gain("<0.7 0.8 0.75 0.7 0.8 0.75 0.7 0.8 0.75 0.7 0.8 0.75 0.7 0.8 0.75>".slow(15))
+    .pan(rand),
 
   // INTRO: Police sirens (distant, reverb-drenched)
   sound("sine*16")
@@ -38,22 +37,20 @@ stack(
     .delaytime(0.25)
     .delayfeedback(0.7)
     .gain(0.4)
-    .pan(sine.slow(16))
-    .cutoff("<1 0>".slow(15.5)),
+    .pan(sine.slow(16)),
 
   // INTRO: Spoken-word vocal texture (chopped, sampled, reverb-drenched)
   sound("white*<24 32 28 24 32 30 24 32 28 24 32 30 24 32 28>")
     .slow(15)
     .bpf(perlin.range(800, 1500))
-    .bpq("<15 12 18 15 12 20 15 12 18 15 12 20 15 12 18>".slow(15))
-    .crush("<4 3 4 3 4 3 4 3 4 3 4 3 4 3 4>".slow(15))
-    .coarse("<8 12 10 8 12 10 8 12 10 8 12 10 8 12 10>".slow(15))
+    .bpq(16)
+    .crush(3.5)
+    .coarse(10)
     .delay(0.5)
     .delayfeedback(0.65)
     .room(0.8)
     .gain("<0.5 0.6 0.55 0.5 0.6 0.55 0.5 0.6 0.55 0.5 0.6 0.55 0.5 0.6 0.55>".slow(15))
-    .pan(perlin)
-    .cutoff("<1 0>".slow(15.5)),
+    .pan(perlin),
 
   // ============== BLAST BEATS (Main Riff through Climax) ==============
   // Kick drum - locked to bass, maximum impact
@@ -80,8 +77,8 @@ stack(
   // ============== MAIN RIFF - Dissonant Chromatic ==============
   // Guitar 1: G# - A - A# - B - C# (chromatic passing notes, unstable)
   note("[0 1 2 3 5]*16")
-    .add(-24) // G#1 register
     .scale("g#:minor")
+    .sub(24) // G#1 register
     .sound("sawtooth")
     .crush("<6 5 4 3 4 3 2>")
     .coarse("<12 12 10 10 10 10 8>")
@@ -95,8 +92,8 @@ stack(
   // ============== VERSE 1 - Asymmetric Power Chord Stabs ==============
   // 4 stabs, rest, 3 stabs, rest - like broken streetlights
   note("[0 0 0 0 ~ ~ 0 0 0 ~]*2")
-    .add(-12)
     .scale("g#:minor")
+    .sub(12)
     .sound("square")
     .crush(3)
     .shape(20)
@@ -126,8 +123,8 @@ stack(
 
   // BREAKDOWN: Feedback-drenched drone
   note("[0]*32")
-    .add(-12)
     .scale("g#:minor")
+    .sub(12)
     .sound("sawtooth")
     .slow(12)
     .lpf(400)
@@ -138,8 +135,8 @@ stack(
 
   // BREAKDOWN: Sparse bent notes over the drone
   note("[2 3 5 7]*4")
-    .add(-12)
     .scale("g#:minor")
+    .sub(12)
     .sound("sawtooth")
     .slow(12)
     .lpf(perlin.range(500, 1500))
@@ -150,8 +147,8 @@ stack(
   // ============== VERSE 2 - Melodic Pentatonic ==============
   // G# minor pentatonic: massive unison guitars
   note("[0 3 5 7 10 7 5 3]*8")
-    .add(-12)
     .scale("g#:minor")
+    .sub(12)
     .sound("sawtooth")
     .crush("<6 5 4 3>")
     .coarse(10)
@@ -163,8 +160,8 @@ stack(
 
   // VERSE 2: Second guitar (square wave for massive tone)
   note("[0 3 5 7 10 7 5 3]*8")
-    .add(-12)
     .scale("g#:minor")
+    .sub(12)
     .sound("square")
     .crush(3)
     .lpf(850)
@@ -194,8 +191,8 @@ stack(
   // ============== CLIMAX - Maximum Chaos ==============
   // Original dissonant riff at maximum intensity
   note("[0 1 2 3 5]*32")
-    .add(-24)
     .scale("g#:minor")
+    .sub(24)
     .sound("sawtooth")
     .crush(2)
     .coarse(6)
@@ -248,8 +245,8 @@ stack(
 
   // OUTRO: Feedback drone (held then cut abruptly)
   note("[0]*16")
-    .add(-24)
     .scale("g#:minor")
+    .sub(24)
     .sound("sawtooth")
     .lpf(250)
     .delay(0.9)
