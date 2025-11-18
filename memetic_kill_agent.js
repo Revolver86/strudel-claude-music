@@ -138,7 +138,7 @@ stack(
         .gain(0.85)
         .coarse(5)
         .shape(0.9)
-        .lpf(n("<2000 4000 3500 2500>").slow(2))
+        .lpf("<2000 4000 3500 2500>".segment(4).slow(2))
         .hpf(150)
         .distort(0.85)
         .pan(0.25),
