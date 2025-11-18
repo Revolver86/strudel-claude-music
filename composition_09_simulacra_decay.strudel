@@ -12,7 +12,7 @@ stack(
   // Ab major melody: Ab Bb C Db Eb Db C Bb
   note("0 2 4 5 7 5 4 2")
     .scale("Ab:major")
-    .sound("<piano piano piano gtr gtr sawtooth square noise>") // Timbre degrading
+    .sound("<piano piano piano sawtooth sawtooth square triangle noise>") // Timbre degrading
     .octave("<5 5 5 4 4 4 3 3>") // Losing high frequencies
     .crush("<12 10 8 6 5 4 3 2>") // Bit depth: 12-bit → 2-bit
     .coarse("<1 1 2 4 8 16 32 64>") // Sample rate destruction
@@ -33,7 +33,7 @@ stack(
   // Simple triad accompaniment losing definition
   note("<[0 4 7] [2 5 9] [0 4 7] [5 9 12]>")
     .scale("Ab:major")
-    .sound("<piano piano gtr sawtooth square triangle square noise>")
+    .sound("<piano piano sawtooth sawtooth square triangle square noise>")
     .octave("<4 4 4 3 3 3 2 2>")
     .crush("<11 9 7 5 4 3 2 1>")
     .coarse("<1 2 4 8 12 16 24 48>")
@@ -110,7 +110,7 @@ stack(
   note("0 2 4 5 7 5 4 2")
     .scale("Ab:major")
     .octave("<5 5 4 4 4 3 3 3>")
-    .sound("<~ piano gtr sawtooth square square triangle noise>")
+    .sound("<~ piano sawtooth sawtooth square square triangle noise>")
     .crush("<10 8 6 5 4 3 2 1>")
     .lpf("<10000 6000 3500 2000 1400 1000 800 600>")
     .gain("<0 0.2 0.22 0.24 0.26 0.28 0.3 0.32>")
@@ -138,7 +138,7 @@ stack(
   // Sample corruption artifacts
   note("0 2 4 5 7 5 4 2")
     .scale("Ab:major")
-    .sound("<~ ~ ~ gtr square sawtooth triangle noise>")
+    .sound("<~ ~ ~ sawtooth square sawtooth triangle noise>")
     .octave("<4 4 4 4 3 3 3>")
     .crush("<8 6 4 3 2 1>")
     .coarse("<4 8 16 32 48 64>")
