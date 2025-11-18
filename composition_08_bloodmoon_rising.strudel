@@ -1,0 +1,162 @@
+// BLOODMOON RISING
+// A driving black metal anthem channeling primal werewolf transformation
+// D minor, 175 BPM -> 185 BPM outro
+// Raw energy meets memorable songcraft - Darkthrone "A Blaze in the Northern Sky" era
+// By Claude, forged in the fires of the blood moon
+
+// SONG STRUCTURE (20 cycles total ≈ 2 minutes):
+// Cycles 0-4:   INTRO - Ominous drone and thunder building
+// Cycles 5-7:   MAIN RIFF - Tremolo explosion, blast beats engage
+// Cycles 8-10:  VERSE 1 - Dual guitars, call-and-response
+// Cycle 11:     PRE-CHORUS - Power chord descent, tension build
+// Cycles 12-13: CHORUS - Ascending tremolo hook with lead melody
+// Cycles 14-16: VERSE 2 - Main riff returns with atmospheric pad
+// Cycle 17:     BREAKDOWN - Galloping bass, dark descending line
+// Cycles 18-19: FINAL CHORUS - Everything at maximum energy
+// Cycles 20-21: OUTRO - Tempo acceleration, unison thrash, abrupt end
+
+setcps(175/60/4) // 175 BPM - relentless black metal tempo
+
+stack(
+  // BLAST BEAT FOUNDATION - The heartbeat of black metal fury
+  sound("bd*<0 0 0 0 0 4 4 4 4 4 4 4 2 4 4 4 4 4 8 8 8 8>")
+    .n("<0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 2 1 2 2>")
+    .crush("<6 6 5 5 4 4 4 4 3 4 4 4 4 4 3 3 3 3 2 2 2 2>")
+    .shape("<8 9 10 11 12 12 12 12 12 10 12 12 8 12 12 12 12 12 15 18 18 20>")
+    .gain("<0.7 0.75 0.8 0.85 0.9 1 1 1 1 0.9 1 1 0.7 1 1 1.1 1.1 1.1 1.2 1.3 1.3 0>")
+    .speed("<1 1 1 1 1 1 1 1 1 1 1 1 0.8 1 1 1 1 1 1.05 1.1 1.1 1>")
+    .every(21, x => x.fast(1.06)), // Tempo push in final cycles (175->185 BPM ≈ 1.06x)
+
+  // SNARE - Blast beat fury with dynamic build
+  sound("<~ ~ ~ ~ ~ [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 sd*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 ~>")
+    .crush("<5 5 4 4 4 4 4 4 3 4 4 4 4 4 3 3 3 3 2 2 2 5>")
+    .shape("<8 9 10 11 12 12 12 12 12 10 12 12 8 12 12 12 12 12 15 18 18 12>")
+    .gain("<0 0 0 0 0 0.8 0.8 0.8 0.8 0.7 0.8 0.8 0.5 0.8 0.8 0.9 0.9 0.9 1 1 1 0>")
+    .every(21, x => x.fast(1.06)),
+
+  // HI-HATS - Adding intensity and texture
+  sound("hh*<0 0 0 0 0 8 8 8 8 8 8 8 4 8 8 16 16 16 16 16 16 0>")
+    .n(choose([0, 1]))
+    .crush("<5 5 5 4 4 4 4 4 3 4 4 4 4 4 3 3 3 3 2 2 2 4>")
+    .gain("<0 0 0 0 0 0.4 0.4 0.4 0.4 0.35 0.4 0.4 0.3 0.4 0.4 0.5 0.5 0.5 0.55 0.6 0.6 0>")
+    .pan(rand)
+    .every(21, x => x.fast(1.06)),
+
+  // MAIN TREMOLO RIFF - D minor -> F -> C -> G minor (instantly recognizable)
+  // Pattern: intro silence -> main riff (5-7) -> verse (8-10) -> pre-chorus (11) -> chorus (12-13) -> verse2 (14-16) -> breakdown (17) -> final chorus (18-19) -> outro (20-21)
+  note("[-12 -11 -12 -10]*<0 0 0 0 0 16 16 16 16 16 16 8 16 16 16 16 16 0 24 24 24 ~>")
+    .add("<0 0 0 0 0 [0 3 10 5] [0 3 10 5] [0 3 10 5] [0 3 10 5] [0 3 10 5] [0 3 10 5] [0 -2 8 3] [0 2 3 5] [0 2 3 5] [0 3 10 5] [0 3 10 5] [0 3 10 5] 0 [0 3 10 5] [0 3 10 5] [0 3 10 5] 0>")
+    .sound("<~ ~ ~ ~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth ~ sawtooth sawtooth sawtooth ~>")
+    .scale("d:minor")
+    .crush("<6 6 6 5 5 5 5 5 5 5 5 5 4 4 4 4 4 6 3 3 3 6>")
+    .lpf("<800 800 800 800 800 900 900 900 900 900 900 900 1000 1000 900 900 900 900 1100 1100 1100 800>")
+    .lpq("<8 8 8 8 8 10 10 10 10 10 10 10 12 12 10 10 10 10 15 15 15 8>")
+    .shape("<6 7 8 9 10 10 10 10 10 10 10 10 12 12 10 10 10 10 15 15 15 10>")
+    .gain("<0 0 0 0 0 0.65 0.65 0.65 0.65 0.65 0.65 0.6 0.7 0.7 0.65 0.65 0.65 0 0.75 0.75 0.75 0>")
+    .pan(rand.range(0.3, 0.7))
+    .every(21, x => x.fast(1.06)),
+
+  // DUAL GUITAR - Higher register melody (verse sections)
+  note("[0 1 3 5]*<0 0 0 0 0 0 0 0 8 8 8 0 0 0 0 0 0 0 12 12 12 0>")
+    .add("<0 0 0 0 0 0 0 0 12 12 12 0 0 0 0 0 0 0 12 12 12 0>")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ square square square ~ ~ ~ ~ ~ ~ ~ square square square ~>")
+    .scale("d:minor")
+    .crush("<5 5 5 5 5 5 5 5 6 6 6 5 5 5 5 5 6 5 5 5 5 5>")
+    .lpf("<1200 1200 1200 1200 1200 1200 1200 1200 1500 1500 1500 1200 1200 1200 1200 1200 1500 1200 1500 1500 1500 1200>")
+    .gain("<0 0 0 0 0 0 0 0 0.5 0.5 0.5 0 0 0 0 0 0 0 0.6 0.6 0.6 0>")
+    .pan(rand.range(0.5, 0.9))
+    .every(21, x => x.fast(1.06)),
+
+  // POWER CHORD PRE-CHORUS - D5 -> C5 -> Bb5 -> A5 descent (half-time feel)
+  note("[-12 -12 -12 -12]*<0 0 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 0 0 0 0>")
+    .add("<0 0 0 0 0 0 0 0 0 0 0 [0 -2 -3 -5] 0 0 0 0 0 0 0 0 0 0>")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
+    .scale("d:minor")
+    .crush("<5 5 5 5 5 5 5 5 5 5 5 4 5 5 5 5 5 5 5 5 5 5>")
+    .lpf("<900 900 900 900 900 900 900 900 900 900 900 800 900 900 900 900 900 900 900 900 900 900>")
+    .shape("<10 10 10 10 10 10 10 10 10 10 10 15 10 10 10 10 10 10 10 10 10 10>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0.7 0 0 0 0 0 0 0 0 0 0>")
+    .distort("<0 0 0 0 0 0 0 0 0 0 0 1.2 0 0 0 0 0 0 0 0 0 0>")
+    .every(21, x => x.fast(1.06)),
+
+  // CHORUS LEAD MELODY - Ascending tremolo D->E->F->G (the hook!)
+  note("[0 2 3 5]*<0 0 0 0 0 0 0 0 0 0 0 0 12 12 0 0 0 0 16 16 16 0>")
+    .add("<0 0 0 0 0 0 0 0 0 0 0 0 12 12 0 0 0 0 12 12 12 0>")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ square square ~ ~ ~ ~ square square square ~>")
+    .scale("d:minor")
+    .crush("<5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 4 4 4 5>")
+    .lpf(sine.range(1800, 2400).slow(4))
+    .lpq("<12 12 12 12 12 12 12 12 12 12 12 12 15 15 12 12 12 12 20 20 20 12>")
+    .shape("<8 8 8 8 8 8 8 8 8 8 8 8 10 10 8 8 8 8 12 12 12 8>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0.65 0.65 0 0 0 0 0.75 0.75 0.75 0>")
+    .pan(perlin.slow(8))
+    .every(21, x => x.fast(1.06)),
+
+  // ATMOSPHERIC PAD - Second verse layer (sustained notes with reverb)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 5 7]*2 [0 5 7]*2 [0 5 7]*2 ~ [0 5 7]*2 [0 5 7]*2 [0 5 7]*2 ~>")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ triangle triangle triangle ~ triangle triangle triangle ~>")
+    .scale("d:minor")
+    .lpf("<1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 600 600 600 1000 600 600 600 1000>")
+    .shape("<6 6 6 6 6 6 6 6 6 6 6 6 6 6 8 8 8 6 8 8 8 6>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.45 0.45 0.45 0 0.45 0.45 0.45 0>")
+    .room(0.8)
+    .size(0.9)
+    .pan(0.5),
+
+  // BREAKDOWN - Galloping bass pattern (drops to just bass and snare)
+  note("[-24 -24 -24]*<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 8 0 0 0 0>")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth ~ ~ ~ ~>")
+    .scale("d:minor")
+    .lpf("<150 150 150 150 150 150 150 150 150 150 150 150 150 150 150 150 150 180 150 150 150 150>")
+    .shape("<18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 20 18 18 18 18>")
+    .distort("<1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 2 1.5 1.5 1.5 1.5>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0 0 0 0>"),
+
+  // BREAKDOWN DESCENDING LINE - Dark single guitar
+  note("[0 -1 -2 -3 -5 -7 -8 -10]*<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 0 0 0>")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth ~ ~ ~ ~>")
+    .scale("d:minor")
+    .crush("<5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5>")
+    .lpf("<900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 900 1000 900 900 900 900>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.55 0 0 0 0>")
+    .pan(0.6),
+
+  // SUB-BASS - Crushing low end throughout
+  note("[-24 -23 -24 -26]*<0 0 0 0 0 2 2 2 2 2 2 2 1 2 2 2 2 2 4 4 4 ~>")
+    .sound("<~ ~ ~ ~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth ~>")
+    .scale("d:minor")
+    .lpf("<150 150 150 150 150 160 160 160 160 160 160 160 160 160 160 160 160 160 140 130 130 150>")
+    .shape("<12 13 14 15 16 18 18 18 18 18 18 18 18 18 18 18 18 18 20 22 22 16>")
+    .distort("<0.8 0.9 1 1.1 1.2 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.5 1.8 2 2 1.2>")
+    .crush("<4 4 4 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2 2 3>")
+    .gain("<0.5 0.55 0.6 0.65 0.7 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.65 0.75 0.75 0.8 0.8 0.8 0.85 0.9 0.9 0>")
+    .every(21, x => x.fast(1.06)),
+
+  // THUNDER INTRO - Low rumbling percussion
+  sound("<bd*2 bd*2 bd*4 bd*4 bd*4 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
+    .n("<0 1 2 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
+    .speed("<0.3 0.35 0.4 0.45 0.5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1>")
+    .crush("<7 6 6 5 5 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4>")
+    .shape("<5 6 7 8 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10>")
+    .lpf("<200 250 300 350 400 800 800 800 800 800 800 800 800 800 800 800 800 800 800 800 800 800>")
+    .gain("<0.6 0.65 0.7 0.75 0.8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
+    .pan(rand),
+
+  // DRONE INTRO - Ominous low D
+  note("<[-36]*2 [-36]*2 [-36]*2 [-36]*2 [-36]*2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
+    .sound("<sine sine sine triangle sawtooth ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
+    .lpf("<120 120 120 120 120 800 800 800 800 800 800 800 800 800 800 800 800 800 800 800 800 800>")
+    .shape("<6 7 8 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10>")
+    .gain("<0.5 0.55 0.6 0.65 0.7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
+    .room(0.7)
+    .size(0.8),
+
+  // NOISE TEXTURE - Adds rawness and atmosphere
+  sound("<~ ~ ~ ~ ~ white*8 white*8 white*8 white*8 white*8 white*8 white*8 ~ white*8 white*8 white*16 white*16 white*16 white*16 white*24 white*24 ~>")
+    .hpf("<4000 4000 4000 4000 4000 5000 5000 5000 5000 5000 5000 5000 5000 5000 5000 5000 5000 5000 6000 6000 6000 4000>")
+    .crush("<4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 3 3 3 3 2 2 4>")
+    .gain("<0 0 0 0 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0 0.25 0.25 0.3 0.3 0.3 0.35 0.4 0.4 0>")
+    .pan(rand)
+    .degradeBy(0.5)
+    .every(21, x => x.fast(1.06)),
+)
