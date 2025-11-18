@@ -19,7 +19,7 @@ stack(
 
   // Bell-like tones emerging from the noise (F# Dorian)
   note("<~ [0 7 12]*2 [0 7 12 19]*4 ~ ~ ~ ~ ~>")
-    .scale("fs:dorian")
+    .scale("F#:dorian")
     .sound("triangle")
     .lpf("<~ 2400 2800 ~ ~ ~ ~ ~>")
     .gain("<0 0.3 0.35 0 0 0 0 0>")
@@ -50,9 +50,8 @@ stack(
 
   // MAIN TREMOLO RIFF: Melodic and sad (F# minor pentatonic + major 6th)
   // This is the heart of the song - beautiful despite the harshness
-  note("[-12 -9 -5 -3]*<0 0 16 16 0 16 24 0>")
-    .add("<0 0 0 9 0 7 0 0>") // Adding major 6th and other intervals
-    .scale("fs:minor")
+  note("<[-12 -9 -5 -3] [-12 -9 -5 -3] [-12 -9 -5 -3] [-3 0 4 9] [-12 -9 -5 -3] [-5 -2 2 7] [-12 -9 -5 -3] [-12 -9 -5 -3]>*<0 0 16 16 0 16 24 0>")
+    .scale("F#:minor")
     .sound("sawtooth")
     .lpf("<~ ~ 1200 1400 ~ 1600 1800 ~>")
     .lpq(8)
@@ -65,7 +64,7 @@ stack(
   // CLEAN GUITAR ARPEGGIOS: Distant, reverb-drenched background
   // F# Dorian arpeggios for bittersweet quality
   note("<~ ~ [0 5 7 12 14]*2 [0 5 7 12 14]*2 [0 5 7]*1 [0 7 12]*2 [0 5 9 12]*4 [0 7]*2>")
-    .scale("fs:dorian")
+    .scale("F#:dorian")
     .sound("triangle")
     .lpf("<~ ~ 3200 3400 2800 3000 3600 2400>")
     .gain("<0 0 0.35 0.4 0.5 0.45 0.4 0.3>")
@@ -85,7 +84,7 @@ stack(
   // CORRUPTED CHURCH ORGAN: Heavily filtered square waves (counter-melody)
   // Enters in Verse 2, weaving with tremolo
   note("<~ ~ ~ ~ ~ [0 3 7 10]*4 [0 5 9 12]*6 ~>")
-    .scale("fs:dorian")
+    .scale("F#:dorian")
     .sound("square")
     .crush("<6 6 6 6 6 3 2 5>")
     .lpf("<~ ~ ~ ~ ~ 900 1100 ~>")
@@ -97,7 +96,7 @@ stack(
 
   // Secondary organ harmony
   note("<~ ~ ~ ~ ~ [7 10 14]*3 [5 9 12 16]*4 ~>")
-    .scale("fs:dorian")
+    .scale("F#:dorian")
     .sound("square")
     .crush("<6 6 6 6 6 4 3 5>")
     .lpf("<~ ~ ~ ~ ~ 800 1000 ~>")
@@ -136,7 +135,7 @@ stack(
   // SOARING LEAD MELODY: Beautiful despite the harshness (climax section)
   // Melodic minor for emotional impact, held for 16 bars
   note("<~ ~ ~ ~ ~ ~ [0 3 7 10 12 14]*3 ~>")
-    .scale("fs:dorian")
+    .scale("F#:dorian")
     .sound("sawtooth")
     .lpf("<~ ~ ~ ~ ~ ~ 2800 ~>")
     .lpq(6)
@@ -147,7 +146,7 @@ stack(
 
   // Harmony for soaring lead
   note("<~ ~ ~ ~ ~ ~ [7 10 14 17 19]*2 ~>")
-    .scale("fs:dorian")
+    .scale("F#:dorian")
     .sound("triangle")
     .lpf("<~ ~ ~ ~ ~ ~ 3200 ~>")
     .gain("<0 0 0 0 0 0 0.45 0>")
@@ -157,7 +156,7 @@ stack(
 
   // High ethereal notes (climax)
   note("<~ ~ ~ ~ ~ ~ [12 14 19 21]*4 ~>")
-    .scale("fs:dorian")
+    .scale("F#:dorian")
     .sound("sine")
     .gain("<0 0 0 0 0 0 0.35 0>")
     .room(0.95).size(0.98)
@@ -175,7 +174,7 @@ stack(
 
   // Final bell tones fading (outro)
   note("<~ ~ ~ ~ ~ ~ ~ [0 7 12]*1>")
-    .scale("fs:dorian")
+    .scale("F#:dorian")
     .sound("triangle")
     .lpf("<~ ~ ~ ~ ~ ~ ~ 2000>")
     .gain("<0 0 0 0 0 0 0 0.25>")
