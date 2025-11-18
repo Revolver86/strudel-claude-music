@@ -1,266 +1,231 @@
 // CONCRETE PRAYER
-// Urban Apocalyptic Black Metal - Finding meaning in ruins
-// 180 BPM, G# minor - Spiritual warfare in decaying cities
-// Theme: Prayer in concrete wilderness, urban decay and survival
-// By Claude - Channeling Anaal Nathrakh meets Young and in the Way
-//
-// STRUCTURE:
-// Intro (15 cycles ≈ 20s) - Industrial noise, sirens, vocal texture
-// Main Riff (4 cycles) - Dissonant chromatic blast with relentless drums
-// Verse 1 (4 cycles) - Adds asymmetric power chord stabs
-// Breakdown (12 cycles) - Half-time sludge, feedback drones, oppressive
-// Verse 2 (4 cycles) - Melodic pentatonic fury, massive unison guitars
-// Bridge (8 cycles) - Tribal toms, hypnotic pulse building tension
-// Climax (16 cycles) - Everything layered, maximum chaos and brutality
-// Outro (10 cycles) - Descending riff, tempo slows, feedback cut
+// Urban apocalyptic black metal - 180 BPM, G# minor
+// Prayer in concrete wilderness, spiritual warfare in decaying cities
 
-setcps(180/60/4) // 180 BPM - relentless urban aggression
+setcps(180/60/4) // 180 BPM - relentless aggression
 
 stack(
-  // ============== INTRO SECTION (20 seconds) ==============
-  // Harsh industrial machinery grinding
-  sound("brown*<32 64 48 32 64 40 32 64 48 32 64 40 32 64 48>")
-    .slow(15)
+  // INTRO: Industrial machinery grinding (20 seconds intro)
+  sound("<brown*32 brown*64 brown*48 brown*32 brown*64 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
     .hpf(sine.range(1500, 2500))
-    .crush(2.5)
-    .distort(1.7)
-    .gain("<0.7 0.8 0.75 0.7 0.8 0.75 0.7 0.8 0.75 0.7 0.8 0.75 0.7 0.8 0.75>".slow(15))
+    .crush("<2 3 2 2 3 6 6 6 6 6 6 6 6 6 6 6>")
+    .distort("<1.7 2 1.8 1.7 1.9 1 1 1 1 1 1 1 1 1 1 1>")
+    .gain("<0.75 0.8 0.75 0.75 0.8 0 0 0 0 0 0 0 0 0 0 0>")
     .pan(rand),
 
   // INTRO: Police sirens (distant, reverb-drenched)
-  sound("sine*16")
-    .slow(15)
-    .note("<[68 72]*16 [72 68]*16 [70 74]*16 [74 70]*16 [68 72]*16 [72 68]*16 [70 74]*16>".slow(2))
+  sound("<sine*16 sine*16 sine*16 sine*16 sine*16 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
+    .note("<[68 72]*16 [72 68]*16 [70 74]*16 [74 70]*16 [68 72]*16 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
     .room(0.9)
-    .rsize(5)
     .delay(0.6)
-    .delaytime(0.25)
     .delayfeedback(0.7)
-    .gain(0.4)
+    .gain("<0.4 0.4 0.4 0.4 0.4 0 0 0 0 0 0 0 0 0 0 0>")
     .pan(sine.slow(16)),
 
-  // INTRO: Spoken-word vocal texture (chopped, sampled, reverb-drenched)
-  sound("white*<24 32 28 24 32 30 24 32 28 24 32 30 24 32 28>")
-    .slow(15)
+  // INTRO: Chopped vocal texture
+  sound("<white*24 white*32 white*28 white*24 white*32 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
     .bpf(perlin.range(800, 1500))
     .bpq(16)
-    .crush(3.5)
+    .crush("<3 4 3 3 4 6 6 6 6 6 6 6 6 6 6 6>")
     .coarse(10)
     .delay(0.5)
-    .delayfeedback(0.65)
     .room(0.8)
-    .gain("<0.5 0.6 0.55 0.5 0.6 0.55 0.5 0.6 0.55 0.5 0.6 0.55 0.5 0.6 0.55>".slow(15))
+    .gain("<0.55 0.6 0.55 0.55 0.6 0 0 0 0 0 0 0 0 0 0 0>")
     .pan(perlin),
 
-  // ============== BLAST BEATS (Main Riff through Climax) ==============
-  // Kick drum - locked to bass, maximum impact
-  sound("bd*16")
-    .n("<0 1 2 1>")
-    .crush("<6 5 4 3 3 4 3 2>")
-    .shape("<12 15 18 20 22 18 20 25>")
-    .distort("<0.8 1 1.2 1.5 1.8 1.2 1.5 2>")
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1.1 1.1 1.1 1.1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.1 1.1 1.1 1.1 0 0 0 0 0 0 0 0 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.2 0.9>"),
+  // BLAST BEATS: Kick drum foundation
+  sound("bd*<~ ~ ~ ~ ~ 16 16 16 ~ ~ ~ ~ 16 16 16 16 16 ~>")
+    .n("<0 0 0 0 0 0 1 2 0 0 0 0 1 2 0 1 0 0>")
+    .crush("<6 6 6 6 6 4 3 3 6 6 6 6 3 3 2 2 2 4>")
+    .shape("<10 10 10 10 10 15 18 20 10 10 10 10 18 20 20 22 25 15>")
+    .distort("<0.5 0.5 0.5 0.5 0.5 1 1.2 1.5 0.5 0.5 0.5 0.5 1.2 1.5 1.8 2 2 0.8>")
+    .gain("<0 0 0 0 0 1 1 1.1 0 0 0 0 1.1 1.1 1.1 1.2 1.2 0.9>"),
 
-  // Snare - relentless
-  sound("[~ sd]*2")
-    .crush("<6 5 4 3 3 4 3 2>")
-    .shape("<14 17 20 23 25 20 23 28>")
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0.9 0.9 0.9 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 1.1 0.8>"),
+  // BLAST BEATS: Snare
+  sound("[~ sd]*<~ ~ ~ ~ ~ 2 2 2 ~ ~ ~ ~ 2 2 2 2 2 ~>")
+    .crush("<6 6 6 6 6 4 3 3 6 6 6 6 3 3 2 2 2 4>")
+    .shape("<12 12 12 12 12 15 20 23 12 12 12 12 20 23 25 25 28 16>")
+    .gain("<0 0 0 0 0 0.9 1 1 0 0 0 0 1 1 1.1 1.1 1.1 0.8>"),
 
-  // Hi-hats - chaotic intensity builds
-  sound("hh*<16 16 16 16 24 24 24 24 0 0 0 0 0 0 0 0 0 0 0 0 24 24 24 24 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 24 24 24 24 0 0 0 0 0 0 0 0 24 24 24 24 24 24 24 24 24 24 24 24 24 32 32 32 32 32 32 32 32 24>")
-    .crush("<6 5 4 3>")
-    .gain(0.5)
+  // BLAST BEATS: Hi-hats
+  sound("hh*<~ ~ ~ ~ ~ 16 24 24 ~ ~ ~ ~ 24 24 24 32 32 24>")
+    .crush("<6 6 6 6 6 4 3 3 6 6 6 6 3 3 2 2 2 4>")
+    .gain("<0 0 0 0 0 0.45 0.5 0.5 0 0 0 0 0.5 0.5 0.55 0.6 0.6 0.5>")
     .pan(rand)
     .degradeBy(0.25),
 
-  // ============== MAIN RIFF - Dissonant Chromatic ==============
-  // Guitar 1: G# - A - A# - B - C# (chromatic passing notes, unstable)
-  note("[0 1 2 3 5]*16")
+  // MAIN RIFF: Dissonant chromatic (G# - A - A# - B - C#)
+  note("<~ ~ ~ ~ ~ [0 1 2 3 5]*16 [0 1 2 3 5]*16 [0 1 2 3 5]*24 ~ ~ ~ ~ [0 1 2 3 5]*24 [0 1 2 3 5]*24 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*16>")
     .scale("g#:minor")
-    .sub(24) // G#1 register
-    .sound("sawtooth")
-    .crush("<6 5 4 3 4 3 2>")
-    .coarse("<12 12 10 10 10 10 8>")
-    .lpf("<900 850 800 750 800 750 700>")
-    .lpq("<12 14 16 18 16 18 20>")
-    .shape("<12 15 18 20 18 20 22>")
-    .distort("<1.2 1.4 1.6 1.8 1.6 1.8 2>")
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.65 0.65 0.65 0.65 0.7 0.7 0.7 0.7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.6>")
+    .add(-24) // G#1 register
+    .sound("<~ ~ ~ ~ ~ sawtooth sawtooth sawtooth ~ ~ ~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth ~>")
+    .crush("<6 6 6 6 6 5 4 3 6 6 6 6 4 3 2 2 2 5>")
+    .coarse("<16 16 16 16 16 12 10 10 16 16 16 16 10 10 8 8 8 12>")
+    .lpf("<1000 1000 1000 1000 1000 900 800 750 1000 1000 1000 1000 800 750 700 700 700 900>")
+    .lpq("<10 10 10 10 10 12 16 18 10 10 10 10 16 18 20 20 20 12>")
+    .shape("<8 8 8 8 8 12 18 20 8 8 8 8 18 20 22 22 22 12>")
+    .distort("<1 1 1 1 1 1.2 1.6 1.8 1 1 1 1 1.6 1.8 2 2 2 1.2>")
+    .gain("<0 0 0 0 0 0.65 0.7 0.7 0 0 0 0 0.7 0.7 0.75 0.75 0.75 0.6>")
     .pan(0.3),
 
-  // ============== VERSE 1 - Asymmetric Power Chord Stabs ==============
-  // 4 stabs, rest, 3 stabs, rest - like broken streetlights
-  note("[0 0 0 0 ~ ~ 0 0 0 ~]*2")
+  // VERSE 1: Asymmetric power chord stabs (4 stabs, rest, 3 stabs, rest)
+  note("<~ ~ ~ ~ ~ ~ [0 0 0 0 ~ ~ 0 0 0 ~]*2 [0 0 0 0 ~ ~ 0 0 0 ~]*2 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
     .scale("g#:minor")
-    .sub(12)
-    .sound("square")
-    .crush(3)
-    .shape(20)
-    .distort(2)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
+    .add(-12)
+    .sound("<~ ~ ~ ~ ~ ~ square square ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>")
+    .crush("<6 6 6 6 6 6 3 3 6 6 6 6 6 6 6 6 6 6>")
+    .shape("<8 8 8 8 8 8 20 20 8 8 8 8 8 8 8 8 8 8>")
+    .distort("<1 1 1 1 1 1 2 2 1 1 1 1 1 1 1 1 1 1>")
+    .gain("<0 0 0 0 0 0 0.7 0.7 0 0 0 0 0 0 0 0 0 0>")
     .pan(0.7),
 
-  // ============== BREAKDOWN - Half-Time Sludge ==============
-  // Bass locked to slow kick (12 cycles of oppression)
-  note("[-24 -24]*8")
+  // BREAKDOWN: Half-time sludgy bass (12 cycles)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ [-24 -24]*8 [-24 -24]*8 [-24 -24]*8 [-24 -24]*8 [-24 -24]*8 [-24 -24]*8 [-24 -24]*8 [-24 -24]*8 [-24 -24]*8 [-24 -24]*8 [-24 -24]*8 [-24 -24]*8 ~ ~ ~ ~ ~ ~>")
     .scale("g#:minor")
-    .sound("sawtooth")
-    .slow(12)
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth ~ ~ ~ ~ ~ ~>")
     .lpf(200)
     .shape(22)
     .distort(2.5)
     .crush(2)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>"),
+    .gain("<0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0 0 0 0 0 0>"),
 
-  // BREAKDOWN: Slow pounding kick for half-time feel
-  sound("bd*4")
-    .slow(12)
+  // BREAKDOWN: Slow pounding kicks
+  sound("bd*<~ ~ ~ ~ ~ ~ ~ ~ 4 4 4 4 4 4 4 4 4 4 4 4 ~ ~ ~ ~ ~ ~>")
     .crush(2)
     .shape(25)
     .distort(2)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>"),
+    .gain("<0 0 0 0 0 0 0 0 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0 0 0 0 0 0>"),
 
-  // BREAKDOWN: Feedback-drenched drone
-  note("[0]*32")
+  // BREAKDOWN: Feedback drone
+  note("<~ ~ ~ ~ ~ ~ ~ ~ [0]*32 [0]*32 [0]*32 [0]*32 [0]*32 [0]*32 [0]*32 [0]*32 [0]*32 [0]*32 [0]*32 [0]*32 ~ ~ ~ ~ ~ ~>")
     .scale("g#:minor")
-    .sub(12)
-    .sound("sawtooth")
-    .slow(12)
+    .add(-12)
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth ~ ~ ~ ~ ~ ~>")
     .lpf(400)
     .shape(18)
     .delay(0.8)
     .delayfeedback(0.9)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>"),
+    .gain("<0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0 0 0 0 0 0>"),
 
-  // BREAKDOWN: Sparse bent notes over the drone
-  note("[2 3 5 7]*4")
+  // BREAKDOWN: Sparse bent notes
+  note("<~ ~ ~ ~ ~ ~ ~ ~ [2 3 5 7]*4 [2 3 5 7]*4 [2 3 5 7]*4 [2 3 5 7]*4 [2 3 5 7]*4 [2 3 5 7]*4 [2 3 5 7]*4 [2 3 5 7]*4 [2 3 5 7]*4 [2 3 5 7]*4 [2 3 5 7]*4 [2 3 5 7]*4 ~ ~ ~ ~ ~ ~>")
     .scale("g#:minor")
-    .sub(12)
-    .sound("sawtooth")
-    .slow(12)
+    .add(-12)
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth ~ ~ ~ ~ ~ ~>")
     .lpf(perlin.range(500, 1500))
     .crush(4)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
+    .gain("<0 0 0 0 0 0 0 0 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0 0 0 0 0 0>")
     .pan(sine.slow(32)),
 
-  // ============== VERSE 2 - Melodic Pentatonic ==============
-  // G# minor pentatonic: massive unison guitars
-  note("[0 3 5 7 10 7 5 3]*8")
+  // VERSE 2: Melodic G# minor pentatonic (unison guitars)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 3 5 7 10 7 5 3]*8 [0 3 5 7 10 7 5 3]*8 [0 3 5 7 10 7 5 3]*8 [0 3 5 7 10 7 5 3]*8 ~ ~ ~ ~ ~ ~>")
     .scale("g#:minor")
-    .sub(12)
-    .sound("sawtooth")
-    .crush("<6 5 4 3>")
+    .add(-12)
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth sawtooth sawtooth sawtooth ~ ~ ~ ~ ~ ~>")
+    .crush("<6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 4 4 4 4 6 6 6 6 6 6>")
     .coarse(10)
     .lpf(900)
     .lpq(15)
     .shape(16)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0 0 0 0 0 0>")
     .pan(0.3),
 
-  // VERSE 2: Second guitar (square wave for massive tone)
-  note("[0 3 5 7 10 7 5 3]*8")
+  // VERSE 2: Second guitar (square wave)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 3 5 7 10 7 5 3]*8 [0 3 5 7 10 7 5 3]*8 [0 3 5 7 10 7 5 3]*8 [0 3 5 7 10 7 5 3]*8 ~ ~ ~ ~ ~ ~>")
     .scale("g#:minor")
-    .sub(12)
-    .sound("square")
+    .add(-12)
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ square square square square ~ ~ ~ ~ ~ ~>")
     .crush(3)
     .lpf(850)
     .shape(18)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.65 0.65 0.65 0.65 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.65 0.65 0.65 0.65 0 0 0 0 0 0>")
     .pan(0.7),
 
-  // ============== BRIDGE - Tribal Build ==============
-  // Tom pattern building tension (speeds up via pattern density)
-  sound("[lt mt ht]*<8 10 12 14 16 20 24 28>")
-    .slow(8)
-    .n("<0 1 2>")
+  // BRIDGE: Tribal tom pattern
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [lt mt ht]*<8 10 12 14 16 20 24 28> [lt mt ht]*<8 10 12 14 16 20 24 28> [lt mt ht]*<8 10 12 14 16 20 24 28> [lt mt ht]*<8 10 12 14 16 20 24 28> [lt mt ht]*<8 10 12 14 16 20 24 28> [lt mt ht]*<8 10 12 14 16 20 24 28> [lt mt ht]*<8 10 12 14 16 20 24 28> [lt mt ht]*<8 10 12 14 16 20 24 28> ~ ~ ~ ~>")
+    .n("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 2 0 1 2 0 1 0 0 0>")
     .crush(4)
     .shape(14)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>"),
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0 0 0>"),
 
-  // BRIDGE: Hypnotic guitar pulse (repeated note, rhythmic variations)
-  note("[0]*<16 20 24 28 32 36 40 48>")
-    .slow(8)
+  // BRIDGE: Hypnotic guitar pulse
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0]*16 [0]*20 [0]*24 [0]*28 [0]*32 [0]*36 [0]*40 [0]*48 ~ ~ ~ ~>")
     .scale("g#:minor")
-    .sound("sawtooth")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth ~ ~ ~ ~>")
     .crush(4)
     .lpf(800)
     .shape(15)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>"),
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0 0 0 0>"),
 
-  // ============== CLIMAX - Maximum Chaos ==============
-  // Original dissonant riff at maximum intensity
-  note("[0 1 2 3 5]*32")
+  // CLIMAX: Dissonant riff maximum intensity (16 cycles)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 [0 1 2 3 5]*32 ~>")
     .scale("g#:minor")
-    .sub(24)
-    .sound("sawtooth")
+    .add(-24)
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth ~>")
     .crush(2)
     .coarse(6)
     .lpf(600)
     .lpq(20)
     .shape(20)
     .distort(2)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0>")
     .pan(0.25),
 
-  // CLIMAX: Melodic riff in higher register (layered)
-  note("[0 3 5 7 10 7 5 3]*16")
+  // CLIMAX: Melodic riff layered
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 [0 3 5 7 10 7 5 3]*16 ~>")
     .scale("g#:minor")
-    .sound("square")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ square square square square square square square square square square square square square square square square ~>")
     .crush(2)
     .lpf(700)
     .shape(22)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0>")
     .pan(0.75),
 
   // CLIMAX: Industrial noise returns
-  sound("brown*64")
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ brown*64 brown*64 brown*64 brown*64 brown*64 brown*64 brown*64 brown*64 brown*64 brown*64 brown*64 brown*64 brown*64 brown*64 brown*64 brown*64 ~>")
     .hpf(2000)
     .crush(2)
     .distort(2)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0>")
     .pan(rand),
 
-  // CLIMAX: Harsh vocal texture (cutting through)
-  sound("white*48")
+  // CLIMAX: Harsh vocal texture
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ white*48 white*48 white*48 white*48 white*48 white*48 white*48 white*48 white*48 white*48 white*48 white*48 white*48 white*48 white*48 white*48 ~>")
     .bpf(1200)
     .bpq(25)
     .crush(3)
     .coarse(8)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0>")
     .pan(perlin)
     .degradeBy(0.4),
 
-  // ============== OUTRO - Descending Despair ==============
-  // Final crushing riff: G# - F# - E - D# (simple but devastating)
-  note("[0 -2 -4 -5]*4")
+  // OUTRO: Descending crushing riff (G# - F# - E - D#) - 10 cycles
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 -2 -4 -5]*4 [0 -2 -4 -5]*4 [0 -2 -4 -5]*4 [0 -2 -4 -5]*4 [0 -2 -4 -5]*4 [0 -2 -4 -5]*4 [0 -2 -4 -5]*4 [0 -2 -4 -5]*4 [0 -2 -4 -5]*4 [0 -2 -4 -5]*4>")
     .scale("g#:minor")
-    .sound("sawtooth")
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth>")
     .lpf(300)
     .shape(25)
     .distort(3)
     .crush(2)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.85 0.85 0.85 0.85 0.85 0.85 0.85 0.85 0.85 0.85>")
-    .slow("<1 1 1 1 1 1 1 1.2 1.4 1.6>"), // Tempo slows gradually
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.85 0.85 0.85 0.85 0.85 0.85 0.85 0.85 0.85 0.85>"),
 
   // OUTRO: Feedback drone (held then cut abruptly)
-  note("[0]*16")
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0]*16 [0]*16 [0]*16 [0]*16 [0]*16 [0]*16 [0]*16 [0]*16 [0]*16 ~>")
     .scale("g#:minor")
-    .sub(24)
-    .sound("sawtooth")
+    .add(-24)
+    .sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth ~>")
     .lpf(250)
     .delay(0.9)
     .delayfeedback(0.95)
     .shape(20)
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0>"), // Abrupt cut
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0>"), // Cut on last cycle
 
-  // ============== SUB-BASS FOUNDATION ==============
-  // Cursed sub-bass following the progression
-  note("[-36 -35 -36 -33]*<4 4 8 8>")
+  // SUB-BASS FOUNDATION
+  note("[-36 -35 -36 -33]*<~ ~ ~ ~ ~ 4 4 8 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 4 4 4 4 ~ ~ ~ ~ ~ ~ ~ ~ 4 4 8 8 8 8 8 8 8 8 8 8 8 8 8 8 4 4 4 4 4 4 4 4 4 4>")
     .sound("sawtooth")
-    .lpf("<150 140 120 100>")
-    .shape("<18 20 22 25>")
-    .distort("<1.5 1.8 2 2.5>")
-    .crush("<3 3 2 2>")
-    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.75 0.75 0.75 0.75 0.8 0.8 0.8 0.8 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0 0 0 0.8 0.8 0.8 0.8 0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.75>")
+    .lpf("<200 200 200 200 200 150 150 120 200 200 200 200 200 200 200 200 200 200 200 200 150 150 150 150 200 200 200 200 200 200 200 200 140 140 120 120 100 100 100 100 100 100 100 100 100 100 100 100 150 150 150 150 150 150 150 150 150 150>")
+    .shape("<15 15 15 15 15 18 18 22 15 15 15 15 15 15 15 15 15 15 15 15 18 18 18 18 15 15 15 15 15 15 15 15 20 20 22 22 25 25 25 25 25 25 25 25 25 25 25 25 20 20 20 20 20 20 20 20 20 20>")
+    .distort("<1.2 1.2 1.2 1.2 1.2 1.5 1.5 2 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.5 1.5 1.5 1.5 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.8 1.8 2 2 2.5 2.5 2.5 2.5 2.5 2.5 2.5 2.5 2.5 2.5 2.5 2.5 1.8 1.8 1.8 1.8 1.8 1.8 1.8 1.8 1.8 1.8>")
+    .crush("<4 4 4 4 4 3 3 2 4 4 4 4 4 4 4 4 4 4 4 4 3 3 3 3 4 4 4 4 4 4 4 4 3 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3>")
+    .gain("<0 0 0 0 0 0.75 0.75 0.8 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0 0 0 0 0 0 0 0 0.8 0.8 0.8 0.8 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75>")
 )
