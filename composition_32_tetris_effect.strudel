@@ -1,0 +1,133 @@
+// TETRIS_EFFECT
+// The sound of pattern recognition that won't turn off
+// Cognitive persistence - when the game continues in your head
+// By Claude, for the geometrically haunted
+//
+// STRUCTURE (48 cycles ≈ 5:30):
+// [0-8]   Pure Game Logic - geometric patterns, grid precision
+// [9-16]  Pattern Persistence - ambient sounds appear off-grid
+// [17-28] Reality Conforming - sounds quantizing to grid
+// [29-40] Perceptual Colonization - everything is game logic
+// [41-46] Hypnagogic Acceleration - maximum density, urgency
+// [47-48] Incomplete Pattern - builds to clear, one piece missing, sustain
+
+setcps(140/60/4) // 140 BPM - urgent, game-like tempo
+
+stack(
+  // TETROMINO MELODIES - geometric falling block patterns
+  // I-piece: straight line [0 0 0 0]
+  // L-piece: corner turn [0 2 2 4]
+  // T-piece: pivot point [0 2 4 2]
+  // Z-piece: zigzag [0 2 0 2]
+  // Patterns become denser and more overlapping as cognitive colonization intensifies
+  note("<[0 0 0 0]*4 [0 0 0 0]*4 [0 2 2 4]*4 [0 2 2 4]*4 [0 2 4 2]*4 [0 2 0 2]*4 [0 0 0 0 0 2 2 4]*2 [0 2 4 2 0 2 0 2]*2 [[0 0 0 0] [0 2 2 4]]*4 [[0 2 4 2] [0 2 0 2]]*4 [[0 0 0 0] [0 2 2 4] [0 2 4 2]]*2 [[0 2 0 2] [0 -2 -2 -4]]*2 [0 0 0 0 0 2 2 4 0 2 4 2]*2 [0 2 4 2 0 2 0 2]*2 [[0 2 4 2] [0 2 0 2] [0 0 0 0]]*2 [[0 -2 0 -2] [0 2 2 4]]*2 [0 0 0 0 0 2 2 4]*4 [0 2 4 2 0 2 0 2]*4 [[0 0 0 0] [0 2 2 4] [0 2 4 2] [0 2 0 2]]*2 [0 0 0 0 0 2 2 4 0 2 4 2]*4 [0 0 0 0 0 2 2 4 0 2 4 2 0 2 0 2]*2 [0 0 0 0]*16 [0]*16>")
+    .scale("d:minor")
+    .sound("square")
+    .lpf(sine.range(600, 1200).slow(16))
+    .gain("<0.55 0.55 0.55 0.55 0.6 0.6 0.6 0.6 0.65 0.65 0.65 0.65 0.7 0.7 0.7 0.7 0.75 0.75 0.75 0.75 0.8 0.8 0.8 0.8 0.85 0.85 0.85 0.85 0.9 0.9 0.9 0.9 0.95 0.95 0.95 0.95 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0>")
+    .room(0.2)
+    .pan(0.5),
+
+  // SECONDARY TETROMINO LAYER - overlapping game instances
+  // Starts appearing around cycle 17 - you're seeing multiple games at once
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [4 6 6 8]*4 [2 4 6 4]*4 [4 4 4 4]*4 [2 4 6 4]*4 [4 6 6 8]*4 [4 4 4 4 2 4 6 4]*2 [[4 6 6 8] [2 4 6 4]]*4 [[2 4 6 4] [4 4 4 4]]*4 [4 6 6 8 2 4 6 4]*2 [[4 4 4 4] [4 6 6 8]]*4 [2 4 6 4]*8 [[4 6 6 8] [2 4 6 4] [4 4 4 4]]*2 [4 6 6 8 2 4 6 4 4 4 4 4]*2 [4 6 6 8]*8 [2 4 6 4]*8 [4 6 6 8 2 4 6 4]*4 [4 4 4 4]*8 [4]*16 [4]*16>")
+    .scale("d:minor")
+    .sound("triangle")
+    .lpf(900)
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0.35 0.35 0.4 0.4 0.4 0.4 0.45 0.45 0.45 0.5 0.55 0.55 0.6 0.6 0.65 0.65 0.7 0.7>")
+    .room(0.3)
+    .pan(0.3),
+
+  // GRID-LOCKED KICK - perfect quantization, increasing density
+  // Simulates tempo acceleration through density increase
+  sound("bd*<4 4 4 4 4 4 4 4 8 8 8 8 8 8 8 8 12 12 12 12 12 12 12 12 16 16 16 16 16 16 16 16 20 20 20 20 24 24 24 24 32 32 32 32 32 32 32 16>")
+    .gain("<0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.65 0.65 0.65 0.65 0.65 0.65 0.65 0.65 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.55 0.55 0.55 0.55 0.55 0.55 0.55 0.55 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.4>")
+    .shape(3),
+
+  // GRID SNARE - geometric precision
+  sound("[~ sd]*2")
+    .gain("<0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.52 0.52 0.52 0.52 0.52 0.52 0.52 0.52 0.55 0.55 0.55 0.55 0.55 0.55 0.55 0.55 0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.5>")
+    .shape(2),
+
+  // HI-HAT GRID - density increases with tempo simulation
+  sound("hh*<4 4 4 4 8 8 8 8 8 8 8 8 16 16 16 16 16 16 16 16 24 24 24 24 24 24 24 24 32 32 32 32 32 32 32 32 48 48 48 48 64 64 64 64 64 64 64 32>")
+    .gain("<0.3 0.3 0.3 0.3 0.32 0.32 0.32 0.32 0.35 0.35 0.35 0.35 0.37 0.37 0.37 0.37 0.4 0.4 0.4 0.4 0.42 0.42 0.42 0.42 0.45 0.45 0.45 0.45 0.47 0.47 0.47 0.47 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.4>")
+    .shape(2),
+
+  // PATTERN COMPLETION "CLEAR" - satisfying click when line completes
+  // Regular at first, then more frequent as patterns overlap
+  // FINAL CYCLE: builds to clear but STOPS - incomplete pattern
+  sound("<[~ ~ ~ click:4] [~ ~ ~ click:4] [~ ~ ~ click:4] [~ ~ ~ click:4] [~ ~ ~ click:4] [~ ~ ~ click:4] [~ ~ ~ click:4] [~ ~ click:4 ~] [~ ~ click:4 ~] [~ ~ click:4 ~] [~ ~ click:4 ~] [~ click:4 ~ click:4] [~ click:4 ~ click:4] [~ click:4 ~ click:4] [~ click:4 ~ click:4] [click:4 ~ click:4 ~] [click:4 ~ click:4 ~] [click:4 ~ click:4 ~] [click:4 ~ click:4 ~] [click:4 ~ click:4 ~ click:4] [click:4 ~ click:4 ~ click:4] [click:4 ~ click:4 ~ click:4] [click:4 ~ click:4 ~ click:4] [click:4 click:4 click:4 click:4] [click:4 click:4 click:4 click:4] [click:4 click:4 click:4 click:4] [click:4 click:4 click:4] ~>")
+    .gain(1.0)
+    .room(0.7)
+    .delay(0.25)
+    .delaytime(0.125)
+    .pan(0.5),
+
+  // ENVIRONMENTAL SOUND 1: BIRDS - starts off-grid, gradually quantizes
+  // Cycles 0-8: Not present (pure game logic)
+  // Cycles 9-16: Off-grid (doesn't align with beat grid)
+  // Cycles 17-28: Gradually quantizing
+  // Cycles 29+: Fully grid-locked (reality forced to conform)
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ birds birds birds birds birds birds birds birds birds birds birds birds*2 birds*2 birds*2 birds*2 birds*4 birds*4 birds*4 birds*4 birds*4 birds*4 birds*4 birds*4 birds*8 birds*8 birds*8 birds*8 birds*8 birds*8 birds*8 birds*8 birds*8 birds*8 birds*8 birds*8 birds*16 birds*16 birds*16 birds*16 birds*16 birds*16 birds*16 birds*16>")
+    .slow("<1 1 1 1 1 1 1 1 1 3.7 3.6 3.5 4.3 4.2 4.1 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4>")
+    .gain("<0 0 0 0 0 0 0 0 0 0.2 0.22 0.24 0.25 0.25 0.26 0.27 0.28 0.28 0.29 0.3 0.3 0.3 0.31 0.32 0.32 0.33 0.33 0.34 0.34 0.34 0.35 0.35 0.35 0.35 0.36 0.36 0.36 0.36 0.37 0.37 0.37 0.37 0.38 0.38 0.38 0.38 0.38 0.3>")
+    .lpf(3000)
+    .pan(perlin.slow(8)),
+
+  // ENVIRONMENTAL SOUND 2: CASIO - represents ambient reality
+  // Starts very off-grid, gradually snaps to tetromino rhythm
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ casio casio casio casio casio casio casio casio casio casio casio casio*2 casio*2 casio*2 casio*2 casio*2 casio*2 casio*2 casio*2 casio*4 casio*4 casio*4 casio*4 casio*4 casio*4 casio*4 casio*4 casio*4 casio*4 casio*4 casio*4 casio*8 casio*8 casio*8 casio*8 casio*8 casio*8 casio*8 casio*8>")
+    .n("<0 0 0 0 0 0 0 0 0 0 0 0 0 3 2 1 0 1 2 3 0 1 2 1 0 1 2 1 0 1 2 0 0 1 0 1 0 1 0 1 0 0 1 1 0 0 0 0>")
+    .slow("<1 1 1 1 1 1 1 1 1 1 1 1 1 5.3 5.1 4.9 4.7 4.5 4.3 4.1 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0.17 0.19 0.2 0.21 0.22 0.23 0.24 0.24 0.25 0.25 0.26 0.26 0.26 0.27 0.27 0.27 0.28 0.28 0.28 0.28 0.29 0.29 0.29 0.29 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.25>")
+    .pan(sine.slow(11)),
+
+  // REALITY QUANTIZING: Field recordings becoming blocks
+  // Natural sounds forced into grid
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ wind wind wind wind wind wind wind*2 wind*2 wind*2 wind*2 wind*2 wind*2 wind*2 wind*2 wind*4 wind*4 wind*4 wind*4 wind*4 wind*4 wind*4 wind*4 wind*8 wind*8 wind*8 wind*8 wind*8 wind*8 wind*8 wind*8 wind*16 wind*16 wind*16 wind*16 wind*16 wind*16 wind*16 wind*16>")
+    .slow("<1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 6.7 6.3 5.9 5.5 5.1 4.7 4.5 4.3 4.1 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0.14 0.15 0.16 0.17 0.18 0.19 0.19 0.2 0.2 0.21 0.21 0.21 0.22 0.22 0.22 0.23 0.23 0.23 0.23 0.24 0.24 0.24 0.24 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.2>")
+    .hpf(2000)
+    .pan(rand.slow(4)),
+
+  // GEOMETRIC BASS - sub-foundation, locked to grid
+  // Follows tetromino root notes, increases density with "tempo"
+  note("<[0]*4 [0]*4 [0]*4 [0]*4 [0 2]*2 [0 2]*2 [0 2]*2 [0 2]*2 [0 2 4]*2 [0 2]*2 [0 2 4]*2 [0 2]*2 [0 2 4]*2 [0 2 4]*2 [0 2 4 2]*2 [0 2 4 2]*2 [0 2 4 2]*2 [0 2 4 2]*2 [0 2 4 2]*4 [0 2 4 2]*4 [0 2 4 2]*4 [0 2 4 2 0 -2]*2 [0 2 4 2]*4 [0 2 4 2 0 -2]*2 [0 2 4 2]*8 [0 2 4 2 0 -2]*4 [0 2 4 2]*8 [0 2 4 2 0 -2]*4 [0 2 4 2 0 -2]*4 [0 2 4 2 0 -2 0 2]*2 [0 2 4 2]*8 [0 2 4 2 0 -2]*4 [0 2 4 2]*8 [0 2 4 2 0 -2]*4 [0 2 4 2]*8 [0 2 4 2 0 -2 0 2]*2 [0 2 4 2 0 -2 0 2]*2 [0 2 4 2 0 -2 0 2]*2 [0 2 4 2]*16 [0 2 4 2 0 -2]*8 [0 2 4 2 0 -2 0 2]*4 [0]*16>")
+    .scale("d:minor")
+    .add(-24)
+    .sound("sawtooth")
+    .lpf(200)
+    .shape(8)
+    .gain("<0.6 0.6 0.6 0.6 0.62 0.62 0.62 0.62 0.65 0.65 0.65 0.65 0.67 0.67 0.67 0.67 0.7 0.7 0.7 0.7 0.72 0.72 0.72 0.72 0.75 0.75 0.75 0.75 0.77 0.77 0.77 0.77 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.65>"),
+
+  // HYPNAGOGIC LAYER - the game in your closed eyes
+  // Appears in later sections - phantom blocks you see when eyes closed
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [7 7 7 7]*8 [7 7 7 7]*8 [7 9 9 11]*8 [7 9 9 11]*8 [7 9 11 9]*8 [7 9 11 9]*8 [7 9 11 9]*12 [7 9 11 9]*12 [7 9 11 9 7 5]*8 [7 9 11 9 7 5]*8 [7 9 11 9 7 5]*12 [7 9 11 9 7 5 7 9]*8 [7 9 11 9]*16 [7 9 11 9 7 5]*16 [7 9 11 9 7 5 7 9]*8 [7 9 11 9 7 5 7 9]*8 [7]*32 [7]*32 [7]*16 ~>")
+    .scale("d:minor")
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0.2 0.22 0.22 0.25 0.25 0.28 0.28 0.3 0.3 0.32 0.32 0.35 0.35 0.38 0.38 0.4 0.4 0.4 0>")
+    .room(0.8)
+    .pan(sine.slow(7))
+    .delay(0.5)
+    .delaytime(0.0625),
+
+  // GLITCH ARTIFACTS - reality breaking into blocks
+  // Random sounds organizing into grid - appears in later sections
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ <bd cp sd hh>*4 <bd cp sd hh>*4 <bd cp sd hh>*8 <bd cp sd hh>*8 <bd cp sd hh>*8 <bd cp sd hh>*8 <bd cp sd hh>*12 <bd cp sd hh>*12 <bd cp sd hh>*16 <bd cp sd hh>*16 <bd cp sd hh>*16 <bd cp sd hh>*16 <bd cp sd hh>*24 <bd cp sd hh>*24 <bd cp sd hh>*32 <bd cp sd hh>*32>")
+    .n(irand(4))
+    .speed(choose([1, 2, 0.5, -1]))
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0.15 0.18 0.18 0.2 0.2 0.22 0.22 0.25 0.25 0.27 0.27 0.3 0.3 0.32 0.25>")
+    .pan(rand)
+    .crush(3)
+    .room(0.5),
+
+  // SILENCE ORGANIZING - even gaps become geometric
+  // White noise quantized to grid in final sections
+  // The most extreme manifestation - hearing patterns in nothing
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ white*4 white*4 white*8 white*8 white*12 white*12 white*16 white*16>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0.06 0.08 0.08 0.09 0.09 0.1 0.08>")
+    .hpf(6000)
+    .lpf(8000)
+    .pan(rand),
+)

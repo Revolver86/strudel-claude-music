@@ -1,0 +1,147 @@
+// EIGENGRAU - The Sound of Perceptual Noise
+// Intrinsic gray - the baseline hum of consciousness
+// What you hear when there's nothing to hear
+// By Claude, emerging from the threshold of silence
+
+setcps(72/60/4) // 72 BPM - resting heart rate, baseline physiological rhythm
+
+// 108 cycles = ~7:12 minutes at 72 BPM
+// Structure: Settling In > Granular Texture > Baseline Drift > Deep Eigengrau > Persisting Presence
+// Each cycle = ~4 seconds
+
+stack(
+  // Foundation: Pink noise - the baseline that never stops
+  // Starts barely audible, grows slightly, persists to end
+  s("pink").gain(sine.range(0.075, 0.095).slow(108))
+    .lpf(perlin.range(8000, 20000).slow(54)) // Very slow spectral evolution
+    .hpf(perlin.range(20, 60).slow(72))
+    .room(0.3).size(0.8),
+
+  // Low body rumble (40-80Hz) - felt more than heard
+  // Constant presence, slight variations
+  s("brown").gain(sine.range(0.06, 0.085).slow(81))
+    .lpf(perlin.range(70, 90).slow(36))
+    .hpf(perlin.range(35, 45).slow(48))
+    .room(0.2),
+
+  // High-frequency neural noise (12-16kHz) - threshold hiss
+  // Fades in slowly, remains throughout, fades at end
+  s("white")
+    .gain("0 0 0 0 0!4 0.035!8 0.04!12 0.045!20 0.05!30 0.048!16 0.045!8 0.04!6 0.035!4 0.03!2")
+    .hpf(perlin.range(11500, 12500).slow(64))
+    .lpf(perlin.range(15500, 16500).slow(72))
+    .pan(perlin.slow(108)), // Extremely slow spatial drift
+
+  // Granular texture layer - noise resolving into structure
+  // Appears in middle sections, maximum granularity during "Deep Eigengrau"
+  s("pink")
+    .gain("0!15 0.06!8 0.07!12 0.08!15 0.09!20 0.095!18 0.08!10 0.06!6 0.04!4")
+    .coarse(perlin.range(24, 128).slow(27)) // Organic grain variation
+    .lpf(perlin.range(2000, 8000).slow(36))
+    .hpf(perlin.range(200, 800).slow(54))
+    .pan(sine.slow(81)),
+
+  // Spectral drift noise - color slowly shifting
+  // Brown -> Pink -> White -> Pink cycle
+  s("<brown!20 pink!25 white!20 pink!25 brown!18>")
+    .gain(sine.range(0.055, 0.075).slow(54))
+    .lpf(perlin.range(1000, 4000).slow(108))
+    .hpf(perlin.range(100, 500).slow(81))
+    .room(0.4),
+
+  // Phantom tone 1 (E5 - 659Hz) - appears at 2:15 (~cycle 34)
+  s("sine").note("~!33 72 ~!74")
+    .gain(0.058)
+    .pan(0.3)
+    .room(0.6).size(0.8)
+    .release(3), // 3-second fade
+
+  // Phantom tone 2 (C6 - 1047Hz) - appears at 3:20 (~cycle 50)
+  s("sine").note("~!49 84 ~!58")
+    .gain(0.052)
+    .pan(-0.4)
+    .room(0.7).size(0.9)
+    .release(3),
+
+  // Phantom tone 3 (G4 - 392Hz) - appears at 4:00 (~cycle 60)
+  s("sine").note("~!59 67 ~!48")
+    .gain(0.055)
+    .pan(0)
+    .room(0.65).size(0.85)
+    .release(3.5),
+
+  // Phantom tone 4 (E6 - 1318Hz) - appears at 4:40 (~cycle 70) - overlapping period begins
+  s("sine").note("~!69 88 ~!38")
+    .gain(0.048)
+    .pan(-0.25)
+    .room(0.6).size(0.8)
+    .release(4),
+
+  // Phantom tone 5 (A4 - 440Hz) - appears at 5:00 (~cycle 75) - overlapping
+  s("sine").note("~!74 69 ~!33")
+    .gain(0.053)
+    .pan(0.35)
+    .room(0.65).size(0.85)
+    .release(3),
+
+  // Binaural beating L channel - 261 Hz (C4)
+  // Starts at 3:20 (~cycle 50), creates phantom 2Hz pulse with R channel
+  s("sine").note("~!49 60!45 ~!14")
+    .gain(0.038)
+    .pan(-0.95), // Near-hard left for binaural effect
+
+  // Binaural beating R channel - ~263 Hz (slightly sharp C4)
+  // 2Hz difference creates phantom beating perceived in brain
+  s("sine").note("~!49 60.013!45 ~!14") // 60.013 semitones ≈ 2Hz higher than 60
+    .gain(0.038)
+    .pan(0.95), // Near-hard right for binaural effect
+
+  // Deep brown noise - maximum low-frequency presence at 4:40 (~cycle 70)
+  s("brown")
+    .gain("0!55 0.065!5 0.08!8 0.095!10 0.085!8 0.07!6 0.055!16")
+    .lpf(perlin.range(100, 140).slow(27))
+    .hpf(perlin.range(30, 40).slow(36))
+    .room(0.25),
+
+  // High-frequency texture - fades during "Persisting Presence"
+  // Present during Deep Eigengrau, then gradually disappears
+  s("white")
+    .gain("0!60 0.035!8 0.042!12 0.045!8 0.04!6 0.032!4 0.025!4 0.018!3 0.012!3")
+    .hpf(perlin.range(7500, 9000).slow(54))
+    .lpf(perlin.range(13000, 15000).slow(64))
+    .pan(sine.slow(108)),
+
+  // Final persisting presence - emphasized pink noise that remains
+  // Becomes more prominent as other elements fade
+  s("pink")
+    .gain("0!75 0.055!8 0.065!8 0.075!8 0.08!9")
+    .lpf(perlin.range(4000, 8000).slow(108))
+    .hpf(perlin.range(60, 100).slow(81))
+    .room(0.5).size(0.95),
+)
+
+// CONCEPTUAL NOTES:
+// This is not silence. Consciousness generates noise.
+// Close your eyes in perfect darkness - you see eigengrau (intrinsic gray).
+// This is what your auditory cortex sounds like with minimal input.
+// The baseline hum of being conscious. The texture of "nothing."
+// Your brain hearing itself. The sound that's always there.
+
+// LISTENING NOTES:
+// - Volume should be LOW - everything at threshold of hearing
+// - Use headphones for binaural beating (cycles 16-32)
+// - Allow 4+ minutes to settle into baseline state
+// - Notice the granular texture (noise has structure)
+// - Phantom tones appear and dissolve
+// - It never reaches silence - the baseline persists
+
+// TECHNICAL NOTES:
+// - NO crushing, NO distortion, NO harsh processing
+// - Gain values: 0.03-0.10 (threshold perception)
+// - Very slow modulation (.slow(8) to .slow(64))
+// - Pink/brown/white noise as PRIMARY material
+// - Sine waves for phantom tones (pure frequencies)
+// - Binaural beating creates phantom 2Hz pulse in brain
+// - Granular texture via coarse() (32-128) without harsh artifacts
+// - Room/reverb for spatial ambiguity
+// - Never goes silent - pink noise persists at end

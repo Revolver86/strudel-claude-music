@@ -1,0 +1,205 @@
+// MYCELIUM NETWORK
+// The sound of fungal consciousness - distributed intelligence operating on geological time
+// Organic computation in the dark
+// Duration: ~3:15 (63 cycles)
+
+setcps(78/60/4) // 78 BPM - patient, ancient pace
+
+stack(
+  // SPORE PULSE - the original signal, always present
+  // Single hyphal thread establishing presence
+  sound("<~ ~ ~ bd ~ ~ ~ ~  ~ ~ ~ bd ~ ~ ~ ~  ~ ~ bd ~ ~ ~ ~  ~ bd ~ ~ ~ ~>")
+    .n(0)
+    .lpf(120)
+    .shape(2)
+    .gain("<0.4 0.45 0.5 0.55>")
+    .room(0.8).rsize(6)
+    .speed(0.5),
+
+  // ROOT DRONE - deep underground resonance
+  // The mycelial mat vibrating
+  note("<[-36 -36 -36 -36]*1  [-36 -35 -36 -36]*1  [-36 -35 -36 -34]*1  [-36 -35 -36 -35]*1>".slow(4))
+    .sound("sine")
+    .lpf(perlin.range(80, 140).slow(16))
+    .gain("<0.5 0.55 0.6 0.65>")
+    .room(0.9).rsize(8)
+    .shape(1),
+
+  // HYPHAL GROWTH - organic clicks and pops
+  // Branching sounds, cellular activity
+  sound("<~ ~ ~ ~  [~ ~ rim ~]*2  [~ rim ~ rim]*2  [rim ~ rim ~]*2>")
+    .n(choose([0,1,2]))
+    .speed(perlin.range(0.3, 0.8))
+    .gain(rand.range(0.15, 0.35))
+    .pan(rand)
+    .lpf(perlin.range(400, 1200).slow(8))
+    .degradeBy("<0.6 0.5 0.4 0.3>")
+    .delay(0.3).delaytime(0.375).delayfeedback(0.5)
+    .room(0.6),
+
+  // NUTRIENT FLOW - warbling tones, chemical messages
+  // Information transfer through network
+  note("<~ ~ ~ ~  ~ ~ ~ ~  [0 5 10]*4  [0 5 10 15]*4>".slow(2))
+    .scale("eb:minor")
+    .sound("sine")
+    .vibrato(2).vibmod(0.4)
+    .lpf(perlin.range(300, 800).slow(12))
+    .gain("<0 0 0.25 0.3>")
+    .pan(sine.slow(11))
+    .room(0.7).rsize(5)
+    .attack(0.8).release(1.2),
+
+  // QUARTAL HARMONY - stacked fourths, alien logic
+  // Non-human consciousness emerging
+  note("<~ ~ ~ ~  ~ ~ ~ ~  ~ [0 5 10]*2  [0 5 10 15]*2>".slow(4))
+    .scale("eb:minor")
+    .sound("triangle")
+    .lpf(sine.range(400, 1000).slow(16))
+    .lpq(3)
+    .gain("<0 0 0 0.28>")
+    .pan(perlin.slow(13))
+    .room(0.8).rsize(7)
+    .attack(1.5).release(2),
+
+  // EUCLIDEAN THREADS - polyrhythmic network activity
+  // Multiple hyphal threads operating independently
+  sound("<~ ~ ~ ~  ~ ~ ~ ~  ~ ~ rim(3,8)  rim(3,8,<0 1 2>)>")
+    .n(1)
+    .speed(0.6)
+    .gain(0.25)
+    .lpf(600)
+    .pan(perlin.fast(2))
+    .delay(0.4).delaytime(0.5).delayfeedback(0.4)
+    .room(0.5),
+
+  // SUBSTRATE RESONANCE - wood creaking, root pressure
+  // The forest floor thinking
+  note("<~ ~ ~ ~  ~ ~ [-24 -24]*1  [-24 -23 -24 -23]*1  [-24 -23 -24 -22]*1>".slow(2))
+    .sound("sawtooth")
+    .lpf(perlin.range(150, 280).slow(20))
+    .lpq(2)
+    .shape(3)
+    .gain("<0 0 0.4 0.45>")
+    .room(0.9).rsize(9)
+    .coarse(48)
+    .attack(0.5).release(1),
+
+  // SPORE DISPERSAL - granular clouds
+  // Crystalline high frequencies, fruiting body emergence
+  sound("<~ ~ ~ ~  ~ ~ ~ ~  ~ ~ ~ ~  ~ ~ [hh hh ~ hh]*4>")
+    .n(choose([0,1,2,3]))
+    .speed(perlin.range(0.8, 1.4))
+    .gain(rand.range(0.15, 0.25))
+    .hpf(perlin.range(4000, 8000).slow(6))
+    .pan(rand)
+    .delay(0.5).delaytime(0.333).delayfeedback(0.6)
+    .degradeBy(0.4)
+    .room(0.7),
+
+  // ENZYME ACTIVITY - bubbling percolating sounds
+  // Organic clicks in bursts
+  sound("<~ ~ ~ ~  ~ ~ ~ ~  ~ ~ [cp cp ~ ~ cp]*2  [cp ~ cp cp ~ cp]*2>")
+    .n(choose([0,1,2]))
+    .speed(rand.range(0.4, 0.9))
+    .gain(rand.range(0.2, 0.3))
+    .lpf(rand.range(600, 1400))
+    .pan(rand)
+    .degradeBy(0.5)
+    .room(0.5),
+
+  // COLLECTIVE DECISION - synchronized moments
+  // Network achieving temporary alignment
+  sound("<~ ~ ~ ~  ~ ~ ~ ~  ~ ~ ~ ~  ~ ~ [bd ~ ~ ~]*2>")
+    .n(1)
+    .lpf(180)
+    .shape(4)
+    .gain(0.5)
+    .room(0.8)
+    .speed(0.7)
+    .delay(0.6).delaytime(0.5).delayfeedback(0.3),
+
+  // SECONDARY METABOLISM - chemical signal complexity
+  // Peak network activity - melodic fragments
+  note("<~ ~ ~ ~  ~ ~ ~ ~  ~ ~ [0 5 7]*4  [0 5 7 10]*4>".slow(2))
+    .scale("eb:mixolydian")
+    .sound("square")
+    .lpf(perlin.range(800, 1800).slow(10))
+    .lpq(4)
+    .crush(8)
+    .coarse(24)
+    .gain("<0 0 0 0.25>")
+    .pan(sine.slow(9))
+    .room(0.6)
+    .attack(0.6).release(0.9)
+    .degradeBy(0.2),
+
+  // MYCORRHIZAL VIBRATION - deepest bass
+  // Earth frequency - sub-bass pulses
+  note("<~ ~ ~ ~  ~ ~ ~ ~  ~ ~ [-48 -48 ~ ~]*1  [-48 -48 -47 ~]*1>".slow(2))
+    .sound("sine")
+    .lpf(100)
+    .shape(5)
+    .gain("<0 0 0 0.7>")
+    .room(0.9).rsize(10)
+    .attack(0.8).release(2),
+
+  // BIOLUMINESCENCE - shimmer
+  // Occasional crystalline high notes
+  note("<~ ~ ~ ~  ~ ~ ~ ~  ~ ~ ~ ~  ~ ~ ~ [48 50 52]*8>".slow(2))
+    .scale("eb:minor")
+    .sound("sine")
+    .gain(rand.range(0.1, 0.2))
+    .pan(rand)
+    .hpf(3000)
+    .attack(0.1).release(0.3)
+    .room(0.8)
+    .degradeBy(0.7),
+
+  // DISTRIBUTED PROCESSING - phasing polyrhythms
+  // Different processing rates across network
+  sound("<~ ~ ~ ~  ~ ~ ~ ~  ~ rim(5,8)  rim(5,8,<1 2 3>)>")
+    .n(2)
+    .speed(0.5)
+    .gain(0.2)
+    .lpf(800)
+    .pan(perlin.slow(7))
+    .delay(0.5).delaytime(0.625).delayfeedback(0.4)
+    .room(0.6)
+    .degradeBy(0.3),
+
+  // INFORMATION WAVE - slow modulation sweep
+  // Nutrient and data flowing through network
+  note("<~ ~ ~ ~  ~ ~ [-12 -12]*1  [-12 -11 -12 -11]*1  [-12 -11 -12 -10]*1>".slow(4))
+    .sound("triangle")
+    .lpf(sine.range(200, 600).slow(32))
+    .lpq(2)
+    .gain("<0 0 0.35 0.4>")
+    .pan(sine.slow(19))
+    .room(0.85).rsize(8)
+    .attack(2).release(3)
+    .shape(2),
+
+  // ORGANIC DEGRADATION - natural imperfection
+  // Living system fluctuation
+  sound("<~ ~ ~ ~  ~ ~ ~ ~  ~ ~ [~ sd ~]*2  [~ sd ~ sd]*2>")
+    .n(choose([0,1,2]))
+    .speed(perlin.range(0.4, 0.7))
+    .lpf(perlin.range(300, 700).slow(14))
+    .gain(rand.range(0.15, 0.25))
+    .pan(rand)
+    .crush(6)
+    .coarse(32)
+    .degradeBy(0.6)
+    .room(0.7),
+
+  // SYMBIOTIC PULSE - living breathing dynamics
+  // The entire network as a single organism
+  sound("<~ ~ ~ ~  ~ ~ ~ ~  ~ ~ ~ ~  ~ ~ [bd ~ bd ~]*1>")
+    .n(0)
+    .lpf(160)
+    .shape(3)
+    .gain(perlin.range(0.3, 0.5))
+    .room(0.8)
+    .speed(0.6)
+    .late(perlin.range(0, 0.1).slow(8))
+)

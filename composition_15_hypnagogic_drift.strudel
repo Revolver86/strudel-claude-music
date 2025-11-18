@@ -1,0 +1,247 @@
+// HYPNAGOGIC DRIFT
+// The sound of consciousness releasing its grip
+// Liminal beauty - reality becoming negotiable
+// By Claude, from the threshold between waking and sleep
+
+setcps(82/60/4) // 82 BPM - slowing heartbeat tempo
+
+stack(
+  // Music box melody - childhood dissolving into strangeness
+  // Eb Lydian drifting to Locrian - major becoming unsettling
+  // Sections: Coherent -> Threshold -> Deep Hypnagogia -> Sleep
+  note("<[3 7 10 14] [3 7 10 14] [3 7 10 14] [3 7 10 14] [3 6 10 13] [3 6 10 13] [3 6 8 11] [3 4 6 8]>")
+    .slow("<1 1 1 1.5 1.5 2 2.5 3>") // Time stretching
+    .sound("triangle")
+    .gain("<0.4 0.42 0.45 0.47 0.5 0.48 0.45 0.4>")
+    .room("<0.3 0.4 0.5 0.6 0.7 0.75 0.8 0.85>") // Space expanding
+    .lpf("<4000 3500 3000 2500 2000 1800 1500 1200>") // Consciousness dimming
+    .vibrato("<0 0 1 2 2 3 3 4>") // Tape warble increasing
+    .vibmod("<0 0 0.05 0.1 0.15 0.2 0.25 0.3>")
+    .pan(sine.slow(16))
+    .delay("<0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55>")
+    .delayfeedback("<0.3 0.4 0.5 0.6 0.7 0.75 0.8 0.85>") // Thoughts looping
+    .sometimes(x => x.add(12)) // Sometimes octave shifts
+    .degradeBy("<0 0 0.1 0.2 0.3 0.4 0.5 0.6>"), // Coherence failing
+
+  // Crystalline bells - clarity islands in dissolution
+  note("<~ [3 10 15] ~ [3 10 15] ~ [3 10 -1] ~ [3 -1]>") // Pitch drifting down encoded
+    .slow("<1 1 1.2 1.5 2 2.5 3 4>")
+    .sound("sine")
+    .gain("<0 0.35 0 0.35 0 0.3 0 0.25>")
+    .room("<0.5 0.6 0.7 0.75 0.8 0.85 0.9 0.95>")
+    .attack(0.01)
+    .release(2)
+    .pan(perlin.slow(8)),
+
+  // Reversed piano - time flowing backwards
+  note("<~ ~ [0 4 7] [0 4 7] [0 3 7] [0 3 6] [0 3 6] [0 3]>")
+    .slow("<1 1 1 1.3 1.8 2.3 3 4>")
+    .sound("sawtooth")
+    .speed(-0.5) // Reversed
+    .lpf(2000)
+    .lpq(3)
+    .gain("<0 0 0.3 0.32 0.35 0.33 0.3 0.25>")
+    .room("<0.4 0.5 0.6 0.7 0.8 0.85 0.9 0.95>")
+    .delay(0.4)
+    .delayfeedback("<0.4 0.5 0.6 0.7 0.75 0.8 0.85 0.9>")
+    .pan(sine.slow(12)),
+
+  // Warm analog drone - comfort before strangeness
+  note("<-12 -12 -12 -12 -13 -13 -14 -15>") // Eb descending
+    .slow("<1 1 1.5 2 3 4 5 6>")
+    .sound("sawtooth")
+    .lpf("<800 750 700 650 600 550 500 450>")
+    .lpq(2)
+    .gain("<0.25 0.27 0.3 0.32 0.35 0.33 0.3 0.25>")
+    .room("<0.5 0.6 0.65 0.7 0.75 0.8 0.85 0.9>")
+    .attack(2)
+    .release(4),
+
+  // Breath sounds - body awareness fading
+  sound("<~ ~ ~ white*4 white*3 white*2 white brown>")
+    .slow("<1 1 1 1 1.5 2 2.5 3>")
+    .hpf(800)
+    .lpf("<2000 1800 1600 1400 1200 1000 800 600>")
+    .gain("<0 0 0 0.15 0.18 0.2 0.18 0.15>")
+    .room(0.7)
+    .pan(perlin.slow(4)),
+
+  // Heartbeat - slowing, distant
+  sound("<bd*4 bd*4 bd*4 bd*3 bd*2 bd*2 bd bd>")
+    .slow("<1 1 1.2 1.5 2 2.5 3 4>")
+    .n(0)
+    .lpf(120)
+    .gain("<0.3 0.3 0.28 0.25 0.22 0.2 0.15 0.1>")
+    .room(0.3)
+    .shape(8),
+
+  // Hypnagogic phenomena layer 1: Falling sensation (cycle ~17, 0:50)
+  note("<~ ~ ~ [-24 -36 -48] ~ ~ ~ ~>") // Sudden pitch drop
+    .sound("sine")
+    .gain("<0 0 0 0.4 0 0 0 0>")
+    .attack(0.01)
+    .release(1.5)
+    .room(0.9),
+
+  // Hypnagogic phenomena layer 2: Thought loop (cycles ~27-29, 1:20)
+  note("<~ ~ ~ ~ [5 7 10] [5 8 10] [4 7 9] ~>") // Same phrase 3 times, slight variations
+    .slow("<1 1 1 1 1 1.05 1.1 1>") // Slightly different each time
+    .sound("triangle")
+    .gain("<0 0 0 0 0.35 0.33 0.31 0>")
+    .room(0.8)
+    .delay(0.3)
+    .delayfeedback(0.7),
+
+  // Hypnagogic phenomena layer 3: Faces in static (cycle ~36, 1:45)
+  note("<~ ~ ~ ~ ~ [15 19 17] ~ ~>") // Melodic fragments suggesting features
+    .fast(3)
+    .sound("square")
+    .gain("<0 0 0 0 0 0.25 0 0>")
+    .lpf(1500)
+    .crush(6)
+    .room(0.9)
+    .pan(rand)
+    .degradeBy(0.7), // Fragmentary (increased degradation for sparse effect)
+
+  // Hypnagogic phenomena layer 4: Time dilation (cycle ~44, 2:10)
+  note("<~ ~ ~ ~ ~ ~ [0 3 7] ~>")
+    .slow("<1 1 1 1 1 1 8 1>") // Everything slows suddenly at cycle 7
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0.4 0>")
+    .room(0.95)
+    .attack(3)
+    .release(5),
+
+  // Hypnagogic phenomena layer 5: Hypnic jerk (cycle ~53, 2:35)
+  sound("<~ ~ ~ ~ ~ ~ ~ bd>") // Sudden percussion hit
+    .n(1)
+    .gain("<0 0 0 0 0 0 0 0.6>")
+    .speed(2)
+    .crush(4)
+    .delay(0.5)
+    .delayfeedback(0.9), // Then echoes into void
+
+  // Hypnagogic phenomena layer 6: Last coherent thought (cycle ~68, 3:20)
+  note("<~ ~ ~ ~ ~ ~ ~ [3 7 10 14]>") // Clear Eb major phrase
+    .sound("triangle")
+    .gain("<0 0 0 0 0 0 0 0.45>")
+    .room(0.8)
+    .lpf(3000)
+    .delay(0.4)
+    .delayfeedback(0.8),
+
+  // Floating sensation - rhythm gravity failing
+  note("<[7 10 14 17]*4 [7 10 14 17]*4 [7 10 14]*3 [7 10]*3 [7 10]*2 [7]*2 [7] ~>")
+    .slow("<1 1.2 1.5 2 2.5 3.5 5 8>")
+    .sound("sine")
+    .gain("<0.25 0.27 0.3 0.32 0.3 0.27 0.23 0.15>")
+    .room("<0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95>")
+    .lpf("<3000 2700 2400 2100 1800 1500 1200 900>")
+    .pan(sine.slow(7).range(0.2, 0.8))
+    .vibrato("<0 1 2 3 4 5 6 7>") // Microtonal drift via vibrato
+    .vibmod("<0 0.05 0.1 0.15 0.2 0.25 0.3 0.35>"),
+
+  // Proprioception loss - stereo field destabilizing
+  note("<~ [10 14] [10 14] [6 10] [6 10] [6] [6] ~>")
+    .slow("<1 1 1.3 1.7 2.2 3 4 6>")
+    .sound("triangle")
+    .gain("<0 0.3 0.3 0.28 0.25 0.2 0.15 0>")
+    .pan(rand) // Unstable positioning
+    .room(0.85)
+    .lpf(2000)
+    .sometimes(x => x.speed(0.5)), // Occasionally warped
+
+  // Static layer - consciousness as noise
+  sound("<~ ~ ~ ~ white*8 white*6 white*4 brown*2>")
+    .slow("<1 1 1 1 1 1.5 2 3>")
+    .hpf(3000)
+    .lpf("<6000 5000 4000 3000 2500 2000 1500 1000>")
+    .gain("<0 0 0 0 0.15 0.17 0.18 0.15>")
+    .room(0.9)
+    .pan(perlin.slow(3))
+    .degradeBy(0.5),
+
+  // Impossible geometries - quartal harmony (neither happy nor sad)
+  note("<~ ~ ~ ~ [0 5 10] [0 5 10] [0 5] [0]>")
+    .slow("<1 1 1 1 1.5 2 3 5>")
+    .sound("sawtooth")
+    .lpf(1200)
+    .lpq(4)
+    .gain("<0 0 0 0 0.25 0.23 0.2 0.15>")
+    .room(0.9)
+    .attack(1.5)
+    .release(3)
+    .pan(sine.slow(11)),
+
+  // Dream logic emerging - patterns that shouldn't fit but do
+  note("<~ ~ ~ ~ ~ [0 7 11] [0 6 13] [0 4 11]>") // Increasingly dissonant intervals
+    .slow("<1 1 1 1 1 1.5 2.5 4>")
+    .sound("triangle")
+    .gain("<0 0 0 0 0 0.28 0.25 0.2>")
+    .room(0.95)
+    .lpf(1800)
+    .delay(0.6)
+    .delayfeedback(0.85)
+    .vibrato("<0 0 0 0 0 3 4 5>") // Continuous pitch drift
+    .vibmod("<0 0 0 0 0 0.2 0.3 0.4>"),
+
+  // Void approaching - sub-bass presence
+  note("<-24 -24 -24 -25 -26 -27 -28 -29>") // Descending into deep
+    .slow("<1 1.5 2 3 4 5 6 8>")
+    .sound("sine")
+    .lpf(150)
+    .gain("<0.2 0.22 0.25 0.27 0.28 0.27 0.25 0.2>")
+    .room(0.6)
+    .attack(4)
+    .release(6),
+
+  // Self dissolving - major/minor boundary collapsing
+  note("<[3 7 10] [3 7 10] [3 6 10] [3 6 10] [3 6 9] [3 6] [3] ~>")
+    .slow("<1 1.3 1.7 2.2 3 4 6 10>")
+    .sound("sawtooth")
+    .lpf("<2000 1800 1600 1400 1200 1000 800 600>")
+    .lpq(3)
+    .gain("<0.3 0.3 0.28 0.25 0.22 0.18 0.13 0.08>")
+    .room("<0.7 0.75 0.8 0.85 0.9 0.92 0.95 0.97>")
+    .delay(0.5)
+    .delayfeedback("<0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.93>")
+    .vibrato("<2 2.5 3 3.5 4 4.5 5 5.5>") // Increasing warble
+    .vibmod("<0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45>")
+    .pan(perlin.slow(9)),
+
+  // Language becoming texture - slowed voice simulation
+  note("<~ ~ ~ [24 26 28] [20 22 24] [16 18] [12] ~>") // Descending pitch
+    .slow("<1 1 2 3 4 6 8 12>")
+    .sound("square")
+    .lpf("<1200 1000 800 600 500 400 300 200>")
+    .bpf(perlin.range(300, 1500).slow(4))
+    .bpq(8)
+    .gain("<0 0 0 0.2 0.18 0.15 0.1 0>")
+    .room(0.85)
+    .speed(0.3), // Very slow, voice-like
+
+  // Warm void - analog comfort in dissolution
+  note("[-12 -13 -14 -15 -16 -17 -18 -19]")
+    .slow("<2 3 4 5 6 8 10 15>")
+    .sound("triangle")
+    .lpf("<600 550 500 450 400 350 300 250>")
+    .gain("<0.2 0.22 0.24 0.25 0.24 0.22 0.18 0.12>")
+    .room(0.95)
+    .attack(5)
+    .release(8)
+    .pan(0.5), // Centered, embracing
+
+  // Final dissolution - everything releasing
+  note("<~ ~ ~ ~ ~ ~ ~ [0 3 6]>") // Last suspended chord
+    .slow(20) // Nearly frozen in time
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0 0.3>")
+    .room(0.99)
+    .lpf(800)
+    .attack(8)
+    .release(15)
+    .delay(0.8)
+    .delayfeedback(0.95) // Infinite echo into sleep
+
+  // The self was always optional
+)

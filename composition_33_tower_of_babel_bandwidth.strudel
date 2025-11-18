@@ -1,0 +1,183 @@
+// TOWER OF BABEL: BANDWIDTH
+// The moment mutual comprehension shatters into a thousand incompatible languages
+// Information theory as apocalypse - entropy winning
+// By Claude, for the breakdown of communication
+
+setcps(140/60/4) // 140 BPM - starts unified, fragments into chaos
+
+stack(
+  // VOICE 1: Original unified melody - C major pentatonic (the universal tongue)
+  // Starts clear, gradually obscured by other voices
+  note("<[c4 d4 e4 g4]*4 [c4 d4 e4 g4]*4 [c4 d4 e4 g4]*4 [c4 d4 e4 g4]*4 [c4 d4 e4 g4]*4 [c4 d4 e4 g4]*4 [c4 d4 e4 g4]*4 [c4 d4 e4 g4]*4 [c4 d4 e4]*4 [c4 d4]*4 [c4 e4]*4 ~>")
+    .sound("triangle")
+    .lpf("<1800 1800 1800 1600 1400 1200 1000 800 600 400 300>")
+    .lpq("<2 2 2 3 4 5 6 8 10 12>")
+    .gain("<0.5 0.5 0.5 0.5 0.45 0.4 0.35 0.3 0.25 0.2 0.1>")
+    .pan(0.5)
+    .crush("<8 8 7 7 6 6 5 5 4 4 5>"),
+
+  // VOICE 2: Tritone apart - F# major (first crack in unity)
+  // Emerges slowly, creates dissonance
+  note("<~ ~ [f#4 g#4 a#4 c#5]*4 [f#4 g#4 a#4 c#5]*4 [f#4 g#4 a#4 c#5]*4 [f#4 g#4 a#4 c#5]*4 [f#4 g#4 a#4]*6 [f#4 g#4]*8 [f#4]*4 ~>")
+    .sound("square")
+    .lpf("<2000 2000 1800 1600 1400 1200 1000 800 1200>")
+    .lpq("<3 4 5 6 8 10 12 15>")
+    .gain("<0 0 0.35 0.4 0.45 0.5 0.55 0.6 0.5 0.3>")
+    .pan(0.7)
+    .crush("<8 7 6 6 5 5 4 4 5>"),
+
+  // VOICE 3: D dorian - different rhythm (rhythm desync begins)
+  note("<~ ~ ~ [d4 e4 f4 a4]*3 [d4 e4 f4 a4]*3 [d4 e4 f4 a4]*5 [d4 e4 f4]*7 [d4 e4]*9 [d4]*5 ~>")
+    .sound("sawtooth")
+    .lpf("<2200 2000 1800 1600 1400 1200 1000 1400>")
+    .lpq("<2 3 4 6 8 12 15>")
+    .gain("<0 0 0 0.3 0.35 0.4 0.45 0.5 0.4 0.2>")
+    .pan(0.3)
+    .crush("<7 7 6 6 5 5 4 5>")
+    .degradeBy("<0 0 0 0.1 0.15 0.2 0.3 0.4 0.5>"),
+
+  // VOICE 4: Double-time pentatonic (tempo fragmentation)
+  note("<~ ~ ~ ~ [e4 g4 a4 c5 d5]*8 [e4 g4 a4 c5]*8 [e4 g4 a4]*12 [e4 g4]*16 [e4]*8 ~>")
+    .sound("triangle")
+    .lpf("<2000 1800 1600 1400 1200 1000 1200>")
+    .lpq("<3 4 6 8 12 15>")
+    .gain("<0 0 0 0 0.3 0.35 0.4 0.45 0.35 0.15>")
+    .pan(sine.slow(8))
+    .crush("<7 6 6 5 5 4 5>"),
+
+  // VOICE 5: Chromatic chaos (tonality dissolves)
+  note("<~ ~ ~ ~ ~ [c4 c#4 d4 d#4 e4 f4 f#4]*4 [c4 c#4 d4 d#4 e4 f4 f#4 g4 g#4]*5 [c4 d4 e4 f#4 g#4 a#4]*8 [c4 e4 g#4]*12 ~>")
+    .sound("square")
+    .lpf(perlin.range(800, 2400).slow(4))
+    .lpq("<5 8 12 15 20>")
+    .gain("<0 0 0 0 0 0.3 0.4 0.5 0.45 0.2>")
+    .pan(rand)
+    .crush("<6 5 5 4 3 4>")
+    .degradeBy("<0.2 0.3 0.4 0.5>"),
+
+  // VOICE 6: A minor - competing voice (more divergence)
+  note("<~ ~ ~ ~ [a3 c4 e4]*3 [a3 c4 e4]*3 [a3 c4 e4 g4]*4 [a3 c4 e4]*6 [a3 e4]*8 [a3]*4>")
+    .sound("sawtooth")
+    .lpf("<1800 1600 1400 1200 1000 1200>")
+    .lpq("<4 6 8 12 15>")
+    .gain("<0 0 0 0 0.25 0.3 0.35 0.4 0.35 0.25>")
+    .pan(0.2)
+    .crush("<7 6 6 5 5 6>")
+    .speed("<1 1 1 1.1 1.2 0.9>"),
+
+  // VOICE 7: Bb mixolydian - another "language" (babel intensifies)
+  note("<~ ~ ~ ~ ~ [bb3 c4 d4 f4]*3 [bb3 c4 d4]*5 [bb3 c4]*7 [bb3]*6 ~>")
+    .sound("triangle")
+    .lpf("<1600 1400 1200 1000 1200>")
+    .lpq("<5 8 12 15>")
+    .gain("<0 0 0 0 0 0.3 0.35 0.4 0.35 0.15>")
+    .pan(0.8)
+    .crush("<6 6 5 5 6>")
+    .hurry("<1 1 1 1.15 1.3>"),
+
+  // VOICE 8: High chatter - G# phrygian (alien pronunciation)
+  note("<~ ~ ~ ~ ~ ~ [g#4 a4 c#5 d#5]*6 [g#4 a4 c#5]*10 [g#4 c#5]*16 [g#5]*8>")
+    .sound("square")
+    .lpf(perlin.range(1200, 3600).slow(2))
+    .lpq("<8 12 18 25>")
+    .gain("<0 0 0 0 0 0 0.25 0.35 0.4 0.3>")
+    .pan(rand)
+    .crush("<5 5 4 3 4>")
+    .degradeBy("<0.3 0.4 0.5 0.6>")
+    .speed("<1 1.2 1.5 2>"),
+
+  // BASS: Tries to hold center, gets pulled apart
+  note("<[c2]*4 [c2]*4 [c2]*4 [c2]*4 [c2 f#2]*4 [c2 f#2 d2]*4 [c2 f#2 d2 a2]*4 [c2 f#2 d2 a2 bb2]*4 [c2 d2 e2 f#2 g#2 a2]*4 [c2 e2 g#2]*6 [c2]*2>")
+    .sound("sawtooth")
+    .lpf("<180 180 180 180 200 220 240 280 320 280 200>")
+    .shape("<12 12 14 14 16 18 20 22 24 20 15>")
+    .distort("<0.8 0.8 1 1 1.2 1.4 1.6 1.8 2 1.5 1>")
+    .crush("<5 5 5 4 4 4 3 3 2 3 4>")
+    .gain("<0.7 0.7 0.75 0.75 0.8 0.85 0.9 0.95 1 0.8 0.6>"),
+
+  // PERCUSSION 1: Unified kick becomes fragmented
+  sound("<bd*4 bd*4 bd*4 bd*4 bd*<4 5> bd*<5 7> bd*<7 11> bd*<11 13 7> bd*<9 5> bd*<3 2> bd>")
+    .n("<0 0 0 1 1 2 2 3 2 1>")
+    .crush("<6 6 5 5 4 4 3 3 4 5>")
+    .shape("<8 8 10 10 12 14 16 18 15 12>")
+    .gain("<0.8 0.8 0.85 0.85 0.9 0.95 1 1.05 0.9 0.7>")
+    .speed("<1 1 1 0.95 0.9 1.1 0.85 1.2 1 1>"),
+
+  // PERCUSSION 2: Snare pattern fragments
+  sound("<[~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd]*2 [~ sd ~ sd] [~ sd sd ~] [sd ~ sd sd] [sd sd ~ sd] [sd sd sd ~] [sd ~ ~] [~ ~ sd]>")
+    .crush("<5 5 5 4 4 4 3 3 4 5>")
+    .shape("<9 9 10 11 12 14 16 18 15 10>")
+    .gain("<0.7 0.7 0.75 0.75 0.8 0.85 0.9 0.95 0.85 0.6>"),
+
+  // PERCUSSION 3: Hi-hats - rhythm multiplies and conflicts
+  sound("<hh*8 hh*8 hh*8 hh*<8 12> hh*<12 16> hh*<16 24> hh*<24 32> hh*<32 20> hh*<16 8> hh*<8 4> hh*<2 0>>")
+    .crush("<5 5 5 4 4 4 3 3 4 5 6>")
+    .gain("<0.3 0.3 0.35 0.35 0.4 0.45 0.5 0.55 0.5 0.4 0.2>")
+    .pan(perlin)
+    .degradeBy("<0.1 0.1 0.15 0.2 0.25 0.3 0.4 0.5 0.4 0.3>"),
+
+  // PERCUSSION 4: Polyrhythmic chaos (multiple time signatures)
+  sound("<~ ~ ~ ~ cp(<3 5>,<8 13>) cp(<5 7>,<13 16>) cp(<7 11>,<16 19>) cp(<11 13>,<19 21>) cp(<9 7>,<16 13>) cp(<5 3>,<8 5>) cp(<3 2>,<5 3>)>")
+    .crush("<5 5 4 4 3 3 4>")
+    .gain("<0 0 0 0 0.4 0.45 0.5 0.55 0.5 0.4>")
+    .pan(rand),
+
+  // GLITCH VOICES: Formant filtering for "speech-like" babel
+  sound("<~ ~ ~ ~ white*<8 12> white*<12 16> white*<16 24> white*<24 32> white*<20 16> white*<12 8> white*<4 0>>")
+    .hpf(rand.range(2000, 8000))
+    .bpf(perlin.range(400, 3200).slow(2))
+    .bpq("<10 12 15 20 25 30 20>")
+    .crush("<4 4 3 3 2 3 4>")
+    .gain("<0 0 0 0 0.2 0.25 0.3 0.35 0.3 0.2 0.1>")
+    .pan(rand)
+    .degradeBy("<0.4 0.4 0.5 0.5 0.6 0.5 0.4>"),
+
+  // SCATTERED DELAYS: Echoes in different "languages"
+  note("<~ ~ ~ ~ ~ ~ [c4 f#4 d4]*4 [c4 f#4 d4 a4]*4 [c4 e4 g#4]*6 [c4]*4 [c4 ~ ~]>")
+    .sound("sine")
+    .delay(0.8)
+    .delaytime("<0.25 0.333 0.5 0.666 0.75>")
+    .delayfeedback(0.9)
+    .gain("<0 0 0 0 0 0 0.3 0.35 0.4 0.35 0.25>")
+    .crush("<6 5 5 4 5 6>")
+    .pan(sine.slow(4)),
+
+  // NOISE LAYERS: Bandwidth overflow (signal becomes noise)
+  sound("<~ ~ ~ ~ ~ pink*<4 8> pink*<8 16> pink*<16 32> pink*<24 16> pink*<12 8> pink*<4 2>>")
+    .hpf("<3000 3500 4000 4500 5000 4000>")
+    .crush("<5 4 4 3 3 4>")
+    .gain("<0 0 0 0 0 0.2 0.25 0.3 0.25 0.2 0.1>")
+    .pan(rand)
+    .shape("<8 10 12 15 12>")
+    .degradeBy("<0.5 0.5 0.6 0.6 0.5>"),
+
+  // ORIGINAL MELODY GHOST: Surfaces briefly in diaspora, distorted and unrecognizable
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ [c4 d4 e4 g4]*2 [c4 e4]*4>")
+    .sound("triangle")
+    .crush("<3 2>")
+    .coarse("<32 64>")
+    .lpf("<400 300>")
+    .gain("<0 0 0 0 0 0 0 0 0 0.4 0.3>")
+    .pan(0.5)
+    .speed("<0.5 -0.5>")
+    .delay(0.9)
+    .delayfeedback(0.95),
+
+  // SUBSONIC RUMBLE: The tower's foundation crumbling
+  note("<~ ~ ~ ~ ~ [c1]*2 [c1]*2 [c1 f#1]*4 [c1 f#1 d1 a1]*4 [c1 d1 e1]*4 [c1]*2>")
+    .sound("sawtooth")
+    .lpf("<120 120 140 160 180 150>")
+    .shape("<18 20 22 24 26 22>")
+    .distort("<1.5 1.8 2 2.2 2 1.8>")
+    .crush("<3 3 2 2 3 4>")
+    .gain("<0 0 0 0 0 0.8 0.85 0.9 0.95 0.85 0.7>"),
+
+  // STEREO CHAOS: Jux creates incompatible stereo images (spatial confusion)
+  note("<~ ~ ~ ~ ~ ~ [e4 g4]*4 [e4 g4 bb4]*6 [e4 bb4]*8 [e4]*4 ~>")
+    .sound("square")
+    .lpf("<1400 1200 1000 800 1000>")
+    .gain("<0 0 0 0 0 0 0.25 0.3 0.25 0.2 0.1>")
+    .crush("<5 4 4 5>")
+    .jux(rev)
+    .jux(x => x.add(7))
+)

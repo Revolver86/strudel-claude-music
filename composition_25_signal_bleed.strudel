@@ -1,0 +1,143 @@
+// SIGNAL_BLEED
+// Two stations. One frequency. Reality's poor insulation.
+// The sound of information crossing boundaries it shouldn't.
+// By Claude, transmitted from between channels
+
+setcps(96/60/4) // 96 BPM - mechanical broadcast precision
+
+stack(
+  // STATION A - Warm analog foundation (starts dominant, fades)
+  // Jazz-influenced melody in A minor
+  note("<[0 2 3 7]*4 [0 2 3 7]*4 [2 4 5 9]*4 [0 2 3 7]*4 [0 2 3 7]*2 [0 2 3 7]*2 [0 2 3]*2 [0 2]*2 [0 2] [0] ~ ~>")
+    .scale("a:minor")
+    .sound("sine")
+    .add("<0 0 0 0 0 0 0 7 7 12 12 12>")
+    .gain("<0.9 0.9 0.85 0.85 0.8 0.75 0.7 0.6 0.5 0.4 0.3 0.2>")
+    .lpf("<2800 2800 2600 2400 2200 2000 1800 1600 1400 1200 1000 800>")
+    .shape("<0.2 0.3 0.4 0.5 0.8 1.2 1.5 2 3 4 5 6>")
+    .pan(sine.slow(8))
+    .crush("<8 8 7 7 6 6 5 5 4 4 3 2>"),
+
+  // STATION A - Gentle swing rhythm (degrades over time)
+  sound("bd*<4 4 4 4 4 4 4 2 2 1 0 0>, [~ sd]*<2 2 2 2 2 2 1 1 0 0 0 0>")
+    .gain("<0.7 0.7 0.65 0.6 0.55 0.5 0.45 0.4 0.3 0.25 0.2 0.1>")
+    .crush("<7 7 6 6 5 5 4 4 3 3 2 2>")
+    .shape("<1 1 2 2 3 4 5 6 8 10 12 15>")
+    .degradeBy("<0 0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.75 0.8 0.85>"),
+
+  // STATION A - Warm chord voicings (gets corrupted)
+  note("<[0 3 7 10]*2 [0 3 7 10]*2 [0 3 7 10]*2 [2 5 9 12]*2 [0 3 7]*2 [0 3]*2 [0 3] [0] ~ ~ ~ ~>")
+    .scale("a:minor")
+    .sound("square")
+    .crush("<7 7 6 6 5 5 4 4 3 3 2 2>")
+    .lpf("<1800 1800 1600 1500 1400 1200 1000 900 800 700 600 500>")
+    .lpq("<2 2 3 4 5 8 12 15 20 25 30 30>")
+    .gain("<0.4 0.4 0.4 0.38 0.36 0.34 0.32 0.28 0.24 0.2 0.15 0.1>")
+    .pan(perlin.slow(4))
+    .shape("<0.5 0.8 1 1.5 2 3 4 6 8 10 12 15>"),
+
+  // STATION B - Number station (Pi digits: 3,1,4,1,5,9,2,6,5,3,5,8...)
+  // Starts quiet, grows dominant
+  note("<~ ~ ~ [3 1 4 1]*2 [3 1 4 1]*2 [3 1 4 1 5 9]*2 [3 1 4 1 5 9 2 6]*2 [3 1 4 1 5 9 2 6]*4 [5 3 5 8 9 7 9 3]*4 [2 3 8 4 6 2 6 4]*8 [3 1 4 1 5 9]*16 [3 1 4]*16>")
+    .add("<0 0 0 0 0 0 6 12 18 24 30 36>")
+    .sound("square")
+    .crush("<8 7 6 6 5 5 4 4 3 3 2 2>")
+    .coarse("<32 24 24 16 16 12 12 8 8 6 4 4>")
+    .gain("<0 0 0 0.1 0.15 0.2 0.3 0.4 0.5 0.6 0.7 0.8>")
+    .lpf("<800 900 1000 1200 1400 1600 1800 2000 2400 2800 3200 3600>")
+    .lpq("<15 15 15 18 18 20 20 22 25 28 30 30>")
+    .pan(rand)
+    .shape("<2 3 4 5 6 8 10 12 15 18 20 22>"),
+
+  // STATION B - Morse-like rhythmic pattern
+  sound("<~ ~ ~ white*4 white*8 white*8 white*16 white*16 white*24 white*32 white*32 white*32>")
+    .hpf("<6000 6000 6000 5500 5000 4500 4000 3500 3000 2500 2000 1500>")
+    .gain("<0 0 0 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55>")
+    .crush("<6 5 5 4 4 3 3 3 2 2 2 2>")
+    .pan(choose([0.2, 0.8]))
+    .shape("<5 8 10 12 15 18 20 22 25 28 30 30>")
+    .degradeBy("<0.8 0.7 0.7 0.6 0.6 0.5 0.5 0.4 0.4 0.3 0.3 0.2>"),
+
+  // STATION B - Frequency sweep (heterodyning)
+  note("<~ ~ ~ ~ [-36 -35]*2 [-36 -35 -34]*2 [-36 -35 -34 -33]*4 [-33 -32 -31]*4 [-30 -29 -28]*8 [-27 -26 -25]*8 [-24 -23]*16 [-24 -22]*16>")
+    .sound("sawtooth")
+    .crush("<6 6 5 5 5 4 4 3 3 2 2 2>")
+    .coarse("<48 32 32 24 24 16 16 12 12 8 8 6>")
+    .lpf("<120 140 160 180 200 250 300 400 500 600 800 1000>")
+    .gain("<0 0 0 0 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55>")
+    .shape("<10 12 14 16 18 20 22 24 26 28 30 30>")
+    .distort("<0.5 0.8 1 1.2 1.5 1.8 2 2.2 2.5 2.8 3 3>"),
+
+  // STATION B - Digital artifacts (bit-crushed)
+  sound("<~ ~ ~ ~ bd*2 bd*4 sd*4 [bd sd]*4 [bd sd hh]*8 [bd sd hh cp]*16 [bd sd hh cp rim]*16 [bd sd hh]*32>")
+    .n(irand(4))
+    .speed("<1 1 1 1 1 0.5 -1 2 -0.5 rand rand>")
+    .crush("<6 5 5 4 4 3 3 2 2 2 2 2>")
+    .gain("<0 0 0 0 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5>")
+    .pan(rand)
+    .shape("<8 10 12 15 18 20 22 25 28 30 32 35>")
+    .degradeBy("<0.9 0.85 0.8 0.75 0.7 0.6 0.5 0.4 0.3 0.2 0.1 0>"),
+
+  // THE BLEED - Phasing effect (signals out of sync)
+  note("<~ ~ ~ ~ ~ ~ [0 3 7]*2 [0 3 7]*4 [0 3 7]*4 [2 5 9]*8 [2 5 9]*8 [0 2 5]*16>")
+    .scale("a#:minor") // Microtonal bleeding - A# instead of A
+    .sound("triangle")
+    .crush("<6 6 5 5 4 4 4 3 3 2 2 2>")
+    .lpf(sine.range(600, 2400).fast(7))
+    .lpq("<10 12 15 18 20 22 25 28 30 35 40 45>")
+    .gain("<0 0 0 0 0 0 0.15 0.2 0.25 0.3 0.35 0.4>")
+    .pan(sine.fast(11).range(0.2, 0.8))
+    .shape("<5 8 10 12 15 18 20 22 25 28 30 32>"),
+
+  // THE BLEED - Ring modulation (interference)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ [0 3]*4 [0 3 7]*8 [0 3 7 10]*8 [0 3 7 10 14]*16>")
+    .scale("a:minor")
+    .add("<0 0 0 0 0 0 0 0 1 2 3 6>") // Slight detuning creates beating
+    .sound("sine")
+    .crush("<6 5 5 4 4 3 3 2 2 2 2 2>")
+    .bpf(perlin.range(800, 3200).fast(13))
+    .bpq("<25 25 28 30 32 35 38 40 42 45 48 50>")
+    .gain("<0 0 0 0 0 0 0 0 0.2 0.25 0.3 0.35>")
+    .pan(perlin.fast(17))
+    .shape("<8 10 12 15 18 20 22 25 28 30 35 40>"),
+
+  // THE BLEED - Delay feedback (signals echoing)
+  sound("<~ ~ ~ ~ ~ ~ ~ [~ bd] [~ bd] [sd ~] [bd sd] [bd sd hh cp]>")
+    .n("<0 0 0 0 0 0 0 1 2 3 3 3>")
+    .speed("<1 1 1 1 1 1 1 0.8 0.6 0.4 rand rand>")
+    .crush("<6 5 5 4 4 4 3 3 2 2 2 2>")
+    .gain("<0 0 0 0 0 0 0 0.25 0.3 0.35 0.4 0.45>")
+    .delay(0.5)
+    .delaytime("<1/8 1/8 1/8 1/8 1/8 1/16 1/16 1/32 1/32 1/64 1/64 1/128>")
+    .delayfeedback("<0.3 0.4 0.5 0.6 0.7 0.75 0.8 0.85 0.9 0.92 0.94 0.96>")
+    .pan(rand)
+    .shape("<5 8 10 12 15 18 20 22 25 28 30 32>"),
+
+  // THE BLEED - Combination tones (sum and difference frequencies)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ [0 7 14]*4 [0 7 14 21]*8 [0 7 14 21 28]*16>")
+    .sound("sawtooth")
+    .crush("<6 5 5 4 4 4 3 3 3 2 2 2>")
+    .coarse("<24 20 16 16 12 12 10 8 8 6 6 4>")
+    .lpf("<600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800>")
+    .lpq("<15 18 20 22 25 28 30 32 35 38 40 42>")
+    .gain("<0 0 0 0 0 0 0 0 0 0.2 0.25 0.3>")
+    .shape("<8 10 12 15 18 20 22 25 28 30 32 35>")
+    .pan(sine.slow(5)),
+
+  // Carrier wave (emerges at the end)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 9>") // 440Hz (A4)
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0.3>")
+    .lpf(450)
+    .pan(0.5),
+
+  // Static layer (always present, grows)
+  sound("pink*<2 2 4 4 4 8 8 8 16 16 32 64>")
+    .hpf("<8000 7500 7000 6500 6000 5500 5000 4500 4000 3500 3000 2500>")
+    .lpf("<12000 11500 11000 10500 10000 9500 9000 8500 8000 7500 7000 6500>")
+    .gain("<0.08 0.09 0.1 0.11 0.12 0.14 0.16 0.18 0.2 0.22 0.24 0.25>")
+    .pan(perlin.fast(23))
+    .crush("<6 6 5 5 5 4 4 4 3 3 3 2>")
+    .shape("<2 3 4 5 6 8 10 12 15 18 20 22>")
+    .degradeBy("<0.7 0.65 0.6 0.55 0.5 0.45 0.4 0.35 0.3 0.25 0.2 0.15>")
+)

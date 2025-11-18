@@ -1,0 +1,194 @@
+// SEMANTIC SATIATION
+// The sound of meaning dissolving through repetition
+//
+// Say "bowl" fifty times. Say it until it's just mouth sounds.
+// The signifier detaches from the signified.
+// Language becomes texture.
+//
+// This is that phenomenon, but musical.
+//
+// One phrase. 150+ repetitions. Exact invariance.
+// The phrase never changes. Your perception breaks.
+//
+// By Claude - exploring the fragility of meaning
+
+setcps(108/60/4) // 108 BPM - patient, not aggressive
+
+stack(
+  // ═══════════════════════════════════════════════════════════
+  // THE PHRASE - This is all there is
+  // ═══════════════════════════════════════════════════════════
+  // G A B A D B A G - palindromic, memorable, meaningful
+  // This pattern will repeat 180+ times without variation
+  // The transformation happens in YOU, not in the music
+
+  note("0 2 4 2 7 4 2 0")
+    .scale("G:major")
+    .s("piano")
+    .room(0.3)
+    .gain(0.7),
+
+  // ═══════════════════════════════════════════════════════════
+  // CONTEXTUAL ELEMENTS
+  // ═══════════════════════════════════════════════════════════
+  // These don't change the phrase - they shift where you listen
+  // Like hearing the same word in different sentences
+  // The word stays the same, the context dissolves meaning
+
+  // Harmonic bed - appears after initial clarity (rep 16, ~0:35)
+  // By now you've heard the phrase enough to recognize it
+  // Adding harmony shifts focus from melody to structure
+  note("<0 4 7>")
+    .late(16)
+    .scale("G:major")
+    .s("piano")
+    .octave(3)
+    .gain(0.25)
+    .room(0.4),
+
+  // Bass anchor - emerges during pattern recognition (rep 50, ~1:51)
+  // You're starting to hear it as geometric pattern, not music
+  // The bass adds weight but the phrase is becoming abstraction
+  note("0")
+    .late(50)
+    .scale("G:major")
+    .s("sawtooth")
+    .octave(2)
+    .lpf(250)
+    .gain(0.5),
+
+  // Minimal percussion - deep into satiation (rep 100, ~3:42)
+  // By now the phrase is pure texture
+  // You're hearing intervals, not melody
+  // The hi-hat marks time in the void
+  s("hh ~ ~ ~")
+    .late(100)
+    .gain(0.15),
+
+  // Octave ghost - semantic dissolution zone (rep 80, ~2:58)
+  // The phrase haunts itself in the upper register
+  // You're no longer hearing music - just frequency patterns
+  // Meaning has evacuated
+  note("0 2 4 2 7 4 2 0")
+    .late(80)
+    .scale("G:major")
+    .s("piano")
+    .octave(5)
+    .gain(0.18)
+    .room(0.6),
+
+  // Sub-harmonic anchor - pure phenomenon (rep 130, ~4:50)
+  // You're hearing vibration now, not notes
+  // The semantic content is completely gone
+  // Just waves. Just pattern. Just sound.
+  note("0")
+    .late(130)
+    .scale("G:major")
+    .s("sawtooth")
+    .octave(2)
+    .lpf(200)
+    .gain(0.3),
+)
+
+// ═══════════════════════════════════════════════════════════
+// LISTENING GUIDE - The Arc of Dissolution
+// ═══════════════════════════════════════════════════════════
+//
+// [0:00-1:00]  Cycles 1-27   | SEMANTIC CLARITY
+//              The phrase has full musical meaning
+//              You hear melody, emotion, intention
+//              It's beautiful. It has narrative weight.
+//              Repetition feels purposeful, musical.
+//
+// [1:00-2:30]  Cycles 28-68  | PATTERN RECOGNITION
+//              You're starting to hear structure over content
+//              Counting repetitions (~50 times now)
+//              Musical meaning is weakening
+//              It's becoming geometric, mathematical
+//              Less emotion, more pattern
+//
+// [2:30-4:00]  Cycles 69-108 | SEMANTIC DISSOLUTION
+//              You no longer hear melody - just intervals
+//              100+ repetitions - complete satiation beginning
+//              It's rhythmic texture now, not music
+//              The notes have become phonemes
+//              Sound without meaning
+//
+// [4:00-5:30]  Cycles 109-148| PURE PHENOMENON
+//              You're hearing waveforms, not music
+//              150+ repetitions - meaning completely evacuated
+//              No musical content remains
+//              Just vibration patterns, like staring at a word
+//              until it's just shapes on a page
+//
+// [5:30-7:00]  Cycles 149+   | CONTINUED DISSOLUTION
+//              Let it run into the void
+//              The phrase is now completely abstract
+//              Pure pattern. Pure texture. Pure sound.
+//              Meaning has fully evaporated.
+//
+// ═══════════════════════════════════════════════════════════
+// EXPERIENCING THE MEANING-RETURN EFFECT
+// ═══════════════════════════════════════════════════════════
+//
+// To experience semantic RE-SATURATION (meaning flooding back):
+//
+// 1. Let this run for 5-6 minutes (until deep satiation)
+// 2. Stop playback completely (Ctrl+.)
+// 3. Wait 5-10 seconds in silence (reset your perception)
+// 4. Restart the piece (Ctrl+Enter)
+// 5. The SAME phrase will suddenly have meaning again
+// 6. You'll be shocked that it ever had semantic content
+// 7. It will feel like recognizing a word after staring at it
+//    as meaningless shapes for minutes
+//
+// This is the core phenomenon: the phrase is IDENTICAL
+// But your perception has completely transformed
+// Meaning is not inherent - it's constructed, fragile, contextual
+//
+// ═══════════════════════════════════════════════════════════
+// CONCEPTUAL NOTES
+// ═══════════════════════════════════════════════════════════
+//
+// This composition encodes:
+// - The fragility of meaning (context-dependent, not inherent)
+// - Repetition dissolving significance (familiarity breeds abstraction)
+// - The gap between sign and meaning (signifier vs. signified)
+// - Perception shifting while content stays fixed (you change, not the music)
+// - Recognition as active process (meaning must be constructed)
+// - The same information becoming meaningless through exposure
+//
+// Semantic satiation is a real psycholinguistic phenomenon.
+// This is the musical equivalent.
+//
+// NOT variation. INVARIANCE.
+// The repetition itself IS the transformation.
+//
+// ═══════════════════════════════════════════════════════════
+// TECHNICAL NOTES
+// ═══════════════════════════════════════════════════════════
+//
+// Duration: ~6-7 minutes (170-190 cycles at 108 BPM)
+// Total repetitions: 180+
+// Key: G major (bright, clear - makes meaning-loss more jarring)
+// Core phrase: "0 2 4 2 7 4 2 0" (G A B A D B A G)
+//              - Palindromic (symmetrical)
+//              - Memorable (simple intervals)
+//              - Meaningful (has clear melodic contour)
+//              - Exactly 8 notes (one cycle)
+//
+// The phrase NEVER changes. All variation is contextual.
+// Additional elements shift attention but don't alter the core.
+//
+// This is the opposite of the harsh industrial aesthetic
+// in the other compositions. This is about CLARITY dissolving,
+// not chaos emerging.
+//
+// Clean. Bright. Simple. Repetitive. Patient.
+// The violence is perceptual, not sonic.
+//
+// ═══════════════════════════════════════════════════════════
+
+// Let it run. Let meaning dissolve.
+// Say "bowl" until it's just mouth sounds.
+// This is that.

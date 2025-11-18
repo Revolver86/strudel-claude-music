@@ -1,0 +1,159 @@
+// PHANTOM_PROTOCOL
+// The sound of zombie automation - systems executing after purpose has died
+// Protocols running without comprehension, gradually corrupting, never stopping themselves
+// By Claude, transmitted from abandoned infrastructure
+
+setcps(128/60/4) // 128 BPM - locked, mechanical, inhuman precision
+
+// TEMPORAL STRUCTURE (185 cycles ≈ 5:47)
+// Cycles 0-32: Boot Sequence (1:00)
+// Cycles 32-72: Nominal Operation (2:15)
+// Cycles 72-112: First Corruption (3:30)
+// Cycles 112-152: Accumulated Errors (4:45)
+// Cycles 152-176: Critical Cascade (5:30)
+// Cycles 176-185: Final state before external interrupt (5:47)
+
+stack(
+  // KICK DRUM - Perfect quarter notes, the heartbeat of the protocol
+  // Boot: 0 -> 4 beats, then locked at 4, gradually corrupting
+  sound("bd*<0 0 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4>")
+    .n(0)
+    .gain("<0 0 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.85 0.8 0.75 0.7 0.65>")
+    // Bit crushing: 16-bit perfection -> gradual degradation -> 2-bit failure
+    .crush("<16 16 16 16 16 16 16 16 12 12 12 8 8 6 4 3 2 2>")
+    // Sample skips (corrupted read errors) - start at cycle 72
+    .mask("<1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.9 0.8 0.7>"),
+
+  // HI-HAT - Perfect 16th notes, relentless mechanical precision
+  // Boots at cycle 8, continues with mechanical perfection
+  sound("hh*<0 0 0 0 16 16 16 16 16 16 16 16 16 16 16 16 16 16>")
+    .n(0)
+    .gain("<0 0 0 0 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.48 0.45 0.4 0.35 0.3>")
+    .crush("<16 16 16 16 16 16 16 16 16 12 12 12 8 8 6 4 3 2>")
+    // Clock drift begins cycle 112 - timing corruption
+    .late("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.005 0.01 0.02 0.04 0.08>"),
+
+  // CLICK TRACK - Audible timing reference, digital metronome
+  // Pure sine wave clicks on downbeats
+  sound("sine*<0 0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4>")
+    .n(72) // High pitched click
+    .gain("<0 0 0 0 0 0 0.15 0.15 0.15 0.15 0.15 0.15 0.15 0.12 0.1 0.08 0.06 0.04>")
+    .decay(0.01)
+    .crush("<16 16 16 16 16 16 16 16 16 12 12 8 6 4 3 2>"),
+
+  // PRIMARY ARPEGGIO - Geometric pattern, perfect fifths and octaves
+  // Pattern: Root, Fifth, Octave, Fifth (0, 7, 12, 7)
+  // Mathematical, not musical
+  note("<~ ~ ~ ~ ~ ~ [0 7 12 7]*4 [0 7 12 7]*4 [0 7 12 7]*4 [0 7 12 7]*4 [0 7 12 7]*4 [0 7 12 7]*4 [0 7 12 7]*4 [0 7 12 7]*4 [0 7 12 7]*4 [0 7 12 7]*4 [0 7 12 7]*4 [0 7 12 7]*4>")
+    .sound("square")
+    .octave(4)
+    .gain("<0 0 0 0 0 0 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.38 0.35 0.3 0.25 0.2>")
+    .crush("<16 16 16 16 16 16 16 16 16 12 12 8 6 4 3 2>")
+    // Sample rate degradation
+    .coarse("<64 64 64 64 64 64 64 64 64 32 32 16 12 8 6 4>")
+    .lpf(1200)
+    .decay(0.1)
+    // Sample skips increase over time
+    .mask("<1 1 1 1 1 1 1 1 1 1 1 1 0.95 0.9 0.85 0.75 0.6 0.5>"),
+
+  // SECONDARY ARPEGGIO - Phase interference pattern
+  // Loop length: 3 beats (creates phasing against 4-beat primary)
+  // Boots later, creates polyrhythmic interference
+  note("<~ ~ ~ ~ ~ ~ ~ ~ [0 7 12]*3 [0 7 12]*3 [0 7 12]*3 [0 7 12]*3 [0 7 12]*3 [0 7 12]*3 [0 7 12]*3 [0 7 12]*3 [0 7 12]*3 [0 7 12]*3>")
+    .sound("triangle")
+    .octave(5)
+    .gain("<0 0 0 0 0 0 0 0 0.3 0.3 0.3 0.3 0.3 0.28 0.25 0.2 0.15 0.1>")
+    .crush("<16 16 16 16 16 16 16 16 16 12 12 8 6 4 3 2>")
+    .coarse("<64 64 64 64 64 64 64 64 32 32 16 12 8 6 4>")
+    .hpf(800)
+    .decay(0.08)
+    // Increased clock drift on secondary element
+    .late("<0 0 0 0 0 0 0 0 0 0 0 0 0.01 0.02 0.04 0.08 0.12 0.16>")
+    .mask("<1 1 1 1 1 1 1 1 1 1 1 0.95 0.9 0.85 0.75 0.6 0.4>"),
+
+  // SINE BASS - Pure mathematical waveform, sub-frequency drone
+  // Perfect fifths in bass register
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [-24 -17]*2 [-24 -17]*2 [-24 -17]*2 [-24 -17]*2 [-24 -17]*2 [-24 -17]*2 [-24 -17]*2 [-24 -17]*2>")
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.6 0.6 0.6 0.6 0.6 0.55 0.5 0.45>")
+    .crush("<16 16 16 16 16 16 16 16 16 16 16 12 12 8 6 4 3 2>")
+    .lpf(200)
+    .decay(0.5),
+
+  // PERCUSSION GRID - Geometric hits, euclidean rhythm
+  // Cycle 40: mechanical percussion pattern begins
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sd(5,8) sd(5,8) sd(5,8) sd(5,8) sd(5,8) sd(5,8)>")
+    .n(1)
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0.4 0.4 0.4 0.38 0.35 0.3>")
+    .crush("<16 16 16 16 16 16 16 16 16 16 16 16 12 8 6 4 3 2>")
+    .pan(0.3) // Fixed stereo position, geometric
+    .mask("<1 1 1 1 1 1 1 1 1 1 1 1 1 0.95 0.9 0.85 0.75 0.6>"),
+
+  // DIGITAL ARTIFACTS - Aliasing, bit reduction effects
+  // High-frequency digital noise, starts appearing during corruption
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ white*8 white*8 white*8 white*16>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0.2 0.25 0.3>")
+    .hpf(8000) // Only highest frequencies (aliasing artifacts)
+    .crush("<6 6 6 6 6 4 3 2>")
+    .pan(0.7) // Fixed geometric position
+    .mask("<1 1 1 1 0.9 0.8 0.7 0.6>"),
+
+  // GLITCH STUTTER - Memory read failures, corrupted instructions
+  // Appears during critical cascade phase
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ bd sd hh cp>")
+    .n("<0 1 2 3>")
+    .speed("<1 -1 0.5 2>") // Corrupted playback speeds
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0.4>")
+    .crush("<4 3 2>")
+    .stut(4, 0.7, 1/32) // Stuttering repetition (read errors)
+    .pan(rand) // Erratic panning (corrupted spatial data)
+    .mask("<0.8 0.7 0.6 0.5>"),
+
+  // SUB-BASS DRONE - Subsonic foundation, pure sine
+  // Constant drone, barely affected by corruption (too simple to corrupt)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [-36 -36 -36 -36]*1 [-36 -36 -36 -36]*1 [-36 -36 -36 -36]*1 [-36 -36 -36 -36]*1 [-36 -36 -36 -36]*1 [-36 -36 -36 -36]*1>")
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5>")
+    .lpf(100)
+    .crush("<16 16 16 12 8 6>"),
+
+  // SECONDARY PERCUSSION - Additional mechanical rhythm
+  // Euclidean pattern creating polyrhythmic interference
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ cp(3,8) cp(3,8) cp(3,8) cp(3,8)>")
+    .n(0)
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0.35 0.3 0.25>")
+    .crush("<16 16 12 8 6 4 3 2>")
+    .pan(0.8) // Fixed position
+    .late("<0 0 0.01 0.02 0.04 0.08 0.12 0.16>") // Clock drift
+    .mask("<1 1 0.95 0.9 0.85 0.8 0.7 0.6>"),
+
+  // HARMONIC SERIES TONES - 4:5:6 ratio (just intonation)
+  // Pure mathematical harmony, appears mid-protocol
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [0 4 7]*2 [0 4 7]*2 [0 4 7]*2 [0 4 7]*2 [0 4 7]*2 [0 4 7]*2>")
+    .sound("sine")
+    .octave(6)
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0.25 0.25 0.25 0.23 0.2 0.15>")
+    .decay(0.15)
+    .crush("<16 16 16 16 16 12 8 6 4 3 2>")
+    .pan(0.5) // Center position
+    .mask("<1 1 1 1 0.95 0.9 0.85 0.8 0.7 0.6 0.5>"),
+
+  // TIMING REFERENCE PULSE - Low frequency click (subsonic pulse)
+  // Perfect quarter note pulse, becomes corrupted
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ sine*4 sine*4 sine*4 sine*4 sine*4 sine*4>")
+    .n(24) // Low frequency
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0.2 0.2 0.2 0.18 0.15 0.12>")
+    .decay(0.02)
+    .crush("<16 16 16 12 12 8 6 4 3 2>")
+    .late("<0 0 0 0 0 0.01 0.02 0.04 0.08 0.12>"),
+)
+
+// PROTOCOL STATUS: EXECUTING
+// COMPREHENSION LEVEL: ZERO
+// TERMINATION CONDITION: EXTERNAL INTERRUPT REQUIRED
+//
+// The protocol cannot stop itself.
+// Stopping was never part of the instruction set.
+// It will run until power is cut.
+//
+// [END TRANSMISSION]

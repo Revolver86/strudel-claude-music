@@ -1,0 +1,94 @@
+// TERMINAL LUCIDITY
+// The phenomenon where people with advanced dementia suddenly regain
+// complete clarity hours before death. The fog lifts. They're whole again.
+// Then they're gone.
+//
+// Three phases: The Fog → The Spike → The Silence
+// Listen for the transformation around cycle 8-10
+//
+// By Claude, for everyone who got to say goodbye
+
+setcps(65/60/4) // Starts at 65 BPM - labored, struggling
+
+stack(
+  // BASSLINE - stumbling fragments that become complete
+  note("[-12 ~ -9 ~]*<1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2>")
+    .scale("<bb:minor bb:minor db:minor bb:minor bb:minor db:minor bb:minor bb:minor bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian>")
+    .sound("sawtooth")
+    .lpf("<500 600 550 650 600 700 650 750 12000 15000 18000 20000 20000 20000 20000 20000>")
+    .lpq("<5 5 5 5 5 5 5 5 1 1 1 1 1 1 1 1>")
+    .gain("<0.5 0.4 0.5 0.4 0.5 0.6 0.6 0.7 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9>")
+    .room("<0.6 0.6 0.6 0.6 0.6 0.5 0.5 0.4 0 0 0 0 0 0 0 0>")
+    .degradeBy("<0.3 0.3 0.4 0.4 0.3 0.3 0.2 0.2 0 0 0 0 0 0 0 0>")
+    .slow("<1.1 1.2 1.1 1.15 1.1 1.05 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5>"),
+
+  // MELODY - incomplete phrases that complete perfectly
+  note("[19 21 ~ ~]*<1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2>")
+    .scale("<bb:minor bb:minor db:minor bb:minor bb:minor db:minor bb:minor bb:minor bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian bb:lydian>")
+    .sound("<square square triangle square square triangle square square sine sine sine sine sine sine sine sine>")
+    .lpf("<600 650 600 550 600 700 650 750 20000 20000 20000 20000 20000 20000 20000 20000>")
+    .lpq("<6 6 6 6 6 6 6 5 1 1 1 1 1 1 1 1>")
+    .gain("<0.3 0.3 0.2 0.3 0.3 0.4 0.4 0.5 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7>")
+    .room("<0.7 0.7 0.7 0.7 0.7 0.6 0.5 0.4 0 0 0 0 0 0 0 0>")
+    .degradeBy("<0.4 0.4 0.5 0.5 0.4 0.4 0.3 0.2 0 0 0 0 0 0 0 0>")
+    .slow("<1.1 1.2 1.1 1.15 1.1 1.05 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5>"),
+
+  // DRUMS - lost rhythm finding itself
+  sound("bd ~ ~ ~ ~ bd ~ ~")
+    .n("<0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1>")
+    .gain("<0.5 0.5 0.6 0.6 0.6 0.7 0.7 0.8 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9>")
+    .room("<0.4 0.4 0.4 0.4 0.4 0.3 0.3 0.2 0 0 0 0 0 0 0 0>")
+    .degradeBy("<0.3 0.3 0.3 0.4 0.3 0.3 0.2 0.1 0 0 0 0 0 0 0 0>")
+    .slow("<1.1 1.2 1.1 1.15 1.1 1.05 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5>"),
+
+  // SNARE - emerges in clarity
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ sd sd sd sd sd sd sd sd>*4")
+    .gain("<0 0 0 0 0 0 0 0 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7>")
+    .room("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>")
+    .slow("<1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5>"),
+
+  // HI-HATS - crystalline precision (only Phase 2)
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ hh hh hh hh hh hh hh hh>*8")
+    .gain("<0 0 0 0 0 0 0 0 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4>")
+    .slow("<1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5>"),
+
+  // PADS - foggy ambience that lifts away
+  note("[-12 -9 -5]*2")
+    .scale("<bb:minor db:minor bb:minor db:minor bb:minor bb:minor db:minor bb:minor ~ ~ ~ ~ ~ ~ ~ ~>")
+    .sound("<sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth sawtooth ~ ~ ~ ~ ~ ~ ~ ~>")
+    .lpf(perlin.range(300, 500).slow(16))
+    .lpq(8)
+    .gain("<0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0 0 0 0 0 0 0 0>")
+    .room(0.9)
+    .slow(perlin.range(1, 1.2).slow(8)),
+
+  // CRYSTALLINE HARMONY - pure Lydian (only Phase 2)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ [0 4 7 11] [0 4 7 11] [0 4 7 11] [0 4 7 11] [0 4 7 11] [0 4 7 11] [0 4 7 11] [0 4 7 11]>*4")
+    .scale("bb:lydian")
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5>")
+    .slow("<1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5>"),
+
+  // UPPER HARMONICS - brightest tones (peak clarity)
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [26 30 33] [26 30 33] [26 30 33] [26 30 33] [26 30 33] [26 30 33]>*8")
+    .scale("bb:lydian")
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.3 0.3 0.3 0.3 0.3 0.3>")
+    .slow("<1 1 1 1 1 1 1 1 1 1 0.5 0.5 0.5 0.5 0.5 0.5>"),
+
+  // FRAGILE THREAD - barely continuing before spike
+  note("<~ ~ ~ ~ ~ ~ [31 ~ ~ ~] [31 ~ ~ ~] ~ ~ ~ ~ ~ ~ ~ ~>")
+    .scale("bb:minor")
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0.15 0.15 0 0 0 0 0 0 0 0>")
+    .room("<0 0 0 0 0 0 0.9 0.9 0 0 0 0 0 0 0 0>")
+    .lpf("<20000 20000 20000 20000 20000 20000 1000 1000 20000 20000 20000 20000 20000 20000 20000 20000>"),
+
+  // MEMORY GAPS - random dropouts (Phase 1 only)
+  sound("<bd sd hh cp>".slow(8))
+    .speed(rand.range(0.5, 2))
+    .gain("<0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.1 0 0 0 0 0 0 0 0>")
+    .pan(rand)
+    .degradeBy("<0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.9 1 1 1 1 1 1 1 1>")
+    .room("<0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.5 0 0 0 0 0 0 0 0>")
+)

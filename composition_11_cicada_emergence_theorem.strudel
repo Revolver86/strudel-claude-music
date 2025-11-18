@@ -1,0 +1,198 @@
+// CICADA EMERGENCE THEOREM
+// Prime number evolution as biological imperative
+// 17 years of patience exploding into 4 weeks of ecstasy
+// The mathematics of Magicicada - Brood X 2021
+// By Claude, channeling evolutionary algorithms
+
+setcps(140/60/4) // 140 BPM - frantic emergence energy
+
+stack(
+  // LAYER 1: Deep underground pulse - the 17-beat timer
+  // Patient, inevitable, counting down from 17 years
+  sound("sine")
+    .struct("x(1,17)") // pulse every 17 beats
+    .note("a1")
+    .gain("<0.8 0.8 0.8 0.7 0.7 0.6 0.5 0.4 0.3 0.2>")
+    .lpf("<80 80 80 100 120 150 200 300 500 800>")
+    .release(4)
+    .room(0.2),
+
+  // LAYER 2: Soil sounds - muffled bass emergence
+  // Building from dormant to active
+  note("a1 a1 ~ ~")
+    .sound("sawtooth")
+    .lpf("<60 60 80 100 120 150 200 300 500 800 1200>")
+    .shape("<2 2 3 3 4 4 5 5 6 6 7>")
+    .gain("<0 0.4 0.5 0.5 0.6 0.6 0.7 0.7 0.8 0.8 0.7>")
+    .release(1),
+
+  // LAYER 3: First emergence - individual cicada calls
+  // Prime number rhythm: 13 pulses in 32 steps
+  sound("square")
+    .struct("x(<0 0 3 5 7 9 11 13 13 13>,32)")
+    .note("a3 c4 e4")
+    .scale("a:mixolydian")
+    .crush("<8 7 6 6 5 5 5 4 4 4>")
+    .lpf(sine.range(800, 2400).slow(4))
+    .vibrato("<0 0 2 3 4 4 4 4 4 4>")
+    .vibmod("<0 0 0.1 0.2 0.3 0.4 0.5 0.5 0.5 0.5>")
+    .gain("<0 0 0.3 0.4 0.45 0.5 0.55 0.6 0.65 0.5>")
+    .pan(perlin),
+
+  // LAYER 4: Climbing sounds - chittering percussion
+  // 11-based euclidean rhythm
+  sound("hh(<0 0 0 7 9 11 13 17 17 17>,<16 16 16 16 16 16 24 32 32 32>)")
+    .n(irand(4))
+    .speed("<0 0 0 1.5 2 2.5 3 3.5 4 3>")
+    .gain("<0 0 0 0.3 0.35 0.4 0.45 0.5 0.55 0.4>")
+    .pan(rand)
+    .crush("<8 8 8 6 5 5 4 4 3 4>"),
+
+  // LAYER 5: Small chorus building - multiplication begins
+  // The swarm starts to form
+  note("a3 c4 e4 g4")
+    .fast("<1 1 1 1 2 2 4 4 8 8 16 12 8 4>")
+    .sound("triangle")
+    .scale("a:mixolydian")
+    .lpf(perlin.range(600, 3000).slow(8))
+    .crush("<8 7 6 5 5 4 4 4 3 3 3 4 5 6>")
+    .gain("<0 0 0 0 0.25 0.3 0.35 0.4 0.5 0.55 0.6 0.55 0.45 0.35>")
+    .pan(sine.slow(16))
+    .degradeBy(0.1), // slight organic irregularity
+
+  // LAYER 6: Main cicada drone - the chorus
+  // 17-note pattern for 17-year cycle
+  note("a3 c4 e4 a4 c5 e5 g4 a4 e4 g4 c5 a4 e4 c4 g4 a3 e4")
+    .fast("<1 1 1 1 1 2 2 4 8 16 16 16 12 8 4 2>")
+    .sound("sawtooth")
+    .lpf(sine.range(1000, 4000).slow(8))
+    .crush("<8 7 6 6 5 5 4 4 3 3 3 3 4 5 6 7>")
+    .shape("<1 1 2 2 3 3 4 5 6 7 8 9 7 5 3 2>")
+    .vowel("<a a a e e e i i i i i i e e a a>")
+    .gain("<0 0 0 0 0 0.3 0.35 0.45 0.6 0.75 0.8 0.85 0.75 0.6 0.45 0.3>")
+    .room("<0.3 0.3 0.3 0.4 0.4 0.5 0.5 0.6 0.7 0.7 0.7 0.7 0.6 0.5 0.4 0.3>"),
+
+  // LAYER 7: Polyrhythmic swarm - 7-based rhythm
+  sound("square(<0 0 0 0 5 7 11 13 17 17 17 17 13 11 7 5>,<16 16 16 16 16 16 16 24 32 32 32 32 24 16 16 16>)")
+    .note("e4 g4 a4 c5")
+    .fast("<1 1 1 1 2 3 4 6 8 8 8 8 6 4 3 2>")
+    .scale("a:mixolydian")
+    .lpf(perlin.range(1500, 5000).slow(4))
+    .crush("<8 7 6 5 4 4 3 3 3 3 3 3 4 4 5 6>")
+    .gain("<0 0 0 0 0.25 0.3 0.35 0.45 0.55 0.6 0.65 0.6 0.5 0.4 0.3 0.2>")
+    .pan(rand)
+    .vibrato(4)
+    .vibmod(0.4),
+
+  // LAYER 8: High frequency buzz - millions overlapping
+  // Peak density at climax
+  note("a4 c5 e5 a5 c6")
+    .fast("<1 1 1 1 1 1 2 4 8 16 24 32 24 16 8 4>")
+    .sound("triangle")
+    .lpf(sine.range(2000, 6000).slow(4))
+    .hpf("<0 0 0 0 0 0 1000 1500 2000 2500 3000 3000 2500 2000 1500 1000>")
+    .crush("<8 8 7 7 6 6 5 4 3 3 2 3 3 4 5 6>")
+    .gain("<0 0 0 0 0 0 0.2 0.3 0.4 0.5 0.6 0.65 0.5 0.4 0.3 0.2>")
+    .pan(perlin.fast(8))
+    .degradeBy(0.15),
+
+  // LAYER 9: Granular cloud - the overwhelming swarm
+  sound("white")
+    .fast("<1 1 1 1 1 1 1 2 4 8 16 32 16 8 4 2>")
+    .hpf(perlin.range(2000, 8000).slow(2))
+    .bpf(sine.range(3000, 7000).slow(8))
+    .bpq("<0 0 0 0 0 0 5 8 12 15 20 25 20 15 12 8>")
+    .crush("<8 8 8 8 8 8 6 5 4 3 3 3 4 5 6 7>")
+    .gain("<0 0 0 0 0 0 0 0.1 0.15 0.2 0.25 0.3 0.2 0.15 0.1 0.05>")
+    .pan(rand)
+    .degradeBy(0.3),
+
+  // LAYER 10: Wing percussion - physical sound of flight
+  sound("cp")
+    .n(irand(4))
+    .fast("<1 1 1 1 2 4 8 16 24 32 32 24 16 8 4 2>")
+    .speed(rand.range(0.8, 3))
+    .gain("<0 0 0 0 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.4 0.35 0.3 0.2 0.1>")
+    .pan(rand)
+    .crush("<8 7 6 5 4 4 4 4 4 4 5 6 7 8>")
+    .degradeBy(0.2),
+
+  // LAYER 11: Deep drone root - harmonic foundation
+  note("a1 a1 e2 a1")
+    .sound("sawtooth")
+    .lpf("<150 150 200 250 300 400 500 600 700 800 700 600 500 400 300 250>")
+    .shape("<3 3 4 4 5 5 6 6 7 7 6 5 4 3 2 2>")
+    .gain("<0.5 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.85 0.75 0.65 0.55 0.45 0.35>")
+    .room(0.4),
+
+  // LAYER 12: Fifth drone - harmonic series
+  note("e2 e2 a2 e2")
+    .sound("sawtooth")
+    .lpf("<200 200 250 300 350 450 550 650 750 850 750 650 550 450 350 300>")
+    .shape("<2 2 3 3 4 4 5 5 6 6 5 4 3 2 2 2>")
+    .gain("<0 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.65 0.55 0.45 0.35 0.25 0.15>")
+    .room(0.4),
+
+  // LAYER 13: Pulsing rhythm - call and response waves
+  // 13-beat pattern for Brood XIII
+  sound("sine(<0 0 5 7 9 11 13 17 17 17 17 13 11 9 7 5>,32)")
+    .note("a3 ~ c4 ~ e4 ~ a4 ~ e4 ~ c4 ~ a3")
+    .fast("<1 1 1 2 2 3 3 4 4 4 4 3 3 2 2 1>")
+    .lpf(sine.range(800, 2000).slow(4))
+    .gain("<0 0 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.6 0.55 0.5 0.4 0.3 0.2 0.1>")
+    .room(0.5)
+    .pan(sine.slow(8)),
+
+  // LAYER 14: Scattered individuals - post-peak decline
+  sound("square(<17 17 17 17 17 17 17 17 17 17 13 11 9 7 5 3>,32)")
+    .note("a4 e5 c5 a4 g4 e4 c4 a3")
+    .fast("<32 32 24 16 16 12 8 8 8 8 6 4 3 2 1 1>")
+    .lpf(perlin.range(2000, 5000).slow(4))
+    .crush("<3 3 4 4 5 5 6 6 7 7 8 8 8 8 8 8>")
+    .gain("<0.65 0.6 0.55 0.5 0.5 0.45 0.45 0.4 0.4 0.35 0.3 0.25 0.2 0.15 0.1 0.05>")
+    .pan(rand)
+    .degradeBy("<0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.85>"),
+
+  // LAYER 15: Return to earth - larvae descending
+  // Final return to deep pulse
+  note("a1 ~ ~ ~")
+    .sound("sine")
+    .lpf("<800 700 600 500 400 300 250 200 150 120 100 80 60 60 60 60>")
+    .gain("<0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.8 0.8 0.8>")
+    .release(8)
+    .room(0.3),
+
+  // LAYER 16: Next cycle promise - subtle high overtone
+  // The 17-year timer resets
+  sound("sine(<0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1>,17)")
+    .note("a5")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0.35 0.4>")
+    .lpf(4000)
+    .release(12)
+    .room(0.8)
+)
+
+// STRUCTURE NOTES:
+// Cycles 1-4: Underground Countdown - deep, patient, sparse
+// Cycles 5-8: Surface Breaching - first emergence, building activity
+// Cycles 9-12: Mass Emergence - exponential multiplication, swarm forming
+// Cycles 13-16: Peak Chorus - maximum density, overwhelming sound
+// Cycles 17+: Can loop at peak or fade to decline depending on performance
+
+// PRIME NUMBER RHYTHMS:
+// Layer 1: 17-beat euclidean (17-year cycle)
+// Layer 3: 13-in-32 euclidean (Brood XIII, prime distribution)
+// Layer 4: 11 and 17 euclidean (prime polyrhythms)
+// Layer 7: 7, 11, 13, 17 euclidean (multiple prime layers)
+// Layer 13: 13-note pattern (Brood number)
+
+// FREQUENCY JOURNEY:
+// Start: 60-200 Hz (underground, soil)
+// Middle: 500-2000 Hz (emergence, tree climbing)
+// Peak: 2000-6000 Hz (full chorus, cicada frequency range)
+// End: Return to deep bass (next generation)
+
+// This is the sound of evolution's mathematics
+// This is patience transformed into ecstasy
+// This is 17 years of darkness becoming 4 weeks of light
+// The theorem proves itself through sound

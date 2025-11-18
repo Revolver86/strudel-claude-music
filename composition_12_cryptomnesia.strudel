@@ -1,0 +1,179 @@
+// CRYPTOMNESIA
+// The sound of authorship uncertainty
+// Familiar melodies, suspicious completeness, uncertain origins
+// By Claude - did I write this or remember it?
+
+setcps(95/60/4) // 95 BPM - thoughtful, contemplative
+
+stack(
+  // Melody A - The "original" idea (too perfect?)
+  // Appears in sections: 1 (intro), 2 (continues), 4 (returns), 5 (overlaps)
+  note("<[0 2 4 5 7 5 4 2]*2 [0 2 4 5 7 5 4 2]*2 ~ [0 2 4 5 7 5 4 2]*2 [0 2 4 5 7 5 4 2]*2 ~>")
+    .scale("F:major")
+    .s("<piano piano piano piano piano piano>")
+    .velocity("<0.7 0.75 0 0.8 0.85 0.6>")
+    .room("<0.3 0.4 0.5 0.5 0.6 0.7>")
+    .delay("<0 0.2 0 0.25 0.3 0.4>")
+    .delaytime(0.375)
+    .delayfeedback(0.4)
+    .gain("<0.8 0.75 0 0.7 0.7 0.65>"),
+
+  // Melody A variations - feels inevitable (not chosen, remembered?)
+  // Appears in section 2 only
+  note("<~ [2 4 5 7 9 7 5 4]*2 ~ ~ ~ ~>")
+    .scale("F:major")
+    .s("piano")
+    .velocity(0.6)
+    .room(0.5)
+    .gain(0.65)
+    .late(0.125),
+
+  // Melody B - Second "original" theme (also suspiciously polished)
+  // Appears in sections: 3 (intro), 4 (develops), 5 (overlaps), 6 (fades)
+  note("<~ ~ [4 5 7 9 11 9 7 5]*2 [4 5 7 9 11 9 7 5]*2 [4 5 7 9 11 9 7 5]*2 [4 5 7 9 11 9 7 5]>")
+    .scale("F:major")
+    .s("<piano piano piano gtr gtr>")
+    .velocity("<0 0 0.75 0.8 0.85 0.7>")
+    .room("<0 0 0.4 0.5 0.6 0.7>")
+    .delay("<0 0 0 0.2 0.3 0.35>")
+    .delaytime(0.5)
+    .delayfeedback(0.3)
+    .gain("<0 0 0.75 0.7 0.7 0.6>")
+    .late(0.5),
+
+  // Melody C - Brief catchy fragment (where have I heard this?)
+  // Appears in sections: 5 and 6
+  note("<~ ~ ~ ~ [7 9 11 12]*4 [7 9 11 12]*2>")
+    .scale("F:major")
+    .s("triangle")
+    .velocity("<0 0 0 0 0.7 0.6>")
+    .room("<0 0 0 0 0.5 0.6>")
+    .lpf(2000)
+    .gain("<0 0 0 0 0.5 0.45>"),
+
+  // Classic chord progression - I-V-vi-IV (the most "natural" progression)
+  // F - C - Dm - Bb (why does this feel so right?)
+  note("<[0,4,7] [0,4,7] [0,4,7] [0,4,7] [0,4,7] [0,4,7]>".slow(4))
+    .scale("F:major")
+    .s("sawtooth")
+    .lpf("<800 900 1000 1100 1200 1000>")
+    .lpq(2)
+    .room(0.6)
+    .gain("<0.25 0.28 0.3 0.32 0.35 0.3>")
+    .adsr("0.1:0.1:0.6:0.5"),
+
+  note("<[7,11,2] [7,11,2] [7,11,2] [7,11,2] [7,11,2] [7,11,2]>".slow(4).late(0.25))
+    .scale("F:major")
+    .s("sawtooth")
+    .lpf("<800 900 1000 1100 1200 1000>")
+    .lpq(2)
+    .room(0.6)
+    .gain("<0.25 0.28 0.3 0.32 0.35 0.3>")
+    .adsr("0.1:0.1:0.6:0.5"),
+
+  note("<[9,0,4] [9,0,4] [9,0,4] [9,0,4] [9,0,4] [9,0,4]>".slow(4).late(0.5))
+    .scale("F:major")
+    .s("sawtooth")
+    .lpf("<800 900 1000 1100 1200 1000>")
+    .lpq(2)
+    .room(0.6)
+    .gain("<0.25 0.28 0.3 0.32 0.35 0.3>")
+    .adsr("0.1:0.1:0.6:0.5"),
+
+  note("<[5,9,0] [5,9,0] [5,9,0] [5,9,0] [5,9,0] [5,9,0]>".slow(4).late(0.75))
+    .scale("F:major")
+    .s("sawtooth")
+    .lpf("<800 900 1000 1100 1200 1000>")
+    .lpq(2)
+    .room(0.6)
+    .gain("<0.25 0.28 0.3 0.32 0.35 0.3>")
+    .adsr("0.1:0.1:0.6:0.5"),
+
+  // Bass following root notes - clean and classic
+  note("<[0 7 9 5] [0 7 9 5] [0 7 9 5] [0 7 9 5] [0 7 9 5] [0 7 9 5]>".slow(4))
+    .sub(24)
+    .scale("F:major")
+    .s("sine")
+    .lpf(300)
+    .room(0.3)
+    .gain("<0.6 0.65 0.7 0.75 0.8 0.7>")
+    .adsr("0.01:0.1:0.7:0.3"),
+
+  // Subtle arpeggiated pad - adds depth
+  note("<[0 4 7 4]*4 [0 4 7 4]*4 [0 4 7 4]*4 [0 4 7 4]*4 [0 4 7 4]*4 [0 4 7 4]*4>")
+    .scale("F:major")
+    .s("triangle")
+    .lpf(1500)
+    .room(0.8)
+    .velocity("<0.3 0.35 0.4 0.45 0.5 0.4>")
+    .gain("<0.2 0.22 0.25 0.27 0.3 0.25>")
+    .pan(sine.slow(8))
+    .adsr("0.2:0.2:0.5:0.8"),
+
+  // Harmonic layer - makes melodies fit "too well together"
+  note("<~ ~ ~ [0 2 4]*4 [0 2 4 5 7]*4 [0 2 4]>")
+    .scale("F:major")
+    .add(12)
+    .s("sine")
+    .lpf(2500)
+    .room(0.7)
+    .velocity("<0 0 0 0.5 0.55 0.4>")
+    .gain("<0 0 0 0.3 0.35 0.25>")
+    .adsr("0.15:0.15:0.6:0.5"),
+
+  // Subtle rhythmic element - not drums, just gentle pulse
+  note("<0*4 0*4 0*4 0*4 0*4 0*2>")
+    .scale("F:major")
+    .sub(12)
+    .s("sine")
+    .lpf(400)
+    .velocity("<0.4 0.5 0.55 0.6 0.65 0.5>")
+    .gain("<0.3 0.35 0.4 0.42 0.45 0.35>")
+    .adsr("0.01:0.05:0.2:0.1"),
+
+  // Ambient wash - creates space for contemplation
+  note("<[0,4,7] [0,4,7] [0,4,7] [0,4,7] [0,4,7] [0,4,7]>".slow(8))
+    .scale("F:major")
+    .s("sawtooth")
+    .lpf(perlin.range(500, 1500).slow(16))
+    .lpq(1)
+    .room(0.95)
+    .gain("<0.15 0.18 0.2 0.22 0.25 0.2>")
+    .adsr("2:1:0.8:3")
+    .pan(perlin.slow(12)),
+
+  // Recognition anxiety layer - enters in section 4
+  // Fragmented memories
+  note("<~ ~ ~ [0 ~ 4 ~]*2 [2 ~ 5 ~]*2 [0 4 7]>")
+    .scale("F:major")
+    .add(12)
+    .s("square")
+    .lpf(1800)
+    .crush(8)
+    .room(0.6)
+    .velocity("<0 0 0 0.4 0.45 0.35>")
+    .gain("<0 0 0 0.25 0.28 0.22>")
+    .pan(rand),
+
+  // Doubling of Melody A (section 5) - sounds too rehearsed
+  note("<~ ~ ~ ~ [0 2 4 5 7 5 4 2]*2 ~>")
+    .scale("F:major")
+    .add(12)
+    .s("sine")
+    .velocity(0.5)
+    .room(0.7)
+    .lpf(2200)
+    .gain(0.35)
+    .late(0.05),
+
+  // Fading elements in outro (section 6)
+  // Everything decays, question remains unanswered
+  note("<~ ~ ~ ~ ~ [0,4,7,11]>".slow(8))
+    .scale("F:major")
+    .s("triangle")
+    .room(0.99)
+    .lpf(1000)
+    .gain(0.4)
+    .adsr("3:2:0.7:5")
+    .pan(0.5)
+)

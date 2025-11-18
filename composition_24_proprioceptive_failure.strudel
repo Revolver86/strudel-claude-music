@@ -1,0 +1,130 @@
+// PROPRIOCEPTIVE_FAILURE
+// The sensation of losing your sense of where your body is in space
+// E Dorian - rhythms that land wrong, melodies that miss, bass in impossible places
+// Your internal spatial model and physical reality falling out of sync
+
+setcps(118/60/4) // 118 BPM - starts stable, subdivisions will shift
+
+stack(
+  // Kick drum - starts on time, then begins missing (100ms early at key moments)
+  // First obvious "miss" at cycle 8 (0:15 mark)
+  sound("bd*4")
+    .bank("RolandTR808")
+    .early("<0 0 0 0 0 0 0 0.1 0 0 0 -0.08 0 0 0.1 0 0.05 0 -0.09 0 0.12 0>")
+    .gain("<0.9 0.9 0.9 0.9 0.95 0.95 1 1 1 1.05 1.05 1 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.6 0.5 0.3>")
+    .lpf("<12000 10000 8000 6000 5000 4000 3000 2500 2000 1800 1600 1400 1200 1000 900 800 700 600 500 400>"),
+
+  // Snare - tries to compensate for kick's timing errors
+  sound("[~ sd]*2")
+    .bank("RolandTR808")
+    .late("<0 0 0 0 0 0 0 0 -0.05 0.08 0 -0.06 0.09 0 -0.11 0.07 0 -0.08 0.12 0 0.15>")
+    .gain("<0 0 0 0 0.6 0.6 0.65 0.7 0.75 0.8 0.82 0.8 0.75 0.7 0.65 0.6 0.55 0.5 0.4 0.3 0.2>"),
+
+  // Hi-hats - panned completely to one side at cycle 29 (1:00 mark) - spatial impossibility
+  sound("hh*<0 0 0 0 8 8 8 8 8 8 16 16 16 16 16 16 16 16 16 16 0 0>")
+    .bank("RolandTR808")
+    .pan("<0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.6 0.7 0.8 0.9 0.95 0.95 0.95 0.95 0.95 0.9 0.8 0.7 0.5 0.5>")
+    .gain("<0 0 0 0 0.4 0.4 0.45 0.45 0.5 0.5 0.5 0.55 0.55 0.5 0.45 0.4 0.35 0.3 0.25 0.2 0 0>")
+    .crush("<8 8 7 7 6 6 5 5 4 4 3 3 3 3 4 4 5 6 7 8>"),
+
+  // Primary melody - E Dorian, overshoots target notes and corrects
+  // At cycle 18 (0:37) - phrase overshoots by whole step, hangs there
+  note("[0 2 3 5 7 9 10 12]*<2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 0>")
+    .add("<0 0 0 0 0 0 0 0 1 1 0 0 1 1 2 2 2 3 3 2 0 0>")
+    .scale("e:dorian")
+    .sound("<square square triangle triangle sine sine sawtooth sawtooth square triangle sine sawtooth>")
+    .add(perlin.range(-0.2, 0.2))
+    .gain("<0 0 0 0.5 0.5 0.55 0.55 0.6 0.6 0.6 0.65 0.65 0.65 0.65 0.6 0.6 0.55 0.5 0.45 0.4 0.3 0>")
+    .lpf(perlin.range(800, 2400).slow(16))
+    .pan(sine.slow(32)),
+
+  // Secondary melody - polyrhythmic "wrong" divisions (5, 7, 11)
+  note("<~ ~ ~ ~ ~ ~ [0 3 7]*5 [2 5 9]*7 [0 3 7]*5 [2 5 9]*7 [3 7 10]*11 [0 3 7]*5 [2 5 9]*7 [3 7 10]*11 [5 8 12]*7 [0 3 7]*5 [7 10 14]*11 [2 5 9]*7 [0 3 7]*11 [0 3 7]*7 [0 3 7]*5 ~>")
+    .scale("e:dorian")
+    .sound("triangle")
+    .gain("<0 0 0 0 0 0 0.35 0.4 0.4 0.45 0.45 0.5 0.5 0.55 0.55 0.5 0.45 0.4 0.35 0.3 0.25 0>")
+    .lpf(1200)
+    .pan(perlin.fast(4)),
+
+  // Bass - drops UP instead of down at cycle 13 (0:52 - growing mismatch section)
+  // Bass WRONGLY panned hard right (low frequencies should be center)
+  note("<-12 -12 -12 -12 -12 -12 -12 -12 -12 -12 -10 -10 -8 -8 -10 -12 -14 -12 -10 -8 -6 -12>*4")
+    .scale("e:dorian")
+    .sound("sawtooth")
+    .lpf("<180 180 180 180 180 180 180 180 180 180 200 200 250 250 200 180 150 180 200 250 300 180>")
+    .gain("<0.7 0.7 0.7 0.75 0.75 0.75 0.8 0.8 0.8 0.85 0.85 0.85 0.85 0.85 0.8 0.8 0.75 0.7 0.65 0.6 0.5 0.4>")
+    .pan("<0.5 0.5 0.5 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.8 0.8 0.8 0.75 0.7 0.65 0.6 0.55 0.5 0.5 0.5 0.5>"),
+
+  // Pad - pitch drifts via slow perlin (±20 cents)
+  note("<~ ~ ~ ~ [0 3 7 10] [0 3 7 10] [0 3 7 10] [0 3 7 10] [0 3 7 10] [0 3 7 10] [0 3 7 10] [0 3 7 10] [2 5 9 12] [2 5 9 12] [3 7 10 14] [3 7 10 14] [0 3 7 10] [0 3 7 10] [2 5 9 12] [0 3 7 10] [0 3 7 10] ~>")
+    .scale("e:dorian")
+    .sound("sine")
+    .add(perlin.range(-0.2, 0.2).slow(8))
+    .gain("<0 0 0 0 0.2 0.25 0.25 0.3 0.3 0.35 0.35 0.35 0.35 0.35 0.35 0.3 0.3 0.25 0.2 0.15 0.1 0>")
+    .lpf(600)
+    .room(0.8)
+    .size(0.9),
+
+  // Reversed attack percussion - sounds arrive before they start
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ cp*8 cp*8 rim*8 rim*8 mt*8 lt*8 cp*8 rim*8 mt*8 lt*8 cp*4 ~>")
+    .speed(-1)
+    .gain("<0 0 0 0 0 0 0 0 0 0 0.3 0.35 0.35 0.4 0.4 0.45 0.45 0.4 0.35 0.3 0.2 0>")
+    .pan(rand)
+    .room(0.5),
+
+  // "Phantom" rhythm - appears in negative space (breakdown sections)
+  // Sounds where silence should be
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ [bd ~ sd ~]*2 [bd ~ sd ~]*2>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0.3>")
+    .delay(0.5)
+    .delaytime(0.25)
+    .delayfeedback(0.6)
+    .lpf(800)
+    .pan(0.2),
+
+  // Spatial movement at wrong speed - orbiting faster than tempo
+  note("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 12*16 12*16 14*16 14*16 15*16 15*16 17*16 17*16 12*8 ~>")
+    .scale("e:dorian")
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0.25 0.3 0.3 0.35 0.35 0.3 0.25 0.2 0.15 0>")
+    .pan(sine.fast(3.7))
+    .lpf(3000)
+    .hpf(1000),
+
+  // Section in 7/8 that feels like broken 4/4 (cycle 33-40, around 1:07-1:21)
+  sound("<~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ bd*7 sd*7 bd*7 sd*7 bd*7 sd*7 bd*7 sd*7 ~ ~>")
+    .gain("<0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0.4 0.5 0.4 0.5 0.4 0.5 0.4 0 0>")
+    .crush(5)
+    .pan(perlin),
+
+  // Ambient wash - grows then recedes
+  sound("<~ ~ ~ ~ ~ white white white white white white white white white white white white white white white white ~>")
+    .lpf(perlin.range(400, 1200).slow(8))
+    .hpf(200)
+    .gain("<0 0 0 0 0 0.08 0.1 0.12 0.14 0.15 0.16 0.16 0.16 0.15 0.14 0.12 0.1 0.08 0.06 0.04 0.02 0>")
+    .pan(sine.slow(64))
+    .room(0.9)
+)
+
+// RECALIBRATION FAILURE CODA
+// After the main pattern completes (~100 cycles), everything tries to sync
+// Almost succeeds, then ONE element continues alone for 3 beats, cuts mid-phrase
+// This is implemented via the gain envelopes - all elements fade to silence
+// except the phantom rhythm which continues briefly then stops abruptly
+
+// To experience the full piece:
+// 1. Let it play through completely (about 3.5 minutes)
+// 2. Notice the timing "misses" starting around 0:15
+// 3. Feel the bass drop UP at 0:52 instead of down
+// 4. Experience the hi-hats moving to impossible positions around 1:00
+// 5. Notice melodies overshooting their targets throughout
+// 6. The 7/8 section around 1:30 that feels like broken 4/4
+// 7. The final recalibration attempt where everything fades together
+// 8. The phantom rhythm that continues alone, then cuts
+
+// This is proprioceptive failure:
+// Your prediction engine constantly misfires
+// Sounds land where you don't expect
+// Spatial relationships become negotiable
+// The map diverges from the territory
+// Not random - wrong, but consistently wrong

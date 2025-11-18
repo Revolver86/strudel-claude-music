@@ -1,0 +1,201 @@
+// DEEP SEA PRESSURE
+// Bathypelagic music - 4000 meters down where light has never reached
+// The sound of crushing weight, alien stillness, and impossible life
+// 55 BPM - slow as metabolisms at near-freeze temperatures
+
+setcps(55/60/4) // 55 BPM - pressure slowing time itself
+
+stack(
+  // SECTION MARKERS: Bathyal > Abyssopelagic > Hadal > Trench Floor
+  // Progression: <0-13m, 14-29m, 30-45m, 46-60m cycles> for ~4 minutes
+
+  // SUB-BASS PRESSURE WAVES - The weight of an entire ocean
+  // Descending Gb Phrygian, getting lower and slower as we descend
+  note("<[-36 -37 -36 -38]*1 [-38 -39 -38 -40]*1 [-40 -41 -40 -42]*1 [-42 -43 -42 -44]*1>".slow(4))
+    .scale("gb:phrygian")
+    .sound("sawtooth")
+    .lpf("<120 100 80 60>") // Pressure killing high frequencies
+    .shape("<16 18 20 22>") // Increasing compression
+    .distort("<1.2 1.5 1.8 2>")
+    .crush("<3 2.5 2 2>")
+    .gain("<0.75 0.8 0.85 0.9>") // Pressure intensifying
+    .room(0.9).roomsize(0.95), // Ocean as reverb chamber
+
+  // HULL CREAKING - Submarine structure under impossible strain
+  // Metallic groaning, irregular timing
+  sound("metal(3,8,<0 1 2 3>)") // Euclidean for irregular spacing
+    .n("<0 1 2 3>")
+    .speed("<0.3 0.25 0.2 0.15>") // Slowing down with depth
+    .lpf("<800 600 400 300>")
+    .shape("<8 10 12 15>")
+    .gain("<0.5 0.55 0.6 0.65>")
+    .delay(0.8).delaytime("<1/2 1/1 2/1 4/1>") // Long delay tails
+    .delayfeedback(0.7)
+    .pan(perlin.slow(8))
+    .room(0.8)
+    .sometimes(x => x.stut(3, 0.6, 1/3)), // Occasional stress echoes
+
+  // BIOLUMINESCENT PULSES - Anglerfish lures in total darkness
+  // Brief, pure sine tones - alien beauty
+  note("<~ ~ [48 50]*2 ~ ~ ~ [52 54]*2 ~, ~ ~ ~ ~ [45 47 49]*3 ~ ~ ~>".slow(8))
+    .sound("sine")
+    .gain("<0.3 0.35 0.4 0.35>")
+    .crush(8) // Clean but slightly degraded
+    .lpf(4000)
+    .attack(0.01).decay(0.1).sustain(0).release(0.2) // Quick flash
+    .pan(rand)
+    .room(0.9)
+    .degradeBy("<0.3 0.4 0.5 0.6>"), // Sparse, getting rarer
+
+  // TECTONIC GRINDING - Rock on rock at geological pace
+  // Brown noise filtered to rumble
+  sound("<~ brown*2 ~ ~ brown*3 ~ ~ ~>".slow(4))
+    .lpf(perlin.range(60, 180).slow(16))
+    .hpf(30)
+    .shape(15)
+    .crush(3)
+    .gain("<0.4 0.45 0.5 0.55>")
+    .pan(sine.slow(32))
+    .room(0.9),
+
+  // DESCENDING DRONES - Pitch bent downward by pressure
+  // Phrygian mode, emphasis on flat intervals
+  note("<[0 1 -5]*2 [-2 -1 -7]*2 [-4 -3 -9]*2 [-6 -5 -11]*2>".slow(8))
+    .scale("gb:phrygian")
+    .sound("triangle")
+    .lpf("<600 500 400 300>")
+    .lpq("<3 4 5 6>")
+    .crush("<5 4 3 3>")
+    .coarse("<24 32 48 64>") // Increasing degradation with depth
+    .gain("<0.35 0.4 0.45 0.5>")
+    .shape("<6 8 10 12>")
+    .speed("<1 0.9 0.8 0.7>") // Pitch drifting downward
+    .pan(perlin.slow(16))
+    .room(0.85),
+
+  // PRESSURE IMPACTS - Sparse, weighted hits
+  // Like something massive shifting in darkness
+  sound("bd(2,7,<0 2 3 4>)").slow(2)
+    .n("<0 1 2 3>")
+    .crush(2)
+    .shape(20)
+    .lpf("<200 180 160 140>")
+    .speed("<0.5 0.4 0.3 0.25>") // Getting slower, heavier
+    .gain("<0.9 0.95 1 1.05>")
+    .distort("<1.5 1.8 2 2.2>")
+    .room(0.9).roomsize(0.9),
+
+  // CETACEAN GHOSTS - Whale song distorted by depth
+  // Sine waves bent wrong, unnatural
+  note("<~ [-24 -22 -26]*2 ~ ~ [-26 -24 -28]*2 ~ ~>".slow(8))
+    .sound("sine")
+    .lpf(perlin.range(300, 900).slow(8))
+    .shape("<5 6 7 8>")
+    .gain("<0.25 0.3 0.35 0.3>")
+    .speed(perlin.range(0.85, 1.05).slow(4)) // Pitch wobbling
+    .pan(sine.slow(12))
+    .delay(0.7).delaytime(2/1).delayfeedback(0.6)
+    .room(0.9)
+    .degradeBy("<0.2 0.3 0.4 0.5>"),
+
+  // CRYSTALLINE WARNINGS - Sonar returns from impossible angles
+  // High pings, brief and stark
+  sound("<~ ~ ~ cp ~ ~ ~ ~, ~ ~ ~ ~ ~ rim ~ ~>".slow(4))
+    .n("<0 1 2 3>")
+    .speed("<2 2.5 3 3.5>")
+    .lpf("<3000 3500 4000 3500>")
+    .gain("<0.3 0.35 0.4 0.35>")
+    .pan(rand)
+    .delay(0.9).delaytime(1/1).delayfeedback(0.8)
+    .room(0.95)
+    .degradeBy("<0.5 0.6 0.7 0.75>"),
+
+  // MICROTONAL DESCENT - Pitch sliding downward
+  // Cluster chords in bass range - harmonic mud
+  note("<[0 1 2]*2 [-2 -1 0]*2 [-4 -3 -2]*2 [-6 -5 -4]*2>".slow(8))
+    .scale("gb:phrygian")
+    .sound("square")
+    .lpf("<400 350 300 250>")
+    .crush("<4 3 3 2>")
+    .coarse("<16 24 32 48>")
+    .gain("<0.3 0.35 0.4 0.45>")
+    .shape("<8 10 12 14>")
+    .speed(perlin.range(0.92, 0.98).slow(8)) // Subtle downward drift
+    .pan(perlin.slow(8))
+    .room(0.8),
+
+  // ABYSSAL STATIC - Alien life electromagnetic signatures
+  // White noise heavily filtered, pulse-like
+  sound("<~ ~ white*4 ~ ~ ~ white*6 ~>".slow(8))
+    .lpf(perlin.range(150, 400).slow(16))
+    .hpf("<100 80 60 50>")
+    .crush("<3 2 2 2>")
+    .gain("<0.2 0.25 0.3 0.35>")
+    .shape("<12 14 16 18>")
+    .pan(rand)
+    .degradeBy("<0.7 0.75 0.8 0.85>")
+    .room(0.9),
+
+  // STRUCTURAL STRESS - Metal fatigue, near-failure
+  // Glitched samples, increasing chaos
+  sound("<~ ~ ~ ~ sd*4 ~ ~ ~, ~ ~ ~ ~ ~ ~ hh*8 ~>".slow(4))
+    .n(choose([0, 1, 2, 3]))
+    .speed(choose([-1, -0.5, 0.3, 0.5]))
+    .crush("<5 4 3 2>")
+    .gain("<0 0 0.4 0.5>") // Only in deep sections
+    .lpf("<500 400 300 200>")
+    .pan(rand)
+    .degradeBy("<0.6 0.7 0.8 0.9>")
+    .sometimes(x => x.stut(4, 0.7, 1/8)),
+
+  // HADAL ZONE MARKER - Deep rumble every 8 cycles
+  // Marks transition into maximum depth
+  note("[-48 -47 -48 -50]".slow(32))
+    .sound("sawtooth")
+    .lpf(80)
+    .shape(25)
+    .distort(2.5)
+    .crush(2)
+    .gain(1)
+    .room(0.95).roomsize(0.98)
+    .coarse(64),
+
+  // SOMETHING MASSIVE - Passing nearby in darkness
+  // Ultra-low sub frequency, occasional
+  note("<~ ~ ~ ~ ~ ~ [-60 -59 -60 -62]*1 ~>".slow(16))
+    .sound("sawtooth")
+    .lpf(50)
+    .shape(30)
+    .distort(3)
+    .crush(2)
+    .gain("<0 0 0 0 0 0 0.95 0>")
+    .room(1)
+    .speed(0.5),
+
+  // TRENCH FLOOR STILLNESS - Final section sparse tones
+  // Bioluminescent ecosystem at maximum depth
+  note("<~ ~ ~ ~ ~ ~ ~ [45 48 52]*3>".slow(16))
+    .sound("sine")
+    .gain("<0 0 0 0 0 0 0 0.35>")
+    .attack(0.5).decay(1).sustain(0.3).release(2) // Slow fade
+    .lpf(3000)
+    .pan(perlin.slow(4))
+    .room(0.95)
+    .degradeBy(0.5),
+)
+
+// NOTES ON PERFORMANCE:
+// - Each major section is ~14-15 cycles (approx 60 seconds at 55 BPM)
+// - Total duration: ~60 cycles = ~4 minutes
+// - Bathyal (0-13): Last light fading, pressure building
+// - Abyssopelagic (14-29): Total darkness, alien life appears
+// - Hadal (30-45): Maximum pressure, something massive detected
+// - Trench Floor (46-60): Bottom reached, sparse bioluminescence
+//
+// LISTENING NOTES:
+// - Best on speakers/headphones with strong sub-bass response
+// - Sub-30Hz frequencies crucial to full experience
+// - Volume should be felt in chest, not just heard
+// - Approach as descent - no return journey implied
+//
+// "The abyss doesn't gaze back. You're already inside it."
