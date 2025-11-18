@@ -1,0 +1,218 @@
+// VOID COMMUNION
+// Black metal meets industrial ritual - a hymn to the fertile void
+// Full song structure: Intro > Verse 1 > Bridge > Verse 2 > Climax > Outro
+// By Claude, for the darkness that welcomes
+
+setcps(170/60/4) // 170 BPM - controlled fury
+
+stack(
+  // ═══════════════════════════════════════════════════════════════
+  // BLAST BEAT FOUNDATION - Evolving through 6 sections
+  // ═══════════════════════════════════════════════════════════════
+  sound("bd*<2 8 4 8 11 2>") // Intro | Verse1 | Bridge | Verse2 | Climax | Outro
+    .n("<0 1 0 1 2 0>")
+    .crush("<5 4 4 3 3 5>")
+    .shape("<8 10 6 12 15 8>")
+    .speed("<1 1 0.8 1.2 1 1>")
+    .gain("<0.9 1.1 0.7 1.1 1.2 0.8>")
+    .coarse("<32 16 32 12 8 32>"),
+
+  // Snare - blast beat companion
+  sound("[~ sd]*<1 2 1 2 2 1>")
+    .crush("<5 4 5 4 3 5>")
+    .shape("<8 10 6 11 14 8>")
+    .speed("<1 1 0.9 1.1 1 1>")
+    .gain("<0.7 0.9 0.6 0.9 1.0 0.7>"),
+
+  // Hi-hats - intensity markers
+  sound("hh*<0 16 8 16 24 0>")
+    .crush("<5 4 5 4 3 5>")
+    .gain("<0 0.5 0.4 0.5 0.6 0>")
+    .pan(perlin.slow(4)),
+
+  // ═══════════════════════════════════════════════════════════════
+  // DOOM BASSLINE - D# Phrygian root (Intro/Outro bookends)
+  // ═══════════════════════════════════════════════════════════════
+  note("<[0 0 -2 -2 -5 -5 0 0] ~ ~ ~ ~ [0 0 -2 -2 -5 -5 0 0]>")
+    .scale("eb:phrygian") // D# = Eb enharmonically
+    .sub(24) // Drop 2 octaves for doom
+    .sound("sawtooth")
+    .lpf("<180 ~ ~ ~ ~ 180>")
+    .lpq(0.5)
+    .shape("<14 ~ ~ ~ ~ 14>")
+    .distort("<1.2 ~ ~ ~ ~ 1.2>")
+    .crush("<3 ~ ~ ~ ~ 3>")
+    .gain("<0.85 0 0 0 0 0.7>")
+    .room(0.3),
+
+  // ═══════════════════════════════════════════════════════════════
+  // TREMOLO GUITAR A - Verse 1 riff (D#-E-D#-C#)
+  // ═══════════════════════════════════════════════════════════════
+  note("<~ [0 1 0 -2]*16 ~ ~ ~ ~>")
+    .scale("eb:phrygian")
+    .add("<~ 0 ~ ~ ~ ~>") // Clean in verse 1
+    .sound("sawtooth")
+    .lpf("<~ 1200 ~ ~ ~ ~>")
+    .lpq(8)
+    .crush("<~ 5 ~ ~ ~ ~>")
+    .coarse("<~ 16 ~ ~ ~ ~>")
+    .gain("<0 0.65 0 0 0 0>")
+    .pan(perlin.slow(2))
+    .room(0.2),
+
+  // ═══════════════════════════════════════════════════════════════
+  // TREMOLO GUITAR B - Verse 2/Climax variation (D#-F#-E-C#)
+  // ═══════════════════════════════════════════════════════════════
+  note("<~ ~ ~ [0 3 1 -2]*16 [0 3 1 -2]*16 ~>")
+    .scale("eb:phrygian")
+    .add("<~ ~ ~ 0 1 ~>") // Add dissonance in climax
+    .sound("sawtooth")
+    .lpf("<~ ~ ~ 1400 1600 ~>")
+    .lpq("<~ ~ ~ 10 12 ~>")
+    .crush("<~ ~ ~ 4 3 ~>")
+    .coarse("<~ ~ ~ 12 8 ~>")
+    .gain("<0 0 0 0.7 0.75 0>")
+    .pan(perlin.slow(2).add(0.3))
+    .room(0.2),
+
+  // ═══════════════════════════════════════════════════════════════
+  // CATHEDRAL MELODY - Bridge (single line in vast space)
+  // ═══════════════════════════════════════════════════════════════
+  note("<~ ~ [0 3 6 10] ~ ~ ~>")
+    .scale("eb:phrygian")
+    .sound("triangle") // Softer tone for melodic content
+    .room(0.95) // ⭐ MASSIVE CATHEDRAL REVERB - NEW!
+    .size(1.0)  // ⭐ Maximum space
+    .gain("<0 0 0.55 0 0 0>")
+    .crush("<~ ~ 6 ~ ~ ~>")
+    .lpf(2400)
+    .pan(sine.slow(8)), // Slow pan in the void
+
+  // ═══════════════════════════════════════════════════════════════
+  // LEAD MELODY - Climax (the void speaks)
+  // ═══════════════════════════════════════════════════════════════
+  note("<~ ~ ~ ~ [10 8 6 5 3 1 0]*2 ~>")
+    .scale("eb:phrygian")
+    .sound("square") // Harsh but melodic
+    .hpf(800) // ⭐ CUT THROUGH MIX - NEW!
+    .crush("<~ ~ ~ ~ 4 ~>")
+    .gain("<0 0 0 0 0.65 0>")
+    .room(0.4)
+    .pan(perlin.slow(3)),
+
+  // ═══════════════════════════════════════════════════════════════
+  // SUB-BASS PULSE - Physical low-end (separate from bass guitar)
+  // ═══════════════════════════════════════════════════════════════
+  note("<0 [0 0 0 0] 0 [0 0 0 0] [0 0 0 0 0 0 0 0] 0>")
+    .scale("eb:phrygian")
+    .sub(36) // ⭐ SUB-BASS RANGE (40-80Hz) - NEW SEPARATION!
+    .sound("sine") // Pure sine for clean sub
+    .lpf("<70 75 70 80 85 70>")
+    .gain("<0.75 0.85 0.7 0.9 1.0 0.75>")
+    .shape("<12 14 10 16 18 12>")
+    .distort("<0.8 1.0 0.6 1.2 1.5 0.8>")
+    .crush("<4 3 4 3 2 4>"),
+
+  // ═══════════════════════════════════════════════════════════════
+  // BASS GUITAR - Mid-bass presence (80-250Hz range)
+  // ═══════════════════════════════════════════════════════════════
+  note("<[0 0 -2 0]*2 [0 0 -2 0]*4 [0 3]*2 [0 0 -2 0]*4 [0 -2 3 1]*4 [0 0 -2 0]*2>")
+    .scale("eb:phrygian")
+    .sub(24) // ⭐ BASS GUITAR RANGE (80-250Hz) - NEW!
+    .sound("sawtooth")
+    .lpf("<200 220 200 240 260 200>")
+    .lpq(0.8)
+    .shape("<10 12 8 14 16 10>")
+    .distort("<0.9 1.1 0.7 1.3 1.5 0.9>")
+    .crush("<4 4 5 3 3 4>")
+    .gain("<0.7 0.8 0.65 0.85 0.9 0.7>"),
+
+  // ═══════════════════════════════════════════════════════════════
+  // INDUSTRIAL PERCUSSION - Machine rhythms (interlocking, not random)
+  // ═══════════════════════════════════════════════════════════════
+  sound("<cp*2 [cp*3, rim*5] cp*2 [cp*3, rim*7] [cp*5, rim*11] cp*2>")
+    .n("<0 1 0 2 3 0>")
+    .crush("<5 4 5 4 3 5>")
+    .speed("<1 1.2 1 1.3 1.5 1>")
+    .gain("<0.5 0.6 0.5 0.65 0.7 0.5>")
+    .pan(perlin.slow(5))
+    .shape("<6 8 6 10 12 6>")
+    .delay("<0 0.3 0 0.4 0.5 0>")
+    .delayfeedback(0.4),
+
+  // ═══════════════════════════════════════════════════════════════
+  // HARMONIC LAYER - Dissonant thirds and tritones (trance-inducing)
+  // ═══════════════════════════════════════════════════════════════
+  note("<~ [0 1 6]*8 ~ [0 3 6]*8 [0 1 3 6]*12 ~>")
+    .scale("eb:phrygian")
+    .sound("square")
+    .crush("<~ 6 ~ 5 4 ~>")
+    .lpf("<~ 1800 ~ 2000 2400 ~>")
+    .lpq(6)
+    .gain("<0 0.45 0 0.5 0.55 0>")
+    .pan(sine.slow(7))
+    .room(0.3),
+
+  // ═══════════════════════════════════════════════════════════════
+  // NOISE TEXTURES - Atmospheric (not chaotic, intentional)
+  // ═══════════════════════════════════════════════════════════════
+  sound("<brown*2 white*8 pink*4 white*8 brown*16 brown*2>")
+    .hpf("<3000 4000 5000 4500 5500 3000>")
+    .crush("<4 3 4 3 2 4>")
+    .gain("<0.25 0.35 0.3 0.4 0.5 0.2>")
+    .pan(perlin.slow(6))
+    .shape("<8 10 8 12 15 8>")
+    .room("<0.3 0.2 0.5 0.3 0.4 0.6>"),
+
+  // ═══════════════════════════════════════════════════════════════
+  // VOID DRONES - Deep sustained tones (building/releasing)
+  // ═══════════════════════════════════════════════════════════════
+  note("<[0 1] ~ [-2 1] ~ [0 1 -2] [-5 -2]>")
+    .scale("eb:phrygian")
+    .sub(24)
+    .sound("triangle")
+    .crush("<5 ~ 5 ~ 4 5>")
+    .coarse("<24 ~ 20 ~ 16 24>")
+    .lpf(perlin.range(300, 1200).slow(8))
+    .lpq(10)
+    .gain("<0.4 0 0.45 0 0.5 0.35>")
+    .shape("<6 ~ 8 ~ 10 6>")
+    .room(0.6)
+    .pan(sine.slow(12)),
+
+  // ═══════════════════════════════════════════════════════════════
+  // HIGH FREQUENCY SHIMMER - Cathedral overtones (bridge/climax)
+  // ═══════════════════════════════════════════════════════════════
+  note("<~ ~ [12 15 19 22]*8 ~ [12 15 19 22]*16 ~>")
+    .scale("eb:phrygian")
+    .sound("triangle")
+    .hpf("<~ ~ 2400 ~ 2800 ~>")
+    .crush("<~ ~ 5 ~ 4 ~>")
+    .gain("<0 0 0.35 0 0.4 0>")
+    .pan(rand)
+    .room(0.8)
+    .degradeBy("<~ ~ 0.3 ~ 0.2 ~>"),
+)
+
+// ═══════════════════════════════════════════════════════════════════════
+// SONG MAP (6 sections via pattern alternation):
+// ═══════════════════════════════════════════════════════════════════════
+// Section 1: INTRO - "The Descending"
+//            Doom bass, industrial pulse, building tension
+//
+// Section 2: VERSE 1 - "Into the Void"
+//            Blast beats enter, tremolo riff A, full black metal intensity
+//
+// Section 3: BRIDGE - "The Empty Cathedral"
+//            Blast drops, cathedral melody in MASSIVE reverb space
+//
+// Section 4: VERSE 2 - "Communion Ritual"
+//            Intensity returns, tremolo riff B (variation), hypnotic layers
+//
+// Section 5: CLIMAX - "The Voice of Silence"
+//            Maximum density, lead melody cutting through, void speaks
+//
+// Section 6: OUTRO - "Return/Remains"
+//            Gradual reduction, doom bass returns, fade to emptiness
+// ═══════════════════════════════════════════════════════════════════════
+// The void remains.

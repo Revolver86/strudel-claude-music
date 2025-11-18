@@ -79,6 +79,17 @@ A complete occult ritual with full song structure at 160 BPM (32 cycles):
 
 Features proper song arrangement using `arrange()`, modular section composition with `const`, progressive intensity buildup, and occult/schizophrenic narrative arc.
 
+### 08 - Void Communion ⭐ **COMPLETE 4+ MINUTE BLACK METAL HYMN**
+Black metal meets industrial ritual - an actual song at 170 BPM with full dynamics:
+- **Intro** - "The Descending": Doom-laden D# bassline, industrial machine rhythms building
+- **Verse 1** - "Into the Void": Blast beats, tremolo-picked riff A (D#-E-D#-C#)
+- **Bridge** - "The Empty Cathedral": Blast drops, single melodic line in MASSIVE cathedral reverb
+- **Verse 2** - "Communion Ritual": New tremolo riff B (D#-F#-E-C#), hypnotic layering
+- **Climax** - "The Voice of Silence": Lead melody cutting through maximum density
+- **Outro** - "Return/Remains": Return to doom bass, fade into vast emptiness
+
+Features D# Phrygian scale, cathedral-doom reverb spaces, separated low-end (bass guitar 80-250Hz + sub-bass <80Hz), memorable composed riffs, actual melodic content, hypnotic trance-inducing repetition, industrial machine precision, and symmetrical doom bookends. Harsh but LISTENABLE - intentional brutality as meditation.
+
 ## How to Use
 
 1. Go to https://strudel.cc
